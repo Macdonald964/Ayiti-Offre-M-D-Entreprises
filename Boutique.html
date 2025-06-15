@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boutique Ayiti Offre Online</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+        }
+        nav a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+            text-align: center;
+        }
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        .carousel {
+            position: relative;
+            width: 300px; /* Largeur réduite */
+            overflow: hidden;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .carousel-images {
+            display: flex;
+            transition: transform 0.5s ease;
+            width: 100%; /* Prendre toute la largeur */
+        }
+        .carousel img {
+            width: 300px; /* Largeur de l'image égale à celle du carrousel */
+            height: auto; /* Hauteur automatique pour garder les proportions */
+             height: 300px; /* Hauteur fixe pour un aspect uniforme */
+              object-fit: cover; /* Ajuste l'image pour couvrir le conteneur */
+            display: block;
+        }
+        .button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+        .prev {
+            left: 10px;
+        }
+        .next {
+            right: 10px;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Bienvenue chez Boutique Ayiti Offre en ligne</h1>
+</header>
+
+<nav>
+    <a href="vf.html"> Nos Sections</a>
+    <a href="informations.html">Informations Generales</a>
+    <a href="services.html"> Services à la clientèle</a>
+    <a href="#" onclick="checkPassword()">Paniers</a>
+</nav>
+
+<div class="container">
+    <h2>Galerie d'Images</h2>
+    <div class="carousel">
+        <div class="carousel-images" id="carouselImages">
+            <img src="2 koule.jpg" alt="Image 1">
+            <img src="img/colan.jpg" alt="Image 2">
+            <img src="img/biden uni.jpg" alt="Image 3">
+            <img src="img/bouquet fleurs.jpg" alt="Image 4">
+            <img src="img/bout manche.jpg" alt="Image 5">
+            <img src="img/complet bout pantalon.jpg" alt="Image 6">
+            <img src="img/complet Gustavo.jpg" alt="Image 7">
+            <img src="img/djessica1.jpg" alt="Image 8">
+            <img src="img/grimel 24.jpg" alt="Image 9"> 
+            <img src="img/gerdex.jpg" alt="Image 10">
+        </div>
+        <button class="button prev" onclick="moveSlide(-1)">&#10094;</button>
+        <button class="button next" onclick="moveSlide(1)">&#10095;</button>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2025 Boutique Ayiti Offre Online. Tous droits réservés.</p>
+</footer>
+
+<script>
+let currentIndex = 0;
+
+function moveSlide(direction) {
+    const images = document.getElementById('carouselImages');
+    const totalImages = images.children.length;
+
+    currentIndex = (currentIndex + direction + totalImages) % totalImages;
+    images.style.transform = 'translateX(' + (-currentIndex * 100) + '%)';
+}
+
+function checkPassword() {
+    const password = prompt("Veuillez entrer le mot de passe pour accéder aux Paniers:");
+    const correctPassword = "Wememba"; // Remplacez par votre mot de passe
+
+    if (password === correctPassword) {
+        window.location.href = "Paniers.html"; // Redirige vers la page Paniers
+    } else {
+        alert("Mot de passe incorrect. Accès refusé.");
+    }
+}
+
+function checkGuichetPassword() {
+    const password = prompt("Veuillez entrer le mot de passe pour accéder au Guichet:");
+    const correctPassword = "Guichet123"; // Remplacez par votre mot de passe pour Guichet
+
+    if (password === correctPassword) {
+        window.location.href = "Guichet.html"; // Redirige vers la page Guichet
+    } else {
+        alert("Mot de passe incorrect. Accès refusé.");
+    }
+}
+</script>
+
+</body>
+</html>
