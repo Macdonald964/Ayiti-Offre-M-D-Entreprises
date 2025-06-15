@@ -1,0 +1,182 @@
+
+.contain div {
+    display: flex;
+    animation-duration: 30s;
+    animation-name: images;
+    animation-iteration-count: infinite;
+    
+    
+}
+
+.contain {
+    width: 177px;
+    overflow: hidden;
+    border: solid 2px wheat; 
+    width: 100%;
+    
+   
+}
+
+@keyframes images {
+    0% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-177px);
+    }     
+    50% {
+        transform: translateX(-1000px);
+    }
+    75% {
+        transform: translateX(-1500px);
+    }
+    100% {
+        transform: translateX(0);
+    } 
+    
+}
+
+
+
+
+.header-nav a {
+     padding: 10px;
+     color: white;
+     text-decoration: none;
+     
+     
+}
+
+.header-nav {
+    text-align: right;
+    position: absolute;
+    top: 0;
+    right: 0;
+    
+}
+
+
+
+.contain div {
+    width: 200px;
+    border: solid 1px black;
+    background: peachpuff;
+
+}
+.contain {
+    display: flex;
+    justify-content: space-between;
+    height: 200px;
+}
+
+.container div a {
+    text-decoration: none;
+}
+
+
+.container div {
+    width: 200px;
+    border: solid 1px black;
+    width: 100%;
+    background: yellow;
+    height: 100px;
+    
+}
+
+.container {
+    justify-content: space-between;
+    text-decoration: none;
+    text-align: center;
+}
+
+
+body {
+    margin: 0;
+    background: gray;
+}
+.title-big {
+padding: 0;
+margin: 0;
+color: white;
+font-weight: 900;
+font-style: italic;
+position: absolute;
+top: 0;
+left: 0;
+
+
+   
+}
+
+.header {
+   background: red;
+   padding: 20px;
+   height: 20px;
+   
+
+}
+
+
+
+footer {
+    flex-shrink: 0;
+    border-top: solid 1px black ;
+    width: 100%;
+    background: gray;
+    color: white;
+    
+
+}
+
+
+
+
+.contenu-footer {
+    width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    font-size: 20px;
+    padding: 0px;
+    
+}
+
+
+
+.contenu-footer a {
+   text-decoration: none;
+}
+
+
+.flex {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.flexlast {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+
+
+
+.morpion {
+    text-align: center;
+}
+
+#jeu {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 300px;
+    margin: auto;
+}
+
+
+.case {
+    border: 1px solid black;
+    height: 50px;
+}

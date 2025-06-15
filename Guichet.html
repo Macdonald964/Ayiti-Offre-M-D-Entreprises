@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Livraisons et Réservations</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .livraison, .reservation {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Informations de Livraison</h1>
+    <div id="livraisons" class="container"></div>
+
+    <h1>Informations de Réservation</h1>
+    <div id="reservations" class="container"></div>
+
+    <script>
+        // Fonction pour récupérer et afficher les informations de livraison
+        function afficherLivraisons() {
+            fetch('http://localhost:3001/api/livraisons')
+                .then(response => {
+                    console.log(response); // Ajoutez cette ligne
+                    return response.json();
+                })
+                .then(data => {
+                    const livraisonsContainer = document.getElementById('livraisons');
+                    livraisonsContainer.innerHTML = ''; // Vider le conteneur avant d'ajouter les nouvelles données
+                    data.forEach(livraison => {
+                        const livraisonElement = document.createElement('div');
+                        livraisonElement.className = 'livraison';
+                        livraisonElement.innerHTML = `
+                            <p>Adresse: ${livraison.adresse}</p>
+                            <p>WhatsApp: ${livraison.whatsapp}</p>
+                            <p>Téléphone: ${livraison.telephone}</p>
+                            <p>Heure: ${livraison.heure}</p>
+                            <p>Commande: ${livraison.commande}</p>
+                        `;
+                        livraisonsContainer.appendChild(livraisonElement);
+                    });
+                })
+                .catch(error => console.error('Erreur:', error));
+        }
+
+        // Fonction pour récupérer et afficher les informations de réservation
+        function afficherReservations() {
+            fetch('http://localhost:3001/api/reservations')
+                .then(response => {
+                    console.log(response); // Ajoutez cette ligne
+                    return response.json();
+                })
+                .then(data => {
+                    const reservationsContainer = document.getElementById('reservations');
+                    reservationsContainer.innerHTML = ''; // Vider le conteneur avant d'ajouter les nouvelles données
+                    data.forEach(reservation => {
+                        const reservationElement = document.createElement('div');
+                        reservationElement.className = 'reservation';
+                        reservationElement.innerHTML = `
+                            <p>Nom: ${reservation.nom}</p>
+                            <p>Prénom: ${reservation.prenom}</p>
+                            <p>Téléphone: ${reservation.telephone}</p>
+                            <p>Commande: ${reservation.commande}</p>
+                        `;
+                        reservationsContainer.appendChild(reservationElement);
+                    });
+                })
+                .catch(error => console.error('Erreur:', error));
+        }
+
+        // Appeler les fonctions pour afficher les données lors du chargement de la page
+        window.onload = function() {
+            afficherLivraisons();
+            afficherReservations();
+        };
+    </script>
+
+</body>
+</html>

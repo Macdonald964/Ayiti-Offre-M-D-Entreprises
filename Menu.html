@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Menu</title>
+<style>
+  /* Reset de base */
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    line-height: 1.6;
+  }
+
+  /* Style du header / menu */
+  nav {
+    background-color: #2c3e50;
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+  }
+
+  .menu-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  /* Logo ou titre */
+  .logo {
+    color: #ecf0f1;
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+
+  /* Menu */
+  ul.menu {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  ul.menu li {
+    margin: 5px 10px;
+  }
+
+  ul.menu li a {
+    color: #ecf0f1;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+  }
+
+  ul.menu li a:hover {
+    background-color: #34495e;
+  }
+
+  /* Bouton menu pour mobile */
+  .menu-toggle {
+    display: none;
+    font-size: 1.5em;
+    color: #ecf0f1;
+    cursor: pointer;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .menu-container {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    ul.menu {
+      width: 100%;
+      flex-direction: column;
+      display: none; /* caché par défaut sur mobile */
+    }
+
+    ul.menu.show {
+      display: flex;
+    }
+
+    .menu-toggle {
+      display: block;
+    }
+  }
+
+  /* Contenu principal (si besoin) */
+  main {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+  <div class="menu-container">
+    <div class="logo">Ayiti Offre M&D Entreprises</div>
+    <div class="menu-toggle" id="menu-toggle" aria-label="Menu">&#9776;</div>
+    <ul class="menu" id="menu">
+      <li><a href="index.html">Accueil</a></li>
+      <li> <a href="vf.html"> Nos Sections</a></li>
+      <li> <a href="Services.html"> Services à la clientèle</a> </li>
+      <li><a href="informations.html">Informations Generales</a></li>
+        <li><a href="Langues.html">Langues</a></li> </li>
+  
+      
+    </ul>
+  </div>
+</nav>
+
+<!-- Contenu principal (optionnel) -->
+<main>
+ 
+  <p>Utilisez le menu pour naviguer entre les différentes sections.</p>
+</main>
+
+<!-- Script JavaScript pour le menu responsive -->
+<script>
+  const menuToggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('menu');
+
+  menuToggle.addEventListener('click', () => {
+    menu.classList.toggle('show');
+  });
+</script>
+
+</body>
+</html>
