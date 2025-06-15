@@ -197,7 +197,7 @@ height: auto;
 <button class="btn-menu" onclick="toggleDropdown('dropdown2')">Section 2</button>
 <button class="btn-menu" onclick="toggleDropdown('dropdown3')">Section 3</button>
 <button class="btn-menu" onclick="toggleDropdown('dropdown4')">Section 4</button>
-<button class="btn-menu" onclick="toggleDropdown('dropdown5')">Section 5</button>
+
 </div>
 
 <div id="dropdown1" class="dropdown-content">
@@ -343,30 +343,7 @@ document.write(`
         });
     </script>
 </div>
-<div id="dropdown5" class="dropdown-content">
-    <script>
-        const products5 = [
-            {image: "img/produit5_1.jpg", name: "Produit 5.1", priceUnit: "600$", priceThree: "1400$", code: "P501", options: [{color: "Bleu", size: "M"}, {color: "Gris", size: "L"}]},
-            {image: "img/produit5_2.jpg", name: "Produit 5.2", priceUnit: "650$", priceThree: "1500$", code: "P502", options: [{color: "Blanc", size: "S"}, {color: "Rouge", size: "XL"}]},
-        ];
 
-        products5.forEach((product) => {
-            const optionsList = product.options.map(option => `${option.color} ${option.size}`).join(', ');
-            document.write(`
-                <div class="product" onclick="openModal('${product.image}', '${product.name}', '${product.priceUnit}', '${product.priceThree}', '${product.code}', '${optionsList}'); event.stopPropagation();">
-                    <img src="${product.image}" alt="${product.name}" />
-                    <h3>${product.name}</h3>
-                    <div class="product-info">
-                        <p>Prix Unitaire: ${product.priceUnit}</p>
-                        <p>Prix pour 3: ${product.priceThree}</p>
-                        <p>Code: ${product.code}</p>
-                        <p>Options: ${optionsList}</p>
-                    </div>
-                </div>
-            `);
-        });
-    </script>
-</div>
 
 <!-- Modale de Livraison -->
 <div id="livraisonModal" class="modal">
