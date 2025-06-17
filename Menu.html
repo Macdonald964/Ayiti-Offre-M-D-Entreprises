@@ -1,46 +1,84 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Menu</title>
-
-
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4; /* Couleur de fond professionnelle */
+        }
+        nav {
+            background-color: #333; /* Couleur de fond du menu */
+            color: white;
+            padding: 10px 20px;
+        }
+        .menu-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.5em;
+        }
+        .menu {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+        .menu li {
+            margin-left: 20px;
+        }
+        .menu a {
+            color: white;
+            text-decoration: none;
+        }
+        .menu a:hover {
+            text-decoration: underline;
+        }
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh; /* Hauteur du contenu principal */
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 
-<!-- Navigation -->
-<nav>
-  <div class="menu-container">
-    <div class="logo">Ayiti Offre M&D Entreprises</div>
-    <div class="menu-toggle" id="menu-toggle" aria-label="Menu">&#9776;</div>
-    <ul class="menu" id="menu">
-      <li><a href="index.html">Accueil</a></li>
-      <li> <a href="vf.html"> Nos Sections</a></li>
-      <li> <a href="services.html"> Services à la clientèle</a> </li>
-      <li><a href="informations.html">Informations Generales</a></li>
-      
-  
-      
-    </ul>
-  </div>
-</nav>
+    <!-- Navigation -->
+    <nav>
+        <div class="menu-container">
+            <div class="logo">Ayiti Offre M&D Entreprises</div>
+           
+            <ul class="menu" id="menu">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="vf.html">Nos Sections</a></li>
+                <li><a href="services.html">Services à la clientèle</a></li>
+                <li><a href="informations.html">Informations Générales</a></li>
+            </ul>
+        </div>
+    </nav>
 
-<!-- Contenu principal (optionnel) -->
-<main>
- 
-  <p>Utilisez le menu pour naviguer entre les différentes sections.</p>
-</main>
+    <!-- Contenu principal (optionnel) -->
+    <main>
+        <p>Utilisez le menu pour naviguer entre les différentes sections.</p>
+    </main>
 
-<!-- Script JavaScript pour le menu responsive -->
-<script>
-  const menuToggle = document.getElementById('menu-toggle');
-  const menu = document.getElementById('menu');
+    <!-- Script JavaScript pour le menu responsive -->
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const menu = document.getElementById('menu');
 
-  menuToggle.addEventListener('click', () => {
-    menu.classList.toggle('show');
-  });
-</script>
+        menuToggle.addEventListener('click', () => {
+            menu.classList.toggle('show');
+        });
+    </script>
 
 </body>
-</html>
+</html
