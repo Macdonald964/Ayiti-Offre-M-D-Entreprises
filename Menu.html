@@ -20,9 +20,11 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap; /* Permet de gérer le wrap sur petits écrans */
         }
         .logo {
             font-size: 1.5em;
+            margin-right: auto; /* Espace entre le logo et le menu */
         }
         .menu {
             list-style: none;
@@ -46,6 +48,38 @@
             align-items: center;
             height: 80vh; /* Hauteur du contenu principal */
             text-align: center;
+            padding: 20px; /* Ajout de padding pour le contenu principal */
+        }
+
+        /* Styles pour les écrans plus petits */
+        @media (max-width: 768px) {
+            .menu {
+                display: none; /* Masquer le menu par défaut */
+                flex-direction: column; /* Afficher le menu en colonne */
+                width: 100%; /* Prendre toute la largeur */
+                background-color: #333; /* Couleur de fond du menu */
+                position: absolute; /* Positionner le menu */
+                top: 60px; /* Positionner sous la barre de navigation */
+                left: 0;
+            }
+            .menu.show {
+                display: flex; /* Afficher le menu quand il est activé */
+            }
+            .menu li {
+                margin: 10px 0; /* Marges verticales pour les éléments du menu */
+                text-align: center; /* Centrer le texte */
+            }
+            .menu-toggle {
+                display: block; /* Afficher le bouton de menu */
+                cursor: pointer; /* Changer le curseur pour indiquer que c'est cliquable */
+            }
+        }
+
+        /* Styles pour les écrans très petits */
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.2em; /* Réduire la taille du logo */
+            }
         }
     </style>
 </head>
@@ -55,7 +89,7 @@
     <nav>
         <div class="menu-container">
             <div class="logo">Ayiti Offre M&D Entreprises</div>
-           
+            <div class="menu-toggle" id="menu-toggle" aria-label="Menu">&#9776;</div>
             <ul class="menu" id="menu">
                 <li><a href="index.html">Accueil</a></li>
                 <li><a href="vf.html">Nos Sections</a></li>
@@ -81,4 +115,4 @@
     </script>
 
 </body>
-</html
+</html>
