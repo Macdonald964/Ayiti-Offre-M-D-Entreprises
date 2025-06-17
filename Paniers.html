@@ -129,7 +129,7 @@ document.getElementById('showReservation').addEventListener('click', () => {
 
 function validerLivraison(index) {
   const info = livraisonInfo[index];
-  const message = `Livraison à l'adresse ${info.adresse} validée !`;
+  const message = `Livraison à l'adresse ${info.adresse} validée ! Détails: ${info.details}`;
   const numero = '50948348881'; // Remplacez par le numéro de téléphone souhaité
   const formattedMessage = encodeURIComponent(message);
   const whatsappUrl = `https://wa.me/${numero}?text=${formattedMessage}`;
@@ -141,7 +141,10 @@ function validerLivraison(index) {
 }
 
 function validerReservation(index) {
-  alert(`Réservation pour ${reservationInfo[index].nom} ${reservationInfo[index].prenom} validée !`);
+  const reservation = reservationInfo[index];
+  const message = `Réservation pour ${reservation.nom} ${reservation.prenom} validée ! Détails: ${reservation.productDetails.map(product => `${product.name} (Code: ${product.code})`).join(', ')}`;
+  alert(message);
+  
   reservationInfo.splice(index, 1);
   localStorage.setItem('reservationInfo', JSON.stringify(reservationInfo));
   afficherReservations();
