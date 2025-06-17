@@ -179,6 +179,35 @@ height: auto;
         margin-bottom: 10px; /* Marge en bas pour espacer les liens */
     }
 }
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right, #f4f4f4, #e2e2e2); /* Dégradé de fond */
+    background-image: url('img/background.jpg'); /* Image de fond */
+    background-size: cover; /* Couvre tout l'écran */
+    background-position: center; /* Centre l'image */
+}
+.product:hover {
+    transform: scale(1.05); /* Agrandit légèrement le produit au survol */
+    transition: transform 0.3s; /* Animation douce */
+}
+.btn {
+    background: #5cb85c;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre */
+    transition: background 0.3s, transform 0.3s; /* Animation douce */
+}
+
+.btn:hover {
+    background: #4cae4c;
+    transform: translateY(-2px); /* Légère élévation au survol */
+}
 </style>
 
 </head>
@@ -188,8 +217,8 @@ height: auto;
 <h1>Notre Catalogue en differents sections</h1>
 <div class="header-links">
 <a href="Paniers.html">Paniers</a>
-
 </div>
+<input type="text" id="search" placeholder="Rechercher des produits..." onkeyup="searchProducts()" style="padding: 5px; margin-left: 20px;">
 </header>
 
 <div class="container">
@@ -733,6 +762,20 @@ function continuer() {
     } else {
         alert("Aucune information de livraison trouvée.");
     }
+}
+function searchProducts() {
+    const input = document.getElementById('search');
+    const filter = input.value.toLowerCase();
+    const products = document.querySelectorAll('.product');
+
+    products.forEach(product => {
+        const name = product.querySelector('h3').innerText.toLowerCase();
+        if (name.includes(filter)) {
+            product.style.display = '';
+        } else {
+            product.style.display = 'none';
+        }
+    });
 }
 </script>
 </body>

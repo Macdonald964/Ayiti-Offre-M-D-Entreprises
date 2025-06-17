@@ -9,10 +9,10 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background: linear-gradient(to right, #e0f7fa, #80deea);
         }
         header {
-            background-color: #4CAF50;
+            background-color: #00796b;
             color: white;
             text-align: center;
             padding: 20px 0;
@@ -20,7 +20,7 @@
         nav {
             display: flex;
             justify-content: center;
-            background-color: #333;
+            background-color: #004d40;
         }
         nav a {
             color: white;
@@ -32,69 +32,92 @@
             background-color: #ddd;
             color: black;
         }
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
             padding: 20px;
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
-        .carousel {
+        .box {
             position: relative;
-            width: 300px; /* Largeur réduite */
-            overflow: hidden;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            background-color: white;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            perspective: 1000px; /* Enable 3D perspective */
         }
-        .carousel-images {
-            display: flex;
-            transition: transform 0.5s ease;
-            width: 100%; /* Prendre toute la largeur */
+        .box-inner {
+            position: relative;
+            width: 100%;
+            height: 150px;
+            transition: transform 0.6s;
+            transform-style: preserve-3d; /* Preserve 3D for child elements */
         }
-        
-
-       .item-images {
-            object-fit: cover ;
-            height:90px ;
-            width: 140px;
+        .box:hover .box-inner {
+            transform: rotateY(180deg); /* Rotate on hover */
         }
-
-        .MarketingCarousel1024 .carousel_container .item_images {
-            height: 90px;
-            object-fit:  cover ;
-            width: 140px; 
-            float: right;
-            display: block;
-        }
-
-
-
-        .carousel img {
-            width: 300px; /* Largeur de l'image égale à celle du carrousel */
-            height: auto; /* Hauteur automatique pour garder les proportions */
-             height: 300px; /* Hauteur fixe pour un aspect uniforme */
-              object-fit: cover; /* Ajuste l'image pour couvrir le conteneur */
-            display: block;
-        }
-        .button {
+        .box-front, .box-back {
             position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden; /* Hide back face when not visible */
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        .box-front {
+            background: rgba(255,255,255,0.8);
+        }
+        .box-back {
+            background: rgba(255, 255, 255, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #00796b;
+            font-weight: bold;
+            text-align: center;
             padding: 10px;
+            transform: rotateY(180deg); /* Rotate back face */
+            cursor: pointer; /* Change cursor to pointer */
+        }
+        .box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            cursor: pointer; /* Change cursor to pointer */
+        }
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+        }
+        .modal img {
+            margin: auto;
+            display: block;
+            width: auto;
+            height: 80%; /* Adjust height */
+            max-width: 90%; /* Adjust max width */
+        }
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
             cursor: pointer;
         }
-        .prev {
-            left: 10px;
-        }
-        .next {
-            right: 10px;
-        }
         footer {
-            background-color: #333;
+            background-color: #004d40;
             color: white;
             text-align: center;
             padding: 10px;
@@ -108,30 +131,179 @@
 </header>
 
 <nav>
-    <a href="vf.html"> Catalogues </a>
+    <a href="vf.html">Catalogues</a>
     <a href="informations.html">Informations Generales</a>
-    <a href="services.html"> Services à la clientèle</a>
-    
+    <a href="services.html">Services à la clientèle</a>
 </nav>
 
-<div class="container">
-    <h2>Galerie d'Images</h2>
-    <div class="carousel">
-        <div class="carousel-images" id="carouselImages">
-            <img src="2 koule.jpg" alt="Image 1">
-            <img src="img/colan.jpg" alt="Image 2">
-            <img src="img/biden uni.jpg" alt="Image 3">
-            <img src="img/bouquet fleurs.jpg" alt="Image 4">
-            <img src="img/bout manche.jpg" alt="Image 5">
-            <img src="img/complet bout pantalon.jpg" alt="Image 6">
-            <img src="img/complet Gustavo.jpg" alt="Image 7">
-            <img src="img/djessica1.jpg" alt="Image 8">
-            <img src="img/grimel 24.jpg" alt="Image 9"> 
-            <img src="img/gerdex.jpg" alt="Image 10">
+<div class="gallery-container">
+    <div class="box">
+        <div class="box-inner">
+            <div class="box-front">
+                <img src="img/djessica1.jpg" alt="Image 8" onclick="openModal(this.src)">
+            </div>
+            <div class="box-back" onclick="openModal('img/djessica1.jpg')">
+                Unité 250$ht / 3 pour 600
+            </div>
         </div>
-        <button class="button prev" onclick="moveSlide(-1)">&#10094;</button>
-        <button class="button next" onclick="moveSlide(1)">&#10095;</button>
     </div>
+    <div class="box">
+        <div class="box-inner">
+            <div class="box-front">
+                <img src="img/robe gustavo.jpg" alt="Image 2" onclick="openModal(this.src)">
+            </div>
+            <div class="box-back" onclick="openModal('img/robe gustavo.jpg')">
+                Unité 200$ht / 3 pour 400
+            </div>
+        </div>
+    </div>
+    <div class="box">
+        <div class="box-inner">
+            <div class="box-front">
+                <img src="img/soulier gason.jpg" alt="Image 8" onclick="openModal(this.src)">
+            </div>
+            <div class="box-back" onclick="openModal('img/soulier gason.jpg')">
+                Unité 500$ht / 3 pour 1500
+            </div>
+        </div>
+    </div>
+    <div class="box">
+        <div class="box-inner">
+            <div class="box-front">
+                <img src="img/catalina.jpg" alt="Image 2" onclick="openModal(this.src)">
+            </div>
+            <div class="box-back" onclick="openModal('img/catalina.jpg')">
+                Unité 250$ht / 3 pour 600
+            </div>
+        </div>
+    </div>
+    <div class="box">
+        <div class="box-inner">
+            <div class="box-front">
+                <img src="img/grimel 24.jpg" alt="Image 8" onclick="openModal(this.src)">
+            </div>
+            <div class="box-back" onclick="openModal('img/grimel 24.jpg')">
+                Unité 300$ht / 3 pour 700
+            </div>
+        </div>
+    </div>
+    <div class="box">
+        <div class="box-inner">
+            <div class="box-front">
+                <img src="img/gerdex.jpg" alt="Image 2" onclick="openModal(this.src)">
+            </div>
+            <div class="box-back" onclick="openModal('img/gerdex.jpg')">
+                Unité 350$ht / 3 pour 800
+            </div>
+        </div>
+    </div>
+    <div class="box">
+        <div class="box-inner">
+            <div class="box-front">
+                <img src="img/complet bout pantalon.jpg" alt="Image 8" onclick="openModal(this.src)">
+            </div>
+            <div class="box-back" onclick="openModal('img/complet bout pantalon.jpg')">
+                Unité 250$ht / 3 pour 600
+            </div>
+        </div>
+    </div>
+    <div class="box">
+        <div class="box-inner">
+            <div class="box-front">
+                <img src="img/mayo gason.jpg" alt="Image 2" onclick="openModal(this.src)">
+            </div>
+            <div class="box-back" onclick="openModal('img/mayo gason.jpg')">
+                Unité 200$ht / 3 pour 400
+            </div>
+        </div>
+    </div>
+    <div class="box">
+        <div class="box-inner">
+            <div class="box-front">
+                <img src="img/mayo gason 2.jpg" alt="Image 8" onclick="openModal(this.src)">
+            </div>
+            <div class="box-back" onclick="openModal('img/mayo gason 2.jpg')">
+                Unité 300$ht / 3 pour 700
+            </div>
+        </div>
+    </div>
+    <div class="box">
+        <div class="box-inner">
+            <div class="box-front">
+                <img src="img/madan baby.jpg" alt="Image 2" onclick="openModal(this.src)">
+            </div>
+            <div class="box-back" onclick="openModal('img/madan baby.jpg')">
+                Unité 250$ht / 3 pour 500
+            </div>
+        </div>
+    </div>
+    <div class="box">
+        <div class="box-inner">
+            <div class="box-front">
+                <img src="img/new bleu.jpg" alt="Image 8" onclick="openModal(this.src)">
+            </div>
+            <div class="box-back" onclick="openModal('img/new bleu.jpg')">
+                Unité 250$ht / 3 pour 600
+            </div>
+        </div>
+    </div>
+    <div class="box">
+        <div class="box-inner">
+            <div class="box-front">
+                <img src="img/bouquet fleurs.jpg" alt="Image 2" onclick="openModal(this.src)">
+            </div>
+            <div class="box-back" onclick="openModal('img/bouquet fleurs.jpg')">
+                Unité 250$ht / 3 pour 600
+            </div>
+        </div>
+    </div>
+    <div class="box">
+        <div class="box-inner">
+            <div class="box-front">
+                <img src="img/biden uni.jpg" alt="Image 8" onclick="openModal(this.src)">
+            </div>
+            <div class="box-back" onclick="openModal('img/biden uni.jpg')">
+                Unité 250$ht / 3 pour 500
+            </div>
+        </div>
+    </div>
+    <div class="box">
+        <div class="box-inner">
+            <div class="box-front">
+                <img src="img/bout manche.jpg" alt="Image 2" onclick="openModal(this.src)">
+            </div>
+            <div class="box-back" onclick="openModal('img/bout manche.jpg')">
+                Unité 250$ht / 3 pour 600
+            </div>
+        </div>
+    </div>
+    <div class="box">
+        <div class="box-inner">
+            <div class="box-front">
+                <img src="img/bout konple.jpg" alt="Image 8" onclick="openModal(this.src)">
+            </div>
+            <div class="box-back" onclick="openModal('img/bout konple.jpg')">
+                Unité 250$ht / 3 pour 600
+            </div>
+        </div>
+    </div>
+    <div class="box">
+        <div class="box-inner">
+            <div class="box-front">
+                <img src="img/colan.jpg" alt="Image 2" onclick="openModal(this.src)">
+            </div>
+            <div class="box-back" onclick="openModal('img/colan.jpg')">
+                Unité 100$ht / 3 pour 300
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- Ajoutez les autres images ici de la même manière -->
+</div>
+
+<div id="myModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="img01">
 </div>
 
 <footer>
@@ -139,37 +311,14 @@
 </footer>
 
 <script>
-let currentIndex = 0;
-
-function moveSlide(direction) {
-    const images = document.getElementById('carouselImages');
-    const totalImages = images.children.length;
-
-    currentIndex = (currentIndex + direction + totalImages) % totalImages;
-    images.style.transform = 'translateX(' + (-currentIndex * 100) + '%)';
-}
-
-function checkPassword() {
-    const password = prompt("Veuillez entrer le mot de passe pour accéder aux Paniers:");
-    const correctPassword = "Wememba"; // Remplacez par votre mot de passe
-
-    if (password === correctPassword) {
-        window.location.href = "Paniers.html"; // Redirige vers la page Paniers
-    } else {
-        alert("Mot de passe incorrect. Accès refusé.");
+    function openModal(src) {
+        document.getElementById("myModal").style.display = "block";
+        document.getElementById("img01").src = src;
     }
-}
 
-function checkGuichetPassword() {
-    const password = prompt("Veuillez entrer le mot de passe pour accéder au Guichet:");
-    const correctPassword = "Guichet123"; // Remplacez par votre mot de passe pour Guichet
-
-    if (password === correctPassword) {
-        window.location.href = "Guichet.html"; // Redirige vers la page Guichet
-    } else {
-        alert("Mot de passe incorrect. Accès refusé.");
+    function closeModal() {
+        document.getElementById("myModal").style.display = "none";
     }
-}
 </script>
 
 </body>
