@@ -208,13 +208,42 @@ body {
     background: #4cae4c;
     transform: translateY(-2px); /* Légère élévation au survol */
 }
+/* Styles pour les petits écrans (téléphones) */
+@media (max-width: 480px) {
+    .container {
+        width: 95%; /* Augmente la largeur pour les petits écrans */
+        padding: 0 10px; /* Ajoute un padding pour éviter que le contenu touche les bords */
+    }
+    .product {
+        width: calc(100% - 20px); /* Un produit par ligne */
+        margin: 10px 0; /* Ajuste la marge pour un espacement vertical */
+    }
+    .header-links {
+        flex-direction: column; /* Liens en colonne */
+        align-items: flex-start; /* Alignement à gauche */
+        margin-top: 10px; /* Ajoute un espacement au-dessus des liens */
+    }
+    .header-links a {
+        margin-left: 0; /* Pas de marge à gauche */
+        margin-bottom: 10px; /* Marge en bas pour espacer les liens */
+        padding: 5px 0; /* Ajoute un padding pour rendre les liens plus cliquables */
+    }
+    .btn-menu {
+        padding: 10px; /* Ajuste le padding pour les boutons */
+        margin-right: 0; /* Supprime la marge à droite */
+        margin-bottom: 10px; /* Ajoute une marge en bas pour espacer les boutons */
+    }
+    #panier {
+        padding: 15px; /* Augmente le padding pour le panier */
+    }
+}
 </style>
 
 </head>
 <body>
 
 <header>
-<h1>Notre Catalogue en differents sections</h1>
+<h1>Nos Sections</h1>
 <div class="header-links">
 <a href="Paniers.html">Paniers</a>
 </div>
@@ -352,30 +381,30 @@ document.write(`
 <div id="dropdown4" class="dropdown-content">
     <script>
         const products4 = [
-           {image: "img/Robe long.jpg", name: "Modèle d'occasion 3", priceUnit: "250", priceThree: "500",code: "AA718",  options: [ { color: "Rouge", size: "M" },    { color: "Rouge", size: "S" },    { color: "Bleu", size: "M" },    { color: "Bleu", size: "S" },    { color: "Noir", size: "XL" },    { color: "Noir", size: "L" },    { color: "Blanc", size: "XL" },    { color: "Jaune", size: "S" },    { color: "Jaune", size: "XL" }  ]},
-{image: "img/belle modele.jpg", name: "713", priceUnit: "250", priceThree: "500", code: "713", options: [ { color: "Jaune", size: "XL" }, { color: "Bleu roi", size: "L" }, { color: "Bleu roi", size: "S" }, { color: "Moutardes", size: "XL" }, { color: "Rose", size: "XL" }, { color: "Blanc", size: "XL" }, { color: "Rouge grenat", size: "L" } ] },
-{image: "img/manche long.jpg", name: "Robe à manche", priceUnit: "350", priceThree: "800", code: "AA1158", options: [{ color: "Vert", size: "L" },  { color: "Bleu", size: "S" },  { color: "Bleu", size: "M" },  { color: "Orange", size: "S" },  { color: "Orange", size: "M" }] },
-{ image: "img/long long.jpg", name: "Modèle occasion AA716", priceUnit: "250", priceThree: "500", code: "AA716", options: [  { color: "Rose", size: "XL" },  { color: "Noir", size: "L" },  { color: "Blanc", size: "M" },  { color: "Jaune", size: "XL" },  { color: "Jaune", size: "L" },  { color: "Blanc", size: "M" },  { color: "Rouge", size: "XL" },  { color: "Rouge", size: "L" }] },
-{ image: "img/occase.jpg", name: "Occase", priceUnit: "250", priceThree: "500", code: "A718", options: [ { color: "Rouge", size: "M" }, { color: "Rouge", size: "S" }, { color: "Bleu", size: "M" }, { color: "Bleu", size: "S" }, { color: "Noir", size: "XL" }, { color: "Noir", size: "L" }, { color: "Blanc", size: "XL" }, { color: "Jaune", size: "S" }, { color: "Jaune", size: "XL" } ] },
-{ image: "img/mama.jpg", name: "Mama Size", priceUnit: "250", priceThree: "600", code: "AA900", options: [ { color: "Bleu", size: "3XL" }, { color: "Rose", size: "S" }, { color: "Rose", size: "2XL" }, { color: "Rose pâle", size: "3XL" }, { color: "Rose pâle", size: "XL" } ] },
-{ image: "img/complet jupe.jpg", name: "Complet jupe AA1305", priceUnit: "250", priceThree: "600", code: "AA1305", options: [   { color: "Rouge", size: "XL" },   { color: "Rouge", size: "M" },   { color: "Vert", size: "XL" },   { color: "Bleu", size: "S" },   { color: "Moutarde", size: "S" },   { color: "Rose", size: "L" } ] },
-{ image: "img/veste.jpg", name: "Veste AA888", priceUnit: "250", priceThree: "500", code: "AA888", options: [   { color: "Bleu ciel", size: "S" },   { color: "Bleu ciel", size: "M" },   { color: "Bleu ciel", size: "L" },   { color: "Orange", size: "S" },   { color: "Orange", size: "L" },   { color: "Orange", size: "XL" },   { color: "Orange", size: "M" },   { color: "Orange", size: "L" },   { color: "Rose", size: "L" },   { color: "Rose", size: "M" },   { color: "Rose", size: "XL" } ] },
-{ image: "img/long ceinture.jpg", name: "Modèle long à ceinturon AA1290", priceUnit: "250", priceThree: "600", code: "AA1290", options: [   { color: "Rose", size: "S" },   { color: "Rouge grenat", size: "S" },   { color: "Rouge grenat", size: "M" },   { color: "Rouge", size: "S" },   { color: "Crème", size: "S" },   { color: "Blanc", size: "S" },   { color: "Bleu roi", size: "M" },   { color: "Noir", size: "L" } ] },
-{ image: "img/blan blan.jpg", name: "Modèle occasion AA3679", priceUnit: "350", priceThree: "800", code: "AA3679", options: [  { color: "Blanc", size: "2XL" },  { color: "Blanc", size: "S" },  { color: "Blanc", size: "3XL" },  { color: "Rose", size: "3XL" },  { color: "Vert", size: "M" },  { color: "Bleu roi", size: "XL" }] },
+           {image: "img/Robe long.jpg", name: "Modèle1 ", priceUnit: "250", priceThree: "500",code: "AA718",  options: [ { color: "Rouge", size: "M" },    { color: "Rouge", size: "S" },    { color: "Bleu", size: "M" },    { color: "Bleu", size: "S" },    { color: "Noir", size: "XL" },    { color: "Noir", size: "L" },    { color: "Blanc", size: "XL" },    { color: "Jaune", size: "S" },    { color: "Jaune", size: "XL" }  ]},
+{image: "img/belle modele.jpg", name: "Modele2", priceUnit: "250", priceThree: "500", code: "713", options: [ { color: "Jaune", size: "XL" }, { color: "Bleu roi", size: "L" }, { color: "Bleu roi", size: "S" }, { color: "Moutardes", size: "XL" }, { color: "Rose", size: "XL" }, { color: "Blanc", size: "XL" }, { color: "Rouge grenat", size: "L" } ] },
+{image: "img/manche long.jpg", name: "Modele3", priceUnit: "350", priceThree: "800", code: "AA1158", options: [{ color: "Vert", size: "L" },  { color: "Bleu", size: "S" },  { color: "Bleu", size: "M" },  { color: "Orange", size: "S" },  { color: "Orange", size: "M" }] },
+{ image: "img/long long.jpg", name: "Modèle4 ", priceUnit: "250", priceThree: "500", code: "AA716", options: [  { color: "Rose", size: "XL" },  { color: "Noir", size: "L" },  { color: "Blanc", size: "M" },  { color: "Jaune", size: "XL" },  { color: "Jaune", size: "L" },  { color: "Blanc", size: "M" },  { color: "Rouge", size: "XL" },  { color: "Rouge", size: "L" }] },
+{ image: "img/occase.jpg", name: "Modeele5", priceUnit: "250", priceThree: "500", code: "A718", options: [ { color: "Rouge", size: "M" }, { color: "Rouge", size: "S" }, { color: "Bleu", size: "M" }, { color: "Bleu", size: "S" }, { color: "Noir", size: "XL" }, { color: "Noir", size: "L" }, { color: "Blanc", size: "XL" }, { color: "Jaune", size: "S" }, { color: "Jaune", size: "XL" } ] },
+{ image: "img/mama.jpg", name: "Modele6 ", priceUnit: "250", priceThree: "600", code: "AA900", options: [ { color: "Bleu", size: "3XL" }, { color: "Rose", size: "S" }, { color: "Rose", size: "2XL" }, { color: "Rose pâle", size: "3XL" }, { color: "Rose pâle", size: "XL" } ] },
+{ image: "img/complet jupe.jpg", name: "Complet jupe ", priceUnit: "250", priceThree: "600", code: "AA1305", options: [   { color: "Rouge", size: "XL" },   { color: "Rouge", size: "M" },   { color: "Vert", size: "XL" },   { color: "Bleu", size: "S" },   { color: "Moutarde", size: "S" },   { color: "Rose", size: "L" } ] },
+{ image: "img/veste.jpg", name: "Veste ", priceUnit: "250", priceThree: "500", code: "AA888", options: [   { color: "Bleu ciel", size: "S" },   { color: "Bleu ciel", size: "M" },   { color: "Bleu ciel", size: "L" },   { color: "Orange", size: "S" },   { color: "Orange", size: "L" },   { color: "Orange", size: "XL" },   { color: "Orange", size: "M" },   { color: "Orange", size: "L" },   { color: "Rose", size: "L" },   { color: "Rose", size: "M" },   { color: "Rose", size: "XL" } ] },
+{ image: "img/long ceinture.jpg", name: "Modèle long à ceinturon", priceUnit: "250", priceThree: "600", code: "AA1290", options: [   { color: "Rose", size: "S" },   { color: "Rouge grenat", size: "S" },   { color: "Rouge grenat", size: "M" },   { color: "Rouge", size: "S" },   { color: "Crème", size: "S" },   { color: "Blanc", size: "S" },   { color: "Bleu roi", size: "M" },   { color: "Noir", size: "L" } ] },
+{ image: "img/blan blan.jpg", name: "Modèle7 ", priceUnit: "350", priceThree: "800", code: "AA3679", options: [  { color: "Blanc", size: "2XL" },  { color: "Blanc", size: "S" },  { color: "Blanc", size: "3XL" },  { color: "Rose", size: "3XL" },  { color: "Vert", size: "M" },  { color: "Bleu roi", size: "XL" }] },
 { image: "img/long grimel.jpg", name: "Robe longue", priceUnit: "350", priceThree: "850", code: "AA777", options: [  { color: "Mauve", size: "L" },  { color: "Mauve", size: "XL" },  { color: "Vert", size: "S" },  { color: "Blanc", size: "2XL" },  { color: "Blanc", size: "3XL" },  { color: "Bleu", size: "2XL" },  { color: "Bleu", size: "3XL" }] },
 { image: "img/soulier.jpg", name: "Soulier", priceUnit: "500", priceThree: "1500", code: "0099", options: [  { color: "Noir", size: "39" },  { color: "Noir", size: "40" },  { color: "Noir", size: "42" },  { color: "Noir", size: "44" }] },
-{ image: "img/nikle.jpg", name: "Robe occasion", priceUnit: "350", priceThree: "850", code: "AA9999", options: [  { color: "Bleu", size: "M" },  { color: "Bleu", size: "S" },  { color: "Jaune moutarde", size: "XL" },  { color: "Jaune moutarde", size: "L" },  { color: "Blanc", size: "S" },  { color: "Noir", size: "XL" },  { color: "Rouge", size: "S" }] },
-{ image: "img/hilas.jpg", name: "Modèle d'occasion'", priceUnit: "300", priceThree: "750", code: "AA1159", options: [  { color: "Noir", size: "M" },  { color: "Noir", size: "M" },  { color: "Jaune moutarde", size: "L" }] },
-{ image: "img/pop.jpg", name: "Occasion", priceUnit: "300", priceThree: "750", code: "AA2463", options: [  { color: "Bleu roi", size: "L" },  { color: "Blanc", size: "L" },  { color: "Rose", size: "L" },  { color: "Rose", size: "S" },  { color: "Or", size: "M" }] },
-{ image: "img/cloche.jpg", name: "Modèle d''occasion", priceUnit: "250", priceThree: "500", code: "AA1188", options: [  { color: "Rose", size: "XL" },  { color: "Vert", size: "M" },  { color: "Jaune abricot", size: "L" }] },
+{ image: "img/nikle.jpg", name: "Robe8", priceUnit: "350", priceThree: "850", code: "AA9999", options: [  { color: "Bleu", size: "M" },  { color: "Bleu", size: "S" },  { color: "Jaune moutarde", size: "XL" },  { color: "Jaune moutarde", size: "L" },  { color: "Blanc", size: "S" },  { color: "Noir", size: "XL" },  { color: "Rouge", size: "S" }] },
+{ image: "img/hilas.jpg", name: "Modèle9'", priceUnit: "300", priceThree: "750", code: "AA1159", options: [  { color: "Noir", size: "M" },  { color: "Noir", size: "M" },  { color: "Jaune moutarde", size: "L" }] },
+{ image: "img/pop.jpg", name: "Modele10", priceUnit: "300", priceThree: "750", code: "AA2463", options: [  { color: "Bleu roi", size: "L" },  { color: "Blanc", size: "L" },  { color: "Rose", size: "L" },  { color: "Rose", size: "S" },  { color: "Or", size: "M" }] },
+{ image: "img/cloche.jpg", name: "Modèle11", priceUnit: "250", priceThree: "500", code: "AA1188", options: [  { color: "Rose", size: "XL" },  { color: "Vert", size: "M" },  { color: "Jaune abricot", size: "L" }] },
 { image: "img/arold.jpg", name: "Modèle long", priceUnit: "300", priceThree: "750", code: "AA102", options: [  { color: "Blan", size: "L" },  { color: "Blan", size: "M" },  { color: "Blan", size: "XL" },  { color: "Noir", size: "S" }] },
-{ image: "img/emilie.jpg", name: "Modele occasion", priceUnit: "250", priceThree: "500", code: "AA1124", options: [  { color: "Blan", size: "S" },  { color: "Jaune abricot", size: "L" },  { color: "Jaune abricot", size: "M" },  { color: "Noir", size: "L" },  { color: "Bleu roi", size: "S" },  { color: "Rose", size: "S" }] },
-{ image: "img/tg.jpg", name: "modele d'occasion'", priceUnit: "250", priceThree: "600", code: "AA20", options: [  { color: "Blan", size: "S" },  { color: "Bleu roi", size: "S" },  { color: "Rose", size: "XL" }] },
-{ image: "img/ti boul.jpg", name: "Modèle d'occasion'", priceUnit: "350", priceThree: "850", code: "AA3247", options: [  { color: "Noir", size: "M" },  { color: "Blan", size: "M" },  { color: "Jaune moutarde", size: "M" },  { color: "Bleu roi", size: "M" }] },
+{ image: "img/emilie.jpg", name: "Modele12", priceUnit: "250", priceThree: "500", code: "AA1124", options: [  { color: "Blan", size: "S" },  { color: "Jaune abricot", size: "L" },  { color: "Jaune abricot", size: "M" },  { color: "Noir", size: "L" },  { color: "Bleu roi", size: "S" },  { color: "Rose", size: "S" }] },
+{ image: "img/tg.jpg", name: "modele13", priceUnit: "250", priceThree: "600", code: "AA20", options: [  { color: "Blan", size: "S" },  { color: "Bleu roi", size: "S" },  { color: "Rose", size: "XL" }] },
+{ image: "img/ti boul.jpg", name: "Modèle14", priceUnit: "350", priceThree: "850", code: "AA3247", options: [  { color: "Noir", size: "M" },  { color: "Blan", size: "M" },  { color: "Jaune moutarde", size: "M" },  { color: "Bleu roi", size: "M" }] },
 { image: "img/ge.jpg", name: "Modele evaser", priceUnit: "350", priceThree: "850", code: "AAxxxx", options: [  { color: "Bleu roi", size: "S" },  { color: "Blan", size: "M" },  { color: "Blan", size: "S" },  { color: "Rouge sang", size: "S" }] },
-{ image: "img/mr.jpg", name: "Modèle d'occasion'", priceUnit: "250", priceThree: "600", code: "AA1125", options: [  { color: "Bleu roi", size: "XL" },  { color: "Bleu roi", size: "XL" },  { color: "Bleu roi", size: "S" },  { color: "Bleu roi", size: "S" },  { color: "Blan", size: "L" },  { color: "Blan", size: "S" },  { color: "Blan", size: "S" },  { color: "Blan", size: "M" },  { color: "Rose", size: "S" },  { color: "Jaune moutarde", size: "M" },  { color: "Jaune abricot", size: "S" }] },
-{ image: "img/ma.jpg", name: "Modèle d'occasion'", priceUnit: "250", priceThree: "500", code: "AA574", options: [  { color: "Rouge", size: "XL" },  { color: "Blan", size: "XL" },  { color: "Blan", size: "L" },  { color: "Blan", size: "XL" },  { color: "Blan", size: "XL" },  { color: "Rose", size: "L" },  { color: "Bleu roi", size: "M" },  { color: "Bleu roi", size: "L" },  { color: "Jaune", size: "XL" },  { color: "Jaune", size: "XL" }] },
-{ image: "img/tk.jpg", name: "Modèle d'occasion'", priceUnit: "250", priceThree: "500", code: "AA854", options: [  { color: "Rose", size: "L" },  { color: "Bleu roi", size: "M" },  { color: "Marron", size: "XL" },  { color: "Jaune", size: "M" },  { color: "Rose", size: "XL" },  { color: "Blan", size: "L" },  { color: "Blan", size: "XL" },  { color: "Bleu ciel", size: "M" },  { color: "Bleu ciel", size: "XL" }] },
+{ image: "img/mr.jpg", name: "Modèle15", priceUnit: "250", priceThree: "600", code: "AA1125", options: [  { color: "Bleu roi", size: "XL" },  { color: "Bleu roi", size: "XL" },  { color: "Bleu roi", size: "S" },  { color: "Bleu roi", size: "S" },  { color: "Blan", size: "L" },  { color: "Blan", size: "S" },  { color: "Blan", size: "S" },  { color: "Blan", size: "M" },  { color: "Rose", size: "S" },  { color: "Jaune moutarde", size: "M" },  { color: "Jaune abricot", size: "S" }] },
+{ image: "img/ma.jpg", name: "Modèle16", priceUnit: "250", priceThree: "500", code: "AA574", options: [  { color: "Rouge", size: "XL" },  { color: "Blan", size: "XL" },  { color: "Blan", size: "L" },  { color: "Blan", size: "XL" },  { color: "Blan", size: "XL" },  { color: "Rose", size: "L" },  { color: "Bleu roi", size: "M" },  { color: "Bleu roi", size: "L" },  { color: "Jaune", size: "XL" },  { color: "Jaune", size: "XL" }] },
+{ image: "img/tk.jpg", name: "Modèle17", priceUnit: "250", priceThree: "500", code: "AA854", options: [  { color: "Rose", size: "L" },  { color: "Bleu roi", size: "M" },  { color: "Marron", size: "XL" },  { color: "Jaune", size: "M" },  { color: "Rose", size: "XL" },  { color: "Blan", size: "L" },  { color: "Blan", size: "XL" },  { color: "Bleu ciel", size: "M" },  { color: "Bleu ciel", size: "XL" }] },
 { image: "img/jeans.jpg", name: "Robe Jeans", priceUnit: "250", priceThree: "500", code: "AA20", options: [  { color: "Bleu", size: "M" },  { color: "Bleu", size: "M" },  { color: "Bleu", size: "L" },  { color: "Bleu", size: "L" },  { color: "Bleu", size: "L" },  { color: "Bleu", size: "XL" },  { color: "Bleu", size: "XL" },  { color: "Bleu", size: "XL" },  { color: "Bleu", size: "XXL" },  { color: "Bleu", size: "XXL" },  { color: "Bleu", size: "XXL" },  { color: "Bleu", size: "XXL" }] },
 
         ];
@@ -461,7 +490,7 @@ document.write(`
 <P>C'est à vous de vérifier ou d'inspecter votre commande. Nous n'autorisons pas les retours.</P>
 
 <P>En cliquant sur Continuer, les détails de la livraison et de votre commande seront envoyés à notre équipe, et un de nos agents vous contactera dans l'heure que vous avez choisie. Si vous souhaitez une heure spécifique, contactez notre service à la clientèle, qui traitera votre commande selon vos besoins.</P>
-<button class="btn" onclick="continuer()">Continuer</button>
+<button class="btn" onclick="continuer()">Accepter</button>
 </div>
 </div>
 
