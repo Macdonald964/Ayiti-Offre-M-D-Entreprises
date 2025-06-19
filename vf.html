@@ -565,6 +565,12 @@ function openModal(image, name, priceUnit, priceThree, code, options) {
     // Stocker les informations du produit dans l'objet global
     window.selectedProduct = { image, name, priceUnit, priceThree, code };
 }
+ // Fermer la section
+    toggleDropdown(sectionId);
+
+    // Stocker les informations du produit dans l'objet global
+    window.selectedProduct = { image, name, priceUnit, priceThree, code };
+
 
 function closeModal() {
     document.getElementById('myModal').style.display = "none";
