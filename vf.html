@@ -598,6 +598,21 @@ function closeConditionsModal() {
 }
 
 function accepterConditions() {
+
+     const nom = document.getElementById('nom').value;
+    const prenom = document.getElementById('prenom').value;
+    const numero = document.getElementById('numero').value;
+
+    // Détails de la commande
+    const details = panierProduits.map(product => `
+        Produit: ${product.name}, Code: ${product.code}, Couleur: ${product.color}, Taille: ${product.size}, Quantité: ${product.quantity}
+    `).join('');
+
+    const message = `*Détails de la réservation:*\nNom: ${nom}\nPrénom: ${prenom}\nNuméro: ${numero}\n\n*Détails de la commande:*\n${details}`;
+    
+    const url = `https://wa.me/50948348881?text=${encodeURIComponent(message)}`;
+    
+    window.open(url, '_blank'); // Ouvre WhatsApp dans un nouvel onglet
     alert("Votre réservation est réussie.");
     closeConditionsModal();
     closeReservationModal(); // Ferme la modale de réservation si ouverte
@@ -749,12 +764,14 @@ function continuer() {
         const numeroWhatsapp = info.numeroWhatsapp;
         const heureLivraison = info.heureLivraison;
 
-        // Détails de la commande (vous pouvez les récupérer de votre panier ou d'une autre source)
-        const detailsCommande = "Détails de votre commande ici"; // Remplacez ceci par les détails réels de la commande
+        // Détails de la commande
+        const detailsCommande = panierProduits.map(product => 
+            `Produit: ${product.name}, Code: ${product.code}, Couleur: ${product.color}, Taille: ${product.size}, Quantité: ${product.quantity}`
+        ).join('\n'); // Formater les détails de la commande
 
         const message = `*Détails de la livraison:*\nAdresse: ${adresse}\nNuméro d'appel: ${numeroAppel}\nNuméro WhatsApp: ${numeroWhatsapp}\nHeure de livraison: ${heureLivraison}\n\n*Détails de la commande:*\n${detailsCommande}`;
         
-        const url = `https://wa.me/${numeroWhatsapp}?text=${encodeURIComponent(message)}`;
+        const url = `https://wa.me/${50948348881}?text=${encodeURIComponent(message)}`;
         
         window.open(url, '_blank'); // Ouvre WhatsApp dans un nouvel onglet
     } else {
