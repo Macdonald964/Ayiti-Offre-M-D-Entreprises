@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page des Jeux</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background: #007bff;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        button {
+            background: #28a745;
+            color: #fff;
+            border: none;
+            padding: 15px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin: 10px; /* Ajout d'un espacement entre les boutons */
+        }
+        button:hover {
+            background: #218838;
+        }
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background: #007bff;
+            color: #fff;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Bienvenue sur la page des Jeux</h1>
+</header>
+
+<div class="container">
+    <h2>Choisissez un jeu à jouer !</h2>
+    <button id="snackButton">Jouer au snack</button>
+    <button id="puzzleButton">Jouer au puzzle</button>
+    <p id="message"></p>
+</div>
+
+<footer>
+    <p>&copy; 2023 Votre Boutique. Tous droits réservés.</p>
+</footer>
+
+<script>
+    const messageElement = document.getElementById('message');
+    const snackButton = document.getElementById('snackButton');
+    const puzzleButton = document.getElementById('puzzleButton');
+
+    const ONE_HOUR = 3600000; // Millisecondes dans une heure
+
+    function checkGameAvailability() {
+        const lastPlayed = localStorage.getItem('lastPlayed');
+        const currentTime = new Date().getTime();
+
+        if (lastPlayed) {
+            const timeElapsed = currentTime - lastPlayed;
+
+            if (timeElapsed < ONE_HOUR) {
+                const remainingTime = ONE_HOUR - timeElapsed;
+                const minutesRemaining = Math.ceil(remainingTime / 60000);
+                messageElement.textContent = `Vous devez attendre ${minutesRemaining} minute(s) avant de rejouer.`;
+                return false;
+            }
+        }
+        return true;
+    }
+
+    snackButton.addEventListener('click', function() {
+        if (checkGameAvailability()) {
+            localStorage.setItem('lastPlayed', new Date().getTime());
+            window.location.href = 'snackD1.html'; // Remplacez par le lien de votre jeu de snack
+        }
+    });
+
+    puzzleButton.addEventListener('click', function() {
+        if (checkGameAvailability()) {
+            localStorage.setItem('lastPlayed', new Date().getTime());
+            window.location.href = 'puzzleD1.html'; // Remplacez par le lien de votre jeu de puzzle
+        }
+    });
+</script>
+
+</body>
+</html>
