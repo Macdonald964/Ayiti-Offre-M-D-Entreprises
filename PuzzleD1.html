@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Jeu de Puzzle Solo</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(to right, #74ebd5, #acb6e5); /* Dégradé de couleurs */
+  }
+
+  h1 {
+    margin: 20px 0;
+    color: #fff; /* Couleur du texte */
+  }
+
+  .game-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    max-width: 1200px;
+  }
+
+  .player {
+    background-color: rgba(255, 255, 255, 0.8); /* Fond semi-transparent */
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    margin: 10px;
+    padding: 10px;
+    flex: 1 1 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .player h2 {
+    margin-top: 0;
+    color: #333; /* Couleur du texte */
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 60px); /* 4 colonnes pour 12 cases */
+    grid-gap: 10px;
+    margin: 10px 0;
+  }
+
+  .cell {
+    width: 60px;
+    height: 60px;
+    background-color: #e0e0e0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    cursor: pointer;
+    border-radius: 4px;
+    user-select: none;
+    transition: background-color 0.2s;
+  }
+
+  .cell:hover {
+    background-color: #d0d0d0;
+  }
+
+  .stats {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .timer {
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+
+  .progress {
+    margin-top: 10px;
+    width: 100%;
+    height: 10px;
+    background-color: #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+
+  .progress-bar {
+    height: 100%;
+    background-color: #4caf50;
+    width: 0%;
+    transition: width 0.5s;
+  }
+
+  /* Responsive styles */
+  @media(max-width: 768px) {
+    .game-container {
+      flex-direction: column;
+      align-items: center;
+    }
+    .player {
+      width: 90%;
+    }
+  }
+</style>
+</head>
+<body>
+
+<h1>Jeu de Puzzle Solo</h1>
+
+<div class="game-container">
+  <!-- Interface du Joueur -->
+  <div class="player" id="player1">
+    <h2>Joueur</h2>
+    <div class="grid" id="grid1"></div>
+    <div class="stats">
+      <div>Chiffres en ordre : <span id="orderCount1">0</span></div>
+      <div>Temps restant : <span id="timer1">120</span> s</div>
+    </div>
+    <div class="progress">
+      <div class="progress-bar" id="progress1"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Résultats -->
+<div id="result" style="margin-top:20px; font-size:1.5em; font-weight:bold; color: #fff;"></div>
+
+
+<script>
+const initialNumbers = Array.from({length: 11}, (_, i) => i + 1); // 1 à 11
+// Mélanger pour le joueur
+function shuffle(array) {
+    let arr = array.slice();
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+}
+
+// Créer la grille initiale avec un espace vide
+function createPuzzle() {
+    const nums = shuffle(initialNumbers);
+    nums.push(''); // case vide
+    return nums;
+}
+
+// Variables pour le joueur
+const player = {
+    grid: [],
+    selectedCell: null,
+    orderCount: 0,
+    timeLeft: 120, // Changement ici pour 120 secondes
+    timerInterval: null,
+    progressInterval: null,
+    timerElement: document.getElementById('timer1'),
+    orderCountElement: document.getElementById('orderCount1'),
+    progressBar: document.getElementById('progress1'),
+    gridContainer: document.getElementById('grid1'),
+    isGameActive: true // Ajout d'un état de jeu actif
+};
+
+// Fonction pour créer la grille visuelle
+function createGrid() {
+    player.grid = createPuzzle();
+    const container = player.gridContainer;
+    container.innerHTML = '';
+    for (let i = 0; i < player.grid.length; i++) {
+        const cell = document.createElement('div');
+        cell.className = 'cell';
+        cell.textContent = player.grid[i];
+        cell.dataset.index = i;
+        cell.addEventListener('click', () => handleCellClick(i));
+        container.appendChild(cell);
+    }
+}
+
+// Fonction pour gérer le clic sur une cellule
+function handleCellClick(index) {
+    if (!player.isGameActive) return; // Ne rien faire si le jeu n'est pas actif
+
+    const cellElements = player.gridContainer.children;
+    const clickedCell = cellElements[index];
+
+    // Vérifier si la cellule cliquée est vide
+    if (player.grid[index] === '') {
+        const prevIndex = player.selectedCell;
+        if (prevIndex !== null) {
+            // Vérifier si la cellule sélectionnée est adjacente à la case vide
+            if (isAdjacent(prevIndex, index)) {
+                // Échanger avec la cellule sélectionnée
+                const prevCell = cellElements[prevIndex];
+
+                // Échanger les valeurs
+                const temp = player.grid[index];
+                player.grid[index] = player.grid[prevIndex];
+                player.grid[prevIndex] = temp;
+
+                // Mettre à jour l'affichage
+                clickedCell.textContent = player.grid[index];
+                prevCell.textContent = player.grid[prevIndex];
+
+                // Réinitialiser la sélection
+                prevCell.style.border = 'none';
+                player.selectedCell = null;
+
+                // Vérifier si la grille est en ordre
+                if (isGridOrdered(player.grid)) {
+                    clearInterval(player.timerInterval);
+                    clearInterval(player.progressInterval);
+                    document.getElementById('result').textContent = `Vous avez gagné !`;
+                    player.isGameActive = false; // Désactiver le jeu
+                }
+
+                // Vérifier l'ordre et mettre à jour le compteur
+                updateOrderCount();
+            }
+        }
+    } else {
+        // Sélectionner la cellule
+        player.selectedCell = index;
+        clickedCell.style.border = '2px solid red';
+    }
+}
+
+// Vérifier si deux indices sont adjacents
+function isAdjacent(index1, index2) {
+    const row1 = Math.floor(index1 / 4);
+    const col1 = index1 % 4;
+    const row2 = Math.floor(index2 / 4);
+    const col2 = index2 % 4;
+
+    return (Math.abs(row1 - row2) + Math.abs(col1 - col2) === 1);
+}
+
+// Vérifier si la grille est en ordre
+function isGridOrdered(grid) {
+    for (let i = 0; i < grid.length - 1; i++) {
+        if (grid[i] !== i + 1) return false;
+    }
+    return true;
+}
+
+// Fonction pour démarrer le chronomètre
+function startTimer() {
+    player.timerInterval = setInterval(() => {
+        player.timeLeft--;
+        player.timerElement.textContent = player.timeLeft;
+        if (player.timeLeft <= 0) {
+            clearInterval(player.timerInterval);
+            clearInterval(player.progressInterval);
+            document.getElementById('result').textContent = `Vous avez perdu !`;
+            player.isGameActive = false; // Désactiver le jeu
+        }
+    }, 1000);
+
+    // Progression visuelle
+    player.progressInterval = setInterval(() => {
+        const progressPercent = ((120 - player.timeLeft) / 120) * 100; // Changement ici pour 120 secondes
+        player.progressBar.style.width = progressPercent + '%';
+    }, 1000);
+}
+
+// Fonction pour initialiser le jeu
+function initGame() {
+    createGrid();
+    startTimer();
+}
+
+// Démarrer le jeu à la chargement
+window.onload = () => {
+    initGame();
+};
+
+// Fonction pour mettre à jour le compteur d'ordre
+function updateOrderCount() {
+    // On commence à compter uniquement si les chiffres 1 et 2 sont en ordre
+    if (player.grid[0] === 1 && player.grid[1] === 2) {
+        player.orderCount = 2; // On commence à 2
+        for (let i = 2; i < player.grid.length; i++) {
+            if (player.grid[i] === i + 1) {
+                player.orderCount++;
+            } else {
+                break; // Sortir de la boucle si l'ordre est rompu
+            }
+        }
+        player.orderCountElement.textContent = player.orderCount > 11 ? 11 : player.orderCount; // Limiter à 11
+    }
+}
+</script>
+</body>
+</html>

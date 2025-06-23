@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeu de Snake</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #e0f7fa; /* Nouveau fond d'écran */
+        }
+        h1 {
+            color: #333;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+        }
+        .game-area {
+            border: 10px solid #000; /* Bordure plus solide */
+            position: relative;
+            background-color: #fff;
+            width: 300px;
+            height: 300px;
+        }
+        canvas {
+            display: block;
+            background-color: #eee;
+        }
+        .scoreboard {
+            margin-top: 10px;
+        }
+        .player {
+            text-align: center;
+        }
+        .controls {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .arrow {
+            font-size: 40px; /* Augmenter la taille de la flèche */
+            cursor: pointer;
+            margin: 10px;
+            padding: 15px; /* Ajouter du padding pour agrandir la zone cliquable */
+            background-color: #fff; /* Fond blanc pour les flèches */
+            border-radius: 5px; /* Coins arrondis */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Ombre pour un effet de profondeur */
+        }
+        .arrow-row {
+            display: flex;
+            justify-content: center;
+        }
+        .arrow-row:nth-child(2) {
+            justify-content: space-between; /* Espace entre les flèches gauche et droite */
+            width: 100%; /* Prendre toute la largeur disponible */
+        }
+        .timer {
+            margin-top: 10px;
+            font-size: 20px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Jeu de Snake </h1>
+<div class="container">
+    <div class="player">
+        <h3>Joueur</h3>
+        <canvas id="canvas" width="300" height="300"></canvas>
+        <div class="score">Points: <span id="score">0</span></div>
+        <div class="timer">Temps restant: <span id="timer">300</span> s</div>
+    </div>
+</div>
+
+<div class="controls">
+    <div class="arrow-row">
+        <div class="arrow" onclick="changeDirection('UP')">↑</div>
+    </div>
+    <div class="arrow-row">
+        <div class="arrow" onclick="changeDirection('LEFT')">←</div>
+        <div class="arrow" onclick="changeDirection('DOWN')">↓</div>
+        <div class="arrow" onclick="changeDirection('RIGHT')">→</div>
+    </div>
+</div>
+
+<script>
+    const gameConfig = {
+        canvasId: 'canvas',
+        scoreId: 'score',
+        timerId: 'timer',
+        speed: 5,
+        points: 0,
+        snake: [],
+        direction: 'RIGHT',
+        food: {},
+        intervalId: null,
+        timerIntervalId: null,
+        timeRemaining: 300 // 5 minutes in seconds
+    };
+
+    function initGame(config) {
+        const canvas = document.getElementById(config.canvasId);
+        const ctx = canvas.getContext('2d');
+        config.snake = [{ x: 150, y: 150 }];
+        placeFood(config);
+        config.intervalId = setInterval(() => gameLoop(config, ctx), 1000 / config.speed);
+        config.timerIntervalId = setInterval(() => updateTimer(config), 1000);
+    }
+
+    function placeFood(config) {
+        const canvas = document.getElementById(config.canvasId);
+        let foodX, foodY;
+        do {
+            foodX = Math.floor(Math.random() * (canvas.width / 10)) * 10;
+            foodY = Math.floor(Math.random() * (canvas.height / 10)) * 10;
+        } while (config.snake.some(s => s.x === foodX && s.y === foodY));
+        config.food = { x: foodX, y: foodY };
+    }
+
+    function gameLoop(config, ctx) {
+        const head = { ...config.snake[0] };
+        switch (config.direction) {
+            case 'RIGHT': head.x += 10; break;
+            case 'LEFT': head.x -= 10; break;
+            case 'UP': head.y -= 10; break;
+            case 'DOWN': head.y += 10; break;
+        }
+
+        if (head.x < 0 || head.x >= ctx.canvas.width || head.y < 0 || head.y >= ctx.canvas.height ||
+            config.snake.some(segment => segment.x === head.x && segment.y === head.y)) {
+            alert('Jeu terminé !');
+            clearInterval(config.intervalId);
+            clearInterval(config.timerIntervalId);
+            return;
+        }
+
+        config.snake.unshift(head);
+
+        if (head.x === config.food.x && head.y === config.food.y) {
+            config.points += 1;
+            document.getElementById(config.scoreId).textContent = config.points;
+            placeFood(config);
+            // Augmenter la vitesse à chaque point mangé
+            config.speed += 0.5; // Augmente la vitesse
+            clearInterval(config.intervalId); // Arrête l'intervalle actuel
+            config.intervalId = setInterval(() => gameLoop(config, ctx), 1000 / config.speed); // Redémarre avec la nouvelle vitesse
+        } else {
+            config.snake.pop();
+        }
+
+        ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+        ctx.fillStyle = 'green';
+        config.snake.forEach(segment => ctx.fillRect(segment.x, segment.y, 10, 10));
+        ctx.fillStyle = 'red';
+        ctx.fillRect(config.food.x, config.food.y, 10, 10);
+    }
+
+    function updateTimer(config) {
+        config.timeRemaining--;
+        document.getElementById(config.timerId).textContent = config.timeRemaining;
+
+        if (config.timeRemaining <= 0) {
+            alert('Temps écoulé ! Jeu terminé !');
+            clearInterval(config.intervalId);
+            clearInterval(config.timerIntervalId);
+        }
+    }
+
+    function changeDirection(newDirection) {
+        const c = gameConfig;
+        if (newDirection === 'UP' && c.direction !== 'DOWN') c.direction = 'UP';
+        if (newDirection === 'DOWN' && c.direction !== 'UP') c.direction = 'DOWN';
+        if (newDirection === 'LEFT' && c.direction !== 'RIGHT') c.direction = 'LEFT';
+        if (newDirection === 'RIGHT' && c.direction !== 'LEFT') c.direction = 'RIGHT';
+    }
+
+    // Contrôles au clavier
+    document.addEventListener('keydown', (e) => {
+        switch (e.key) {
+            case 'ArrowUp':
+                changeDirection('UP');
+                break;
+            case 'ArrowDown':
+                changeDirection('DOWN');
+                break;
+            case 'ArrowLeft':
+                changeDirection('LEFT');
+                break;
+            case 'ArrowRight':
+                changeDirection('RIGHT');
+                break;
+        }
+    });
+
+    initGame(gameConfig);
+</script>
+
+</body>
+</html>
