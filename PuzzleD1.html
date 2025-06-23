@@ -131,10 +131,12 @@
 
 <!-- Résultats -->
 <div id="result" style="margin-top:20px; font-size:1.5em; font-weight:bold; color: #fff;"></div>
-
+<div id="coupon" style="margin-top:20px; font-size:1.2em; color: #fff;"></div>
 
 <script>
 const initialNumbers = Array.from({length: 11}, (_, i) => i + 1); // 1 à 11
+const coupons = ['W4A81ME8B48M34E', 'W5A81WE8B48M34E', 'W4A81ME9B48M84E', 'W4B81ME8D48M54E', 'W4A87ME8B48T34E', 'D4A87ME9B48M34E', 'P4A83ME8B48M34E', 'W4A81VE8B48M44E', 'P0A80ME8B48M34E', 'V4A81PE8B48M34E'];
+
 // Mélanger pour le joueur
 function shuffle(array) {
     let arr = array.slice();
@@ -216,6 +218,8 @@ function handleCellClick(index) {
                     clearInterval(player.timerInterval);
                     clearInterval(player.progressInterval);
                     document.getElementById('result').textContent = `Vous avez gagné !`;
+                    const randomCoupon = coupons[Math.floor(Math.random() * coupons.length)];
+                    document.getElementById('coupon').textContent = `VOICI VOTRE COUPON : ${randomCoupon}`;
                     player.isGameActive = false; // Désactiver le jeu
                 }
 
@@ -258,6 +262,11 @@ function startTimer() {
             clearInterval(player.progressInterval);
             document.getElementById('result').textContent = `Vous avez perdu !`;
             player.isGameActive = false; // Désactiver le jeu
+            // Désactiver tous les clics sur les cellules
+            const cellElements = player.gridContainer.children;
+            for (let cell of cellElements) {
+                cell.style.pointerEvents = 'none'; // Désactiver les événements de clic
+            }
         }
     }, 1000);
 
@@ -295,5 +304,3 @@ function updateOrderCount() {
     }
 }
 </script>
-</body>
-</html>

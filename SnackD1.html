@@ -66,19 +66,32 @@
             font-size: 20px;
             color: #333;
         }
+        .rules {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #555;
+        }
+        .coupon {
+            margin-top: 20px;
+            font-size: 20px;
+            color: #00796b;
+        }
     </style>
 </head>
 <body>
 
-<h1>Jeu de Snake </h1>
+<h1>Jeu de Snake</h1>
 <div class="container">
     <div class="player">
         <h3>Joueur</h3>
         <canvas id="canvas" width="300" height="300"></canvas>
         <div class="score">Points: <span id="score">0</span></div>
         <div class="timer">Temps restant: <span id="timer">300</span> s</div>
+        <div class="coupon" id="coupon"></div>
     </div>
 </div>
+
+<div class="rules">Règlement : Avaler 100 points</div>
 
 <div class="controls">
     <div class="arrow-row">
@@ -92,115 +105,143 @@
 </div>
 
 <script>
-    const gameConfig = {
-        canvasId: 'canvas',
-        scoreId: 'score',
-        timerId: 'timer',
-        speed: 5,
-        points: 0,
-        snake: [],
-        direction: 'RIGHT',
-        food: {},
-        intervalId: null,
-        timerIntervalId: null,
-        timeRemaining: 300 // 5 minutes in seconds
-    };
+const gameConfig = {
+    canvasId: 'canvas',
+    scoreId: 'score',
+    timerId: 'timer',
+    couponId: 'coupon',
+    speed: 5,
+    points: 0,
+    snake: [],
+    direction: 'RIGHT',
+    food: {},
+    intervalId: null,
+    timerIntervalId: null,
+    timeRemaining: 300, // 5 minutes in seconds
+    gameOver: false
+};
 
-    function initGame(config) {
-        const canvas = document.getElementById(config.canvasId);
-        const ctx = canvas.getContext('2d');
-        config.snake = [{ x: 150, y: 150 }];
+const coupons = [
+   'W4A81ME8B48M34E', 'W5A81WE8B48M34E', 'W4A81ME9B48M84E', 'W4B81ME8D48M54E', 'W4A87ME8B48T34E', 'D4A87ME9B48M34E', 'P4A83ME8B48M34E', 'W4A81VE8B48M44E', 'P0A80ME8B48M34E', 'V4A81PE8B48M34E'
+];
+
+function initGame(config) {
+    const canvas = document.getElementById(config.canvasId);
+    const ctx = canvas.getContext('2d');
+    config.snake = [{ x: 150, y: 150 }];
+    placeFood(config);
+    config.intervalId = setInterval(() => gameLoop(config, ctx), 1000 / config.speed);
+    config.timerIntervalId = setInterval(() => updateTimer(config), 1000);
+}
+
+function placeFood(config) {
+    const canvas = document.getElementById(config.canvasId);
+    let foodX, foodY;
+    do {
+        foodX = Math.floor(Math.random() * (canvas.width / 10)) * 10;
+        foodY = Math.floor(Math.random() * (canvas.height / 10)) * 10;
+    } while (config.snake.some(s => s.x === foodX && s.y === foodY));
+    config.food = { x: foodX, y: foodY };
+}
+
+function gameLoop(config, ctx) {
+    if (config.gameOver) return;
+
+    const head = { ...config.snake[0] };
+    switch (config.direction) {
+        case 'RIGHT': head.x += 10; break;
+        case 'LEFT': head.x -= 10; break;
+        case 'UP': head.y -= 10; break;
+        case 'DOWN': head.y += 10; break;
+    }
+
+    if (head.x < 0 || head.x >= ctx.canvas.width || head.y < 0 || head.y >= ctx.canvas.height ||
+        config.snake.some(segment => segment.x === head.x && segment.y === head.y)) {
+        alert('Jeu terminé !');
+        config.gameOver = true;
+        clearInterval(config.intervalId);
+        clearInterval(config.timerIntervalId);
+        return;
+    }
+
+    config.snake.unshift(head);
+
+    if (head.x === config.food.x && head.y === config.food.y) {
+        config.points += 1;
+        document.getElementById(config.scoreId).textContent = config.points;
         placeFood(config);
-        config.intervalId = setInterval(() => gameLoop(config, ctx), 1000 / config.speed);
-        config.timerIntervalId = setInterval(() => updateTimer(config), 1000);
+        // Augmenter la vitesse à chaque point mangé
+        config.speed += 0.5; // Augmente la vitesse
+        clearInterval(config.intervalId); // Arrête l'intervalle actuel
+        config.intervalId = setInterval(() => gameLoop(config, ctx), 1000 / config.speed); // Redémarre avec la nouvelle vitesse
+    } else {
+        config.snake.pop();
     }
 
-    function placeFood(config) {
-        const canvas = document.getElementById(config.canvasId);
-        let foodX, foodY;
-        do {
-            foodX = Math.floor(Math.random() * (canvas.width / 10)) * 10;
-            foodY = Math.floor(Math.random() * (canvas.height / 10)) * 10;
-        } while (config.snake.some(s => s.x === foodX && s.y === foodY));
-        config.food = { x: foodX, y: foodY };
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+    ctx.fillStyle = 'green';
+    config.snake.forEach(segment => ctx.fillRect(segment.x, segment.y, 10, 10));
+    ctx.fillStyle = 'red';
+    ctx.fillRect(config.food.x, config.food.y, 10, 10);
+}
+
+function updateTimer(config) {
+    config.timeRemaining--;
+    document.getElementById(config.timerId).textContent = config.timeRemaining;
+
+    if (config.timeRemaining <= 0) {
+        alert('Temps écoulé ! Jeu terminé !');
+        config.gameOver = true;
+        clearInterval(config.intervalId);
+        clearInterval(config.timerIntervalId);
     }
+}
 
-    function gameLoop(config, ctx) {
-        const head = { ...config.snake[0] };
-        switch (config.direction) {
-            case 'RIGHT': head.x += 10; break;
-            case 'LEFT': head.x -= 10; break;
-            case 'UP': head.y -= 10; break;
-            case 'DOWN': head.y += 10; break;
-        }
+function changeDirection(newDirection) {
+    const c = gameConfig;
+    if (c.gameOver) return; // Ne pas changer la direction si le jeu est terminé
+    if (newDirection === 'UP' && c.direction !== 'DOWN') c.direction = 'UP';
+    if (newDirection === 'DOWN' && c.direction !== 'UP') c.direction = 'DOWN';
+    if (newDirection === 'LEFT' && c.direction !== 'RIGHT') c.direction = 'LEFT';
+    if (newDirection === 'RIGHT' && c.direction !== 'LEFT') c.direction = 'RIGHT';
+}
 
-        if (head.x < 0 || head.x >= ctx.canvas.width || head.y < 0 || head.y >= ctx.canvas.height ||
-            config.snake.some(segment => segment.x === head.x && segment.y === head.y)) {
-            alert('Jeu terminé !');
-            clearInterval(config.intervalId);
-            clearInterval(config.timerIntervalId);
-            return;
-        }
-
-        config.snake.unshift(head);
-
-        if (head.x === config.food.x && head.y === config.food.y) {
-            config.points += 1;
-            document.getElementById(config.scoreId).textContent = config.points;
-            placeFood(config);
-            // Augmenter la vitesse à chaque point mangé
-            config.speed += 0.5; // Augmente la vitesse
-            clearInterval(config.intervalId); // Arrête l'intervalle actuel
-            config.intervalId = setInterval(() => gameLoop(config, ctx), 1000 / config.speed); // Redémarre avec la nouvelle vitesse
-        } else {
-            config.snake.pop();
-        }
-
-        ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-        ctx.fillStyle = 'green';
-        config.snake.forEach(segment => ctx.fillRect(segment.x, segment.y, 10, 10));
-        ctx.fillStyle = 'red';
-        ctx.fillRect(config.food.x, config.food.y, 10, 10);
+// Contrôles au clavier
+document.addEventListener('keydown', (e) => {
+    switch (e.key) {
+        case 'ArrowUp':
+            changeDirection('UP');
+            break;
+        case 'ArrowDown':
+            changeDirection('DOWN');
+            break;
+        case 'ArrowLeft':
+            changeDirection('LEFT');
+            break;
+        case 'ArrowRight':
+            changeDirection('RIGHT');
+            break;
     }
+});
 
-    function updateTimer(config) {
-        config.timeRemaining--;
-        document.getElementById(config.timerId).textContent = config.timeRemaining;
+// Afficher un coupon aléatoire si l'utilisateur gagne
+function displayCoupon() {
+    const randomIndex = Math.floor(Math.random() * coupons.length);
+    document.getElementById(gameConfig.couponId).textContent = `VOUS AVEZ GAGNE, VOICI VOTRE COUPON: ${coupons[randomIndex]}`;
+}
 
-        if (config.timeRemaining <= 0) {
-            alert('Temps écoulé ! Jeu terminé !');
-            clearInterval(config.intervalId);
-            clearInterval(config.timerIntervalId);
-        }
+// Appel de la fonction pour afficher le coupon si l'utilisateur gagne
+function checkWin() {
+    if (gameConfig.points >= 100) {
+        displayCoupon();
+        gameConfig.gameOver = true; // Marquer le jeu comme terminé
+        clearInterval(gameConfig.intervalId);
+        clearInterval(gameConfig.timerIntervalId);
     }
+}
 
-    function changeDirection(newDirection) {
-        const c = gameConfig;
-        if (newDirection === 'UP' && c.direction !== 'DOWN') c.direction = 'UP';
-        if (newDirection === 'DOWN' && c.direction !== 'UP') c.direction = 'DOWN';
-        if (newDirection === 'LEFT' && c.direction !== 'RIGHT') c.direction = 'LEFT';
-        if (newDirection === 'RIGHT' && c.direction !== 'LEFT') c.direction = 'RIGHT';
-    }
-
-    // Contrôles au clavier
-    document.addEventListener('keydown', (e) => {
-        switch (e.key) {
-            case 'ArrowUp':
-                changeDirection('UP');
-                break;
-            case 'ArrowDown':
-                changeDirection('DOWN');
-                break;
-            case 'ArrowLeft':
-                changeDirection('LEFT');
-                break;
-            case 'ArrowRight':
-                changeDirection('RIGHT');
-                break;
-        }
-    });
-
-    initGame(gameConfig);
+// Initialiser le jeu
+initGame(gameConfig);
 </script>
 
 </body>

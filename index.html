@@ -16,6 +16,7 @@
             color: white;
             text-align: center;
             padding: 20px 0;
+            
         }
         nav {
             display: flex;
@@ -100,6 +101,16 @@
             background-color: rgb(0,0,0); /* Fallback color */
             background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
         }
+        footer nav ul {
+    list-style-type: none; /* Supprime les puces */
+    padding: 0; /* Supprime le padding par défaut */
+    margin: 0; /* Supprime la marge par défaut */
+}
+
+footer nav ul li {
+    display: inline; /* Affiche les éléments en ligne */
+    margin-right: 15px; /* Ajoute un espace entre les liens */
+}
         .modal img {
             margin: auto;
             display: block;
@@ -132,8 +143,8 @@
 
 <nav>
     <a href="vf.html">Catalogues</a>
-    <a href="informations.html">Informations Generales</a>
-    <a href="services.html">Services à la clientèle</a>
+    <a href="services.html">Contacts</a>
+    <a href="A propos.html">A Propos</a>
 </nav>
 
 <div class="gallery-container">
@@ -308,6 +319,15 @@
 
 <footer>
     <p>&copy; 2025 Boutique Ayiti Offre Online. Tous droits réservés.</p>
+    <nav>
+        <ul>
+            <li><a href="vf.html">Catalogues</a></li>
+            <li><a href="informations.html">Conditions Générales</a></li>
+            <li><a href="Politique.html">Politique de Confidentialité</a></li>
+            <li><a href="services.html">Contacts</a></li>
+          
+        </ul>
+    </nav>
 </footer>
 
 <script>

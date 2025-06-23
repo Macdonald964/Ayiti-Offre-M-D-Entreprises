@@ -12,6 +12,7 @@ font-family: Arial, sans-serif;
 margin: 0;
 padding: 0;
 background-color: #f4f4f4;
+ padding-top: 60px; /* Ajustez cette valeur selon la hauteur de votre en-tête */
 }
 header {
 background: #333;
@@ -22,6 +23,10 @@ display: flex;
 justify-content: space-between;
 align-items: center;
 padding: 10px 20px;
+ position: fixed; /* Rendre l'en-tête fixe */
+    top: 0; /* Positionner en haut de la page */
+    width: 100%; /* Prendre toute la largeur */
+    z-index: 1000; /* Assurer que l'en-tête est au-dessus des autres éléments */
 }
 header h1 {
 margin: 0;
@@ -270,7 +275,7 @@ body {
 
 { image: "img/long long.jpg", name: "Modèle4 ", priceUnit: "250", priceThree: "500", code: "AA716", options: [  { color: "Rose", size: "XL" },  { color: "Noir", size: "L" },  { color: "Blanc", size: "M" },  { color: "Jaune", size: "XL" },  { color: "Jaune", size: "L" },  { color: "Blanc", size: "M" },  { color: "Rouge", size: "XL" },  { color: "Rouge", size: "L" }] },
 { image: "img/occase.jpg", name: "Modeele5", priceUnit: "250", priceThree: "500", code: "A718", options: [ { color: "Rouge", size: "M" }, { color: "Rouge", size: "S" }, { color: "Bleu", size: "M" }, { color: "Bleu", size: "S" }, { color: "Noir", size: "XL" }, { color: "Noir", size: "L" }, { color: "Blanc", size: "XL" }, { color: "Jaune", size: "S" }, { color: "Jaune", size: "XL" } ] },
-{ image: "img/mama.jpg", name: "Modele6 ", priceUnit: "250", priceThree: "600", code: "AA900", options: [ { color: "Bleu", size: "3XL" }, { color: "Rose", size: "S" }, { color: "Rose", size: "2XL" }, { color: "Rose pâle", size: "3XL" }, { color: "Rose pâle", size: "XL" } ] },
+{ image: "img/mama.jpg", name: "Modele6 ", priceUnit: "250", priceThree: "600", code: "AA900", options: [ { color: "Rose", size: "S" }, { color: "Rose", size: "2XL" }, { color: "Rose pâle", size: "3XL" }, { color: "Rose pâle", size: "XL" } ] },
 { image: "img/complet jupe.jpg", name: "Complet jupe ", priceUnit: "250", priceThree: "600", code: "AA1305", options: [   { color: "Rouge", size: "XL" },   { color: "Rouge", size: "M" },   { color: "Vert", size: "XL" },   { color: "Bleu", size: "S" },   { color: "Moutarde", size: "S" },   { color: "Rose", size: "L" } ] },
 { image: "img/veste.jpg", name: "Veste ", priceUnit: "250", priceThree: "500", code: "AA888", options: [  { color: "Orange", size: "L" },   { color: "Orange", size: "XL" },   { color: "Orange", size: "L" }, ] },
 { image: "img/long ceinture.jpg", name: "Modèle long à ceinturon", priceUnit: "250", priceThree: "600", code: "AA1290", options: [   { color: "Rose", size: "S" },   { color: "Rouge grenat", size: "S" },   { color: "Rouge grenat", size: "M" },   { color: "Rouge", size: "S" },   { color: "Crème", size: "S" },   { color: "Blanc", size: "S" },   { color: "Bleu roi", size: "M" },   { color: "Noir", size: "L" } ] },
@@ -320,7 +325,7 @@ body {
            {image: "img/robe a veste.jpg", name: "Modele a veste, Forme (P)", priceUnit: "250$", priceThree: "600$", code: "AA512", options: [{color: "Jaune Moutarde", size: "XXL"},{color: "Jaune Moutarde", size: "XL"},{color: "Jaune Moutarde", size: "L"}, {color: "Brique", size: "XL"},{color: "Brique", size: "L"}, {color: "Rouge", size: "XXL"},{color: "Rouge", size: "L"}, {color: "Rouge", size: "XL"}, {color: "Rouge", size: "XL"},{color: "Rouge", size: "XL"}, {color: "Rouge", size: "L"},{color: "Bleu Roi", size: "XL"}, {color: "Bleu Roi", size: "L"},{color: "Bleu Roi", size: "M"}, ]},
             {image: "img/Robe rose.jpg", name: "Modele celebration", priceUnit: "250$", priceThree: "600$", code: "P202", options: [{color: "Bleu Roi", size: "XL"},{color: "Bleu Roi", size: "XL"},{color: "Blan", size: "XL"},{color: "Jaune Maïs", size: "XL"}, {color: "Jaune Maïs", size: "M"} ]},
           
-            {image: "img/tuile yon manche.jpg", name: "Modele celebration", priceUnit: "250$", priceThree: "600$", code: "P202", options: [{color: "Jaune Maïs", size: "S"},{color: "Jaune Maïs", size: "XXL"},{color: "Jaune Maïs", size: "M"} ]},
+            {image: "img/tuile yon manche.jpg", name: "Modele celebration", priceUnit: "250$", priceThree: "600$", code: "P202", options: [{color: "Jaune Maïs", size: "S"},{color: "Jaune Maïs", size: "XXL"} ]},
 
 
             {image: "img/sans manche.jpg", name: "Modele sans mache, forme normal.", priceUnit: "250$", priceThree: "500$", code: "AA682", options: [{color: "Rose", size: "M"}, {color: "Rose", size: "L"}, {color: "Rouge", size: "M"}, {color: "Blan", size: "XL"}, {color: "Bleu Roi", size: "XL"}, {color: "Bleu Roi", size: "XL"}, ]},
@@ -329,7 +334,7 @@ body {
 {image: "img/complet Gustavo.jpg", name: "Modele Recreative, forme normal.", priceUnit: "250$", priceThree: "500$", code: "15-3G45", options: [{color: "Rouge et Noir", size: "M"}, {color: "Jaune et Noir", size: "M"},{color: "Jaune et Noir", size: "XL"},{color: "Jaune et Noir", size: "L"}, {color: "Marron et Noir", size: "XL"}, ]},
 
 {image: "img/colan.jpg", name: "Colan de sport et de petite sortie.", priceUnit: "100$", priceThree: "250$", code: "0000", options: [{color: "Noir", size: "One size"}, {color: "Rouge Grenat", size: "One size"}, {color: "Vert", size: "One size"}, {color: "Marron", size: "One size"},]},
-{image: "img/mayo gason.jpg", name: "Parfait pour les sortie publiques.", priceUnit: "100$", priceThree: "300$", code: "0001", options: [{color: "Rouge", size: "L"}, {color: "Jaune Abricot", size: "XL"}, {color: "Jaune Abricot", size: "XL"}, {color: "Gris", size: "M"}, {color: "Gris", size: "M"}, {color: "Noir", size: "L"}, {color: "Noir", size: "L"}, {color: "Bleu", size: "M"}, {color: "Bleu", size: "M"},  {color: "Vert", size: "M"}, {color: "Vert", size: "M"}, ]},
+{image: "img/mayo gason.jpg", name: "Parfait pour les sortie publiques.", priceUnit: "100$", priceThree: "300$", code: "0001", options: [ {color: "Jaune Abricot", size: "XL"},  {color: "Gris", size: "M"},  {color: "Noir", size: "L"}, {color: "Bleu", size: "M"},  {color: "Vert", size: "M"}, ]},
 {image: "img/madan baby.jpg", name: "Modele occasionnel, forme normal.", priceUnit: "250$", priceThree: "500$", code: "AA921", options: [{color: "Rupture", size: "de Stock"},]},
 {image: "img/pantalon leopard.jpg", name: "Jeans Recreative, forme normal.", priceUnit: "250$", priceThree: "500$", code: "AA905", options: [{color: "Bleu pale", size: "5.6, 7.8, 9.10, 11.12, 13.14, 15.16"}, {color: "Bleu foncé", size: "5.6, 7.8, 9.10, 11.12, 13.14, 15.16"} ,]},
 {image: "img/robe gustavo.jpg", name: "Modele doccasion.", priceUnit: "200$", priceThree: "400$", code: "15-2G71", options: [{color: "Rouge et noir", size: "S"},{color: "Rouge et noir", size: "S"}, {color: "Jaune et bleu", size: "M"},]},
