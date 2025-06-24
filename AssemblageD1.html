@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeu d'Assemblage de Mots</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        #casier {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        .case {
+            width: 50px;
+            height: 50px;
+            border: 2px solid #333;
+            margin: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        #lettres {
+            position: relative;
+            width: 300px; /* Ajustez la taille selon vos besoins */
+            height: 300px; /* Ajustez la taille selon vos besoins */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .lettre {
+            width: 50px;
+            height: 50px;
+            border: 2px solid #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            background-color: #fff;
+            position: absolute;
+        }
+        #chronometre {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="chronometre">Temps restant: <span id="temps">60</span> secondes</div>
+    <div id="casier">
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+        <div class="case"></div>
+    </div>
+    <div id="lettres"></div>
+
+    <script>
+       const mots = ["CELLULESAA", "MITOCHONDR", "PHOTOSYNTH", "GAMETOGENE", "BIOSPHERES",
+        "VACCINOGEN", "ORGANISMES", "TISSULAIRE", "EUCARYOTES", "PROKARYOTE", 
+        "GENETIQUE", "HORMONALIS", "PLASMIDES", "CITOLOGIE",  "ABANDONNEE", "ACCOMPAGNE", 
+        "ADVENTURES", "ANALYSEURS", "APPRIVOISER", "ARTICULATE", "ASSASSINAT", "CONTRASTE", "DEVELOPPEE", "ENCHANTEUR", "ENREGISTRE", "EXCEPTIONN", "INCONSCIENT", "INNOVATION", "INTERACTION", "MANIFESTER", "ORGANISATE", "PARTICIPER", "RECONNAISS", "ANTICORPS", "FONCTIONNE"];
+        let motCorrect = "";
+        let tempsRestant = 60;
+        const chronometreElement = document.getElementById('temps');
+        const cases = document.querySelectorAll('.case');
+        const lettresContainer = document.getElementById('lettres');
+        let index = 0;
+
+        function melangerMot(mot) {
+            const lettres = mot.split('');
+            for (let i = lettres.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [lettres[i], lettres[j]] = [lettres[j], lettres[i]]; // Échange
+            }
+            return lettres.join('');
+        }
+
+        function positionnerLettres(motMelange) {
+            const centerX = 150; // Centre du conteneur
+            const centerY = 150; // Centre du conteneur
+            const horizontalLength = 5; // Longueur de la ligne horizontale
+            const verticalLength = 4; // Longueur de la ligne verticale
+
+            // Positionner les lettres en forme de T
+            for (let i = 0; i < motMelange.length; i++) {
+                const divLettre = document.createElement('div');
+                divLettre.className = 'lettre';
+                divLettre.textContent = motMelange[i];
+                lettresContainer.appendChild(divLettre);
+
+                if (i < horizontalLength) { // Ligne horizontale
+                    divLettre.style.left = `${centerX - (horizontalLength * 25) + (i * 50)}px`;
+                    divLettre.style.top = `${centerY - 10}px`; // Ajustement pour rapprocher
+                } else { // Ligne verticale
+                    divLettre.style.left = `${centerX}px`;
+                    divLettre.style.top = `${centerY + (i - horizontalLength + 1) * 50 - 10}px`; // Ajustement pour rapprocher
+                }
+            }
+        }
+
+        function initialiserJeu() {
+            motCorrect = mots[Math.floor(Math.random() * mots.length)];
+            const motMelange = melangerMot(motCorrect);
+            lettresContainer.innerHTML = ''; // Vider les lettres précédentes
+            positionnerLettres(motMelange);
+            index = 0;
+            tempsRestant = 60;
+            chronometreElement.textContent = tempsRestant;
+            demarrerChronometre();
+        }
+
+        function demarrerChronometre() {
+            const timer = setInterval(() => {
+                tempsRestant--;
+                chronometreElement.textContent = tempsRestant;
+                if (tempsRestant <= 0) {
+                    clearInterval(timer);
+                    alert("Temps écoulé! Vous avez perdu.");
+                    resetGame();
+                }
+            }, 1000);
+        }
+
+        function resetGame() {
+            cases.forEach(caseElement => {
+                caseElement.textContent = '';
+            });
+            initialiserJeu();
+        }
+
+        lettresContainer.addEventListener('click', (event) => {
+            if (event.target.classList.contains('lettre')) {
+                if (index < cases.length) {
+                    cases[index].textContent = event.target.textContent;
+                    index++;
+                    event.target.style.display = 'none'; // Cacher la lettre après utilisation
+                }
+                if (index === cases.length) {
+                    checkWord();
+                }
+            }
+        });
+
+        cases.forEach((caseElement) => {
+            caseElement.addEventListener('click', () => {
+                if (caseElement.textContent) {
+                    const lettreRestaurer = caseElement.textContent;
+                    caseElement.textContent = ''; // Vider la case
+                    index--; // Décrémenter l'index
+                    const lettre = Array.from(lettresContainer.children).find(lettre => lettre.textContent === lettreRestaurer);
+                    if (lettre) {
+                        lettre.style.display = 'flex'; // Afficher la lettre à nouveau
+                    }
+                }
+            });
+        });
+
+        function checkWord() {
+            let motAssemble = '';
+            cases.forEach(caseElement => {
+                motAssemble += caseElement.textContent;
+            });
+            if (motAssemble === motCorrect) {
+                alert("Bravo! Vous avez assemblé les lettres.");
+            } else {
+                alert("Mauvais assemblage! Vous avez perdu.");
+                resetGame();
+            }
+        }
+
+        // Initialiser le jeu au chargement de la page
+        initialiserJeu();
+    </script>
+
+</body>
+</html>

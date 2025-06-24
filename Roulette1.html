@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <title>Jeu de Roulette</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #34495e;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            color: #fff;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 36px;
+        }
+
+        #roulette-container {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            margin-bottom: 20px;
+        }
+
+        #roulette {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 10px solid #ecf0f1;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+
+        #timer {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 24px;
+        }
+
+        #numberSelection {
+            margin-top: 20px;
+        }
+
+        #chosenNumbers {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #2c3e50;
+            border-radius: 5px;
+            color: #fff;
+            width: 100%;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Jeu de Roulette</h1>
+
+<div id="roulette-container">
+    <canvas id="roulette" width="400" height="400"></canvas>
+</div>
+
+<div id="numberSelection">
+    <h2>Choisissez des chiffres :</h2>
+    <div id="numbers"></div>
+</div>
+
+<div id="timer">Temps restant : 60</div>
+
+<div id="result"></div>
+
+<div id="chosenNumbers">Chiffres choisis : <span id="chosenList"></span></div>
+
+<audio id="gameMusic" src="11 sex.mp3" preload="auto"></audio> <!-- Assurez-vous que le chemin est correct -->
+
+<script>
+    const canvas = document.getElementById('roulette');
+    const ctx = canvas.getContext('2d');
+    const segments = Array.from({ length: 21 }, (_, i) => ({ color: `hsl(${i * 17.5}, 100%, 50%)`, label: i.toString() }));
+    const numSegments = segments.length;
+    let isSpinning = false;
+    let userChoices = [];
+    let timerInterval;
+    let timeLeft = 60;
+
+    const resultDiv = document.getElementById('result');
+    const timerDiv = document.getElementById('timer');
+    const chosenList = document.getElementById('chosenList');
+    const gameMusic = document.getElementById('gameMusic');
+
+    const winningNumbers = [3, 7, 12, 15, 18];
+    let currentWinningIndex = 0;
+
+    function drawRoulette() {
+        const centerX = 200;
+        const centerY = 200;
+        const radius = 180;
+        ctx.clearRect(0, 0, 400, 400);
+
+        const arcSize = (2 * Math.PI) / numSegments;
+
+        for (let i = 0; i < numSegments; i++) {
+            const start = i * arcSize;
+            ctx.beginPath();
+            ctx.moveTo(centerX, centerY);
+            ctx.arc(centerX, centerY, radius, start, start + arcSize);
+            ctx.closePath();
+            ctx.fillStyle = segments[i].color;
+            ctx.fill();
+
+            ctx.save();
+            ctx.translate(centerX, centerY);
+            ctx.rotate(start + arcSize / 2);
+            ctx.textAlign = "right";
+            ctx.fillStyle = "#fff";
+            ctx.font = "bold 20px Arial";
+            ctx.fillText(segments[i].label, radius - 10, 10);
+            ctx.restore();
+        }
+    }
+
+    function drawBall(position) {
+        const ballRadius = 10;
+        const angle = (position * (2 * Math.PI)) / numSegments;
+        const ballX = 200 + (130 * Math.cos(angle));
+        const ballY = 200 + (130 * Math.sin(angle));
+
+        ctx.fillStyle = "blue";
+        ctx.beginPath();
+        ctx.arc(ballX, ballY, ballRadius, 0, Math.PI * 2);
+        ctx.fill();
+    }
+
+    function startTimer() {
+        timerInterval = setInterval(() => {
+            timeLeft--;
+            timerDiv.textContent = `Temps restant : ${timeLeft}`;
+            if (timeLeft <= 0) {
+                clearInterval(timerInterval);
+                spinBall();
+                timeLeft = 60;
+            }
+        }, 1000);
+    }
+
+    function spinBall() {
+        if (isSpinning) return;
+        if (userChoices.length === 0) {
+            alert("Veuillez choisir au moins un chiffre avant que le temps ne soit écoulé !");
+            return;
+        }
+        isSpinning = true;
+        resultDiv.textContent = '';
+
+        const randomSpins = Math.floor(Math.random() * 4) + 3;
+        const winningSegmentIndex = winningNumbers[currentWinningIndex % winningNumbers.length];
+        const targetPosition = winningSegmentIndex;
+
+        const duration = 4000;
+        const startTime = performance.now();
+
+        function animate(currentTime) {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const easeProgress = 1 - Math.pow(1 - progress, 3);
+
+            const currentPosition = (easeProgress * (targetPosition + randomSpins * numSegments)) % numSegments;
+
+            drawRoulette();
+            drawBall(currentPosition);
+
+            if (progress < 1) {
+                requestAnimationFrame(animate);
+            } else {
+                const winningSegment = segments[winningSegmentIndex];
+
+                resultDiv.textContent = `Le chiffre gagnant est : ${winningSegment.label}`;
+                if (userChoices.includes(winningSegment.label)) {
+                    resultDiv.textContent += ` (Vous avez choisi ce chiffre !)`;
+                } else {
+                    resultDiv.textContent += ` (Vous n'avez pas choisi ce chiffre.)`;
+                }
+
+                currentWinningIndex++;
+                isSpinning = false;
+            }
+        }
+
+        requestAnimationFrame(animate);
+    }
+
+    const numbersDiv = document.getElementById('numbers');
+    for (let i = 0; i <= 20; i++) {
+        const button = document.createElement('button');
+        button.textContent = i;
+        button.className = 'number-button';
+        button.addEventListener('click', () => {
+            userChoices.push(i.toString());
+            alert(`Vous avez choisi le chiffre : ${i}`);
+            chosenList.textContent = userChoices.join(', ');
+            drawRoulette();
+        });
+        numbersDiv.appendChild(button);
+    }
+
+    // Démarrer le jeu automatiquement
+    drawRoulette();
+    startTimer();
+
+    // Démarrer la musique automatiquement
+    gameMusic.play().catch(error => {
+        console.log("La musique ne peut pas être jouée automatiquement : ", error);
+    });
+</script>
+</body>
+</html>

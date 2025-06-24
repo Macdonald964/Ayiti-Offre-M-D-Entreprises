@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Jeu de Quiz </title>
+<style>
+body {
+  font-family: 'Arial', sans-serif;
+  padding: 20px;
+  background-color: #e0f7fa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+#quiz-container {
+  max-width: 700px;
+  width: 100%;
+  padding: 30px;
+  border: 2px solid #00796b;
+  border-radius: 15px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  text-align: center;
+}
+#header {
+  margin-bottom: 20px;
+}
+#question {
+  font-size: 1.4em;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+#answers {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.answer {
+  width: 80%;
+  padding: 12px;
+  margin: 8px 0;
+  background-color: #80deea;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.answer:hover {
+  background-color: #4dd0e1;
+}
+#timer {
+  font-weight: bold;
+  font-size: 1.3em;
+  margin-bottom: 15px;
+}
+#question-btn {
+  padding: 12px 24px;
+  font-size: 1.2em;
+  background-color: #0097a7;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+#question-btn:hover {
+  background-color: #006064;
+}
+#result {
+  font-size: 1.4em;
+  margin-top: 20px;
+}
+#next-btn {
+  padding: 12px 24px;
+  font-size: 1.2em;
+  background-color: #00796b;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  display: none; /* caché par défaut */
+  margin-top: 20px;
+}
+#next-btn:hover {
+  background-color: #004d40;
+}
+</style>
+</head>
+<body>
+
+<div id="quiz-container">
+  <div id="header">
+    <button id="question-btn">Question</button>
+  </div>
+  <div id="timer">Temps restant : 10 secondes</div>
+  <div id="question"></div>
+  <div id="answers"></div>
+  <div id="result"></div>
+  <button id="next-btn">Question suivante</button>
+</div>
+
+<script>
+const questions = [
+  {
+    question: "Selon la philosophie de Kant, quelle est la condition préalable à la connaissance empirique ?",
+    answers: ["La synthèse a priori", "L'intuition sensible", "La raison pure", "L'expérience directe"],
+    correct: "La synthèse a priori"
+  },
+  {
+    question: "Dans la philosophie existentialiste, quel concept est central chez Sartre ?",
+    answers: ["L'absurde", "L'angoisse", "La liberté", "L'aliénation"],
+    correct: "La liberté"
+  },
+  {
+    question: "Quelle œuvre de Nietzsche introduit la notion de 'volonté de puissance' ?",
+    answers: ["Ainsi parlait Zarathoustra", "Par-delà le bien et le mal", "La naissance de la tragédie", "L'Antéchrist"],
+    correct: "Ainsi parlait Zarathoustra"
+  },
+  {
+    question: "Selon Heidegger, quelle est la 'question fondamentale de la philosophie' ?",
+    answers: ["Qu'est-ce que l'étant ?", "Qu'est-ce que l'être ?", "Qu'est-ce que la vérité ?", "Qu'est-ce que la conscience ?"],
+    correct: "Qu'est-ce que l'être ?"
+  },
+  {
+    question: "Dans la philosophie de Descartes, quelle est la première certitude indubitable ?",
+    answers: ["Je pense, donc je suis", "L'existence de Dieu", "La réalité matérielle", "L'âme et le corps"],
+    correct: "Je pense, donc je suis"
+  },
+  {
+    question: "Quelle est la principale critique de Marx à l'égard du capitalisme ?",
+    answers: ["L'aliénation", "L'individualisme", "L'anarchisme", "L'absurde"],
+    correct: "L'aliénation"
+  },
+  {
+    question: "Selon Spinoza, quelle est la nature de Dieu ?",
+    answers: ["Une entité personnelle", "La substance unique", "Une force impersonnelle", "Une idée abstraite"],
+    correct: "La substance unique"
+  },
+  {
+    question: "Quelle est la thèse centrale de la phénoménologie husserlienne ?",
+    answers: ["L'intentionnalité de la conscience", "La contingence de l'existence", "L'inconscient", "L'absurde"],
+    correct: "L'intentionnalité de la conscience"
+  },
+  {
+    question: "Dans la philosophie de Camus, quelle notion est essentielle pour comprendre l'absurde ?",
+    answers: ["La révolte", "L'aliénation", "L'angoisse", "La liberté"],
+    correct: "La révolte"
+  },
+  {
+    question: "Selon Aristote, quelle est la cause première ou 'telos' de toute chose ?",
+    answers: ["La matière", "La finalité", "Le mouvement", "L'acte d'être"],
+    correct: "La finalité"
+  },
+  {
+    question: "Quelle est la principale contribution de Wittgenstein à la philosophie du langage ?",
+    answers: ["La théorie des formes", "Le langage comme jeu", "L'ineffable", "La logique formelle"],
+    correct: "Le langage comme jeu"
+  },
+  {
+    question: "Dans la philosophie de Hegel, qu'est-ce que la 'dialectique' ?",
+    answers: ["Une méthode de raisonnement", "Le processus de thèse, antithèse, synthèse", "Une forme de logique formelle", "Une théorie de l'esprit"],
+    correct: "Le processus de thèse, antithèse, synthèse"
+  },
+  {
+    question: "Selon Derrida, qu'est-ce que la 'différance' ?",
+    answers: ["Une différence essentielle", "Le retard dans la signification", "Une opposition binaire", "Une absence de sens"],
+    correct: "Le retard dans la signification"
+  },
+  {
+    question: "Quelle est la conception de la liberté chez Spinoza ?",
+    answers: ["Liberté de faire ce que l'on veut", "Liberté d'agir selon la nécessité de sa nature", "Liberté absolue", "Liberté de choisir entre le bien et le mal"],
+    correct: "Liberté d'agir selon la nécessité de sa nature"
+  },
+  {
+    question: "Dans la philosophie de Simone de Beauvoir, qu'est-ce que l' 'autre' ?",
+    answers: ["L'ennemi", "L'aliénation", "L'opposé de soi-même", "L'autre comme condition de liberté"],
+    correct: "L'autre comme condition de liberté"
+  },
+  {
+    question: "Quelle est la principale idée de la 'Critique de la raison pure' d'Immanuel Kant ?",
+    answers: ["Les limites de la connaissance humaine", "La nature de l'âme", "La moralité", "La métaphysique comme science"],
+    correct: "Les limites de la connaissance humaine"
+  },
+  {
+    question: "Selon Lao Tseu, quelle est la voie vers l'harmonie ?",
+    answers: ["Le détachement", "Le Wu Wei (non-agir)", "La méditation", "La vertu"],
+    correct: "Le Wu Wei (non-agir)"
+  },
+  {
+    question: "Dans la philosophie de Nietzsche, qu'est-ce que le 'Übermensch' ?",
+    answers: ["L'homme supérieur", "L'homme moral", "L'homme faible", "L'homme ordinaire"],
+    correct: "L'homme supérieur"
+  },
+  {
+    question: "Quelle est la conception de la vérité chez Platon ?",
+    answers: ["Une correspondance avec la réalité", "Une construction sociale", "Une opinion subjective", "Une illusion"],
+    correct: "Une correspondance avec la réalité"
+  },
+
+{
+question: "Quel est le nom de la structure qui contrôle le passage des substances entre le noyau et le cytoplasme ?",
+answers: ["Membrane nucléaire", "Réticulum endoplasmique", "Appareil de Golgi", "Mitochondrie"],
+correct: "Membrane nucléaire"
+},
+{
+question: "Quel est le processus par lequel les cellules produisent de l'énergie en absence d'oxygène ?",
+answers: ["Respiration aérobie", "Fermentation", "Photosynthèse", "Chimiosmose"],
+correct: "Fermentation"
+},
+{
+question: "Quel est le nom du mécanisme par lequel l'ADN est copié en ARN ?",
+answers: ["Transcription", "Traduction", "Réplicaton", "Mutation"],
+correct: "Transcription"
+},
+{
+question: "Quel est le principal type de cellule responsable de la réponse immunitaire adaptative ?",
+answers: ["Globules rouges", "Lymphocytes", "Macrophages", "Neutrophiles"],
+correct: "Lymphocytes"
+},
+{
+question: "Quel est le nom de la théorie qui explique l'origine des mitochondries et des chloroplastes ?",
+answers: ["Théorie de l'endosymbiose", "Théorie cellulaire", "Théorie de l'évolution", "Théorie de la biogenèse"],
+correct: "Théorie de l'endosymbiose"
+},
+{
+question: "Quel est le nom du processus par lequel les plantes convertissent la lumière du soleil en énergie chimique ?",
+answers: ["Respiration", "Photosynthèse", "Chimiosynthèse", "Fermentation"],
+correct: "Photosynthèse"
+},
+{
+question: "Quel est le nom de la protéine qui transporte l'oxygène dans le sang ?",
+answers: ["Hémoglobine", "Myoglobine", "Albumine", "Globuline"],
+correct: "Hémoglobine"
+},
+{
+question: "Quel est le nom de la première étape de la respiration cellulaire ?",
+answers: ["Cycle de Krebs", "Glycolyse", "Chaîne de transport des électrons", "Fermentation"],
+correct: "Glycolyse"
+},
+{
+question: "Quel est le nom du processus par lequel les cellules se divisent pour former deux cellules filles identiques ?",
+answers: ["Mitose", "Méiose", "Cytokinèse", "Fécondation"],
+correct: "Mitose"
+},
+{
+question: "Quel est le nom de la molécule qui stocke l'information génétique dans les cellules ?",
+answers: ["ARN", "ADN", "Protéine", "Lipide"],
+correct: "ADN"
+},
+{
+question: "Quel est le nom de la structure cellulaire responsable de la synthèse des protéines ?",
+answers: ["Ribosome", "Lysosome", "Centrosome", "Noyau"],
+correct: "Ribosome"
+},
+{
+question: "Quel est le nom du phénomène par lequel les espèces évoluent pour s'adapter à leur environnement ?",
+answers: ["Sélection naturelle", "Mutation", "Spéciation", "Adaptation"],
+correct: "Sélection naturelle"
+},
+{
+question: "Quel est le nom de la couche externe de la cellule végétale qui lui confère rigidité ?",
+answers: ["Membrane plasmique", "Paroi cellulaire", "Cytoplasme", "Chloroplaste"],
+correct: "Paroi cellulaire"
+},
+{
+question: "Quel est le nom du processus par lequel les cellules sexuelles sont formées ?",
+answers: ["Mitose", "Méiose", "Fécondation", "Génération"],
+correct: "Méiose"
+},
+{
+question: "Quel est le nom de la molécule qui catalyse les réactions chimiques dans les cellules ?",
+answers: ["Enzyme", "Hormone", "Substrat", "Coenzyme"],
+correct: "Enzyme"
+},
+{
+question: "Quel est le nom de la structure qui permet le transport des substances à travers la membrane cellulaire ?",
+answers: ["Canal ionique", "Transporteur", "Pompe", "Récepteur"],
+correct: "Transporteur"
+},
+{
+question: "Quel est le nom de la maladie génétique causée par une mutation sur le chromosome 21 ?",
+answers: ["Syndrome de Turner", "Syndrome de Down", "Syndrome d'Edwards", "Syndrome de Klinefelter"],
+correct: "Syndrome de Down"
+},
+{
+question: "Quel est le nom du processus par lequel les cellules éliminent les déchets ?",
+answers: ["Exocytose", "Endocytose", "Phagocytose", "Pinocytose"],
+correct: "Exocytose"
+},
+{
+question: "Quel est le nom de la théorie qui décrit la structure de la membrane cellulaire ?",
+answers: ["Théorie de la fluidité", "Théorie de la mosaïque fluide", "Théorie de la double couche lipidique", "Théorie de l'endocytose"],
+correct: "Théorie de la mosaïque fluide"
+},
+{
+question: "Quel est le nom de la molécule qui joue un rôle clé dans la transmission des signaux nerveux ?",
+answers: ["Neurotransmetteur", "Hormone", "Protéine", "Acide nucléique"],
+correct: "Neurotransmetteur"
+},
+
+ {
+        question: "Quel traité a mis fin à la guerre de 1812 entre les États-Unis et le Royaume-Uni ?",
+        answers: ["Traité de Paris", "Traité de Ghent", "Traité de Versailles", "Traité de Tordesillas"],
+        correct: "Traité de Ghent"
+    },
+    {
+        question: "Qui était le président des États-Unis pendant la Grande Dépression ?",
+        answers: ["Herbert Hoover", "Franklin D. Roosevelt", "Harry S. Truman", "John F. Kennedy"],
+        correct: "Franklin D. Roosevelt"
+    },
+    {
+        question: "Quel événement a déclenché la guerre civile américaine en 1861 ?",
+        answers: ["L'élection d'Abraham Lincoln", "L'attaque de Fort Sumter", "La proclamation d'émancipation", "La bataille de Gettysburg"],
+        correct: "L'attaque de Fort Sumter"
+    },
+    {
+        question: "Quel était le nom de la première colonie anglaise permanente en Amérique ?",
+        answers: ["Jamestown", "Plymouth", "Roanoke", "Savannah"],
+        correct: "Jamestown"
+    },
+    {
+        question: "Qui a écrit la Déclaration d'indépendance des États-Unis ?",
+        answers: ["George Washington", "Thomas Jefferson", "Benjamin Franklin", "John Adams"],
+        correct: "Thomas Jefferson"
+    },
+    {
+        question: "Quel mouvement a été lancé pour abolir l'esclavage aux États-Unis ?",
+        answers: ["Le mouvement des droits civiques", "Le mouvement abolitionniste", "Le mouvement féministe", "Le mouvement progressiste"],
+        correct: "Le mouvement abolitionniste"
+    },
+    {
+        question: "Quel était le nom de la politique étrangère des États-Unis qui visait à contenir le communisme pendant la guerre froide ?",
+        answers: ["La doctrine Monroe", "La politique de la porte ouverte", "La stratégie de containment", "Le plan Marshall"],
+        correct: "La stratégie de containment"
+    },
+    {
+        question: "Quel président a été assassiné en 1963 à Dallas, au Texas ?",
+        answers: ["Richard Nixon", "Lyndon B. Johnson", "John F. Kennedy", "Gerald Ford"],
+        correct: "John F. Kennedy"
+    },
+    {
+        question: "Quel était le nom de la première femme à voter aux États-Unis ?",
+        answers: ["Susan B. Anthony", "Elizabeth Cady Stanton", "Victoria Woodhull", "Jeannette Rankin"],
+        correct: "Jeannette Rankin"
+    },
+    {
+        question: "Quel événement a eu lieu le 6 juin 1944 pendant la Seconde Guerre mondiale ?",
+        answers: ["La bataille de Stalingrad", "Le débarquement de Normandie", "La bataille de Midway", "La libération de Paris"],
+        correct: "Le débarquement de Normandie"
+    },
+    {
+        question: "Quel était le nom du mouvement qui a lutté pour les droits civiques des Afro-Américains dans les années 1960 ?",
+        answers: ["Le mouvement abolitionniste", "Le mouvement des droits civiques", "Le mouvement féministe", "Le mouvement des droits des homosexuels"],
+        correct: "Le mouvement des droits civiques"
+    },
+    {
+        question: "Qui a été le premier président des États-Unis ?",
+        answers: ["Thomas Jefferson", "George Washington", "John Adams", "James Madison"],
+        correct: "George Washington"
+    },
+    {
+        question: "Quel était le nom de la guerre entre les États-Unis et le Mexique de 1846 à 1848 ?",
+        answers: ["La guerre de Sécession", "La guerre hispano-américaine", "La guerre américano-mexicaine", "La guerre de 1812"],
+        correct: "La guerre américano-mexicaine"
+    },
+    {
+        question: "Quel était le nom du projet secret de recherche et développement d'armes nucléaires pendant la Seconde Guerre mondiale ?",
+        answers: ["Le projet Manhattan", "Le projet Apollo", "Le projet Gemini", "Le projet de la NASA"],
+        correct: "Le projet Manhattan"
+    },
+    {
+        question: "Quel président a signé le Civil Rights Act en 1964 ?",
+        answers: ["Lyndon B. Johnson", "John F. Kennedy", "Richard Nixon", "Harry S. Truman"],
+        correct: "Lyndon B. Johnson"
+    },
+    {
+        question: "Quel était le nom de la première mission spatiale habitée des États-Unis ?",
+        answers: ["Mercury", "Gemini", "Apollo", "Skylab"],
+        correct: "Mercury"
+    },
+    {
+        question: "Quel événement a marqué le début de la Révolution américaine en 1775 ?",
+        answers: ["La Boston Tea Party", "La bataille de Lexington et Concord", "La Déclaration d'indépendance", "La bataille de Bunker Hill"],
+        correct: "La bataille de Lexington et Concord"
+    },
+    {
+        question: "Quel était le nom de l'accord qui a mis fin à la guerre du Vietnam en 1973 ?",
+        answers: ["Les accords de Paris", "Les accords de Genève", "Les accords de Camp David", "Les accords de Téhéran"],
+        correct: "Les accords de Paris"
+    },
+    {
+        question: "Qui a été le leader du mouvement pour les droits civiques qui a prononcé le discours 'I Have a Dream' ?",
+        answers: ["Malcolm X", "Martin Luther King Jr.", "Rosa Parks", "Frederick Douglass"],
+        correct: "Martin Luther King Jr."
+    },
+    {
+        question: "Quel était le nom de la première femme à devenir juge à la Cour suprême des États-Unis ?",
+        answers: ["Ruth Bader Ginsburg", "Sandra Day O'Connor", "Elena Kagan", "Sonia Sotomayor"],
+        correct: "Sandra Day O'Connor"
+    },
+
+
+     {
+    question: "Quelle bataille a marqué la fin de l'Empire romain d'Occident en 476 après J.-C. ?",
+    answers: ["La bataille de Poitiers", "La chute de Rome", "La bataille de Hastings", "La bataille de Verdun"],
+    correct: "La chute de Rome"
+  },
+  {
+    question: "Quel traité de 1648 a mis fin à la Guerre de Trente Ans en Europe ?",
+    answers: ["Le traité de Westphalie", "Le traité de Versailles", "Le traité de Utrecht", "Le traité de Tordesillas"],
+    correct: "Le traité de Westphalie"
+  },
+  {
+    question: "Qui était le chef de la Révolution française en 1789 ?",
+    answers: ["Robespierre", "Louis XVI", "Napoléon Bonaparte", "Danton"],
+    correct: "Robespierre"
+  },
+  {
+    question: "Quelle monarchie européenne a été abolie en 1917 suite à la Révolution russe ?",
+    answers: ["La monarchie austro-hongroise", "La monarchie allemande", "La monarchie russe", "La monarchie ottomane"],
+    correct: "La monarchie russe"
+  },
+  {
+    question: "Quel empire a été divisé lors du Congrès de Vienne en 1815 ?",
+    answers: ["L'Empire ottoman", "L'Empire austro-hongrois", "L'Empire allemand", "L'Empire russe"],
+    correct: "L'Empire austro-hongrois"
+  },
+  {
+    question: "Quel événement a déclenché la Première Guerre mondiale ?",
+    answers: ["L'assassinat de François-Ferdinand", "L'invasion de la Pologne", "Le bombardement de Pearl Harbor", "La crise de Cuba"],
+    correct: "L'assassinat de François-Ferdinand"
+  },
+  {
+    question: "Quel pays a été le premier à adopter l'euro comme monnaie en 2002 ?",
+    answers: ["Allemagne", "France", "Belgique", "Italie"],
+    correct: "Belgique"
+  },
+  {
+    question: "Quel mouvement artistique est associé à la Renaissance en Europe ?",
+    answers: ["Le Baroque", "Le Classicisme", "Le Humanisme", "Le Romantisme"],
+    correct: "Le Humanisme"
+  },
+  {
+    question: "Quel roi français a été guillotiné en 1793 ?",
+    answers: ["Louis XVI", "Louis XIV", "Napoléon III", "Louis Philippe"],
+    correct: "Louis XVI"
+  },
+  {
+    question: "Quelle est la principale cause de la Guerre de Cent Ans ?",
+    answers: ["Les revendications territoriales en France", "Les rivalités religieuses", "Les conflits commerciaux", "L'invasion mongole"],
+    correct: "Les revendications territoriales en France"
+  },
+  {
+    question: "Quel empire a été dirigé par Charlemagne ?",
+    answers: ["L'Empire romain", "L'Empire carolingien", "L'Empire byzantin", "L'Empire ottoman"],
+    correct: "L'Empire carolingien"
+  },
+  {
+    question: "Quelle révolution a abouti à la déclaration d'indépendance des États-Unis en 1776 ?",
+    answers: ["La Révolution française", "La Révolution américaine", "La Révolution industrielle", "La Révolution russe"],
+    correct: "La Révolution américaine"
+  },
+  {
+    question: "Quel pape a lancé la réforme protestante en 1517 ?",
+    answers: ["Pape Clément VII", "Pape Léon X", "Martin Luther", "Jean-Paul II"],
+    correct: "Martin Luther"
+  },
+  {
+    question: "Quelle dynastie a régné sur l'Espagne lors de la découverte de l'Amérique ?",
+    answers: ["Les Habsbourg", "Les Bourbons", "Les Capétiens", "Les Valois"],
+    correct: "Les Habsbourg"
+  },
+  {
+    question: "Quel traité a divisé l'Amérique du Sud entre l'Espagne et le Portugal en 1494 ?",
+    answers: ["Le traité de Tordesillas", "Le traité de Madrid", "Le traité de Versailles", "Le traité de Utrecht"],
+    correct: "Le traité de Tordesillas"
+  },
+  {
+    question: "Quel est le nom du mouvement intellectuel qui a marqué la transition entre le Moyen Âge et la Renaissance ?",
+    answers: ["Le Siècle des Lumières", "L'Humanisme", "Le Classicisme", "Le Romantisme"],
+    correct: "L'Humanisme"
+  },
+  {
+    question: "Quel est le nom de la guerre qui a opposé la France et l'Angleterre au Moyen Âge, de 1337 à 1453 ?",
+    answers: ["La Guerre de Cent Ans", "La Guerre de Quatre-Vingts Ans", "La Guerre de Trente Ans", "La Guerre de Succession d'Espagne"],
+    correct: "La Guerre de Cent Ans"
+  },
+  {
+    question: "Quel événement marque le début de la Révolution française ?",
+    answers: ["La prise de la Bastille", "Le serment du Jeu de Paume", "La marche sur Versailles", "L'exécution de Louis XVI"],
+    correct: "La prise de la Bastille"
+  },
+  {
+    question: "Quel empire a été dirigé par Napoléon Bonaparte ?",
+    answers: ["L'Empire romain", "L'Empire français", "L'Empire austro-hongrois", "L'Empire ottoman"],
+    correct: "L'Empire français"
+  },
+  {
+    question: "Quelle figure historique est associée à la Révolution russe de 1917 ?",
+    answers: ["Vladimir Lénine", "Joseph Staline", "Nikolaï II", "Trotski"],
+    correct: "Vladimir Lénine"
+  },
+
+   {
+        question: "Quel est le principal ingrédient du miso ?",
+        answers: ["Soja", "Blé", "Riz", "Maïs"],
+        correct: "Soja"
+    },
+    {
+        question: "Quelle technique de cuisson consiste à cuire des aliments sous vide ?",
+        answers: ["Sous-vide", "Braising", "Sauter", "Pocher"],
+        correct: "Sous-vide"
+    },
+    {
+        question: "Quel est le nom du fromage français à pâte persillée, souvent utilisé dans les sauces ?",
+        answers: ["Roquefort", "Brie", "Camembert", "Cheddar"],
+        correct: "Roquefort"
+    },
+    {
+        question: "Quel est le terme culinaire pour décrire le processus de faire réduire un liquide par ébullition ?",
+        answers: ["Émulsionner", "Réduire", "Blanchir", "Sauter"],
+        correct: "Réduire"
+    },
+    {
+        question: "Quel est le principal ingrédient du tzatziki ?",
+        answers: ["Yaourt", "Feta", "Concombre", "Ail"],
+        correct: "Yaourt"
+    },
+    {
+        question: "Quel type de pâte est utilisé pour faire des raviolis ?",
+        answers: ["Pâte feuilletée", "Pâte à choux", "Pâte à lasagne", "Pâte à pasta"],
+        correct: "Pâte à pasta"
+    },
+    {
+        question: "Quel est le nom du plat espagnol à base de riz, souvent préparé avec des fruits de mer ?",
+        answers: ["Paella", "Risotto", "Fideuà", "Arroz con pollo"],
+        correct: "Paella"
+    },
+    {
+        question: "Quel est le principal ingrédient du taboulé ?",
+        answers: ["Boulgour", "Quinoa", "Riz", "Pâtes"],
+        correct: "Boulgour"
+    },
+    {
+        question: "Quel est le nom de la technique de cuisson qui consiste à plonger des aliments dans de l'eau bouillante puis dans de l'eau glacée ?",
+        answers: ["Blanchir", "Sauter", "Griller", "Rôtir"],
+        correct: "Blanchir"
+    },
+    {
+        question: "Quel est le nom du plat traditionnel japonais à base de poisson cru ?",
+        answers: ["Sushi", "Sashimi", "Tempura", "Ramen"],
+        correct: "Sashimi"
+    },
+    {
+        question: "Quel est le nom de la sauce à base de tomates, souvent utilisée dans les plats italiens ?",
+        answers: ["Marinara", "Béchamel", "Pesto", "Hollandaise"],
+        correct: "Marinara"
+    },
+    {
+        question: "Quel est le terme pour désigner la cuisson d'un aliment dans un bain de graisse chaude ?",
+        answers: ["Friture", "Grillage", "Rôtissage", "Sautage"],
+        correct: "Friture"
+    },
+    {
+        question: "Quel est le nom du dessert français à base de crème et de caramel ?",
+        answers: ["Crème brûlée", "Tarte Tatin", "Mousse au chocolat", "Éclair"],
+        correct: "Crème brûlée"
+    },
+    {
+        question: "Quel est le nom de la technique de cuisson lente à basse température, souvent utilisée pour les viandes ?",
+        answers: ["Braising", "Rôtir", "Griller", "Sauter"],
+        correct: "Braising"
+    },
+    {
+        question: "Quel est le principal ingrédient du guacamole ?",
+        answers: ["Avocat", "Tomate", "Oignon", "Citron"],
+        correct: "Avocat"
+    },
+    {
+        question: "Quel est le nom du plat indien à base de viande marinée et cuite dans un four tandoor ?",
+        answers: ["Tandoori", "Biryani", "Curry", "Korma"],
+        correct: "Tandoori"
+    },
+    {
+        question: "Quel est le nom du plat traditionnel mexicain à base de tortillas et de viande ?",
+        answers: ["Taco", "Burrito", "Enchilada", "Quesadilla"],
+        correct: "Taco"
+    },
+    {
+        question: "Quel est le nom de la technique de cuisson qui consiste à cuire des aliments dans un liquide à température très basse ?",
+        answers: ["Sous-vide", "Braising", "Pocher", "Sauter"],
+        correct: "Sous-vide"
+    },
+    {
+        question: "Quel est le nom du plat italien à base de pâtes, souvent préparé avec des fruits de mer ?",
+        answers: ["Spaghetti alle vongole", "Lasagne", "Penne arrabbiata", "Fettuccine Alfredo"],
+        correct: "Spaghetti alle vongole"
+    },
+    {
+        question: "Quel est le nom du plat traditionnel français à base de viande de bœuf mijotée dans du vin rouge ?",
+        answers: ["Boeuf bourguignon", "Coq au vin", "Cassoulet", "Ratatouille"],
+        correct: "Boeuf bourguignon"
+    },
+     {
+    question: "Quelle est la complexité temporelle moyenne de l'algorithme de tri rapide (quicksort) dans le cas moyen ?",
+    answers: ["O(n log n)", "O(n^2)", "O(n)", "O(log n)"],
+    correct: "O(n log n)"
+  },
+  {
+    question: "Dans le contexte des réseaux, que signifie l'acronyme 'OSI' ?",
+    answers: ["Open Systems Interconnection", "Open Source Initiative", "Operational System Interface", "Open Standard Interface"],
+    correct: "Open Systems Interconnection"
+  },
+  {
+    question: "Quelle technologie blockchain a été la première à introduire le concept de contrats intelligents ?",
+    answers: ["Ethereum", "Bitcoin", "Ripple", "Litecoin"],
+    correct: "Ethereum"
+  },
+  {
+    question: "Quel est le principe fondamental du chiffrement asymétrique ?",
+    answers: ["Utiliser une paire de clés, une publique et une privée", "Utiliser une seule clé pour chiffrer et déchiffrer", "Utiliser des clés symétriques", "Utiliser un algorithme de hachage"],
+    correct: "Utiliser une paire de clés, une publique et une privée"
+  },
+  {
+    question: "Quelle est la principale différence entre la mémoire RAM et la mémoire ROM ?",
+    answers: ["La RAM est volatile, la ROM est non volatile", "La RAM est non volatile, la ROM est volatile", "Les deux sont volatiles", "Les deux sont non volatiles"],
+    correct: "La RAM est volatile, la ROM est non volatile"
+  },
+  {
+    question: "Quel langage de programmation est principalement utilisé pour le développement de smart contracts sur Ethereum ?",
+    answers: ["Solidity", "JavaScript", "Python", "C++"],
+    correct: "Solidity"
+  },
+  {
+    question: "Dans le domaine de l'intelligence artificielle, que désigne le terme 'overfitting' ?",
+    answers: ["Un modèle qui s'adapte trop aux données d'entraînement, perdant en généralisation", "Un modèle qui ne s'adapte pas assez aux données", "Une technique pour améliorer la précision", "Une méthode de réduction de la complexité du modèle"],
+    correct: "Un modèle qui s'adapte trop aux données d'entraînement, perdant en généralisation"
+  },
+  {
+    question: "Quelle norme Wi-Fi est la plus récente et offre les débits les plus élevés ?",
+    answers: ["Wi-Fi 5 (802.11ac)", "Wi-Fi 4 (802.11n)", "Wi-Fi 6 (802.11ax)", "Wi-Fi 3 (802.11g)"],
+    correct: "Wi-Fi 6 (802.11ax)"
+  },
+  {
+    question: "Quel est le principal avantage de l'architecture de microservices par rapport à une architecture monolithique ?",
+    answers: ["Modularité et facilité de déploiement indépendant", "Moins de complexité", "Moins de sécurité", "Moins de flexibilité"],
+    correct: "Modularité et facilité de déploiement indépendant"
+  },
+  {
+    question: "Dans le contexte des bases de données, que signifie ACID ?",
+    answers: ["Atomicité, Cohérence, Isolation, Durabilité", "Authenticité, Cohérence, Intégrité, Durabilité", "Atomicité, Concurrence, Isolation, Durabilité", "Authenticité, Concurrence, Intégrité, Durabilité"],
+    correct: "Atomicité, Cohérence, Isolation, Durabilité"
+  },
+  {
+    question: "Quelle est la principale différence entre le stockage SSD et HDD ?",
+    answers: ["Les SSD sont plus rapides et sans pièces mobiles", "Les HDD sont plus rapides", "Les SSD ont une capacité inférieure", "Les HDD consomment moins d'énergie"],
+    correct: "Les SSD sont plus rapides et sans pièces mobiles"
+  },
+  {
+    question: "Quel est le rôle principal du protocole HTTP dans le web ?",
+    answers: ["Transférer des hypertextes entre client et serveur", "Gérer la sécurité des données", "Chiffrer les communications", "Gérer les connexions réseau"],
+    correct: "Transférer des hypertextes entre client et serveur"
+  },
+  {
+    question: "Quelle technologie permet de créer des interfaces utilisateur réactives et dynamiques côté client ?",
+    answers: ["React.js", "Node.js", "Django", "Flask"],
+    correct: "React.js"
+  },
+  {
+    question: "Dans le contexte de la cryptographie, qu'est-ce qu'une fonction de hachage cryptographique ?",
+    answers: ["Une fonction qui transforme un message en une valeur fixe unique", "Une fonction qui chiffre un message", "Une fonction qui déchiffre un message", "Une fonction qui compresse des données"],
+    correct: "Une fonction qui transforme un message en une valeur fixe unique"
+  },
+  {
+    question: "Quelle est la principale caractéristique du paradigme de programmation orientée objet (POO) ?",
+    answers: ["Encapsulation, héritage, polymorphisme", "Procéduralisme", "Fonctionnalité pure", "Programmation structurée"],
+    correct: "Encapsulation, héritage, polymorphisme"
+  },
+  {
+    question: "Quel est le but principal de l'algorithme de machine à vecteurs de support (SVM) ?",
+    answers: ["Classer des données en séparant les classes par un hyperplan optimal", "Réduire la dimension des données", "Générer des données synthétiques", "Optimiser la vitesse d'apprentissage"],
+    correct: "Classer des données en séparant les classes par un hyperplan optimal"
+  },
+  {
+    question: "Dans le domaine de la cybersécurité, que désigne l'acronyme 'DDoS' ?",
+    answers: ["Distributed Denial of Service", "Data Delivery over Secure Service", "Distributed Data over Secure", "Dynamic Data Service"],
+    correct: "Distributed Denial of Service"
+  },
+  {
+    question: "Quelle est la principale fonction d'un pare-feu (firewall) ?",
+    answers: ["Filtrer le trafic réseau pour bloquer les accès non autorisés", "Chiffrer toutes les données", "Créer des VPN", "Gérer les adresses IP"],
+    correct: "Filtrer le trafic réseau pour bloquer les accès non autorisés"
+  },
+    {
+        question: "Quel est le principe de l'incertitude de Heisenberg ?",
+        answers: ["On ne peut pas connaître simultanément la position et la vitesse d'une particule", "Les particules ne peuvent pas exister sans observer", "La lumière est à la fois une onde et une particule", "Les atomes sont indivisibles"],
+        correct: "On ne peut pas connaître simultanément la position et la vitesse d'une particule"
+    },
+    {
+        question: "Quelle est la formule chimique de l'acide sulfurique ?",
+        answers: ["H2SO4", "H2SO3", "H2S", "SO2"],
+        correct: "H2SO4"
+    },
+    {
+        question: "Quel est le nom de la théorie qui décrit l'origine de l'univers ?",
+        answers: ["La théorie des cordes", "La théorie du Big Bang", "La relativité générale", "La mécanique quantique"],
+        correct: "La théorie du Big Bang"
+    },
+    {
+        question: "Quel est l'élément chimique le plus abondant dans l'univers ?",
+        answers: ["Oxygène", "Hydrogène", "Carbone", "Hélium"],
+        correct: "Hydrogène"
+    },
+    {
+        question: "Quel est le nom du processus par lequel les plantes convertissent la lumière en énergie ?",
+        answers: ["Respiration", "Photosynthèse", "Chimiosynthèse", "Fermentation"],
+        correct: "Photosynthèse"
+    },
+    {
+        question: "Qui a formulé la loi de la gravitation universelle ?",
+        answers: ["Galilée", "Newton", "Einstein", "Kepler"],
+        correct: "Newton"
+    },
+    {
+        question: "Quel est le principal gaz à effet de serre dans l'atmosphère terrestre ?",
+        answers: ["Dioxyde de carbone", "Méthane", "Oxygène", "Azote"],
+        correct: "Dioxyde de carbone"
+    },
+    {
+        question: "Quel est le nom de la particule subatomique qui a une charge positive ?",
+        answers: ["Neutron", "Électron", "Proton", "Quark"],
+        correct: "Proton"
+    },
+    {
+        question: "Quelle est la vitesse de la lumière dans le vide ?",
+        answers: ["300 000 km/s", "150 000 km/s", "1 000 000 km/s", "3 000 km/s"],
+        correct: "300 000 km/s"
+    },
+    {
+        question: "Quel est le nom du phénomène par lequel un liquide se transforme en gaz ?",
+        answers: ["Condensation", "Évaporation", "Sublimation", "Fusion"],
+        correct: "Évaporation"
+    },
+    {
+        question: "Quel est le nom de la couche de l'atmosphère où se produisent les aurores boréales ?",
+        answers: ["Troposphère", "Stratosphère", "Mésosphère", "Thermosphère"],
+        correct: "Thermosphère"
+    },
+    {
+        question: "Quel est le nom de la force qui attire les objets vers le centre de la Terre ?",
+        answers: ["Force électromagnétique", "Force nucléaire", "Gravité", "Friction"],
+        correct: "Gravité"
+    },
+    {
+        question: "Quel est le nom de la molécule qui transporte l'oxygène dans le sang ?",
+        answers: ["Hémoglobine", "Globuline", "Albumine", "Myoglobine"],
+        correct: "Hémoglobine"
+    },
+    {
+        question: "Quel est le nom du processus par lequel les cellules se divisent ?",
+        answers: ["Méiose", "Mitosis", "Fission", "Bourgeonnement"],
+        correct: "Mitosis"
+    },
+    {
+        question: "Quel est le nom de la théorie qui explique l'évolution des espèces ?",
+        answers: ["Théorie de la sélection naturelle", "Théorie de l'évolution des espèces", "Théorie de l'hérédité", "Théorie de la biogenèse"],
+        correct: "Théorie de la sélection naturelle"
+    },
+    {
+        question: "Quel est le nom de l'organe responsable de la filtration du sang ?",
+        answers: ["Foie", "Cœur", "Rein", "Poumon"],
+        correct: "Rein"
+    },
+    {
+        question: "Quel est le nom de la première molécule d'ADN synthétisée en laboratoire ?",
+        answers: ["ADN polymérase", "ADN recombinant", "ADN de synthèse", "ADN double hélice"],
+        correct: "ADN de synthèse"
+    },
+    {
+        question: "Quel est le nom de la force qui maintient les électrons en orbite autour du noyau atomique ?",
+        answers: ["Force gravitationnelle", "Force électromagnétique", "Force nucléaire forte", "Force faible"],
+        correct: "Force électromagnétique"
+    },
+    {
+        question: "Quel est le nom de la première loi de la thermodynamique ?",
+        answers: ["Loi de la conservation de l'énergie", "Loi de l'entropie", "Loi de la thermodynamique", "Loi de Boyle"],
+        correct: "Loi de la conservation de l'énergie"
+    },
+     {
+    question: "Quelle est la principale différence entre une roche ignée intrusive et une roche ignée extrusive ?",
+    answers: [
+      "L'intrusive se forme en profondeur, l'extrusive à la surface",
+      "L'intrusive est plus riche en quartz, l'extrusive en feldspath",
+      "L'intrusive est métamorphique, l'extrusive sédimentaire",
+      "Il n'y a aucune différence"
+    ],
+    correct: "L'intrusive se forme en profondeur, l'extrusive à la surface"
+  },
+  {
+    question: "Quel processus géologique est principalement responsable de la formation des fossiles dans les roches sédimentaires ?",
+    answers: [
+      "La fossilisation par pétrification",
+      "La compression et la minéralisation",
+      "L'altération chimique",
+      "L'érosion"
+    ],
+    correct: "La compression et la minéralisation"
+  },
+  {
+    question: "Quelle est la composition chimique typique d'une roche métamorphique appelée gneiss ?",
+    answers: [
+      "Quartz, feldspath, mica",
+      "Calcite, dolomite",
+      "Olivine, pyroxène",
+      "Graphite, amiante"
+    ],
+    correct: "Quartz, feldspath, mica"
+  },
+  {
+    question: "Quel est le nom du processus par lequel une roche sédimentaire se transforme en roche métamorphique ?",
+    answers: [
+      "Métamorphisme",
+      "Lithification",
+      "Erosion",
+      "Diagenèse"
+    ],
+    correct: "Métamorphisme"
+  },
+  {
+    question: "Quelle est la principale cause de la formation des volcans de type stratovolcan ?",
+    answers: [
+      "L'accumulation de couches de lave et de cendres lors d'éruptions explosives",
+      "La divergence de plaques tectoniques",
+      "La subduction de plaques océaniques",
+      "L'activité sismique profonde"
+    ],
+    correct: "L'accumulation de couches de lave et de cendres lors d'éruptions explosives"
+  },
+  {
+    question: "Dans le cycle des roches, quelle étape précède généralement la formation d'une roche sédimentaire ?",
+    answers: [
+      "L'érosion et le transport",
+      "La fusion",
+      "Le métamorphisme",
+      "La cristallisation"
+    ],
+    correct: "L'érosion et le transport"
+  },
+  {
+    question: "Quelle est la principale différence entre une faille normale et une faille inverse ?",
+    answers: [
+      "La faille normale résulte d'une extension, la faille inverse d'une compression",
+      "La faille normale est horizontale, la faille inverse verticale",
+      "La faille normale est associée à la subduction, la faille inverse à l'expansion océanique",
+      "Il n'y a pas de différence"
+    ],
+    correct: "La faille normale résulte d'une extension, la faille inverse d'une compression"
+  },
+  {
+    question: "Quel type de roche constitue principalement le manteau supérieur de la Terre ?",
+    answers: [
+      "Peridotite",
+      "Granite",
+      "Basalte",
+      "Gabbro"
+    ],
+    correct: "Peridotite"
+  },
+  {
+    question: "Quelle est la principale caractéristique des roches ultramafiques ?",
+    answers: [
+      "Riches en magnésium et en fer",
+      "Riches en quartz",
+      "Riches en calcite",
+      "Riches en feldspath"
+    ],
+    correct: "Riches en magnésium et en fer"
+  },
+  {
+    question: "Quel phénomène géologique est responsable de la formation des montagnes de l'Himalaya ?",
+    answers: [
+      "La collision de la plaque indienne avec la plaque eurasienne",
+      "La subduction de la plaque océanique pacifique",
+      "L'activité volcanique intense",
+      "L'érosion glaciaire"
+    ],
+    correct: "La collision de la plaque indienne avec la plaque eurasienne"
+  },
+  {
+    question: "Quelle est la principale différence entre un pluton et une batholite ?",
+    answers: [
+      "Un batholite est une grande intrusion plutonique, un pluton est plus petit",
+      "Un pluton est métamorphique, un batholite sédimentaire",
+      "Un batholite est formé en surface, un pluton en profondeur",
+      "Il n'y a pas de différence"
+    ],
+    correct: "Un batholite est une grande intrusion plutonique, un pluton est plus petit"
+  },
+  {
+    question: "Quel est le nom du processus par lequel le magma refroidit et cristallise pour former une roche ignée ?",
+    answers: [
+      "Cristallisation fractionnée",
+      "Fusion",
+      "Métamorphisme",
+      "Erosion"
+    ],
+    correct: "Cristallisation fractionnée"
+  },
+  {
+    question: "Quelle est la principale cause de la formation des fossiles d'empreintes ?",
+    answers: [
+      "L'enfouissement rapide dans des sédiments mous",
+      "La cristallisation du calcaire",
+      "L'altération chimique",
+      "L'activité biologique intense"
+    ],
+    correct: "L'enfouissement rapide dans des sédiments mous"
+  },
+  {
+    question: "Quel type de roche est principalement associé aux zones de subduction ?",
+    answers: [
+      "Roches métamorphiques et volcaniques",
+      "Roches sédimentaires carbonatées",
+      "Granite",
+      "Gabbro"
+    ],
+    correct: "Roches métamorphiques et volcaniques"
+  },
+  {
+    question: "Quelle est la principale différence entre un fossile et une trace fossile ?",
+    answers: [
+      "Un fossile est un reste d'organisme, une trace fossile est une empreinte ou un signe d'activité",
+      "Un fossile est toujours minéralisé, une trace ne l'est pas",
+      "Un fossile est une empreinte, une trace est un reste organique",
+      "Il n'y a pas de différence"
+    ],
+    correct: "Un fossile est un reste d'organisme, une trace fossile est une empreinte ou un signe d'activité"
+  },
+  {
+question: "Qui a inventé le premier moteur à combustion interne ?",
+answers: ["Nikolaus Otto", "Henry Ford", "Gottlieb Daimler", "Karl Benz"],
+correct: "Nikolaus Otto"
+},
+{
+question: "Quel inventeur est connu pour avoir développé le premier système de télégraphie sans fil ?",
+answers: ["Guglielmo Marconi", "Alexander Graham Bell", "Thomas Edison", "Nikola Tesla"],
+correct: "Guglielmo Marconi"
+},
+{
+question: "Quel est le nom de l'inventeur du premier vaccin contre la rage ?",
+answers: ["Louis Pasteur", "Edward Jenner", "Robert Koch", "Joseph Lister"],
+correct: "Louis Pasteur"
+},
+{
+question: "Qui a conçu le premier ordinateur programmable ?",
+answers: ["Charles Babbage", "Alan Turing", "John von Neumann", "Konrad Zuse"],
+correct: "Charles Babbage"
+},
+{
+question: "Quel inventeur a créé le premier prototype de l'hélicoptère ?",
+answers: ["Igor Sikorsky", "Leonardo da Vinci", "Paul Cornu", "Henri Coandă"],
+correct: "Paul Cornu"
+},
+{
+question: "Qui a inventé le premier appareil photo numérique ?",
+answers: ["Steven Sasson", "George Eastman", "Edwin Land", "Alfred Nobel"],
+correct: "Steven Sasson"
+},
+{
+question: "Quel scientifique a découvert la pénicilline ?",
+answers: ["Alexander Fleming", "Louis Pasteur", "Joseph Lister", "Robert Koch"],
+correct: "Alexander Fleming"
+},
+{
+question: "Qui a inventé le premier moteur à vapeur pratique ?",
+answers: ["James Watt", "Thomas Newcomen", "George Stephenson", "Richard Trevithick"],
+correct: "James Watt"
+},
+{
+question: "Quel inventeur a développé le premier système de freinage à air comprimé ?",
+answers: ["George Westinghouse", "Henry Ford", "Eli Whitney", "Thomas Edison"],
+correct: "George Westinghouse"
+},
+{
+question: "Qui a inventé le premier téléviseur à écran plat ?",
+answers: ["Philips", "Sony", "Toshiba", "LG"],
+correct: "Philips"
+},
+{
+question: "Quel inventeur est connu pour avoir créé le premier système de climatisation moderne ?",
+answers: ["Willis Haviland Carrier", "Freon", "Reynolds", "Friedrich"],
+correct: "Willis Haviland Carrier"
+},
+{
+question: "Qui a inventé le premier vaccin contre la variole ?",
+answers: ["Edward Jenner", "Louis Pasteur", "Robert Koch", "Joseph Lister"],
+correct: "Edward Jenner"
+},
+{
+question: "Quel inventeur a créé le premier moteur à réaction ?",
+answers: ["Frank Whittle", "Hans von Ohain", "Robert Goddard", "Wernher von Braun"],
+correct: "Frank Whittle"
+},
+{
+question: "Qui a développé le premier système d'exploitation pour ordinateurs personnels ?",
+answers: ["Bill Gates", "Steve Jobs", "Ken Thompson", "Linus Torvalds"],
+correct: "Bill Gates"
+},
+{
+question: "Quel inventeur a conçu le premier robot industriel ?",
+answers: ["George Devol", "Isaac Asimov", "Karel Čapek", "Joseph Engelberger"],
+correct: "George Devol"
+},
+{
+question: "Qui a inventé le premier smartphone ?",
+answers: ["IBM", "Apple", "Nokia", "BlackBerry"],
+correct: "IBM"
+},
+{
+question: "Quel inventeur a créé le premier système de navigation par satellite ?",
+answers: ["Roger L. Easton", "Hugh Dryden", "John McCarthy", "William H. Pickering"],
+correct: "Roger L. Easton"
+},
+{
+question: "Qui a inventé le premier laser ?",
+answers: ["Theodore Maiman", "Albert Einstein", "Charles Townes", "Arthur Leonard Schawlow"],
+correct: "Theodore Maiman"
+},
+{
+question: "Quel inventeur a développé le premier système de reconnaissance vocale ?",
+answers: ["Bell Labs", "IBM", "Microsoft", "Google"],
+correct: "Bell Labs"
+},
+{
+question: "Qui a inventé le premier disque dur ?",
+answers: ["IBM", "Seagate", "Western Digital", "Toshiba"],
+correct: "IBM"
+} 
+];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+let currentQuestionIndex = -1; // commence à -1, pas encore lancé
+let timerInterval;
+let timeLeft = 10;
+let score = 0;
+let questionDisplayed = false; // pour contrôler l'affichage de la question
+
+const questionDiv = document.getElementById('question');
+const answersDiv = document.getElementById('answers');
+const timerDiv = document.getElementById('timer');
+const resultDiv = document.getElementById('result');
+const questionBtn = document.getElementById('question-btn');
+const nextBtn = document.getElementById('next-btn');
+
+questionBtn.addEventListener('click', () => {
+  if (!questionDisplayed) {
+    startQuestion();
+  }
+});
+
+nextBtn.addEventListener('click', () => {
+  questionDisplayed = false;
+  nextBtn.style.display = 'none';
+  resultDiv.innerHTML = '';
+  showNextQuestion();
+});
+
+function startQuiz() {
+  currentQuestionIndex = -1;
+  score = 0;
+  resultDiv.innerHTML = "";
+  questionDisplayed = false;
+  shuffleQuestions(); // Mélanger les questions
+  showNextQuestion();
+}
+
+function shuffleQuestions() {
+  for (let i = questions.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [questions[i], questions[j]] = [questions[j], questions[i]]; // Échange
+  }
+}
+
+function showNextQuestion() {
+  currentQuestionIndex++;
+  if (currentQuestionIndex < questions.length) {
+    questionDiv.innerHTML = "";
+    answersDiv.innerHTML = "";
+    timerDiv.innerHTML = "";
+    questionDisplayed = false;
+    startQuestion();
+  } else {
+    // Fin du quiz
+    questionDiv.innerHTML = "";
+    answersDiv.innerHTML = "";
+    timerDiv.innerHTML = "";
+    resultDiv.innerHTML = `Quiz terminé ! Votre score : ${score} sur ${questions.length}`;
+    questionBtn.disabled = true; // désactiver le bouton question
+  }
+}
+
+function startQuestion() {
+  clearInterval(timerInterval);
+  timeLeft = 10;
+  timerDiv.textContent = `Temps restant : ${timeLeft} secondes`;
+  
+  const currentQuestion = questions[currentQuestionIndex];
+  questionDiv.textContent = currentQuestion.question;
+  answersDiv.innerHTML = "";
+  
+  currentQuestion.answers.forEach(answer => {
+    const btn = document.createElement('button');
+    btn.textContent = answer;
+    btn.className = 'answer';
+    btn.onclick = () => handleAnswer(answer);
+    answersDiv.appendChild(btn);
+  });
+  
+  questionDisplayed = true;
+
+  // Démarrer le chronomètre
+  timerInterval = setInterval(() => {
+    timeLeft--;
+    if (timeLeft > 0) {
+      timerDiv.textContent = `Temps restant : ${timeLeft} secondes`;
+    } else {
+      clearInterval(timerInterval);
+      handleTimeout();
+    }
+  }, 1000);
+}
+
+function handleAnswer(selectedAnswer) {
+  clearInterval(timerInterval);
+  const currentQuestion = questions[currentQuestionIndex];
+
+  // Vérifier si la réponse est correcte
+  if (selectedAnswer === currentQuestion.correct) {
+    score++;
+    resultDiv.innerHTML = "Bonne réponse !";
+  } else {
+    resultDiv.innerHTML = `Faux ! La bonne réponse était : ${currentQuestion.correct}. Vous avez perdu.`;
+    endQuiz();
+    return;
+  }
+
+  // Désactiver les boutons pour éviter de changer la réponse après
+  Array.from(answersDiv.children).forEach(btn => {
+    btn.disabled = true;
+    // Mettre en surbrillance la bonne réponse
+    if (btn.textContent === currentQuestion.correct) {
+      btn.style.backgroundColor = '#aed581'; // vert clair pour la bonne réponse
+    }
+    // Mettre en surbrillance la réponse sélectionnée si incorrecte
+    if (btn.textContent === selectedAnswer && selectedAnswer !== currentQuestion.correct) {
+      btn.style.backgroundColor = '#ef9a9a'; // rouge clair pour la mauvaise réponse
+    }
+  });
+
+  // Afficher le bouton pour passer à la question suivante
+  nextBtn.style.display = 'inline-block';
+}
+
+function handleTimeout() {
+  const currentQuestion = questions[currentQuestionIndex];
+
+  resultDiv.innerHTML = `Temps écoulé ! La bonne réponse était : ${currentQuestion.correct}. Vous avez perdu.`;
+  endQuiz();
+}
+
+function endQuiz() {
+  questionBtn.disabled = true; // désactiver le bouton question
+  nextBtn.style.display = 'none'; // cacher le bouton suivant
+  // Désactiver tous les boutons de réponse
+  Array.from(answersDiv.children).forEach(btn => {
+    btn.disabled = true;
+  });
+  // Afficher un message pour quitter la page
+  resultDiv.innerHTML += '<br><strong>Pour rejouer, veuillez quitter la page et revenir.</strong>';
+}
+
+// Fonction pour démarrer le quiz dès le chargement de la page
+window.onload = () => {
+    startQuiz();
+};
+</script>
+
+</body>
+</html>

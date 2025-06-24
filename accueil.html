@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ayiti Offre Coupons-Gratuit</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      /* Style général */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #1e1e2f;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px; /* Ajout de padding pour éviter le débordement */
+    box-sizing: border-box; /* Inclure le padding dans la largeur totale */
+}
+
+/* En-tête */
+header {
+    background-color: #282c34;
+    width: 100%;
+    padding: 15px 20px;
+    display: flex;
+    flex-direction: column; /* Pour empiler le titre et le bouton */
+    align-items: center; /* Centrer horizontalement */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Style pour le titre */
+header h1 {
+    margin: 0;
+    font-size: 2.5em;
+    color: #61dafb;
+    text-align: center;
+}
+
+/* Style pour le bouton "Extraire coupons" */
+.extract-btn {
+    margin-top: 10px; /* Espace entre le titre et le bouton */
+    padding: 10px 20px;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    background-color: #ffd700;
+    color: #000;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.extract-btn:hover {
+    background-color: #e6c200;
+}
+
+/* Navigation */
+.header-nav {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.header-nav a {
+    color: #61dafb;
+    text-decoration: none;
+    font-size: 1em;
+}
+
+.balance {
+    margin-right: 20px;
+    font-size: 1.2em;
+}
+
+/* Affichage des vies */
+.lives {
+    margin-top: 10px;
+}
+
+.heart {
+    color: red;
+    font-size: 1.5em;
+}
+
+/* Nouveau style pour le corps */
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.5em;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.carousel-container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+carousel {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.box {
+    flex: 0 0 auto;
+    width: 250px;
+    margin: 10px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex; /* Ajout pour centrer le contenu */
+    flex-direction: column; /* Permet de centrer verticalement */
+    align-items: center; /* Centre horizontalement */
+    justify-content: center; /* Centre verticalement */
+    text-align: center; /* Centre le texte */
+}
+
+.box:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+}
+
+.box img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    display: block;
+}
+
+.box span {
+    color: #ffd700; /* Couleur du texte */
+    font-size: 1.2em; /* Taille du texte */
+    font-weight: bold; /* Gras */
+    margin-top: 10px; /* Espace au-dessus du texte */
+}
+
+/* Panneau de jeu */
+.game-panel {
+    display: none; /* Caché par défaut */
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.game-panel button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ffd700;
+    cursor: pointer;
+    font-weight: bold;
+    margin: 5px;
+}
+
+.game-panel button:hover {
+    background-color: #e6c200;
+}
+
+/* Champ de montant */
+.amount-input {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    width: 80%;
+    font-size: 1em;
+}
+
+/* Boutons de navigation */
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.4);
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s;
+    font-size: 1.5em;
+    z-index: 10;
+}
+
+.nav-btn:hover {
+    background: rgba(0,0,0,0.7);
+}
+
+#prevBtn {
+    left: 10px;
+}
+
+#nextBtn {
+    right: 10px;
+}
+
+footer {
+    background-color: #282c34;
+    color: #ffffff;
+    padding: 20px;
+    text-align: center;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+.footer-nav {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Espace entre les éléments */
+    list-style: none; /* Supprime les puces de la liste */
+    padding: 0; /* Supprime le padding par défaut */
+}
+
+.footer-nav a {
+    color: #61dafb;
+    text-decoration: none;
+    font-size: 1em;
+}
+
+.footer-nav a:hover {
+    text-decoration: underline; /* Ajoute un soulignement au survol */
+}
+
+/* Responsive */
+@media(max-width: 768px) {
+    .box {
+        width: 200px;
+    }
+}
+
+@media(max-width: 480px) {
+    h1 {
+        font-size: 2em;
+    }
+    .box {
+        width: 150px;
+    }
+    
+    .amount-input {
+        width: 90%; /* Ajustement pour les petits écrans */
+    }
+    
+    .extract-btn {
+        width: 100%; /* Bouton plein largeur sur mobile */
+        padding: 15px; /* Plus de padding pour le confort */
+    }
+}
+    </style>
+</head>
+<body>
+<body>
+<header>
+    <h1>Ayiti Offre Coupons-Gratuit</h1>
+    <div class="lives" id="livesDisplay"></div>
+    <button class="extract-btn" id="extractBtn">Extraire coupons</button>
+</header>
+
+<main>
+    <h1>Gagner un jeu, Gagnez un Coupon-Gratuit!</h1>
+
+    <div class="carousel-container">
+        <button id="prevBtn" class="nav-btn">&#10094;</button>
+        <carousel id="carousel">
+            <div class="box" data-jeu="Roulette" onclick="playGame('Roulette1.html')">
+                <img src="img/roulette n.jpg" alt="Jeu 4" />
+                <span>La Roulette</span>
+            </div>
+            <div class="box" data-jeu="Quiz" onclick="playGame('Quiz.html')">
+                <img src="img/quiz.jpg" alt="Jeu 5" />
+                <span>Quiz</span>
+            </div>
+            <div class="box" data-jeu="Keno" onclick="playGame('Keno.html')">
+                <img src="img/keno.jpg" alt="Jeu 7" />
+                <span>Keno</span>
+            </div>
+            <div class="box" data-jeu="puzzle" onclick="playGame('PuzzleD1.html')">
+                <img src="img/puzzle 2.jpg" alt="Jeu 7" />
+                <span>Puzzle</span>
+            </div>
+            <div class="box" data-jeu="snack" onclick="playGame('SnackD1.html')">
+                <img src="img/snack.jpg" alt="Jeu 7" />
+                <span>Snack</span>
+            </div>
+            <div class="box" data-jeu="Assemblage" onclick="playGame('AssemblageD1.html')">
+                <img src="img/assemblage de mots.jpg" alt="Jeu 8" />
+                <span>Assemblage de Mots</span>
+            </div>
+        </carousel>
+        <button id="nextBtn" class="nav-btn">&#10095;</button>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Boutique Ayiti Offre Online. Tous droits réservés.</p>
+        <nav>
+            <ul class="footer-nav">
+                <li><a href="informations.html">CGU</a></li>
+                <li><a href="Politique.html">Politique de Confidentialité</a></li>
+            </ul>
+        </nav>
+    </footer>
+<script>
+// Script pour faire fonctionner le carrousel
+const carousel = document.getElementById('carousel');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const boxes = document.querySelectorAll('.box');
+let currentIndex = 0;
+
+function updateCarousel() {
+    const width = boxes[0].offsetWidth + 20; // largeur + margin
+    carousel.style.transform = `translateX(-${currentIndex * width}px)`;
+}
+
+prevBtn.addEventListener('click', () => {
+    if (currentIndex > 0) {
+        currentIndex--;
+        updateCarousel();
+    }
+});
+
+nextBtn.addEventListener('click', () => {
+    if (currentIndex < boxes.length - 1) {
+        currentIndex++;
+        updateCarousel();
+    }
+});
+  const maxLives = 3;
+        let lives = maxLives;
+        let lifeTimer;
+
+        function updateLivesDisplay() {
+            const livesDisplay = document.getElementById('livesDisplay');
+            livesDisplay.innerHTML = '';
+            for (let i = 0; i < lives; i++) {
+                livesDisplay.innerHTML += '<span class="heart">&#10084;</span>';
+            }
+        }
+
+        function playGame(gameUrl) {
+            if (lives > 0) {
+                lives--;
+                updateLivesDisplay();
+                localStorage.setItem('lastClick', Date.now());
+                window.location.href = gameUrl;
+                startLifeTimer();
+            } else {
+                alert("Vous n'avez plus de vies. Veuillez attendre 15 minutes pour en obtenir une gratuite.");
+            }
+        }
+
+        function startLifeTimer() {
+            if (lives < maxLives) {
+                clearInterval(lifeTimer);
+                lifeTimer = setInterval(() => {
+                    const lastClick = localStorage.getItem('lastClick');
+                    if (lastClick) {
+                        const now = Date.now();
+                        const elapsed = now - lastClick;
+                        if (elapsed >= 15 * 60 * 1000) {
+                            if (lives < maxLives) {
+                                lives++;
+                                updateLivesDisplay();
+                                localStorage.setItem('lastClick', now);
+                            }
+                        }
+                    }
+                }, 1000);
+            }
+        }
+
+        // Initialisation
+        updateLivesDisplay();
+        startLifeTimer();
+</script>

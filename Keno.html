@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jeu KENO</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        #numbers {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .number {
+            width: 50px;
+            height: 50px;
+            margin: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #007bff;
+            color: white;
+            border-radius: 50%;
+            cursor: pointer;
+            user-select: none;
+        }
+        .selected {
+            background-color: #28a745;
+        }
+        #result {
+            margin-top: 20px;
+        }
+        #drawnNumbers {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .drawn-number {
+            width: 50px;
+            height: 50px;
+            margin: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #ffc107;
+            color: black;
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        #restart {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: none; /* Masquer le bouton au départ */
+        }
+    </style>
+</head>
+<body>
+
+<h1>Jeu KENO</h1>
+<p>Sélectionnez 10 numéros entre 1 et 70</p>
+<div id="numbers"></div>
+<button id="draw">Tirer les numéros</button>
+<button id="restart">RECOMMENCER</button>
+<div id="result"></div>
+<div id="drawnNumbers"></div>
+
+<script>
+const numbersContainer = document.getElementById('numbers');
+const drawButton = document.getElementById('draw');
+const restartButton = document.getElementById('restart');
+const resultContainer = document.getElementById('result');
+const drawnNumbersContainer = document.getElementById('drawnNumbers');
+const selectedNumbers = new Set();
+
+// Créer les numéros de 1 à 70
+for (let i = 1; i <= 70; i++) {
+    const numberDiv = document.createElement('div');
+    numberDiv.className = 'number';
+    numberDiv.textContent = i;
+    numberDiv.addEventListener('click', () => selectNumber(i));
+    numbersContainer.appendChild(numberDiv);
+}
+
+function selectNumber(num) {
+    const div = Array.from(numbersContainer.children).find(div => parseInt(div.textContent) === num);
+    if (selectedNumbers.has(num)) {
+        selectedNumbers.delete(num);
+        div.classList.remove('selected');
+    } else if (selectedNumbers.size < 10) {
+        selectedNumbers.add(num);
+        div.classList.add('selected');
+    } else {
+        alert("Vous ne pouvez sélectionner que 10 numéros !");
+    }
+}
+
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function tirerBoules() {
+    if (selectedNumbers.size !== 10) {
+        alert("Vous devez sélectionner exactement 10 numéros avant de tirer !");
+        return;
+    }
+
+    const totalBoules = 20;
+    const selectedArray = Array.from(selectedNumbers);
+    const autresBoules = [];
+
+    for (let i = 1; i <= 70; i++) {
+        if (!selectedNumbers.has(i)) {
+            autresBoules.push(i);
+        }
+    }
+
+    // Tirer les boules
+    const tirage = new Set();
+
+    // Tirer aléatoirement entre 1 et 4 boules correspondantes
+    const nbBoulesCorrespondantes = getRandomInt(1, 4);
+    const userBoules = new Set();
+
+    while (userBoules.size < nbBoulesCorrespondantes) {
+        const randIndex = getRandomInt(0, selectedArray.length - 1);
+        userBoules.add(selectedArray[randIndex]);
+    }
+
+    // S'assurer que les boules de l'utilisateur sont dans le tirage
+    userBoules.forEach(boule => tirage.add(boule));
+
+    // Remplir le reste jusqu'à 20 boules
+    while (tirage.size < totalBoules) {
+        const randIndex = getRandomInt(0, autresBoules.length - 1);
+        const boule = autresBoules[randIndex];
+        tirage.add(boule);
+    }
+
+    // Afficher les boules tirées une par une
+    const tirageArray = [...tirage];
+    drawnNumbersContainer.innerHTML = ''; // Réinitialiser le conteneur
+    tirageArray.forEach((boule, index) => {
+        setTimeout(() => {
+            const drawnDiv = document.createElement('div');
+            drawnDiv.className = 'drawn-number';
+            drawnDiv.textContent = boule;
+            drawnDiv.style.opacity = 1; // Rendre visible
+            drawnNumbersContainer.appendChild(drawnDiv);
+        }, index * 1000); // Afficher chaque boule avec un délai de 1 seconde
+    });
+
+    // Afficher les résultats après que toutes les boules aient été tirées
+    setTimeout(() => {
+        const matches = [...userBoules].filter(boule => tirage.has(boule));
+        resultContainer.innerHTML = `
+            <h2>Numéros tirés : ${tirageArray.sort((a, b) => a - b).join(', ')}</h2>
+            <p>Vos numéros sélectionnés : ${[...selectedNumbers].sort((a, b) => a - b).join(', ')}</p>
+            <p>Correspondances : ${matches.length} (${matches.join(', ')})</p>
+        `;
+        drawButton.style.display = 'none'; // Masquer le bouton Tirer
+        restartButton.style.display = 'inline'; // Afficher le bouton Recommencer
+    }, tirageArray.length * 1000); // Afficher les résultats après le tirage
+}
+
+// Fonction pour recommencer le jeu
+function recommencer() {
+    selectedNumbers.clear(); // Réinitialiser les numéros sélectionnés
+    resultContainer.innerHTML = ''; // Réinitialiser les résultats
+    drawnNumbersContainer.innerHTML = ''; // Réinitialiser les boules tirées
+    drawButton.style.display = 'inline'; // Afficher le bouton Tirer
+    restartButton.style.display = 'none'; // Masquer le bouton Recommencer
+    // Réinitialiser l'affichage des numéros
+    Array.from(numbersContainer.children).forEach(div => {
+        div.classList.remove('selected');
+    });
+}
+
+// Événements pour les boutons
+drawButton.addEventListener('click', tirerBoules);
+restartButton.addEventListener('click', recommencer);
+</script>
+
+</body>
+</html>

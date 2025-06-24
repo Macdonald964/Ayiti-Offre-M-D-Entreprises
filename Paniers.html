@@ -55,6 +55,45 @@
   button:hover {
     background-color: #45a049;
   }
+
+footer {
+    background-color: #004d40; /* Couleur de fond du footer */
+    color: white; /* Couleur du texte */
+    text-align: center; /* Centrer le texte */
+    padding: 20px 0; /* Espacement vertical */
+    position: relative; /* Position relative pour le footer */
+}
+
+footer p {
+    margin: 0; /* Supprimer la marge par défaut */
+}
+
+footer nav {
+    display: flex; /* Utiliser flexbox pour le nav */
+    justify-content: center; /* Centrer les éléments */
+    margin-top: 10px; /* Espacement au-dessus du nav */
+}
+
+footer ul {
+    list-style-type: none; /* Supprimer les puces de la liste */
+    padding: 0; /* Supprimer le padding par défaut */
+    display: flex; /* Utiliser flexbox pour la liste */
+}
+
+footer li {
+    margin: 0 15px; /* Espacement entre les liens */
+}
+
+footer a {
+    color: white; /* Couleur des liens */
+    text-decoration: none; /* Supprimer le soulignement */
+}
+
+footer a:hover {
+    text-decoration: underline; /* Souligner au survol */
+}
+
+
   @media (max-width: 600px) {
     .section {
       flex: 1 1 100%;
@@ -81,6 +120,16 @@
     <div id="reservationDetails" class="details"></div>
   </div>
 </div>
+
+<footer>
+    <p>&copy; 2025 Boutique Ayiti Offre Online. Tous droits réservés.</p>
+    <nav>
+        <ul>
+            <li><a href="informations.html">CGU</a></li>
+            <li><a href="Politique.html">Politique de Confidentialité</a></li>
+        </ul>
+    </nav>
+</footer>
 
 <script>
 const livraisonInfo = JSON.parse(localStorage.getItem('livraisonInfo')) || [];
