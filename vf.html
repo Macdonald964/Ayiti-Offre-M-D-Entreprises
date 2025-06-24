@@ -292,27 +292,27 @@ footer a:hover {
 </style>
 
 </head>
- <script>
-        function checkPassword() {
-            var password = prompt("Veuillez entrer le mot de passe pour accéder aux coupons:");
-            if (password === "48345600") { // Remplacez "votreMotDePasse" par le mot de passe souhaité
-                window.location.href = "Jeux.html"; // Redirige vers la page des coupons
-            } else {
-                alert("Mot de passe incorrect. Veuillez réessayer.");
-            }
-        }
-    </script>
-</head>
 <body>
-    <header>
-        <div class="header-links" style="display: flex; justify-content: center; align-items: center;">
-            <a href="Paniers.html" style="margin-right: 20px;">Paniers</a>
-            <a href="#" onclick="checkPassword()" style="padding: 5px; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 5px;">Coupons</a>
-        </div>
-    </header>
-    
+
+<header>
+    <div class="header-links" style="display: flex; justify-content: center; align-items: center;">
+        <a href="Paniers.html" style="margin-right: 20px;">Paniers</a>
+        <a href="#" onclick="askForPassword()" style="padding: 5px; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 5px;">Coupons</a>
+    </div>
+
     <input type="text" id="search" placeholder="Rechercher des produits..." onkeyup="searchProducts()" style="padding: 5px; margin-top: 10px; margin-left: 20px;">
 </header>
+
+<script>
+    function askForPassword() {
+        var password = prompt("Veuillez entrer le mot de passe :");
+        if (password === "48345600") { // Remplacez "votreMotDePasse" par le mot de passe souhaité
+            window.location.href = "Jeux.html"; // Redirige vers la page des coupons
+        } else {
+            alert("Mot de passe incorrect. Veuillez réessayer.");
+        }
+    }
+</script>
 <div class="container">
     <div class="products">
         <script>
