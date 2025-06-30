@@ -15,12 +15,12 @@ background-color: #f4f4f4;
  padding-top: 60px; /* Ajustez cette valeur selon la hauteur de votre en-tête */
 }
 header {
-    background: #333;
+     background: #333;
     color: #fff;
-    padding: 10px 20px; /* Ajustez le padding */
+    padding: 10px 20px; /* Ajustez le padding si nécessaire */
     display: flex;
-    justify-content: center; /* Centre le contenu */
-    align-items: center;
+    flex-direction: column; /* Changez la direction en colonne */
+    align-items: center; /* Centre le contenu */
     position: fixed;
     top: 0;
     width: 100%;
@@ -36,6 +36,7 @@ header h1 {
     display: flex;
     align-items: center;
     margin: 0 auto; /* Centre les liens */
+     margin-top: 10px; /* Ajoutez un espacement au-dessus du menu */
 }
 .header-links a {
  color: #fff;
