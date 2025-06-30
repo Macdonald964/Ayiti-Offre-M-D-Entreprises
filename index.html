@@ -1,370 +1,1020 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boutique Ayiti Offre Online</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(to right, #e0f7fa, #80deea);
-        }
-        header {
-            background-color: #00796b;
-            color: white;
-            text-align: center;
-            padding: 20px 0;
-        }
-        nav {
-            display: flex;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boutique Ayiti Offre Online</title>
+
+ <link rel="stylesheet" href="style.css" />
+<style>
+body {
+font-family: Arial, sans-serif;
+margin: 0;
+padding: 0;
+background-color: #f4f4f4;
+ padding-top: 60px; /* Ajustez cette valeur selon la hauteur de votre en-tête */
+}
+header {
+    background: #333;
+    color: #fff;
+    padding: 10px 20px; /* Ajustez le padding */
+    display: flex;
+    justify-content: center; /* Centre le contenu */
+    align-items: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+header h1 {
+     margin: 0;
+    font-weight: bold; /* Mettre en gras */
+    font-style: italic; /* Mettre en italique */
+}
+.header-links {
+    display: flex;
+    align-items: center;
+    margin: 0 auto; /* Centre les liens */
+}
+.header-links a {
+ color: #fff;
+    text-decoration: none;
+    margin-left: 20px; /* Espacement entre les liens */
+    padding: 10px; /* Ajoutez du padding pour rendre les liens plus cliquables */
+    border-radius: 5px; /* Coins arrondis pour les liens */
+    transition: background 0.3s; /* Animation douce pour le fond */
+}
+.header-links a:hover {
+ background: rgba(255, 255, 255, 0.2); /* Fond au survol */
+    text-decoration: underline; /* Souligner au survol */
+}
+.container {
+  width: 80%;
+    margin: auto;
+    overflow: hidden;
+    padding-top: 100px; /* Ajustez cette valeur selon la hauteur de vos en-têtes */
+}
+.menu {
+margin: 20px 0;
+display: flex;
+}
+.btn-menu {
+background: #5cb85c;
+color: #fff;
+padding: 15px;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+margin-right: 10px;
+}
+.btn-menu:hover {
+background: #4cae4c;
+}
+.dropdown-content {
+display: none;
+position: absolute;
+background-color: #f9f9f9;
+min-width: 300px;
+box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+z-index: 1;
+}
+.product {
+background: #fff;
+border: 1px solid #ddd;
+margin: 10px;
+padding: 10px;
+text-align: center;
+border-radius: 5px;
+box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+display: inline-block;
+width: calc(30% - 20px);
+cursor: pointer;
+}
+.product img {
+max-width: 100%;
+height: auto;
+    width: 100%; /* Assurez-vous que l'image prend toute la largeur du conteneur */
+    height: 550px; /* Définissez une hauteur fixe selon vos besoins */
+    object-fit: cover; /* Cela permet de garder le ratio sans déformation */
+
+}
+.product h3 {
+margin: 10px 0;
+}
+.product p {
+color: #555;
+}
+.btn {
+background: #5cb85c;
+color: #fff;
+padding: 10px 15px;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+}
+.btn:hover {
+background: #4cae4c;
+}
+.product-info {
+margin-top: 10px;
+}
+.modal {
+display: none;
+position: fixed;
+z-index: 1;
+left: 0;
+top: 0;
+width: 100%;
+height: 100%;
+overflow: auto;
+background-color: rgb(0,0,0);
+background-color: rgba(0,0,0,0.4);
+padding-top: 60px;
+}
+.modal-content {
+background-color: #fefefe;
+margin: 5% auto;
+padding: 20px;
+border: 1px solid #888;
+width: 80%;
+}
+.close {
+color: #aaa;
+float: right;
+font-size: 28px;
+font-weight: bold;
+}
+.close:hover,
+.close:focus {
+color: black;
+text-decoration: none;
+cursor: pointer;
+}
+#panier {
+margin-top: 20px;
+padding: 10px;
+background-color: #fff;
+border: 1px solid #ddd;
+border-radius: 5px;
+}
+.cross {
+color: red;
+cursor: pointer;
+font-size: 20px;
+margin-left: 10px;
+}
+#modalImage {
+max-width: 10%;
+height: auto;
+}
+/* Styles pour les écrans de taille moyenne (tablettes) */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+    }
+    .product {
+        width: calc(45% - 20px); /* Deux produits par ligne */
+    }
+}
+
+/* Styles pour les petits écrans (téléphones) */
+@media (max-width: 480px) {
+    .product {
+        width: calc(100% - 20px); /* Un produit par ligne */
+    }
+    .header-links {
+        flex-direction: column; /* Liens en colonne */
+        align-items: flex-start; /* Alignement à gauche */
+    }
+    .header-links a {
+        margin-left: 0; /* Pas de marge à gauche */
+        margin-bottom: 10px; /* Marge en bas pour espacer les liens */
+    }
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right, #f4f4f4, #e2e2e2); /* Dégradé de fond */
+    background-image: url('img/background.jpg'); /* Image de fond */
+    background-size: cover; /* Couvre tout l'écran */
+    background-position: center; /* Centre l'image */
+}
+.product:hover {
+    transform: scale(1.05); /* Agrandit légèrement le produit au survol */
+    transition: transform 0.3s; /* Animation douce */
+}
+
+#search {
+    width: 30%; /* Ajustez cette valeur pour changer la largeur */
+    padding: 10px; /* Ajoutez du padding pour un meilleur espacement */
+    border: 1px solid #ddd; /* Bordure pour la barre de recherche */
+    border-radius: 5px; /* Coins arrondis */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombre légère */
+}
+.btn {
+    background: #5cb85c;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre */
+    transition: background 0.3s, transform 0.3s; /* Animation douce */
+}
+
+
+.btn:hover {
+    background: #4cae4c;
+    transform: translateY(-2px); /* Légère élévation au survol */
+}
+footer {
+    background-color: #004d40; /* Couleur de fond du footer */
+    color: white; /* Couleur du texte */
+    text-align: center; /* Centrer le texte */
+    padding: 20px 0; /* Espacement vertical */
+    position: relative; /* Position relative pour le footer */
+}
+
+footer p {
+    margin: 0; /* Supprimer la marge par défaut */
+}
+
+footer nav {
+    display: flex; /* Utiliser flexbox pour le nav */
+    justify-content: center; /* Centrer les éléments */
+    margin-top: 10px; /* Espacement au-dessus du nav */
+}
+
+footer ul {
+    list-style-type: none; /* Supprimer les puces de la liste */
+    padding: 0; /* Supprimer le padding par défaut */
+    display: flex; /* Utiliser flexbox pour la liste */
+}
+
+footer li {
+    margin: 0 15px; /* Espacement entre les liens */
+}
+
+footer a {
+    color: white; /* Couleur des liens */
+    text-decoration: none; /* Supprimer le soulignement */
+}
+
+footer a:hover {
+    text-decoration: underline; /* Souligner au survol */
+}
+.second-header {
+    background: #444; /* Couleur de fond pour le deuxième en-tête */
+    color: #fff; /* Couleur du texte */
+    padding: 10px 0; /* Espacement vertical */
+    text-align: center; /* Centrer le texte */
+    position: fixed; /* Rendre le deuxième en-tête fixe */
+    top: 50px; /* Positionner juste en dessous de l'en-tête principal */
+    width: 100%; /* Prendre toute la largeur */
+    z-index: 999; /* Assurer qu'il est au-dessus des autres éléments */
+}
+
+.second-header .header-links {
+    display: none; /* Masquer le menu par défaut */
+    flex-direction: column; /* Aligner les liens verticalement */
+    align-items: center; /* Centrer les liens */
+}
+
+.menu-toggle {
+    background-color: #5cb85c; /* Couleur du bouton */
+    color: white; /* Couleur du texte */
+    border: none; /* Pas de bordure */
+    padding: 10px 15px; /* Espacement */
+    border-radius: 5px; /* Coins arrondis */
+    cursor: pointer; /* Curseur pointer */
+}
+
+.second-header .header-links a {
+    color: #fff; /* Couleur des liens */
+    text-decoration: none; /* Supprimer le soulignement */
+    margin: 0 15px; /* Espacement entre les liens */
+}
+
+.second-header .header-links a:hover {
+    text-decoration: underline; /* Souligner au survol */
+}
+
+/* Styles pour les petits écrans (téléphones) */
+@media (max-width: 480px) {
+    .container {
+        width: 95%; /* Augmente la largeur pour les petits écrans */
+        padding: 0 10px; /* Ajoute un padding pour éviter que le contenu touche les bords */
+    }
+    .product {
+        width: calc(100% - 20px); /* Un produit par ligne */
+        margin: 10px 0; /* Ajuste la marge pour un espacement vertical */
+    }
+    .header-links {
+        display: flex;
             justify-content: center;
-            background-color: #004d40;
-        }
-        nav a {
-            color: white;
-            padding: 14px 20px;
-            text-decoration: none;
-            text-align: center;
-        }
-        nav a:hover {
-            background-color: #ddd;
-            color: black;
-        }
-        .gallery-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-            padding: 20px;
-            max-width: 1200px;
-            margin: 20px auto;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-        .box {
-            position: relative;
-            perspective: 1000px; /* Enable 3D perspective */
-        }
-        .box-inner {
-            position: relative;
-            width: 100%;
-            height: 150px;
-            transition: transform 0.6s;
-            transform-style: preserve-3d; /* Preserve 3D for child elements */
-        }
-        .box:hover .box-inner {
-            transform: rotateY(180deg); /* Rotate on hover */
-        }
-        .box-front, .box-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden; /* Hide back face when not visible */
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        }
-        .box-front {
-            background: rgba(255,255,255,0.8);
-        }
-        .box-back {
-            background: rgba(255, 255, 255, 0.9);
-            display: flex;
             align-items: center;
-            justify-content: center;
-            color: #00796b;
-            font-weight: bold;
-            text-align: center;
-            padding: 10px;
-            transform: rotateY(180deg); /* Rotate back face */
-            cursor: pointer; /* Change cursor to pointer */
+            flex-wrap: wrap; /* Permet aux liens de se déplacer sur plusieurs lignes */
+    }
+    .header-links a {
+        margin-left: 0; /* Pas de marge à gauche */
+        margin-bottom: 10px; /* Marge en bas pour espacer les liens */
+        padding: 5px 0; /* Ajoute un padding pour rendre les liens plus cliquables */
+    }
+    .btn-menu {
+        padding: 10px; /* Ajuste le padding pour les boutons */
+        margin-right: 0; /* Supprime la marge à droite */
+        margin-bottom: 10px; /* Ajoute une marge en bas pour espacer les boutons */
+    }
+    #panier {
+        padding: 15px; /* Augmente le padding pour le panier */
+    }
+    @media (max-width: 768px) {
+            .header-links {
+                flex-direction: column; /* Aligne les liens verticalement sur les petits écrans */
+                align-items: center; /* Centre les liens */
+            }
+            h1 {
+                font-size: 1.5em; /* Réduit la taille du texte sur les petits écrans */
+            }
         }
-        .box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            cursor: pointer; /* Change cursor to pointer */
-        }
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1000; /* Sit on top */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgb(0,0,0); /* Fallback color */
-            background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
-        }
-        footer nav ul {
-            list-style-type: none; /* Supprime les puces */
-            padding: 0; /* Supprime le padding par défaut */
-            margin: 0; /* Supprime la marge par défaut */
-        }
-        footer nav ul li {
-            display: inline; /* Affiche les éléments en ligne */
-            margin-right: 15px; /* Ajoute un espace entre les liens */
-        }
-        .modal img {
-            margin: auto;
-            display: block;
-            width: auto;
-            height: 80%; /* Adjust height */
-            max-width: 90%; /* Adjust max width */
-        }
-        .close {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            color: white;
-            font-size: 40px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        footer {
-            background-color: #004d40;
-            color: white;
-            text-align: center;
-            padding: 10px;
-        }
+}
+</style>
 
-        /* Media Queries for Responsiveness */
-        @media (max-width: 768px) {
-            nav {
-                flex-direction: column; /* Stack links vertically on smaller screens */
-            }
-            .gallery-container {
-                padding: 10px; /* Reduce padding on smaller screens */
-            }
-            .box-inner {
-                height: 120px; /* Adjust height for smaller screens */
-            }
-        }
-
-        @media (max-width: 480px) {
-            header {
-                padding: 15px 0; /* Reduce padding for mobile */
-            }
-            nav a {
-                padding: 10px; /* Reduce padding for mobile */
-                font-size: 14px; /* Smaller font size for mobile */
-            }
-            .modal img {
-                height: 70%; /* Adjust height for mobile */
-            }
-        }
-    </style>
 </head>
 <body>
 
 <header>
-    <h1>Bienvenue chez Boutique Ayiti Offre en ligne</h1>
+    <h1>Boutique Ayiti Offre en ligne</h1>
+    <div class="header-links">
+        <a href="Menu.html">Menu</a>
+        <!-- Ajoutez d'autres liens de menu ici si nécessaire -->
+    </div>
 </header>
+<div class="header-links" style="display: flex; justify-content: center; align-items: center;">
+      
+    </div>
+  
 
-<nav>
-    <a href="vf.html">Catalogues</a>
-    <a href="services.html">Contacts</a>
-    <a href="A propos.html">A Propos</a>
-</nav>
 
-<div class="gallery-container">
-    <div class="box">
-        <div class="box-inner">
-            <div class="box-front">
-                <img src="img/djessica1.jpg" alt="Image 8" onclick="openModal(this.src)">
-            </div>
-            <div class="box-back" onclick="openModal('img/djessica1.jpg')">
-                Unité 250$ht / 3 pour 600
-            </div>
-        </div>
-    </div>
-    <div class="box">
-        <div class="box-inner">
-            <div class="box-front">
-                <img src="img/robe gustavo.jpg" alt="Image 2" onclick="openModal(this.src)">
-            </div>
-            <div class="box-back" onclick="openModal('img/robe gustavo.jpg')">
-                Unité 200$ht / 3 pour 400
-            </div>
-        </div>
-    </div>
-    <div class="box">
-        <div class="box-inner">
-            <div class="box-front">
-                <img src="img/soulier gason.jpg" alt="Image 8" onclick="openModal(this.src)">
-            </div>
-            <div class="box-back" onclick="openModal('img/soulier gason.jpg')">
-                Unité 500$ht / 3 pour 1500
-            </div>
-        </div>
-    </div>
-    <div class="box">
-        <div class="box-inner">
-            <div class="box-front">
-                <img src="img/catalina.jpg" alt="Image 2" onclick="openModal(this.src)">
-            </div>
-            <div class="box-back" onclick="openModal('img/catalina.jpg')">
-                Unité 250$ht / 3 pour 600
-            </div>
-        </div>
-    </div>
-    <div class="box">
-        <div class="box-inner">
-            <div class="box-front">
-                <img src="img/grimel 24.jpg" alt="Image 8" onclick="openModal(this.src)">
-            </div>
-            <div class="box-back" onclick="openModal('img/grimel 24.jpg')">
-                Unité 300$ht / 3 pour 700
-            </div>
-        </div>
-    </div>
-    <div class="box">
-        <div class="box-inner">
-            <div class="box-front">
-                <img src="img/gerdex.jpg" alt="Image 2" onclick="openModal(this.src)">
-            </div>
-            <div class="box-back" onclick="openModal('img/gerdex.jpg')">
-                Unité 350$ht / 3 pour 800
-            </div>
-        </div>
-    </div>
-    <div class="box">
-        <div class="box-inner">
-            <div class="box-front">
-                <img src="img/complet bout pantalon.jpg" alt="Image 8" onclick="openModal(this.src)">
-            </div>
-            <div class="box-back" onclick="openModal('img/complet bout pantalon.jpg')">
-                Unité 250$ht / 3 pour 600
-            </div>
-        </div>
-    </div>
-    <div class="box">
-        <div class="box-inner">
-            <div class="box-front">
-                <img src="img/mayo gason.jpg" alt="Image 2" onclick="openModal(this.src)">
-            </div>
-            <div class="box-back" onclick="openModal('img/mayo gason.jpg')">
-                Unité 200$ht / 3 pour 400
-            </div>
-        </div>
-    </div>
-    <div class="box">
-        <div class="box-inner">
-            <div class="box-front">
-                <img src="img/mayo gason 2.jpg" alt="Image 8" onclick="openModal(this.src)">
-            </div>
-            <div class="box-back" onclick="openModal('img/mayo gason 2.jpg')">
-                Unité 300$ht / 3 pour 700
-            </div>
-        </div>
-    </div>
-    <div class="box">
-        <div class="box-inner">
-            <div class="box-front">
-                <img src="img/madan baby.jpg" alt="Image 2" onclick="openModal(this.src)">
-            </div>
-            <div class="box-back" onclick="openModal('img/madan baby.jpg')">
-                Unité 250$ht / 3 pour 500
-            </div>
-        </div>
-    </div>
-    <div class="box">
-        <div class="box-inner">
-            <div class="box-front">
-                <img src="img/new bleu.jpg" alt="Image 8" onclick="openModal(this.src)">
-            </div>
-            <div class="box-back" onclick="openModal('img/new bleu.jpg')">
-                Unité 250$ht / 3 pour 600
-            </div>
-        </div>
-    </div>
-    <div class="box">
-        <div class="box-inner">
-            <div class="box-front">
-                <img src="img/bouquet fleurs.jpg" alt="Image 2" onclick="openModal(this.src)">
-            </div>
-            <div class="box-back" onclick="openModal('img/bouquet fleurs.jpg')">
-                Unité 250$ht / 3 pour 600
-            </div>
-        </div>
-    </div>
-    <div class="box">
-        <div class="box-inner">
-            <div class="box-front">
-                <img src="img/biden uni.jpg" alt="Image 8" onclick="openModal(this.src)">
-            </div>
-            <div class="box-back" onclick="openModal('img/biden uni.jpg')">
-                Unité 250$ht / 3 pour 500
-            </div>
-        </div>
-    </div>
-    <div class="box">
-        <div class="box-inner">
-            <div class="box-front">
-                <img src="img/bout manche.jpg" alt="Image 2" onclick="openModal(this.src)">
-            </div>
-            <div class="box-back" onclick="openModal('img/bout manche.jpg')">
-                Unité 250$ht / 3 pour 600
-            </div>
-        </div>
-    </div>
-    <div class="box">
-        <div class="box-inner">
-            <div class="box-front">
-                <img src="img/bout konple.jpg" alt="Image 8" onclick="openModal(this.src)">
-            </div>
-            <div class="box-back" onclick="openModal('img/bout konple.jpg')">
-                Unité 250$ht / 3 pour 600
-            </div>
-        </div>
-    </div>
-    <div class="box">
-        <div class="box-inner">
-            <div class="box-front">
-                <img src="img/colan.jpg" alt="Image 2" onclick="openModal(this.src)">
-            </div>
-            <div class="box-back" onclick="openModal('img/colan.jpg')">
-                Unité 100$ht / 3 pour 300
-            </div>
-        </div>
+<script>
+    function askForPassword() {
+        var password = prompt("Veuillez entrer le mot de passe :");
+        if (password === "48345600") { // Remplacez "votreMotDePasse" par le mot de passe souhaité
+            window.location.href = "Jeux.html"; // Redirige vers la page des coupons
+        } else {
+            alert("Mot de passe incorrect. Veuillez réessayer.");
+        }
+    }
+</script>
+
+<div class="container">
+    <div class="products">
+        <script>
+            const allProducts = [
+                // Ajoutez tous les produits ici
+                {image: "img/Robe long.jpg", name: "Modèle1", priceUnit: "250", priceThree: "500", code: "AA718", coupon: "coupon-gratuit 250Gdes", options: [{ color: "Rouge", size: "M" }, { color: "Rouge", size: "S" }, { color: "Bleu", size: "M" }, { color: "Bleu", size: "S" }, { color: "Noir", size: "XL" }, { color: "Noir", size: "L" }, { color: "Blanc", size: "XL" }, { color: "Jaune", size: "S" }, { color: "Jaune", size: "XL" }, { color: "Jaune", size: "XL" }]},
+                {image: "img/belle modele.jpg", name: "Robe2", priceUnit: "250", priceThree: "500", code: "713", coupon: "coupon-gratuit 250Gdes", options: [{ color: "Jaune", size: "XL" }, { color: "Bleu roi", size: "L" }, { color: "Bleu roi", size: "S" }, { color: "Moutardes", size: "XL" }, { color: "Rose", size: "XL" }, { color: "Blanc", size: "XL" }, { color: "Rouge grenat", size: "L" }]},
+                {image: "img/manche long.jpg", name: "Robe3", priceUnit: "350", priceThree: "800", code: "AA1158", coupon: "coupon-gratuit 350Gdes", options: [{ color: "Vert", size: "L" }, { color: "Bleu", size: "S" }, { color: "Bleu", size: "M" }, { color: "Orange", size: "S" }, { color: "Orange", size: "M" }]},
+                {image: "img/parfum.jpg", name: "Parfum", priceUnit: "200$", priceThree: "500$", code: "AAX12", coupon: "coupon-gratuit 200Gdes", options: [{color: "Pour", size: "Femme"}, {color: "Pour", size: "Unisex"}, {color: "Pour", size: "Homme"}]},
+                {image: "img/djess.jpg", name: "Robe4", priceUnit: "250", priceThree: "550", code: "GN22233", coupon: "coupon-gratuit 250Gdes", options: [{ color: "Rouge grenat", size: "M" }, { color: "Rouge grenat", size: "XL" }, { color: "Noir", size: "L" }, { color: "Jaune", size: "M" }, { color: "Jaune", size: "S" }, { color: "Jaune abricot", size: "L" }, { color: "Jaune abricot", size: "XL" }, { color: "Jaune abricot", size: "S" }]},
+                {image: "img/me.jpg", name: "Robe5", priceUnit: "250", priceThree: "500", code: "AA1077", coupon: "coupon-gratuit 250Gdes", options: [  { color: "Jaune maïs", size: "S" }, { color: "Bleu turquoise", size: "M" },{ color: "Bleu turquoise", size: "M" }, { color: "Blan", size: "S" }, { color: "Rose", size: "S" }]},
+            
+
+
+
+
+
+                {image: "img/Truff.jpg", name: "Modèle01", priceUnit: "250", priceThree: "600", code: "AA1300", coupon: "coupon-gratuit 250Gdes", options: [ { color: "Rouge", size: "S" }, { color: "Bleu Marin", size: "M" }, { color: "Bleu Marin", size: "S" }, { color: "Rose", size: "XL" }, { color: "Rose", size: "L" }, { color: "Bleu Roi", size: "XL" }, { color: "Bleu Roi", size: "L" }, { color: "Jaune", size: "XL" }, { color: "Jaune", size: "L" }, { color: "Vert", size: "S" },{ color: "Vert", size: "M" },  ]}, 
+                
+                
+                
+                            
+
+                {image: "img/Corsage.jpg", name: "Modèle02", priceUnit: "20", priceThree: "450", code: "AA851", coupon: "coupon-gratuit 250Gdes", options: [{ color: "Jaune abricot", size: "XL" }, { color: "Jaune abricot", size: "L" }, { color: "Blan", size: "M" }, { color: "Blan", size: "S" }, { color: "Rose", size: "XL" }, { color: "Rose", size: "L" }, { color: "Jaune", size: "S" }, { color: "Jaune", size: "M" }, { color: "Vert", size: "S" },{ color: "Vert", size: "M" },{ color: "Vert", size: "L" }, { color: "Vert", size: "XL" },    ]}, 
+
+
+
+
+
+{ image: "img/long long.jpg", name: "Robe6 ", priceUnit: "250", priceThree: "500", code: "AA716",coupon: "coupon-gratuit 250Gdes", options: [  { color: "Rose", size: "XL" },  { color: "Noir", size: "L" },  { color: "Blanc", size: "M" },  { color: "Jaune", size: "XL" },  { color: "Jaune", size: "L" },  { color: "Blanc", size: "M" },  { color: "Rouge", size: "XL" },  { color: "Rouge", size: "L" }] },
+{ image: "img/occase.jpg", name: "Robe7", priceUnit: "250", priceThree: "500", code: "A718",coupon: "coupon-gratuit 250Gdes", options: [ { color: "Rouge", size: "M" }, { color: "Rouge", size: "S" }, { color: "Bleu", size: "M" }, { color: "Bleu", size: "S" }, { color: "Noir", size: "XL" }, { color: "Noir", size: "L" }, { color: "Blanc", size: "XL" }, { color: "Jaune", size: "S" }, { color: "Jaune", size: "XL" } ] },
+{ image: "img/mama.jpg", name: "Robe8 ", priceUnit: "250", priceThree: "600", code: "AA900",coupon: "coupon-gratuit 250Gdes", options: [ { color: "Rupture ", size: "de Stock" }, ] },
+{ image: "img/complet jupe.jpg", name: "Complet jupe ", priceUnit: "250", priceThree: "600", code: "AA1305",coupon: "coupon-gratuit 250Gdes", options: [   { color: "Rouge", size: "XL" },   { color: "Rouge", size: "M" },   { color: "Vert", size: "XL" },   { color: "Bleu", size: "S" },   { color: "Moutarde", size: "S" },   { color: "Rose", size: "L" } ] },
+{ image: "img/veste.jpg", name: "Veste ", priceUnit: "250", priceThree: "500", code: "AA888",coupon: "coupon-gratuit 250Gdes", options: [  { color: "Orange", size: "L" },  { color: "Bleu", size: "L" }, { color: "Vert", size: "XL" },  { color: "Rose", size: "M" },  { color: "Orange", size: "L" }, { color: "Orange", size: "XL" },   { color: "Orange", size: "L" }, ] },
+{ image: "img/long ceinture.jpg", name: "Robe9", priceUnit: "250", priceThree: "600", code: "AA1290",coupon: "coupon-gratuit 250Gdes", options: [   { color: "Rose", size: "S" },   { color: "Rouge grenat", size: "S" },   { color: "Rouge grenat", size: "M" },   { color: "Rouge", size: "S" },   { color: "Crème", size: "S" },   { color: "Blanc", size: "S" },   { color: "Bleu roi", size: "M" },   { color: "Noir", size: "L" } ] },
+{ image: "img/blan blan.jpg", name: "Robe10 ", priceUnit: "350", priceThree: "800", code: "AA3679",coupon: "coupon-gratuit 250Gdes", options: [  { color: "Blanc", size: "2XL" },  { color: "Blanc", size: "S" },  { color: "Blanc", size: "3XL" },  { color: "Rose", size: "3XL" },  { color: "Vert", size: "M" },  { color: "Bleu roi", size: "XL" }] },
+{ image: "img/long grimel.jpg", name: "Robe longue", priceUnit: "350", priceThree: "850", code: "AA777",coupon: "coupon-gratuit 250Gdes", options: [  { color: "Mauve", size: "L" },  { color: "Mauve", size: "XL" },  { color: "Vert", size: "S" },  { color: "Blanc", size: "2XL" },  { color: "Blanc", size: "3XL" },  { color: "Bleu", size: "2XL" },  { color: "Bleu", size: "3XL" }] },
+{ image: "img/soulier.jpg", name: "Soulier", priceUnit: "500", priceThree: "1500", code: "0099",coupon: "coupon-gratuit 250Gdes", options: [  { color: "Noir", size: "39" },  { color: "Noir", size: "40" },  { color: "Noir", size: "42" },] },
+{ image: "img/nikle.jpg", name: "Robe8", priceUnit: "350", priceThree: "850", code: "AA9999",coupon: "coupon-gratuit 250Gdes", options: [  { color: "Bleu", size: "M" },  { color: "Bleu", size: "S" },  { color: "Jaune moutarde", size: "XL" },  { color: "Jaune moutarde", size: "L" },  { color: "Noir", size: "XL" },  { color: "Rouge", size: "S" }] },
+{ image: "img/hilas.jpg", name: "Modèle9'", priceUnit: "300", priceThree: "750", code: "AA1159",coupon: "coupon-gratuit 250Gdes", options: [  { color: "Noir", size: "M" },  { color: "Noir", size: "M" },  { color: "Jaune moutarde", size: "L" }] },
+{ image: "img/pop.jpg", name: "Modele10", priceUnit: "300", priceThree: "750", code: "AA2463",coupon: "coupon-gratuit 250Gdes", options: [  { color: "Bleu roi", size: "L" },  { color: "Blanc", size: "L" },  { color: "Rose", size: "L" },  { color: "Rose", size: "S" },  { color: "Or", size: "M" }] },
+{ image: "img/cloche.jpg", name: "Modèle11", priceUnit: "250", priceThree: "500", code: "AA1188",coupon: "coupon-gratuit 250Gdes", options: [  { color: "Rose", size: "XL" },  { color: "Vert", size: "M" },  { color: "Jaune abricot", size: "L" }] },
+{ image: "img/arold.jpg", name: "Modèle long", priceUnit: "300", priceThree: "750", code: "AA102",coupon: "coupon-gratuit 250Gdes", options: [  { color: "Blan", size: "L" },  { color: "Blan", size: "M" },  { color: "Blan", size: "XL" },  { color: "Noir", size: "S" }] },
+{ image: "img/emilie.jpg", name: "Modele12", priceUnit: "250", priceThree: "500", code: "AA1124",coupon: "coupon-gratuit 250Gdes", options: [  { color: "Blan", size: "S" },  { color: "Jaune abricot", size: "L" },  { color: "Jaune abricot", size: "M" },  { color: "Noir", size: "L" },  { color: "Bleu roi", size: "S" },  { color: "Rose", size: "S" }] },
+{ image: "img/tg.jpg", name: "modele13", priceUnit: "250", priceThree: "600", code: "AA20",coupon: "coupon-gratuit 250Gdes", options: [  { color: "Blan", size: "S" },  { color: "Rose", size: "XL" }] },
+{ image: "img/ti boul.jpg", name: "Modèle14", priceUnit: "350", priceThree: "850", code: "AA3247",coupon: "coupon-gratuit 250Gdes", options: [  { color: "Noir", size: "M" },  { color: "Blan", size: "M" },  { color: "Jaune moutarde", size: "M" },  { color: "Bleu roi", size: "M" }] },
+{ image: "img/ge.jpg", name: "Modele evaser", priceUnit: "350", priceThree: "850", code: "AAxxxx",coupon: "coupon-gratuit 250Gdes", options: [  { color: "Bleu roi", size: "S" },  { color: "Blan", size: "M" },  { color: "Blan", size: "S" },  { color: "Rouge sang", size: "S" }] },
+{ image: "img/mr.jpg", name: "Modèle15", priceUnit: "250", priceThree: "600", code: "AA1125",coupon: "coupon-gratuit 250Gdes", options: [  { color: "Bleu roi", size: "XL" },  { color: "Bleu roi", size: "XL" },  { color: "Bleu roi", size: "S" },  { color: "Bleu roi", size: "S" },  { color: "Blan", size: "S" },  { color: "Rose", size: "S" },   { color: "Jaune abricot", size: "S" }] },
+{ image: "img/ma.jpg", name: "Modèle16", priceUnit: "250", priceThree: "500", code: "AA574",coupon: "coupon-gratuit 250Gdes", options: [  { color: "Rouge", size: "XL" },  { color: "Blan", size: "XL" },  { color: "Blan", size: "L" },  { color: "Blan", size: "XL" },   { color: "Bleu roi", size: "L" }, ] },
+{ image: "img/tk.jpg", name: "Modèle17", priceUnit: "250", priceThree: "500", code: "AA854",coupon: "coupon-gratuit 250Gdes", options: [  { color: "Rose", size: "L" },  { color: "Bleu roi", size: "M" },  { color: "Jaune", size: "M" },  { color: "Blan", size: "L" },  { color: "Blan", size: "XL" },  { color: "Bleu ciel", size: "M" }, ] },
+{ image: "img/jeans.jpg", name: "Robe Jeans", priceUnit: "250", priceThree: "500", code: "AA20",coupon: "coupon-gratuit 250Gdes", options: [  { color: "Bleu", size: "M" },  { color: "Bleu", size: "M" },  { color: "Bleu", size: "L" },  { color: "Bleu", size: "L" },  { color: "Bleu", size: "L" },  { color: "Bleu", size: "XL" },  { color: "Bleu", size: "XL" },  { color: "Bleu", size: "XL" },  { color: "Bleu", size: "XXL" },  { color: "Bleu", size: "XXL" },  { color: "Bleu", size: "XXL" },  { color: "Bleu", size: "XXL" }] },
+
+
+{image: "img/evaser.jpg", name: "Modele18", priceUnit: "350$", priceThree: "800$", code: "P301",coupon: "coupon-gratuit 250Gdes", options: [{color: "Noir", size: "M"}, {color: "Bleu", size: "M"},{color: "Blan", size: "M"}, {color: "Blan", size: "S"}, {color: "Rose", size: "S"}  ]},
+            {image: "img/gerdex.jpg", name: "Modele19", priceUnit: "350$", priceThree: "800$",coupon: "coupon-gratuit 250Gdes", code: "P302", options: [{color: "Rupture", size: "de Stock"} ]},
+         {image: "img/Grimel 24.jpg", name: "Modele20", priceUnit: "300$", priceThree: "700$", code: "AA512", coupon: "coupon-gratuit 250Gdes", options: [{color: "Vert", size: "M"}, {color: "Jaune", size: "L"}]},
+            {image: "img/jupe jeans.jpg", name: "Jupe Jeans", priceUnit: "253000$", priceThree: "700$", code: "P202",coupon: "coupon-gratuit 250Gdes", options: [{color: "Bleu", size: "13.14"},{color: "Bleu", size: "11.12"},{color: "Bleu", size: "11.12"}, ]},
+         {image: "img/jupe.jpg", name: "Jupe Tissus", priceUnit: "300$", priceThree: "700$", code: "AA512",coupon: "coupon-gratuit 250Gdes", options: [{color: "Noir", size: "L"}, {color: "Noir", size: "L"}, {color: "Noir", size: "XL"}]},
+            {image: "img/mayo gason 2.jpg", name: "Maillot Gason, Forme (P) ", priceUnit: "300$", priceThree: "700$", code: "P202",coupon: "coupon-gratuit 250Gdes", options: [{color: "Bleu Ciel", size: "XXL"},{color: "Bleu Ciel", size: "M"}, {color: "Bleu Ciel", size: "M"},{color: "Jaune Abricot ", size: "L"}, {color: "Jaune Abricot ", size: "XXL"},{color: "Jaune Abricot ", size: "M"}, {color: "Gris", size: "L"},{color: "Gris", size: "XXL"}, {color: "Gris", size: "M"},{color: "Gris", size: "M"},{color: "Gris", size: "XXL"},{color: "Bleu Ciel", size: "L"},{color: "Blan", size: "XL"}, {color: "Rose", size: "XXL"}, {color: "Rose", size: "M"},{color: "Jaune", size: "XXL"}, {color: "Noir", size: "XXL"}]},
+        
+         {image: "img/nadine.jpg", name: "Modele21", priceUnit: "350$", priceThree: "850$", code: "AA512",coupon: "coupon-gratuit 250Gdes", options: [{color: "Blan", size: "M"},{color: "Blan", size: "M"}, {color: "Jaune", size: "S"}]},
+            {image: "img/new Louna.jpg", name: "Modele22", priceUnit: "300$", priceThree: "700$", code: "P202",coupon: "coupon-gratuit 250Gdes", options: [{color: "Bleu", size: "XXL"},{color: "Bleu", size: "L"}, {color: "Rouge", size: "M"},{color: "Rouge", size: "XXXL"}, {color: "Blan", size: "M"}, {color: "Blan", size: "XLL"}, {color: "Noir", size: "M"},{color: "Noir", size: "XSL"}, {color: "Rouge", size: "XL"}]},
+        
+         {image: "img/new ti men.jpg", name: "Modele23", priceUnit: "350$", priceThree: "850$", code: "AA512",coupon: "coupon-gratuit 250Gdes", options: [{color: "Blan", size: "XL"}, {color: "Jaune", size: "XXL"}]},
+            {image: "img/robe anna.jpg", name: "Modele24", priceUnit: "300$", priceThree: "700$", code: "P202",coupon: "coupon-gratuit 250Gdes", options: [ {color: "Bleu Turquoise", size: "S"},{color: "Bleu marin", size: "M"}, {color: "Blan", size: "L"}, {color: "Rose", size: "XL"}, {color: "Jaune", size: "M"},            ]},
+        
+         {image: "img/robe legliz.jpg", name: "Modele25", priceUnit: "350$", priceThree: "850$", code: "AA512",coupon: "coupon-gratuit 250Gdes", options: [{color: "Rupture", size: "de Stock"}]},
+            {image: "img/Taillieurs.jpg", name: "Modele26", priceUnit: "350$", priceThree: "850$", code: "P202",coupon: "coupon-gratuit 250Gdes", options: [{color: "Jaune", size: "M"}]},
+
+
+ {image: "img/2 koule.jpg", name: "Modele27", priceUnit: "300$", priceThree: "650$", code: "AA512",coupon: "coupon-gratuit 250Gdes", options: [{color: "Rouge et noir", size: "S"},{color: "Rouge et noir", size: "XL"},    {color: "Rose et Blan", size: "Xl"},  {color: "Noir et Blan", size: "XL"}, {color: "Noir et Blan", size: "XL"},    ]},
+            {image: "img/bouquet fleurs.jpg", name: "Modele27", priceUnit: "250$", priceThree: "600$", code: "AA1123",coupon: "coupon-gratuit 250Gdes", options: [ {color: "Bleu Marrin", size: "M"}, {color: "Rouge Grenat", size: "M"}, {color: "Rouge Grenat", size: "S"},  {color: "Rouge Sang", size: "L"}, {color: "Bleu roi", size: "L"},{color: "Bleu roi", size: "XL"},      ]},
+            {image: "img/bout konple.jpg", name: "Complet simple", priceUnit: "250$", priceThree: "600$", code: "AA512",coupon: "coupon-gratuit 250Gdes", options: [{color: "Rupture", size: "de Stock"} ]},
+            {image: "img/bout manche.jpg", name: "Modele28", priceUnit: "250$", priceThree: "600$", code: "P202",coupon: "coupon-gratuit 250Gdes", options: [ {color: "Rupture", size: "de Stock"},]},
+            {image: "img/catalina.jpg", name: "Modele29", priceUnit: "250$", priceThree: "600$", code: "AA512",coupon: "coupon-gratuit 250Gdes", options: [{color: "Blan", size: "L"}, {color: "Rouge", size: "L"}, {color: "Rouge", size: "M"}, {color: "Bleu", size: "XL"}, {color: "Rouge", size: "L"}]},
+            
+           {image: "img/djessica1.jpg", name: "Modele30", priceUnit: "250$", priceThree: "600$", code: "AA512",coupon: "coupon-gratuit 250Gdes", options: [{color: "Creme", size: "S"},]},
+            {image: "img/new bleu.jpg", name: "Modele31", priceUnit: "250$", priceThree: "600$", code: "P202",coupon: "coupon-gratuit 250Gdes", options: [{color: "Blan", size: "L"},{color: "Blan", size: "XL"}, {color: "Bleu Roi", size: "S"},{color: "Bleu Roi", size: "M"},{color: "Marron", size: "M"},  {color: " Marron", size: "M"}, {color: " Marron", size: "M"}, {color: " Marron", size: "S"},{color: "Vert", size: "L"}, {color: "Bleu Roi", size: "XL"}, {color: "Jaune ", size: "XL"},                             ]},
+           {image: "img/robe a veste.jpg", name: "Modele32, Forme (P)", priceUnit: "250$", priceThree: "600$", code: "AA512",coupon: "coupon-gratuit 250Gdes", options: [{color: "Jaune ", size: "XL"},{color: "Jaune Moutarde", size: "L"}, {color: "Brique", size: "XL"},{color: "Brique", size: "L"},  ]},
+            {image: "img/Robe rose.jpg", name: "Modele33", priceUnit: "250$", priceThree: "600$", code: "P202",coupon: "coupon-gratuit 250Gdes", options: [{color: "Bleu Roi", size: "XL"},{color: "Bleu Roi", size: "XL"},{color: "Blan", size: "XL"},{color: "Jaune Maïs", size: "XL"}, {color: "Jaune Maïs", size: "M"} ]},
+          
+            {image: "img/tuile yon manche.jpg", name: "Modele34", priceUnit: "250$", priceThree: "600$", code: "P202",coupon: "coupon-gratuit 250Gdes", options: [{color: "Rupture", size: "de Stock"}, ]},
+
+
+            {image: "img/sans manche.jpg", name: "Modele35.", priceUnit: "250$", priceThree: "500$", code: "AA682",coupon: "coupon-gratuit 250Gdes", options: [{color: "Rose", size: "M"}, {color: "Rose", size: "L"}, {color: "Rouge", size: "M"}, {color: "Blan", size: "XL"}, {color: "Bleu Roi", size: "XL"}, {color: "Bleu Roi", size: "XL"}, ]},
+{image: "img/robe 500.jpg", name: "Modele36.", priceUnit: "250$", priceThree: "500$", code: "AA1170",coupon: "coupon-gratuit 250Gdes", options: [ {color: "Rouge Grenat", size: "S"}, {color: "Bleu Roi", size: "XL"}, {color: "Vert Pal", size: "XL"}, {color: "Vert Pal", size: "XL"}, {color: "Vert Pal", size: "XL"}, {color: "Vert Froncé", size: "L"}, {color: "Vert Froncé", size: "S"}, {color: "Vert Pal", size: "S"},]},
+
+{image: "img/complet Gustavo.jpg", name: "Modele37.", priceUnit: "250$", priceThree: "500$", code: "15-3G45",coupon: "coupon-gratuit 250Gdes", options: [{color: "Rouge et Noir", size: "M"}, {color: "Jaune et Noir", size: "M"},{color: "Jaune et Noir", size: "XL"},{color: "Jaune et Noir", size: "L"}, {color: "Marron et Noir", size: "XL"}, ]},
+
+{image: "img/colan.jpg", name: "Colan de sport et de petite sortie.", priceUnit: "100$", priceThree: "250$", code: "0000",coupon: "coupon-gratuit 250Gdes", options: [{color: "Noir", size: "One size"}, {color: "Rouge Grenat", size: "One size"}, {color: "Vert", size: "One size"}, {color: "Marron", size: "One size"},]},
+{image: "img/mayo gason.jpg", name: "Parfait pour les sortie publiques.", priceUnit: "100$", priceThree: "300$", code: "0001",coupon: "coupon-gratuit 250Gdes", options: [ {color: "Jaune Abricot", size: "XL"},  {color: "Gris", size: "M"},  {color: "Noir", size: "L"}, {color: "Bleu", size: "M"},  {color: "Vert", size: "M"}, ]},
+{image: "img/madan baby.jpg", name: "Modele38.", priceUnit: "250$", priceThree: "500$", code: "AA921",coupon: "coupon-gratuit 250Gdes", options: [{color: "Rupture", size: "de Stock"},]},
+{image: "img/pantalon leopard.jpg", name: "Jeans Recreative, forme normal.", priceUnit: "250$", priceThree: "500$", code: "AA905",coupon: "coupon-gratuit 250Gdes", options: [{color: "Bleu pale", size: "5.6, 7.8, 9.10, 11.12, 13.14, 15.16"}, {color: "Bleu foncé", size: "5.6, 7.8, 9.10, 11.12, 13.14, 15.16"} ,]},
+{image: "img/robe gustavo.jpg", name: "Modele39.", priceUnit: "200$", priceThree: "400$", code: "15-2G71",coupon: "coupon-gratuit 250Gdes", options: [{color: "Rouge et noir", size: "S"},{color: "Rouge et noir", size: "S"}, {color: "Jaune et bleu", size: "M"},]},
+
+{image: "img/sandales 350.jpg", name: "Sandales demi-talon, forme normal.", priceUnit: "150$", priceThree: "350$", code: "0003",coupon: "coupon-gratuit 250Gdes", options: [{color: "Noir", size: "S"}, {color: "Creme", size: "38"}, {color: "Marron", size: "37"}, {color: "Blan", size: "36"}, ]},
+{image: "img/ti mayo.jpg", name: "Maillot femme, one size (P).", priceUnit: "150$", priceThree: "400$", code: "0004",coupon: "coupon-gratuit 250Gdes", options: [{color: "Bleu", size: "O"},{color: "Bleu", size: "O"},{color: "Bleu", size: "O"}, {color: "Rouge", size: "O"},{color: "Rouge", size: "O"}, {color: "Rouge", size: "O"}, {color: "Blan", size: "O"},{color: "Blan", size: "O"}, {color: "Jaune", size: "O"}, {color: "Jaune", size: "O"}, {color: "Rose", size: "O"}, {color: "Rose", size: "O"},{color: "Vert Pal", size: "O"},]},
+
+
+
+                // Continuez à ajouter tous les produits...
+            ];
+
+            allProducts.forEach((product) => {
+                const optionsList = product.options.map(option => `${option.color} ${option.size}`).join(', ');
+                document.write(`
+                    <div class="product" onclick="openModal('${product.image}', '${product.name}', '${product.priceUnit}', '${product.priceThree}', '${product.code}', '${optionsList}', '${product.coupon}'); event.stopPropagation();">
+                        <img src="${product.image}" alt="${product.name}" />
+                        <h3>${product.name}</h3>
+                        <div class="product-info">
+                            <p>Prix Unitaire: ${product.priceUnit}</p>
+                            <p>Prix pour 3: ${product.priceThree}</p>
+                            <p>Code: ${product.code}</p>
+                            <p>Options: ${optionsList}</p>
+                            <p>Coupon: ${product.coupon}</p>
+                        </div>
+                    </div>
+                `);
+            });
+        </script>
     </div>
 </div>
-    <!-- Ajoutez les autres images ici de la même manière -->
+<!-- Modale de Livraison -->
+<div id="livraisonModal" class="modal">
+<div class="modal-content">
+<span class="close" onclick="closeLivraisonModal()">&times;</span>
+<h3>Choisissez votre adresse de livraison</h3>
+<label for="adresse">Adresse:</label>
+<select id="adresse">
+<option value=" Autoroute Delmas 33 à 105 - Prix: 50$"> Autoroute Delmas 33 à 105 - Prix: 50$</option>
+<option value="Delmas 33, Siloe - Prix: 50$">Delmas 33, Siloe - Prix: 50$</option>
+<option value="Delmas 33 après Commissariat - Prix: 80$">Delmas 33 après Commissariat - Prix: 80$</option>
+<option value="Geraille Bataille - Prix: 100$">Geraille Bataille - Prix: 100$</option>
+<option value="Kafou Rita- Prix: 150$">Kafou Rita - Prix: 150$</option>
+<option value="Kafou Fleuriot- Prix: 150$">Kafou Fleuriot - Prix: 150$</option>
+<option value="Karade, limite Hopital Kingdom- Prix: 100$">Karade, limite Hospital Kingdom - Prix: 100$</option>
+<option value="Delmas 75, Puits blain - Prix: 70$">Delmas 75, Puits blain - Prix: 70$</option>
+<option value="Delmas Anndan (outre 33 et 75) - Prix: 50$">Delmas Anndan (outre 33 et 75) - Prix: 50$</option>
+<option value="Bois-Verna - Prix: 50$">Bois-Verna - Prix: 50$</option>
+<option value="Lalue, limite Immigration - Prix: 50$">Lalue, limite Immigration - Prix: 50$</option>
+<option value="Juvenat - Prix: 50$">Juvenat - Prix: 70$</option>
+<option value="Debrosse - Prix: 50$">Debrosse - Prix: 70$</option>
+<option value="Petion-ville - Prix: 50$">Petion-ville - Prix: 50$</option>
+<option value="Routes Freres avant Djoumbala - Prix: 70$">Routes Freres avant Djoumbala - Prix: 70$</option>
+<option value="Routes Freres après Djoumbala - Prix: 80$">Routes Freres après Djoumbala - Prix: 80$</option>
+<option value="3 Mains- Prix: 100$">3 Mains - Prix: 100$</option>
+</select>
+<br><br>
+<label for="numeroWhatsapp">Numéro Whatsapp:</label>
+<input type="text" id="numeroWhatsapp" placeholder="Entrez votre numéro Whatsapp">
+<br><br>
+<label for="numeroAppel">Numéro d'appel:</label>
+<input type="text" id="numeroAppel" placeholder="Entrez votre numéro d'appel">
+<br><br>
+<label for="heureLivraison">Heure de la livraison:</label>
+<select id="heureLivraison">
+<option value="matin">Matin</option>
+<option value="apres-midi">Après-midi</option>
+</select>
+<br><br>
+<button class="btn" onclick="validerLivraison()">Valider</button>
+</div>
 </div>
 
+<!-- Modal de confirmation de livraison -->
+<div id="confirmationModal" class="modal">
+<div class="modal-content">
+<span onclick="closeConfirmationModal()" style="cursor:pointer">&times;</span>
+<h2>Informations de Livraison</h2>
+<div id="confirmationDetails"></div>
+<button class="btn" onclick="allerAuxReglements()">Continuer</button> <!-- Nouveau bouton CONTINUER -->
+</div>
+</div>
+
+<!-- Modale pour les règlements -->
+<div id="reglementsModal" class="modal">
+<div class="modal-content">
+<span class="close" onclick="closeReglementsModal()">&times;</span>
+<h2>Règlements</h2>
+<P>Nous ne faisons pas de livraison d'essayage pour les robes, c'est-à-dire que le client n'est pas autorisé à essayer les robes. Ce cas est contraire pour tout autre article.</P>
+
+<P>Lorsque le livreur est arrivé, vous devez lui payer le montant de la livraison. Ensuite, il vous communiquera votre commande. S'il y a une erreur de notre part, il vous remboursera sur le champ le montant de la livraison.</P>
+
+<P>C'est à vous de vérifier ou d'inspecter votre commande. Nous n'autorisons pas les retours.</P>
+
+<P>En cliquant sur Accepter, les détails de la livraison et de votre commande seront envoyés à notre équipe, et un de nos agents vous contactera dans l'heure que vous avez choisie. Si vous souhaitez une heure spécifique, contactez notre service à la clientèle, qui traitera votre commande selon vos besoins.</P>
+<button class="btn" onclick="continuer()">Accepter</button>
+</div>
+</div>
+
+<!-- Modale -->
 <div id="myModal" class="modal">
-    <span class="close" onclick="closeModal()">&times;</span>
-    <img class="modal-content" id="img01">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img id="modalImage" src="" alt="" style="max-width: 10%; height: auto;">
+        <h3 id="modalName"></h3>
+        <div id="modalOptions"></div>
+
+        <label for="couponInput">Coupons-Gratuit:</label>
+        <input type="text" id="couponInput" placeholder="Entrez votre coupon ici">
+        <button class="btn" onclick="validerCoupon()">Valider Coupon</button>
+        <div id="couponMessage" style="color: red;"></div>
+
+        <button class="btn" onclick="selectionnerProduit()">Ajouter au Panier</button>
+        <label>
+            <input type="checkbox" id="acheterParTrois"> Acheter par trois
+        </label>
+    </div>
 </div>
+
+<div id="panier"></div>
+
+<!-- Modale pour afficher les détails du produit -->
+<div id="detailsModal" class="modal">
+<div class="modal-content">
+<span onclick="closeDetailsModal()" style="cursor:pointer">&times;</span>
+<h2>Détails du Produit</h2>
+<img id="modalImage" src="" alt="" style="max-width: 100px;">
+<p id="modalName"></p>
+<p id="modalPrice"></p>
+<p id="modalDeliveryAddress"></p>
+<p id="modalTotal"></p>
+<button class="btn" onclick="closeDetailsModal()">Retour</button>
+<button class="btn" onclick="allerAuxReglements()">Continuer</button>
+</div>
+</div>
+
+<!-- Modale de Réservation -->
+<div id="reservationModal" class="modal">
+<div class="modal-content">
+<span class="close" onclick="closeReservationModal()">&times;</span>
+<h3>Réservation</h3>
+<label for="nom">Nom:</label>
+<input type="text" id="nom" placeholder="Entrez votre nom">
+<br><br>
+<label for="prenom">Prénom:</label>
+<input type="text" id="prenom" placeholder="Entrez votre prénom">
+<br><br>
+<label for="numero">Numéro:</label>
+<input type="text" id="numero" placeholder="Entrez votre numéro">
+<br><br>
+<button class="btn" onclick="confirmerReservation()">Confirmer</button>
+</div>
+</div>
+
+<!-- Modale pour afficher les détails de la réservation -->
+<div id="reservationDetailsModal" class="modal">
+<div class="modal-content">
+<span class="close" onclick="closeReservationDetailsModal()">&times;</span>
+<h2>Détails de la Réservation</h2>
+<div id="reservationDetails"></div>
+<button class="btn" onclick="openConditionsModal()">Poursuivre</button> <!-- Modifié pour ouvrir la nouvelle modale -->
+</div>
+</div>
+
+<!-- Nouvelle modale pour les conditions -->
+<div id="conditionsModal" class="modal">
+<div class="modal-content">
+<span class="close" onclick="closeConditionsModal()">&times;</span>
+<h2>Conditions Générales</h2>
+<P>La durée des réservations est de 48 heures. Passé ce délai, la commande sera annulée.</P>
+<P>Pour appliquer une réservation sur nos produits, il faut obligatoirement verser la moitié du montant du ou des produits que vous souhaitez réserver.</P>
+<P>Pas de marche arrière dans les réservations, ni de modification. Cependant, vous pouvez ajouter des éléments à votre commande. Pour cela, vous devez contacter nos services à la clientèle afin qu'un de nos agents s'en charge de votre cas.</P>
+<P>En cliquant sur "J'ai lu et j'accepte les conditions", puis "Réserver", votre commande sera réservée et seul le nom ainsi que les coordonnées fournies pourront la récupérer. En cas de mandataire, veuillez contacter nos services à la clientèle pour le notifier.</P>
+<button class="btn" onclick="accepterConditions()">J'ai lu et j'accepte les conditions</button>
+</div>
+</div>
+
 
 <footer>
     <p>&copy; 2025 Boutique Ayiti Offre Online. Tous droits réservés.</p>
     <nav>
         <ul>
-            
             <li><a href="informations.html">CGU</a></li>
             <li><a href="Politique.html">Politique de Confidentialité</a></li>
-        
-          
-          
         </ul>
     </nav>
 </footer>
 
+
+
+
 <script>
-    function openModal(src) {
-        document.getElementById("myModal").style.display = "block";
-        document.getElementById("img01").src = src;
+  
+        
+let panierProduits = [];
+
+function toggleDropdown(dropdownId) {
+    var dropdown = document.getElementById(dropdownId);
+    dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+}
+
+function openModal(image, name, priceUnit, priceThree, code, options) {
+    document.getElementById('modalImage').src = image;
+    document.getElementById('modalName').innerText = name;
+
+    const optionsDiv = document.getElementById('modalOptions');
+    optionsDiv.innerHTML = ''; // Réinitialiser les options
+    options.split(', ').forEach(option => {
+        const [color, size] = option.split(' ');
+        optionsDiv.innerHTML += `
+            <label>
+                <input type="checkbox" value="${color} ${size}"> ${color} ${size}
+            </label><br>
+        `;
+    });
+
+    document.getElementById('myModal').style.display = "block";
+    // Stocker les informations du produit dans l'objet global
+    window.selectedProduct = { image, name, priceUnit, priceThree, code };
+}
+const coupons = [
+    'W4A81ME8B48M34E', 'W5A81WE8B48M34E', 'W4A81ME9B48M84E', 
+    'W4B81ME8D48M54E', 'W4A87ME8B48T34E', 'D4A87ME9B48M34E', 
+    'P4A83ME8B48M34E', 'W4A81VE8B48M44E', 'P0A80ME8B48M34E', 
+    'V4A81PE8B48M34E'
+];
+
+let couponsUtilises = [];
+
+function validerCoupon() {
+    const couponInput = document.getElementById('couponInput').value;
+    const couponMessage = document.getElementById('couponMessage');
+
+    if (couponsUtilises.includes(couponInput)) {
+        couponMessage.textContent = "Coupon déjà utilisé";
+    } else if (coupons.includes(couponInput)) {
+        couponsUtilises.push(couponInput);
+        couponMessage.textContent = "Coupon validé avec succès !";
+    } else {
+        couponMessage.textContent = "Coupon invalide";
+    }
+}
+function toggleMenu() {
+    var menu = document.getElementById("dropdownMenu");
+    if (menu.style.display === "flex") {
+        menu.style.display = "none"; // Masquer le menu
+    } else {
+        menu.style.display = "flex"; // Afficher le menu
+    }
+}
+ // Fermer la section
+    toggleDropdown(sectionId);
+
+    // Stocker les informations du produit dans l'objet global
+    window.selectedProduct = { image, name, priceUnit, priceThree, code };
+
+
+function closeModal() {
+    document.getElementById('myModal').style.display = "none";
+}
+
+function selectionnerProduit() {
+    const selectedOptions = Array.from(document.querySelectorAll('#modalOptions input:checked')).map(input => input.value);
+    
+    // Vérification si l'utilisateur souhaite acheter par trois
+    const acheterParTrois = document.querySelector('#acheterParTrois').checked; // Assurez-vous d'avoir un input pour cela
+
+    // Vérification des sélections
+    if (acheterParTrois && selectedOptions.length !== 3) {
+        alert("Veuillez sélectionner exactement trois produits.");
+        return;
     }
 
-    function closeModal() {
-        document.getElementById("myModal").style.display = "none";
+    const colors = new Set();
+    const sizes = new Set();
+    const quantity = 1; // Vous pouvez définir une quantité par défaut si nécessaire
+
+    // Vérification des couleurs et tailles
+    for (const option of selectedOptions) {
+        const [color, size] = option.split(' ');
+
+        if (colors.has(color)) {
+            alert(`La couleur "${color}" a déjà été sélectionnée. Veuillez choisir une couleur différente.`);
+            return;
+        }
+        if (sizes.has(size)) {
+            alert(`La taille "${size}" a déjà été sélectionnée. Veuillez choisir une taille différente.`);
+            return;
+        }
+
+        colors.add(color);
+        sizes.add(size);
+
+        // Ajouter le produit sélectionné au panier
+        panierProduits.push({ ...window.selectedProduct, color, size, quantity });
     }
+
+    afficherPanier();
+    closeModal();
+}
+
+
+
+function openReservationModal() {
+    document.getElementById('reservationModal').style.display = "block";
+}
+
+function closeReservationModal() {
+    document.getElementById('reservationModal').style.display = "none";
+}
+
+function confirmerReservation() {
+    const nom = document.getElementById('nom').value;
+    const prenom = document.getElementById('prenom').value;
+    const numero = document.getElementById('numero').value;
+
+    // Afficher les détails de la réservation dans une nouvelle modale
+    const details = panierProduits.map(product => `
+        <p>Produit: ${product.name}, Code: ${product.code}, Couleur: ${product.color}, Taille: ${product.size}, Quantité: ${product.quantity}</p>
+    `).join('');
+
+    document.getElementById('reservationDetails').innerHTML = `
+        <p>Nom: ${nom}</p>
+        <p>Prénom: ${prenom}</p>
+        <p>Numéro: ${numero}</p>
+        <h4>Détails de la commande:</h4>
+        ${details}
+    `;
+    document.getElementById('reservationDetailsModal').style.display = "block";
+
+    // Enregistrer les informations de réservation dans le stockage local
+    const reservationInfo = {
+        nom,
+        prenom,
+        numero,
+        productDetails: panierProduits
+    };
+
+    // Récupérer les informations de réservation existantes
+    const existingReservationInfo = JSON.parse(localStorage.getItem('reservationInfo')) || [];
+    
+    // Ajouter les nouvelles informations à l'existant
+    existingReservationInfo.push(reservationInfo);
+    
+    // Sauvegarder à nouveau dans le local storage
+    localStorage.setItem('reservationInfo', JSON.stringify(existingReservationInfo));
+
+    closeReservationModal();
+}
+
+function openConditionsModal() {
+    document.getElementById('conditionsModal').style.display = "block";
+}
+
+function closeConditionsModal() {
+    document.getElementById('conditionsModal').style.display = "none";
+}
+
+function accepterConditions() {
+
+     const nom = document.getElementById('nom').value;
+    const prenom = document.getElementById('prenom').value;
+    const numero = document.getElementById('numero').value;
+
+    // Détails de la commande
+    const details = panierProduits.map(product => `
+        Produit: ${product.name}, Code: ${product.code}, Couleur: ${product.color}, Taille: ${product.size}, Quantité: ${product.quantity}
+    `).join('');
+
+    const message = `*Détails de la réservation:*\nNom: ${nom}\nPrénom: ${prenom}\nNuméro: ${numero}\n\n*Détails de la commande:*\n${details}`;
+    
+    const url = `https://wa.me/50948348881?text=${encodeURIComponent(message)}`;
+    
+    window.open(url, '_blank'); // Ouvre WhatsApp dans un nouvel onglet
+    alert("Votre réservation est réussie.");
+    closeConditionsModal();
+    closeReservationModal(); // Ferme la modale de réservation si ouverte
+    closeLivraisonModal(); // Ferme la modale de livraison si ouverte
+    closeConfirmationModal(); // Ferme la modale de confirmation si ouverte
+    closeReglementsModal(); // Ferme la modale des règlements si ouverte
+    closeReservationDetailsModal(); // Ferme la modale des détails de réservation si ouverte
+}
+
+// Fermer la modale si l'utilisateur clique en dehors
+window.onclick = function(event) {
+    if (event.target == document.getElementById('reservationModal')) {
+        closeReservationModal();
+    }
+    if (event.target == document.getElementById('livraisonModal')) {
+        closeLivraisonModal();
+    }
+    if (event.target == document.getElementById('confirmationModal')) {
+        closeConfirmationModal();
+    }
+    if (event.target == document.getElementById('reglementsModal')) {
+        closeReglementsModal();
+    }
+    if (event.target == document.getElementById('reservationDetailsModal')) {
+        closeReservationDetailsModal();
+    }
+    if (event.target == document.getElementById('conditionsModal')) {
+        closeConditionsModal();
+    }
+}
+
+function afficherPanier() {
+    const panier = document.getElementById('panier');
+    panier.innerHTML = '<h4>Produits Sélectionnés :</h4>';
+
+    // Regrouper les produits par nom
+    const groupedProducts = panierProduits.reduce((acc, product) => {
+        const key = `${product.name} (${product.code})`;
+        if (!acc[key]) {
+            acc[key] = { ...product, options: [] };
+        }
+        acc[key].options.push({ color: product.color, size: product.size, quantity: product.quantity });
+        return acc;
+    }, {});
+
+    for (const key in groupedProducts) {
+        const product = groupedProducts[key];
+        const optionsList = product.options.map(opt => `${opt.color} ${opt.size} (Quantité: ${opt.quantity})`).join(', ');
+        panier.innerHTML += `
+            <div>
+                <img src="${product.image}" alt="${product.name}" style="max-width: 50px; height: auto;">
+                <p>Nom: ${product.name}</p>
+                <p>Prix Unitaire: ${product.priceUnit}</p>
+                <p>Prix pour 3: ${product.priceThree}</p>
+                <p>Code: ${product.code}</p>
+                <p>Options: ${optionsList}</p>
+                <span class="cross" onclick="deselectionnerProduit('${key}')">&times;</span>
+            </div>
+        `;
+    }
+
+    // Ajouter les boutons "Livraison" et "Réservation"
+    panier.innerHTML += `
+        <button class="btn" onclick="allerALivraison()">Livraison</button>
+        <button class="btn" onclick="openReservationModal()">Réservation</button>
+    `;
+}
+
+function deselectionnerProduit(key) {
+    panierProduits = panierProduits.filter(product => `${product.name} (${product.code})` !== key); // Retirer le produit du panier
+    afficherPanier(); // Mettre à jour l'affichage du panier
+}
+
+function allerALivraison() {
+    document.getElementById('livraisonModal').style.display = "block";
+}
+
+function closeLivraisonModal() {
+    document.getElementById('livraisonModal').style.display = "none";
+}
+
+function validerLivraison() {
+    const adresse = document.getElementById('adresse').value;
+    const numeroWhatsapp = document.getElementById('numeroWhatsapp').value;
+    const numeroAppel = document.getElementById('numeroAppel').value;
+    const heureLivraison = document.getElementById('heureLivraison').value;
+
+    const details = panierProduits.map(product => `
+        <p>Produit: ${product.name}, Code: ${product.code}, Couleur: ${product.color}, Taille: ${product.size}, Quantité: ${product.quantity}</p>
+    `).join('');
+
+    document.getElementById('confirmationDetails').innerHTML = `
+        <h3>Adresse de livraison: ${adresse}</h3>
+        <p>Numéro Whatsapp: ${numeroWhatsapp}</p>
+        <p>Numéro d'appel: ${numeroAppel}</p>
+        <p>Heure de livraison: ${heureLivraison}</p>
+        <h4>Détails de la commande:</h4>
+        ${details}
+    `;
+
+    // Enregistrer les informations de livraison dans le stockage local
+    const livraisonInfo = {
+        adresse,
+        numeroWhatsapp,
+        numeroAppel,
+        heureLivraison,
+        details
+    };
+
+    // Récupérer les informations de livraison existantes
+    const existingLivraisonInfo = JSON.parse(localStorage.getItem('livraisonInfo')) || [];
+    
+    // Ajouter les nouvelles informations à l'existant
+    existingLivraisonInfo.push(livraisonInfo);
+    
+    // Sauvegarder à nouveau dans le local storage
+    localStorage.setItem('livraisonInfo', JSON.stringify(existingLivraisonInfo));
+
+    document.getElementById('confirmationModal').style.display = "block";
+    closeLivraisonModal();
+}
+
+
+function closeConfirmationModal() {
+    document.getElementById('confirmationModal').style.display = "none";
+}
+
+// Fonction pour aller aux règlements
+function allerAuxReglements() {
+    document.getElementById('reglementsModal').style.display = "block";
+}
+
+// Fonction pour fermer la modale des règlements
+function closeReglementsModal() {
+    document.getElementById('reglementsModal').style.display = "none";
+}
+
+// Fonction pour le bouton CONTINUER
+function continuer() {
+    // Récupérer les informations de livraison du stockage local
+    const livraisonInfo = JSON.parse(localStorage.getItem('livraisonInfo'));
+    
+    if (livraisonInfo) {
+        // Supposons qu'il n'y a qu'un seul ensemble d'informations de livraison
+        const info = livraisonInfo[0]; // Récupérer la première entrée
+
+        const adresse = info.adresse;
+        const numeroAppel = info.numeroAppel;
+        const numeroWhatsapp = info.numeroWhatsapp;
+        const heureLivraison = info.heureLivraison;
+
+        // Détails de la commande
+        const detailsCommande = panierProduits.map(product => 
+            `Produit: ${product.name}, Code: ${product.code}, Couleur: ${product.color}, Taille: ${product.size}, Quantité: ${product.quantity}`
+        ).join('\n'); // Formater les détails de la commande
+
+        const message = `*Détails de la livraison:*\nAdresse: ${adresse}\nNuméro d'appel: ${numeroAppel}\nNuméro WhatsApp: ${numeroWhatsapp}\nHeure de livraison: ${heureLivraison}\n\n*Détails de la commande:*\n${detailsCommande}`;
+        
+        const url = `https://wa.me/${50948348881}?text=${encodeURIComponent(message)}`;
+        
+        window.open(url, '_blank'); // Ouvre WhatsApp dans un nouvel onglet
+    } else {
+        alert("Aucune information de livraison trouvée.");
+    }
+}
+
+function searchProducts() {
+    const input = document.getElementById('search');
+    const filter = input.value.toLowerCase();
+    const products = document.querySelectorAll('.product');
+
+    products.forEach(product => {
+        const name = product.querySelector('h3').innerText.toLowerCase();
+        if (name.includes(filter)) {
+            product.style.display = '';
+        } else {
+            product.style.display = 'none';
+        }
+    });
+}
 </script>
-
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Menu</title>
+    <title>Boutique Ayiti</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -15,32 +15,29 @@
             background-color: #333; /* Couleur de fond du menu */
             color: white;
             padding: 10px 20px;
-        }
-        .menu-container {
             display: flex;
-            justify-content: space-between;
+            justify-content: space-between; /* Espace entre le titre et les liens */
+            align-items: center; /* Centrer verticalement */
+        }
+        .header-title {
+            font-size: 1.5em; /* Taille du titre */
+            color: #fff; /* Couleur du titre */
+        }
+        .header-links {
+            display: flex;
+            justify-content: center;
             align-items: center;
-            flex-wrap: wrap; /* Permet de gérer le wrap sur petits écrans */
         }
-        .logo {
-            font-size: 1.5em;
-            margin-right: auto; /* Espace entre le logo et le menu */
-        }
-        .menu {
-            list-style: none;
-            display: flex;
-            margin: 0;
-            padding: 0;
-        }
-        .menu li {
-            margin-left: 20px;
-        }
-        .menu a {
+        .header-links a {
             color: white;
             text-decoration: none;
+            padding: 10px 15px; /* Ajout de padding pour les liens */
+            border-radius: 5px; /* Coins arrondis */
+            transition: background-color 0.3s, color 0.3s; /* Transition douce */
         }
-        .menu a:hover {
-            text-decoration: underline;
+        .header-links a:hover {
+            background-color: #4CAF50; /* Couleur de fond au survol */
+            color: white; /* Couleur du texte au survol */
         }
         main {
             display: flex;
@@ -77,28 +74,26 @@
 
         /* Styles pour les écrans très petits */
         @media (max-width: 480px) {
-            .logo {
-                font-size: 1.2em; /* Réduire la taille du logo */
+            .header-title {
+                font-size: 1.2em; /* Réduire la taille du titre */
             }
         }
+        
     </style>
 </head>
 <body>
 
     <!-- Navigation -->
     <nav>
-        <div class="menu-container">
-            <div class="logo">Ayiti Offre M&D Entreprises</div>
-            <div class="menu-toggle" id="menu-toggle" aria-label="Menu">&#9776;</div>
-            <ul class="menu" id="menu">
-                <li><a href="index.html">Accueil</a></li>
-                <li><a href="vf.html">Nos Sections</a></li>
-                <li><a href="services.html">Services à la clientèle</a></li>
-                <li><a href="informations.html">Informations Générales</a></li>
-            </ul>
+        <div class="header-title">Boutique Ayiti Offre Online</div>
+        <div class="header-links">
+            <a href="Paniers.html">Paniers</a>  
+            <a href="services.html">Contacts</a>
+            <a href="A propos.html">A Propos</a>
+            
+            <a href="#" onclick="askForPassword()">Coupons</a>
         </div>
     </nav>
-
     <!-- Contenu principal (optionnel) -->
     <main>
         <p>Utilisez le menu pour naviguer entre les différentes sections.</p>
