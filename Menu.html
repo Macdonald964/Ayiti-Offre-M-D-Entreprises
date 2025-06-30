@@ -94,6 +94,16 @@
             <a href="#" onclick="askForPassword()">Coupons</a>
         </div>
     </nav>
+    <script>
+    function askForPassword() {
+        var password = prompt("Veuillez entrer le mot de passe :");
+        if (password === "48345600") { // Remplacez "votreMotDePasse" par le mot de passe souhaité
+            window.location.href = "Jeux.html"; // Redirige vers la page des coupons
+        } else {
+            alert("Mot de passe incorrect. Veuillez réessayer.");
+        }
+    }
+</script>
     <!-- Contenu principal (optionnel) -->
     <main>
         <p>Utilisez le menu pour naviguer entre les différentes sections.</p>

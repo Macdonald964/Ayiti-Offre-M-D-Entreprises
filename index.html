@@ -15,7 +15,7 @@ background-color: #f4f4f4;
  padding-top: 60px; /* Ajustez cette valeur selon la hauteur de votre en-tête */
 }
 header {
-     background: #333;
+      background: #333; /* Couleur de fond de l'en-tête */
     color: #fff;
     padding: 10px 20px; /* Ajustez le padding si nécessaire */
     display: flex;
@@ -25,6 +25,10 @@ header {
     top: 0;
     width: 100%;
     z-index: 1000;
+}
+.logo {
+    max-width: 150px; /* Ajustez la taille du logo selon vos besoins */
+    margin-bottom: 10px; /* Espacement entre le logo et le titre */
 }
 
 header h1 {
@@ -51,10 +55,10 @@ header h1 {
     text-decoration: underline; /* Souligner au survol */
 }
 .container {
-  width: 80%;
+   width: 80%;
     margin: auto;
     overflow: hidden;
-    padding-top: 100px; /* Ajustez cette valeur selon la hauteur de vos en-têtes */
+    padding-top: 100px; /* Ajustez cette valeur selon la hauteur de votre en-tête */
 }
 .menu {
 margin: 20px 0;
@@ -198,8 +202,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background: linear-gradient(to right, #f4f4f4, #e2e2e2); /* Dégradé de fond */
-    background-image: url('img/background.jpg'); /* Image de fond */
+    background-image: url('img/aoss.jpg'); /* Remplacez par le chemin de votre image de fond */
     background-size: cover; /* Couvre tout l'écran */
     background-position: center; /* Centre l'image */
 }
@@ -348,6 +351,7 @@ footer a:hover {
 <body>
 
 <header>
+   
     <h1>Boutique Ayiti Offre en ligne</h1>
     <div class="header-links">
         <a href="Menu.html">Menu</a>
@@ -360,16 +364,7 @@ footer a:hover {
   
 
 
-<script>
-    function askForPassword() {
-        var password = prompt("Veuillez entrer le mot de passe :");
-        if (password === "48345600") { // Remplacez "votreMotDePasse" par le mot de passe souhaité
-            window.location.href = "Jeux.html"; // Redirige vers la page des coupons
-        } else {
-            alert("Mot de passe incorrect. Veuillez réessayer.");
-        }
-    }
-</script>
+
 
 <div class="container">
     <div class="products">
