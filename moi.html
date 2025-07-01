@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boutique Ayiti Offre Online</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #e0f7fa, #80deea);
+        }
+        header {
+            background-color: #00796b;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #004d40;
+        }
+        nav a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+            text-align: center;
+        }
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .box {
+            position: relative;
+            perspective: 1000px; /* Enable 3D perspective */
+        }
+        .box-inner {
+            position: relative;
+            width: 100%;
+            height: 150px;
+            transition: transform 0.6s;
+            transform-style: preserve-3d; /* Preserve 3D for child elements */
+        }
+        .box:hover .box-inner {
+            transform: rotateY(180deg); /* Rotate on hover */
+        }
+        .box-front, .box-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden; /* Hide back face when not visible */
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        .box-front {
+            background: rgba(255,255,255,0.8);
+        }
+        .box-back {
+            background: rgba(255, 255, 255, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #00796b;
+            font-weight: bold;
+            text-align: center;
+            padding: 10px;
+            transform: rotateY(180deg); /* Rotate back face */
+            cursor: pointer; /* Change cursor to pointer */
+        }
+        .box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            cursor: pointer; /* Change cursor to pointer */
+        }
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+        }
+        footer nav ul {
+            list-style-type: none; /* Supprime les puces */
+            padding: 0; /* Supprime le padding par défaut */
+            margin: 0; /* Supprime la marge par défaut */
+        }
+        footer nav ul li {
+            display: inline; /* Affiche les éléments en ligne */
+            margin-right: 15px; /* Ajoute un espace entre les liens */
+        }
+        .modal img {
+            margin: auto;
+            display: block;
+            width: auto;
+            height: 80%; /* Adjust height */
+            max-width: 90%; /* Adjust max width */
+        }
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        footer {
+            background-color: #004d40;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+        .video-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+        .video-container iframe {
+            width: 300px; /* Width of the video */
+            height: 200px; /* Height of the video */
+            border: none; /* Remove border */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2); /* Shadow effect */
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column; /* Stack links vertically on smaller screens */
+            }
+            .gallery-container {
+                padding: 10px; /* Reduce padding on smaller screens */
+            }
+            .box-inner {
+                height: 120px; /* Adjust height for smaller screens */
+            }
+            .video-container iframe {
+                width: 100%; /* Full width on smaller screens */
+                height: auto; /* Auto height */
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 15px 0; /* Reduce padding for mobile */
+            }
+            nav a {
+                padding: 10px; /* Reduce padding for mobile */
+                font-size: 14px; /* Smaller font size for mobile */
+            }
+            .modal img {
+                height: 70%; /* Adjust height for mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Bienvenue chez Boutique Ayiti Offre en ligne</h1>
+</header>
+
+<nav>
+    <a href="vf.html">Catalogues</a>
+    <a href="services.html">Contacts</a>
+    <a href="A propos.html">A Propos</a>
+</nav>
+
+<div class="video-container">
+       <iframe src="https://www.youtube.com/embed/hdqV2vfoXE4" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/FRzm1Uh25Ec" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/bew7svQxk80" allowfullscreen></iframe>
+  
+
+ 
+</div>
+
+<footer>
+    <p>&copy; 2025 Boutique Ayiti Offre Online. Tous droits réservés.</p>
+    <nav>
+        <ul>
+            <li><a href="informations.html">CGU</a></li>
+            <li><a href="Politique.html">Politique de Confidentialité</a></li>
+        </ul>
+    </nav>
+</footer>
+
+<script>
+    function openModal(src) {
+        document.getElementById("myModal").style.display = "block";
+        document.getElementById("img01").src = src;
+    }
+
+    function closeModal() {
+        document.getElementById("myModal").style.display = "none";
+    }
+</script>
+
+</body>
+</html>
