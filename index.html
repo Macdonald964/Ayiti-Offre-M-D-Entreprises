@@ -305,6 +305,21 @@ footer a:hover {
 .second-header .header-links a:hover {
     text-decoration: underline; /* Souligner au survol */
 }
+.panier-box {
+    position: relative;
+}
+
+.panier-content {
+    position: absolute;
+    top: 100%; /* Positionne juste en dessous du bouton */
+    right: 0; /* Aligne à droite */
+    background-color: white; /* Couleur de fond de la boîte */
+    border: 1px solid #ddd; /* Bordure */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombre */
+    width: 200px; /* Largeur de la boîte */
+    z-index: 1000; /* Assure que la boîte est au-dessus des autres éléments */
+    padding: 10px; /* Espacement interne */
+}
 
 /* Styles pour les petits écrans (téléphones) */
 @media (max-width: 480px) {
@@ -355,8 +370,13 @@ footer a:hover {
     <h1>Boutique Ayiti Offre en ligne</h1>
     <div class="header-links">
         <a href="Menu.html">Menu</a>
-        <!-- Ajoutez d'autres liens de menu ici si nécessaire -->
+        <div class="panier-box">
+        <button onclick="togglePanier()">
+            🛒 Panier (<span id="panierCount"></span>)
+        </button>
+        <div id="panierContent" class="panier-content" style="display: none;"></div>
     </div>
+       
 </header>
 <div class="header-links" style="display: flex; justify-content: center; align-items: center;">
       
@@ -386,7 +406,7 @@ footer a:hover {
                 {image: "img/belle modele.jpg", name: "Robe2", priceUnit: "250", priceThree: "500", code: "713", coupon: "coupon-gratuit 250Gdes", options: [{ color: "Jaune", size: "XL" }, { color: "Bleu roi", size: "L" }, { color: "Bleu roi", size: "S" }, { color: "Moutardes", size: "XL" }, { color: "Rose", size: "XL" }, { color: "Blanc", size: "XL" }, { color: "Rouge grenat", size: "L" }]},
                 {image: "img/manche long.jpg", name: "Robe3", priceUnit: "350", priceThree: "800", code: "AA1158", coupon: "coupon-gratuit 350Gdes", options: [{ color: "Vert", size: "L" }, { color: "Bleu", size: "S" }, { color: "Bleu", size: "M" }, { color: "Orange", size: "S" }, { color: "Orange", size: "M" }]},
                 {image: "img/parfum.jpg", name: "Parfum", priceUnit: "200$", priceThree: "500$", code: "AAX12", coupon: "coupon-gratuit 200Gdes", options: [{color: "Pour", size: "Femme"}, {color: "Pour", size: "Unisex"}, {color: "Pour", size: "Homme"}]},
-                {image: "img/djess.jpg", name: "Robe4", priceUnit: "250", priceThree: "550", code: "GN22233", coupon: "coupon-gratuit 250Gdes", options: [{ color: "Rouge grenat", size: "M" }, { color: "Rouge grenat", size: "XL" }, { color: "Noir", size: "L" }, { color: "Jaune", size: "M" }, { color: "Jaune", size: "S" }, { color: "Jaune abricot", size: "L" }, { color: "Jaune abricot", size: "XL" }, { color: "Jaune abricot", size: "S" }]},
+                {image: "img/djess.jpg", name: "Robe4", priceUnit: "250", priceThree: "550", code: "GN22233", coupon: "coupon-gratuit 250Gdes", options: [  { color: "Jaune", size: "S" },  { color: "Jaune abricot", size: "XL" }, ]},
                 {image: "img/me.jpg", name: "Robe5", priceUnit: "250", priceThree: "500", code: "AA1077", coupon: "coupon-gratuit 250Gdes", options: [  { color: "Jaune maïs", size: "S" }, { color: "Bleu turquoise", size: "M" },{ color: "Bleu turquoise", size: "M" }, { color: "Blan", size: "S" }, { color: "Rose", size: "S" }]},
             
 
@@ -448,13 +468,13 @@ footer a:hover {
 
 
  {image: "img/2 koule.jpg", name: "Modele27", priceUnit: "300$", priceThree: "650$", code: "AA512",coupon: "coupon-gratuit 250Gdes", options: [{color: "Rouge et noir", size: "S"},{color: "Rouge et noir", size: "XL"},    {color: "Rose et Blan", size: "Xl"},  {color: "Noir et Blan", size: "XL"}, {color: "Noir et Blan", size: "XL"},    ]},
-            {image: "img/bouquet fleurs.jpg", name: "Modele27", priceUnit: "250$", priceThree: "600$", code: "AA1123",coupon: "coupon-gratuit 250Gdes", options: [ {color: "Bleu roi", size: "XL"},      ]},
+            {image: "img/bouquet fleurs.jpg", name: "Modele27", priceUnit: "250$", priceThree: "600$", code: "AA1123",coupon: "coupon-gratuit 250Gdes", options: [ {color: "Rupture", size: "de Stock"},      ]},
             {image: "img/bout konple.jpg", name: "Complet simple", priceUnit: "250$", priceThree: "600$", code: "AA512",coupon: "coupon-gratuit 250Gdes", options: [{color: "Rupture", size: "de Stock"} ]},
             {image: "img/bout manche.jpg", name: "Modele28", priceUnit: "250$", priceThree: "600$", code: "P202",coupon: "coupon-gratuit 250Gdes", options: [ {color: "Rupture", size: "de Stock"},]},
             {image: "img/catalina.jpg", name: "Modele29", priceUnit: "250$", priceThree: "600$", code: "AA512",coupon: "coupon-gratuit 250Gdes", options: [{color: "Blan", size: "L"}, {color: "Rouge", size: "L"}, {color: "Rouge", size: "M"}, {color: "Bleu", size: "XL"}, {color: "Rouge", size: "L"}]},
             
            {image: "img/djessica1.jpg", name: "Modele30", priceUnit: "250$", priceThree: "600$", code: "AA512",coupon: "coupon-gratuit 250Gdes", options: [{color: "Rupture", size: "de Rupture"},]},
-            {image: "img/new bleu.jpg", name: "Modele31", priceUnit: "250$", priceThree: "600$", code: "P202",coupon: "coupon-gratuit 400Gdes", options: [{color: "Blan", size: "L"}, {color: "Rose ", size: "L"},  {color: "Marron", size: "M"},  {color: " Marron", size: "S"},  {color: " Marron", size: "S"},  {color: "Vert", size: "S"}, {color: "Vert", size: "M"}, {color: "Bleu Roi", size: "S"}, {color: "Bleu Roi", size: "S"},                              ]},
+            {image: "img/new bleu.jpg", name: "Modele31", priceUnit: "250$", priceThree: "600$", code: "P202",coupon: "coupon-gratuit 400Gdes", options: [    {color: " Marron", size: "S"},  {color: " Marron", size: "S"}, {color: "Bleu Roi", size: "S"},                              ]},
            {image: "img/robe a veste.jpg", name: "Modele32, Forme (P)", priceUnit: "250$", priceThree: "600$", code: "AA512",coupon: "coupon-gratuit 250Gdes", options: [{color: "Jaune ", size: "XL"},{color: "Jaune Moutarde", size: "L"}, {color: "Brique", size: "XL"},{color: "Brique", size: "L"},  ]},
             {image: "img/Robe rose.jpg", name: "Modele33", priceUnit: "250$", priceThree: "600$", code: "P202",coupon: "coupon-gratuit 250Gdes", options: [{color: "Bleu Roi", size: "XL"},{color: "Bleu Roi", size: "XL"},{color: "Blan", size: "XL"},{color: "Jaune Maïs", size: "XL"}, {color: "Jaune Maïs", size: "M"} ]},
           
@@ -664,6 +684,64 @@ footer a:hover {
         
 let panierProduits = [];
 
+
+// Fonction pour afficher ou masquer le panier
+function togglePanier() {
+    const panierContent = document.getElementById('panierContent');
+    panierContent.style.display = panierContent.style.display === 'block' ? 'none' : 'block';
+    afficherPanierHeader(); // Met à jour l'affichage du panier dans le header
+}
+
+// Fonction pour ajouter un produit au panier
+function ajouterAuPanier(produit) {
+    panierProduits.push(produit); // Ajoute le produit au panier
+    afficherPanierHeader(); // Met à jour l'affichage du panier
+}
+
+// Fonction pour afficher le contenu du panier dans le header
+function afficherPanierHeader() {
+    const panierContent = document.getElementById('panierContent');
+    panierContent.innerHTML = ''; // Réinitialiser le contenu
+
+    if (panierProduits.length === 0) {
+        panierContent.innerHTML = '<p>Votre panier est vide.</p>';
+        document.getElementById('panierCount').innerText = ''; // Enlever le "0" par défaut
+        return;
+    }
+
+    document.getElementById('panierCount').innerText = panierProduits.length;
+
+    // Regrouper les produits par nom
+    const groupedProducts = panierProduits.reduce((acc, product) => {
+        const key = `${product.name} (${product.code})`;
+        if (!acc[key]) {
+            acc[key] = { ...product, options: [] };
+        }
+        acc[key].options.push({ color: product.color, size: product.size, quantity: product.quantity });
+        return acc;
+    }, {});
+
+    for (const key in groupedProducts) {
+        const product = groupedProducts[key];
+        const optionsList = product.options.map(opt => `${opt.color} ${opt.size} (Quantité: ${opt.quantity})`).join(', ');
+        panierContent.innerHTML += `
+            <div>
+                <img src="${product.image}" alt="${product.name}" style="max-width: 50px; height: auto;">
+                <p>Nom: ${product.name}</p>
+                <p>Options: ${optionsList}</p>
+                <span class="cross" onclick="deselectionnerProduit('${key}')">&times;</span>
+            </div>
+        `;
+    }
+
+    // Ajouter les boutons "Livraison" et "Réservation"
+    panierContent.innerHTML += `
+        <button class="btn" onclick="allerALivraison()">Livraison</button>
+        <button class="btn" onclick="openReservationModal()">Réservation</button>
+    `;
+}
+
+// Les autres fonctions de votre script existant
 function toggleDropdown(dropdownId) {
     var dropdown = document.getElementById(dropdownId);
     dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
@@ -688,6 +766,8 @@ function openModal(image, name, priceUnit, priceThree, code, options) {
     // Stocker les informations du produit dans l'objet global
     window.selectedProduct = { image, name, priceUnit, priceThree, code };
 }
+
+
 const coupons = [
     'W4A81ME8B48M34E', 'W5A81WE8B48M34E', 'W4A81ME9B48M84E', 
     'W4B81ME8D48M54E', 'W4A87ME8B48T34E', 'D4A87ME9B48M34E', 
