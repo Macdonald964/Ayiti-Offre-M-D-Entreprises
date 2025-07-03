@@ -5,61 +5,118 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Boutique Ayiti Offre Online</title>
 
+
  <link rel="stylesheet" href="style.css" />
 <style>
 body {
-font-family: Arial, sans-serif;
-margin: 0;
-padding: 0;
-background-color: #f4f4f4;
- padding-top: 60px; /* Ajustez cette valeur selon la hauteur de votre en-tête */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    padding-top: 60px; /* Ajustez cette valeur selon la hauteur de votre en-tête */
 }
+
 header {
-      background: #333; /* Couleur de fond de l'en-tête */
+    background: linear-gradient(135deg, #0033cc, #ff3333); /* Dégradé bleu et rouge */
     color: #fff;
     padding: 10px 20px; /* Ajustez le padding si nécessaire */
     display: flex;
-    flex-direction: column; /* Changez la direction en colonne */
-    align-items: center; /* Centre le contenu */
+    align-items: center; /* Centre le contenu verticalement */
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 1000;
 }
-.logo {
-    max-width: 150px; /* Ajustez la taille du logo selon vos besoins */
-    margin-bottom: 10px; /* Espacement entre le logo et le titre */
+
+.header-icon {
+    margin-right: 10px; /* Espacement entre l'icône et le titre */
+    font-size: 24px; /* Taille de l'icône */
+    color: #fff; /* Couleur de l'icône */
 }
 
 header h1 {
-     margin: 0;
+    margin: 0;
     font-weight: bold; /* Mettre en gras */
     font-style: italic; /* Mettre en italique */
 }
+
 .header-links {
     display: flex;
     align-items: center;
-    margin: 0 auto; /* Centre les liens */
-     margin-top: 10px; /* Ajoutez un espacement au-dessus du menu */
+    margin-left: auto; /* Aligne les liens à droite */
 }
+
 .header-links a {
- color: #fff;
+    color: #fff;
     text-decoration: none;
     margin-left: 20px; /* Espacement entre les liens */
     padding: 10px; /* Ajoutez du padding pour rendre les liens plus cliquables */
     border-radius: 5px; /* Coins arrondis pour les liens */
     transition: background 0.3s; /* Animation douce pour le fond */
 }
+
 .header-links a:hover {
- background: rgba(255, 255, 255, 0.2); /* Fond au survol */
+    background: rgba(255, 255, 255, 0.2); /* Fond au survol */
     text-decoration: underline; /* Souligner au survol */
 }
+
+.menu {
+    position: fixed;
+    top: 60px; /* Ajustez cette valeur selon la hauteur de votre en-tête */
+    left: 0;
+    width: 200px; /* Largeur du menu */
+    background: linear-gradient(135deg, #ffcc00, #ff3333); /* Dégradé jaune et rouge */
+    color: #fff;
+    padding: 10px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.menu ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.menu ul li {
+    margin: 10px 0;
+}
+
+.menu ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.menu ul li a:hover {
+    text-decoration: underline; /* Souligner au survol */
+}
+
+.menu-header {
+    display: flex;
+    justify-content: space-between; /* Espace entre la croix et le reste du menu */
+    align-items: center; /* Centre verticalement */
+    margin-bottom: 10px; /* Espacement en bas */
+}
+
+.menu-header span {
+    font-size: 20px; /* Taille de la croix */
+    color: #fff; /* Couleur de la croix */
+}
+
 .container {
-   width: 80%;
+    width: 80%;
     margin: auto;
     overflow: hidden;
     padding-top: 100px; /* Ajustez cette valeur selon la hauteur de votre en-tête */
 }
+
+
+
+
+
+
+
+
+
+
 .menu {
 margin: 20px 0;
 display: flex;
@@ -88,19 +145,19 @@ z-index: 1;
 background: #fff;
 border: 1px solid #ddd;
 margin: 10px;
-padding: 10px;
+padding: 1px;
 text-align: center;
 border-radius: 5px;
 box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 display: inline-block;
-width: calc(30% - 20px);
+width: calc(20% - 20px);
 cursor: pointer;
 }
 .product img {
 max-width: 100%;
 height: auto;
     width: 100%; /* Assurez-vous que l'image prend toute la largeur du conteneur */
-    height: 550px; /* Définissez une hauteur fixe selon vos besoins */
+    height: 450px; /* Définissez une hauteur fixe selon vos besoins */
     object-fit: cover; /* Cela permet de garder le ratio sans déformation */
 
 }
@@ -270,6 +327,35 @@ footer a {
 footer a:hover {
     text-decoration: underline; /* Souligner au survol */
 }
+
+.social-icons {
+    display: flex; /* Utiliser flexbox pour les icônes sociales */
+    justify-content: center; /* Centrer les icônes */
+    margin-top: 15px; /* Espacement au-dessus des icônes */
+}
+
+.social-icons a {
+    margin: 0 10px; /* Espacement entre les icônes */
+    transition: transform 0.3s; /* Animation de transformation */
+}
+
+.social-icons a:hover {
+    transform: scale(1.1); /* Agrandir l'icône au survol */
+}
+
+.social-icons svg {
+    width: 30px; /* Largeur des icônes */
+    height: 30px; /* Hauteur des icônes */
+    fill: white; /* Couleur des icônes */
+    transition: fill 0.3s; /* Animation de couleur */
+}
+
+.social-icons a:hover svg {
+    fill: #ffcc00; /* Changer la couleur au survol */
+}
+
+
+
 .second-header {
     background: #444; /* Couleur de fond pour le deuxième en-tête */
     color: #fff; /* Couleur du texte */
@@ -366,18 +452,53 @@ footer a:hover {
 <body>
 
 <header>
-   
-    <h1>Boutique Ayiti Offre en ligne</h1>
-    <div class="header-links">
-        <a href="Menu.html">Menu</a>
-        <div class="panier-box">
+   <div class="header-icon">
+    <img src="img/ao.jpg" alt="Logo" style="width: 50px; height: auto;">
+</div>
+<h1>Boutique Ayiti Offre</h1>
+
+
+<div class="header-links">
+    <a href="#" onclick="toggleMenu()">Menu</a>
+    <div class="panier-box">
         <button onclick="togglePanier()">
             🛒 Panier (<span id="panierCount"></span>)
         </button>
         <div id="panierContent" class="panier-content" style="display: none;"></div>
     </div>
-       
+</div>
 </header>
+
+<div id="menu" class="menu" style="display: none;">
+    <div class="menu-header">
+        <span onclick="toggleMenu()" style="cursor: pointer;">✖</span> <!-- Croix pour fermer le menu -->
+    </div>
+    <ul>
+        <li>   <a href="Paniers.html"> Mon Panier    </li>
+        <li>   <a href="services.html">Contacts</a>  </li>
+        <li>    <a href="A propos.html">A Propos</a>  </li>
+        <li>    <a href="#" onclick="askForPassword()">Coupons Gratuit</a>  </li>
+        </div>
+    </nav>
+    <script>
+    function askForPassword() {
+        var password = prompt("Veuillez entrer le mot de passe :");
+        if (password === "48345600") { // Remplacez "votreMotDePasse" par le mot de passe souhaité
+            window.location.href = "Jeux.html"; // Redirige vers la page des coupons
+        } else {
+            alert("Mot de passe incorrect. Veuillez réessayer.");
+        }
+    }
+</script>
+
+
+   
+    </ul>
+</div>
+
+<div class="container">
+    <!-- Contenu principal de la page -->
+</div>
 <div class="header-links" style="display: flex; justify-content: center; align-items: center;">
       
     </div>
@@ -674,6 +795,28 @@ footer a:hover {
             <li><a href="Politique.html">Politique de Confidentialité</a></li>
         </ul>
     </nav>
+     <div class="social-icons">
+        <a href="https://www.whatsapp.com" target="_blank" aria-label="WhatsApp">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 0C5.373 0 0 5.373 0 12c0 2.21.63 4.27 1.73 6.03L0 24l5.97-1.73C7.73 22.37 9.74 23 12 23c6.627 0 12-5.373 12-12S18.627 0 12 0zm5.25 17.25l-1.5 1.5c-.15.15-.35.25-.55.25-.1 0-.2 0-.3-.05-1.25-.25-2.5-1-3.5-2-1-1-1.75-2.25-2-3.5-.05-.1-.05-.2-.05-.3 0-.2.1-.4.25-.55l1.5-1.5c.15-.15.35-.25.55-.25.1 0 .2 0 .3.05 1.25.25 2.5 1 3.5 2 1 1 1.75 2.25 2 3.5.05.1.05.2.05.3 0 .2-.1.4-.25.55z"/>
+            </svg>
+        </a>
+        <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M22.675 0h-21.35C.6 0 0 .6 0 1.325v21.35C0 23.4.6 24 1.325 24h21.35C23.4 24 24 23.4 24 22.675V1.325C24 .6 23.4 0 22.675 0zm-2.675 24h-4.5v-9h-3v-4h3v-3c0-3.1 1.9-4.8 4.7-4.8 1.3 0 2.5.1 2.5.1v3h-1.4c-1.4 0-1.8.9-1.8 1.8v2.2h4l-1 4h-3v9z"/>
+            </svg>
+        </a>
+        <a href="https://www.tiktok.com" target="_blank" aria-label="TikTok">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12c6.627 0 12-5.373 12-12S18.627 0 12 0zm3 17.75h-2.5v-7.5h2.5v7.5zm-1.25-9.25c-.69 0-1.25-.56-1.25-1.25S13.56 6 14.25 6s1.25.56 1.25 1.25-.56 1.25-1.25 1.25z"/>
+            </svg>
+        </a>
+        <a href="https://www.youtube.com" target="_blank" aria-label="YouTube">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M23.498 6.186c-.207-1.48-.82-2.73-1.75-3.7C20.27.82 18.02.207 16.54 0H7.46C5.98.207 3.73.82 2.252 2.486 1.322 3.456.709 4.706.502 6.186.25 7.706.25 12 .502 13.514c.207 1.48.82 2.73 1.75 3.7C3.73 23.18 5.98 23.793 7.46 24h9.08c1.48-.207 2.73-.82 3.7-1.75 1.48-1.48 1.75-3.22 1.75-4.7.25-1.514.25-5.814 0-7.328zM9.545 16.5V7.5l7.5 4.5-7.5 4.5z"/>
+            </svg>
+        </a>
+    </div>
 </footer>
 
 
@@ -869,6 +1012,20 @@ function selectionnerProduit() {
     afficherPanier();
     closeModal();
 }
+
+
+
+function toggleMenu() {
+    var menu = document.getElementById("menu");
+    if (menu.style.display === "none") {
+        menu.style.display = "block";
+    } else {
+        menu.style.display = "none";
+    }
+}
+
+
+
 
 
 
