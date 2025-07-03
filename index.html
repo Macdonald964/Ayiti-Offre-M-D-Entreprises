@@ -8,11 +8,12 @@
 
  <link rel="stylesheet" href="style.css" />
 <style>
+/* Changer la couleur de fond du body */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: grey; /* Couleur de fond professionnelle */
     padding-top: 60px; /* Ajustez cette valeur selon la hauteur de votre en-tête */
 }
 
@@ -101,11 +102,12 @@ header h1 {
     color: #fff; /* Couleur de la croix */
 }
 
+/* Ajuster le conteneur pour qu'il prenne 100% de la largeur */
 .container {
-    width: 80%;
-    margin: auto;
+    width: 100%; /* Prendre toute la largeur */
+    margin: 0; /* Supprimer la marge */
     overflow: hidden;
-    padding-top: 100px; /* Ajustez cette valeur selon la hauteur de votre en-tête */
+    padding-top: 0; /* Pas de padding en haut pour coller au header */
 }
 
 
@@ -145,7 +147,7 @@ z-index: 1;
 background: #fff;
 border: 1px solid #ddd;
 margin: 10px;
-padding: 1px;
+padding: 30px;
 text-align: center;
 border-radius: 5px;
 box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -157,7 +159,7 @@ cursor: pointer;
 max-width: 100%;
 height: auto;
     width: 100%; /* Assurez-vous que l'image prend toute la largeur du conteneur */
-    height: 450px; /* Définissez une hauteur fixe selon vos besoins */
+    height: 550px; /* Définissez une hauteur fixe selon vos besoins */
     object-fit: cover; /* Cela permet de garder le ratio sans déformation */
 
 }
