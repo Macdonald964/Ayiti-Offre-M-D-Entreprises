@@ -30,15 +30,20 @@ header {
     top: 0;
     width: 100%;
     z-index: 1000;
-      justify-content: space-between; /* Espace entre les éléments */
+    justify-content: space-between; /* Espace entre les éléments */
+}
+
+.header-content {
+    display: flex;
+    width: 100%;
+    justify-content: space-between; /* Espace entre les éléments */
+    align-items: center; /* Centre verticalement */
 }
 
 .header-icon {
-     margin-right: 50px; /* Espacement entre l'icône et le titre */
-   
-   
-    font-size: 1px; /* Taille de l'icône */
-    color: #fff; /* Couleur de l'icône */
+    margin: 0; /* Supprimez la marge pour centrer le logo */
+    flex-grow: 1; /* Permet au logo de prendre l'espace restant */
+    text-align: center; /* Centre le logo */
 }
 
 header h1 {
@@ -488,7 +493,7 @@ footer a:hover {
     text-decoration: underline; /* Souligner au survol */
 }
 .panier-box {
-     margin-left: auto; /* Aligne le panier à droite */
+   margin-left: auto; /* Aligne le panier à droite */
 }
 
 .panier-content {
@@ -559,6 +564,11 @@ footer a:hover {
 </head>
 <body>
 
+
+    
+
+
+
 <header>
    
     <div class="burger-menu" onclick="toggleMenu()">
@@ -567,9 +577,9 @@ footer a:hover {
     <div class="bar"></div>
 </div>
     
-    <h1>Boutique Ayiti Offre</h1>
+   
     <div class="header-icon">
-        <img src="img/ao.jpg" alt="Logo" style="width: 20px; height: auto;"> <!-- Icône en miniature -->
+        <img src="img/ao.jpg" alt="Logo" style="width: 70px; height: auto;"> <!-- Icône en miniature -->
     </div>
     <div class="panier-box">
         <button onclick="togglePanier()">
