@@ -117,7 +117,18 @@ header h1 {
 }
 
 
+.burger-menu {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
 
+.bar {
+    width: 25px; /* Largeur des barres */
+    height: 3px; /* Hauteur des barres */
+    background-color: #fff; /* Couleur des barres */
+    margin: 4px 0; /* Espacement entre les barres */
+}
 
 
 
@@ -549,9 +560,12 @@ footer a:hover {
 <body>
 
 <header>
-    <div class="header-links">
-        <a href="#" onclick="toggleMenu()">Menu</a>
-    </div>
+   
+    <div class="burger-menu" onclick="toggleMenu()">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+</div>
     
     <h1>Boutique Ayiti Offre</h1>
     <div class="header-icon">
