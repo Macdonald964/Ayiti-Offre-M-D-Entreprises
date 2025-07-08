@@ -77,20 +77,20 @@ header h1 {
     position: fixed;
     top: 60px; /* Ajustez cette valeur selon la hauteur de votre en-tête */
     left: 0;
-    width: 200px; /* Largeur du menu */
- background-color: rgb(50, 61, 160); /* Couleur de fond rouge */
+    width: 280px; /* Largeur du menu */
+ background-color: blue; /* Couleur de fond rouge */
     color: #fff;
-    padding: 10px;
+    padding: 20px;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
 }
 
 .menu ul {
     list-style-type: none;
-    padding: 0;
+    padding: 5px;
 }
 
 .menu ul li {
-    margin: 10px 0;
+    margin: 15px 0;
 }
 
 .menu ul li a {
@@ -606,15 +606,31 @@ footer a:hover {
     <div class="menu-header">
         <span onclick="toggleMenu()" style="cursor: pointer;">✖</span> <!-- Croix pour fermer le menu -->
     </div>
+    <h3> Ayiti Offre M&D Entreprises</h3>
     <div class="search-container">
         <input type="text" id="searchInput" placeholder="Rechercher un produit..." onkeyup="searchProducts()">
     </div>
     <ul>
+        
         <li>   <a href="Paniers.html"> Mon Panier    </li>
+         
         <li>   <a href="services.html">Contacts</a>  </li>
+       
         <li>    <a href="A propos.html">A Propos</a>  </li>
+       
         <li>    <a href="Credit.html"> Credit Client</a>  </li>
+       
+         <li>    <a href="Livraisons.html"> Conditions Livraisons</a>  </li>
+       
+          <li>    <a href="Reservations.html"> Conditions Reservations</a>  </li>
+         
+           <li>    <a href="Credit.html"> Nos Partenaires</a>  </li>
+           
         <li>    <a href="#" onclick="askForPassword()">Coupons Gratuit</a>  </li>
+        
+       
+          <li><a href="informations.html">CGU</a></li>
+            <li><a href="Politique.html">Politique de Confidentialité</a></li>
         </div>
     </nav>
     <script>
@@ -675,7 +691,7 @@ footer a:hover {
 
 
                 {image: "img/Robe long.jpg", name: "Modèle1", priceUnit: "250", priceThree: "500", code: "AA718", coupon: "coupon-gratuit 250Gdes", options: [{ color: "Rouge", size: "M" }, { color: "Rouge", size: "S" }, { color: "Bleu", size: "M" }, { color: "Bleu", size: "S" }, { color: "Noir", size: "XL" }, { color: "Noir", size: "L" }, { color: "Blanc", size: "XL" }, { color: "Jaune", size: "S" }, { color: "Jaune", size: "XL" }, { color: "Jaune", size: "XL" }]},
-                {image: "img/belle modele.jpg", name: "Robe2", priceUnit: "250", priceThree: "500", code: "713", coupon: "coupon-gratuit 350Gdes", options: [{ color: "Jaune", size: "XL" }, { color: "Bleu roi", size: "L" }, { color: "Bleu roi", size: "S" }, { color: "Moutardes", size: "XL" }, { color: "Rose", size: "XL" }, { color: "Blanc", size: "XL" }, ]},
+                {image: "img/belle modele.jpg", name: "Robe2", priceUnit: "250", priceThree: "500", code: "713", coupon: "coupon-gratuit 350Gdes", options: [ { color: "Bleu roi", size: "L" }, { color: "Bleu roi", size: "S" }, { color: "Marron", size: "XL" }, { color: "Rose", size: "XL" }, { color: "Blanc", size: "XL" }, ]},
                 {image: "img/robe3.jpg", name: "Robe3", priceUnit: "350", priceThree: "800", code: "AA1158", coupon: "coupon-gratuit 350Gdes", options: [{ color: "Vert", size: "L" }, { color: "Bleu", size: "S" }, { color: "Bleu", size: "M" }, { color: "Orange", size: "S" }, { color: "Orange", size: "M" }]},
                 {image: "img/parfum.jpg", name: "Parfum", priceUnit: "200$", priceThree: "500$", code: "AAX12", coupon: "coupon-gratuit 200Gdes", options: [{color: "Pour", size: "Femme"}, {color: "Pour", size: "Unisex"}, {color: "Pour", size: "Homme"}]},
                 {image: "img/djess.jpg", name: "Robe4", priceUnit: "250", priceThree: "550", code: "GN22233", coupon: "coupon-gratuit 300Gdes", options: [   { color: "Jaune", size: "M" },{ color: "Jaune", size: "XL" },{ color: "Jaune", size: "S" }, { color: "Jaune Abricot", size: "S" },  { color: "Jaune Abricot", size: "M" },{ color: "Jaune Abricot", size: "XL" },   { color: "Rouge Grenat", size: "L" }, { color: "Rouge Grenat", size: "XL" },   { color: "Noir", size: "L" },  { color: "Noir", size: "XL" },                            { color: "Jaune abricot", size: "XL" }, ]},
@@ -686,7 +702,7 @@ footer a:hover {
 
 
 
-                {image: "img/Truff.jpg", name: "Robe01", priceUnit: "250", priceThree: "600", code: "AA1300", coupon: "coupon-gratuit 250Gdes", options: [ { color: "Rouge", size: "S" }, { color: "Bleu Marin", size: "M" }, { color: "Bleu Marin", size: "S" }, { color: "Rose", size: "XL" }, { color: "Rose", size: "L" }, { color: "Bleu Roi", size: "XL" }, { color: "Bleu Roi", size: "L" }, { color: "Jaune", size: "XL" }, { color: "Jaune", size: "L" }, { color: "Vert", size: "S" },{ color: "Vert", size: "M" },  ]}, 
+                {image: "img/Truff.jpg", name: "Robe01", priceUnit: "250", priceThree: "600", code: "AA1300", coupon: "coupon-gratuit 250Gdes", options: [ { color: "Rouge", size: "S" }, { color: "Bleu Marin", size: "M" }, { color: "Bleu Marin", size: "S" }, { color: "Rose", size: "XL" },  { color: "Bleu Roi", size: "XL" }, { color: "Bleu Roi", size: "L" }, { color: "Jaune", size: "XL" }, { color: "Jaune", size: "L" }, { color: "Vert", size: "S" },{ color: "Vert", size: "M" },  ]}, 
                 
                 
                 
