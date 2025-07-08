@@ -167,21 +167,21 @@ z-index: 1;
 .product {
 background: #fff;
 border: 1px solid #ddd;
-margin: 20px;
+margin: 10px;
 padding: 10px;
 text-align: center;
 border-radius: 5px;
 box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 display: inline-block;
-width: calc(30% - 20px);
+width: calc(20% - 20px);
 cursor: pointer;
 }
 .product img {
 max-width: 100%;
 height: auto;
     width: 100%; /* Assurez-vous que l'image prend toute la largeur du conteneur */
-    height: 550px; /* Définissez une hauteur fixe selon vos besoins */
-    object-fit: cover; /* Cela permet de garder le ratio sans déformation */
+    height: 400px; /* Définissez une hauteur fixe selon vos besoins */
+   object-fit: contain; /* Cela permet de garder le ratio sans déformation */
 
 }
 .product h3 {
@@ -252,30 +252,6 @@ margin-left: 10px;
 #modalImage {
 max-width: 10%;
 height: auto;
-}
-/* Styles pour les écrans de taille moyenne (tablettes) */
-@media (max-width: 768px) {
-    .container {
-        width: 100%;
-    }
-    .product {
-        width: calc(30% - 20px); /* Deux produits par ligne */
-    }
-}
-
-/* Styles pour les petits écrans (téléphones) */
-@media (max-width: 480px) {
-    .product {
-        width: calc(100% - 20px); /* Un produit par ligne */
-    }
-    .header-links {
-        flex-direction: column; /* Liens en colonne */
-        align-items: flex-start; /* Alignement à gauche */
-    }
-    .header-links a {
-        margin-left: 0; /* Pas de marge à gauche */
-        margin-bottom: 10px; /* Marge en bas pour espacer les liens */
-    }
 }
 
 body {
@@ -372,22 +348,6 @@ transform: scale(1.1);
 font-size: 12px;
 color: #b2dfdb;
 margin-top: 10px;
-}
-/* Mobile optimisation */
-@media (max-width: 400px) {
-.social-item {
-font-size: 12px;
-min-width: 50px;
-}
-.social-item i {
-font-size: 20px;
-}
-.footer-title {
-font-size: 18px;
-}
-.footer-slogan {
-font-size: 13px;
-}
 }
 
 .social-icons {
@@ -519,6 +479,55 @@ footer a:hover {
     border-radius: 5px; /* Coins arrondis */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombre légère */
 }
+
+
+
+
+/* Styles pour les écrans de taille moyenne (tablettes) */
+@media (max-width: 768px) {
+    .container {
+        width: 100%;
+    }
+    .product {
+        width: calc(50% - 20px); /* Deux produits par ligne */
+    }
+}
+
+/* Styles pour les petits écrans (téléphones) */
+@media (max-width: 480px) {
+    .product {
+        width: calc(100% - 20px); /* Un produit par ligne */
+    }
+    .header-links {
+        flex-direction: column; /* Liens en colonne */
+        align-items: flex-start; /* Alignement à gauche */
+    }
+    .header-links a {
+        margin-left: 0; /* Pas de marge à gauche */
+        margin-bottom: 10px; /* Marge en bas pour espacer les liens */
+    }
+}
+
+
+
+/* Mobile optimisation */
+@media (max-width: 400px) {
+.social-item {
+font-size: 12px;
+min-width: 50px;
+}
+.social-item i {
+font-size: 20px;
+}
+.footer-title {
+font-size: 18px;
+}
+.footer-slogan {
+font-size: 13px;
+}
+}
+
+
 
 @media (max-width: 480px) {
     header {
@@ -723,7 +732,7 @@ footer a:hover {
 { image: "img/blan blan.jpg", name: "Robe10 ", priceUnit: "350", priceThree: "800", code: "AA3679",coupon: "coupon-gratuit 250Gdes", options: [  { color: "Blanc", size: "2XL" },  { color: "Blanc", size: "S" },  { color: "Blanc", size: "3XL" },  { color: "Rose", size: "3XL" },  { color: "Vert", size: "M" },  { color: "Bleu roi", size: "XL" }] },
 { image: "img/robe long2.jpg", name: "Robe11", priceUnit: "350", priceThree: "850", code: "AA777",coupon: "coupon-gratuit 250Gdes", options: [  { color: "Mauve", size: "L" },  { color: "Mauve", size: "XL" },  { color: "Vert", size: "S" },  { color: "Blanc", size: "2XL" },  { color: "Blanc", size: "3XL" },  { color: "Bleu", size: "2XL" },  { color: "Bleu", size: "3XL" }] },
 { image: "img/soulier.jpg", name: "Soulier", priceUnit: "500", priceThree: "1500", code: "0099",coupon: "coupon-gratuit 250Gdes", options: [  { color: "Noir", size: "39" },  { color: "Noir", size: "40" },  { color: "Noir", size: "42" },] },
-{ image: "img/robe12.jpg", name: "Robe12", priceUnit: "350", priceThree: "850", code: "AA9999",coupon: "coupon-gratuit 250Gdes", options: [  { color: "Bleu", size: "M" },  { color: "Bleu", size: "S" },  { color: "Jaune moutarde", size: "XL" },  { color: "Jaune moutarde", size: "L" },    { color: "Rouge", size: "S" }] },
+{ image: "img/robe12.jpg", name: "Robe12", priceUnit: "350", priceThree: "850", code: "AA9999",coupon: "coupon-gratuit 250Gdes", options: [    { color: "Bleu", size: "S" },  { color: "Jaune moutarde", size: "XL" },] },
 { image: "img/hilas.jpg", name: "Robe13'", priceUnit: "300", priceThree: "750", code: "AA1159",coupon: "coupon-gratuit 250Gdes", options: [  { color: "Noir", size: "M" },  { color: "Noir", size: "M" },  { color: "Jaune moutarde", size: "L" }] },
 { image: "img/pop.jpg", name: "Robe14", priceUnit: "300", priceThree: "750", code: "AA2463",coupon: "coupon-gratuit 250Gdes", options: [  { color: "Bleu roi", size: "L" },  { color: "Blanc", size: "L" },  { color: "Rose", size: "L" },  { color: "Rose", size: "S" },  { color: "Or", size: "M" }] },
 { image: "img/cloche.jpg", name: "Robe15", priceUnit: "250", priceThree: "500", code: "AA1188",coupon: "coupon-gratuit 250Gdes", options: [  { color: "Rose", size: "XL" },  { color: "Vert", size: "M" },  { color: "Jaune abricot", size: "L" }] },
@@ -756,12 +765,12 @@ footer a:hover {
 
 
  {image: "img/2 koule.jpg", name: "Robe33", priceUnit: "300$", priceThree: "650$", code: "AA512",coupon: "coupon-gratuit 250Gdes", options: [{color: "Rouge et noir", size: "S"},{color: "Rouge et noir", size: "XL"},    {color: "Rose et Blan", size: "Xl"},  {color: "Noir et Blan", size: "XL"}, {color: "Noir et Blan", size: "XL"},    ]},
-            {image: "img/bouquet fleurs.jpg", name: "Robe34", priceUnit: "250$", priceThree: "600$", code: "AA1123",coupon: "coupon-gratuit 250Gdes", options: [ {color: "Rouge", size: "S"},  {color: "Rouge", size: "L"}, {color: "Rouge", size: "XL"}, {color: "Rouge", size: "L"}, {color: "Rouge", size: "M"}, {color: "Rouge", size: "XL"},  {color: "Bleu Roi", size: "XL"},  {color: "Bleu Marin", size: "S"}, {color: "Bleu Marin", size: "S"},  {color: "Rose", size: "S"}, {color: "Rose", size: "M"},                 ]},
+            {image: "img/bouquet fleurs.jpg", name: "Robe34", priceUnit: "250$", priceThree: "600$", code: "AA1123",coupon: "coupon-gratuit 250Gdes", options: [ {color: "Rouge", size: "S"},  {color: "Rouge", size: "L"}, {color: "Rouge", size: "XL"}, {color: "Rouge", size: "L"}, {color: "Rouge", size: "XL"},  {color: "Bleu Roi", size: "XL"},   {color: "Bleu Marin", size: "S"}, {color: "Rose", size: "M"},                 ]},
             {image: "img/bout konple.jpg", name: "Complet simple", priceUnit: "250$", priceThree: "600$", code: "AA512",coupon: "coupon-gratuit 250Gdes", options: [{color: "Rupture", size: "de Stock"} ]},
             {image: "img/bout manche.jpg", name: "Robe35", priceUnit: "250$", priceThree: "600$", code: "P202",coupon: "coupon-gratuit 250Gdes", options: [ {color: "Rupture", size: "de Stock"},]},
             {image: "img/catalina.jpg", name: "Robe36", priceUnit: "250$", priceThree: "600$", code: "AA512",coupon: "coupon-gratuit 250Gdes", options: [{color: "Blan", size: "L"}, {color: "Rouge", size: "L"}, {color: "Rouge", size: "M"}, {color: "Bleu", size: "XL"}, {color: "Rouge", size: "L"}]},
             
-           {image: "img/djessica1.jpg", name: "Robe37", priceUnit: "250$", priceThree: "600$", code: "AA512",coupon: "coupon-gratuit 250Gdes", options: [ {color: "Rose Pal", size: "XL"},  {color: "Creme", size: "S"}, {color: "Blanc", size: "S"},                                ]},
+           {image: "img/djessica1.jpg", name: "Robe37", priceUnit: "250$", priceThree: "600$", code: "AA512",coupon: "coupon-gratuit 250Gdes", options: [ {color: "Rose Raket", size: "M"},  {color: "Blanc", size: "S"},                                ]},
             {image: "img/new bleu.jpg", name: "Robe38", priceUnit: "250$", priceThree: "600$", code: "P202",coupon: "coupon-gratuit 400Gdes", options: [    {color: " Marron", size: "S"},  {color: " Marron", size: "S"}, {color: "Bleu Roi", size: "S"}, {color: " Marron", size: "S"},{color: " Marron", size: "M"}, {color: "Bleu Roi", size: "S"},{color: "Bleu Roi", size: "M"},{color: "Bleu Roi", size: "XL"},  {color: "Blan", size: "M"},{color: "Blan", size: "L"}, {color: "Jaune", size: "S"}, {color: "Jaune", size: "L"}, {color: " Rouge", size: "Xl"},{color: " Rouge", size: "L"}, {color: " Vert", size: "S"},{color: " Vert", size: "M"}, {color: " Vert", size: "M"},{color: " Rose", size: "L"}, {color: " Noir", size: "L"},                                  ]},
            {image: "img/robe a veste.jpg", name: "Robe39, Forme (P)", priceUnit: "250$", priceThree: "600$", code: "AA512",coupon: "coupon-gratuit 250Gdes", options: [{color: "Jaune ", size: "XL"},{color: "Jaune Moutarde", size: "L"}, {color: "Brique", size: "XL"},{color: "Brique", size: "L"},  ]},
             {image: "img/Robe rose.jpg", name: "Robe40", priceUnit: "250$", priceThree: "600$", code: "P202",coupon: "coupon-gratuit 250Gdes", options: [{color: "Bleu Roi", size: "XL"},{color: "Bleu Roi", size: "XL"},{color: "Blan", size: "XL"},{color: "Jaune Maïs", size: "XL"}, {color: "Jaune Maïs", size: "M"} ]},
