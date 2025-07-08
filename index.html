@@ -75,13 +75,14 @@ header h1 {
 
 .menu {
     position: fixed;
-    top: 60px; /* Ajustez cette valeur selon la hauteur de votre en-tête */
+    top: 60px; /* Ajustez cette valeur si nécessaire */
     left: 0;
-    width: 280px; /* Largeur du menu */
- background-color: blue; /* Couleur de fond rouge */
+    width: 280px;
+    background-color: blue;
     color: #fff;
     padding: 20px;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    z-index: 1000; /* Assurez-vous que le menu est au-dessus des autres éléments */
 }
 
 .menu ul {
@@ -482,6 +483,27 @@ footer a:hover {
 
 
 
+.product-images {
+    position: relative;
+    overflow: hidden; /* Masquer les images qui débordent */
+}
+
+.slider {
+    display: flex;
+    transition: transform 0.5s ease; /* Animation pour le slider */
+}
+
+.slide {
+    min-width: 100%; /* Chaque image prend toute la largeur */
+    box-sizing: border-box; /* Inclure le padding et la bordure dans la largeur */
+}
+
+.product-images img {
+    width: 100%; /* Assurez-vous que les images remplissent leur conteneur */
+    height: auto; /* Garder le ratio d'aspect */
+}
+
+
 
 /* Styles pour les écrans de taille moyenne (tablettes) */
 @media (max-width: 768px) {
@@ -675,144 +697,163 @@ font-size: 13px;
             const allProducts = [
                 // Ajoutez tous les produits ici
 
- {image: "img/mayo long.jpg", name: "Maillot homme", priceUnit: "300", priceThree: "650", code: "AA7518", coupon: "coupon-gratuit 500Gdes", options: [  { color: "Gris", size: "L" },  { color: "Gris", size: "XXL" },  { color: "Gris", size: "XL" }, { color: "Noir", size: "XXL" },  { color: "Noir", size: "XXL" },{ color: "Noir", size: "L" },   { color: "Rouge", size: "XL" },  { color: "Rouge", size: "XXL" } , { color: "Rouge", size: "XXL" },  { color: "Blanc", size: "L" }, { color: "Blanc", size: "XL" },{ color: "Blanc", size: "XL" },            ]},
+  {
+        images: ["img/mayo long.jpg",], // Ajoutez plusieurs images ici
+        name: "Maillot homme",
+        price: "300$ht/650$ht",
+       
+        code: "AA7518",
+        coupon: "coupon-gratuit 500Gdes",
+        options: [  { color: "Gris", size: "L" },  { color: "Gris", size: "XXL" },  { color: "Gris", size: "XL" }, { color: "Noir", size: "XXL" },  { color: "Noir", size: "XXL" },{ color: "Noir", size: "L" },   { color: "Rouge", size: "XL" },  { color: "Rouge", size: "XXL" } , { color: "Rouge", size: "XXL" },  { color: "Blanc", size: "L" }, { color: "Blanc", size: "XL" },{ color: "Blanc", size: "XL" },            ]},
+    
+     {
+        images: ["img/28ket.jpg", "img/28ket.jpg",], // Ajoutez plusieurs images ici
+        name: "Robe1",
+        priceUnit: "350", priceThree: "800", code: "AA1306",
+        coupon: "coupon-gratuit 500Gdes",
+         options: [   { color: "Vert", size: "M" },  { color: "Blanc", size: "XL" }, { color: "Blanc", size: "S" },{ color: "Blanc", size: "XL" }, { color: "Rouge Grenat", size: "S" }, { color: "Jaune", size: "S" },            ]},
 
-{image: "img/28ket.jpg", name: "RobeA", priceUnit: "350", priceThree: "800", code: "AA1306", coupon: "coupon-gratuit 250Gdes", options: [   { color: "Vert", size: "M" },  { color: "Blanc", size: "XL" }, { color: "Blanc", size: "S" },{ color: "Blanc", size: "XL" }, { color: "Rouge Grenat", size: "S" }, { color: "Jaune", size: "S" },            ]},
 
-{image: "img/esther.jpg", name: "Robe011", priceUnit: "250", priceThree: "500", code: "AA7718", coupon: "coupon-gratuit 250Gdes", options: [ { color: "Rose", size: "L" }, { color: "Rose", size: "L" }, { color: "Jaune Abricot", size: "M" }, { color: "Jaune Abricot", size: "M" },  { color: "Bleu roi", size: "L" }, { color: "Bleu roi", size: "L" }, { color: "Blanc", size: "S" }, { color: "Blanc", size: "S" }, { color: "Creme", size: "S" }, { color: "Creme", size: "S" }, { color: "Jaune", size: "M" }, { color: "Jaune", size: "M" }]},
+
+{
+    images: ["img/esther.jpg", "img/esther.jpg",],
+ name: "Robe011", priceUnit: "250", priceThree: "500", code: "AA7718", coupon: "coupon-gratuit 250Gdes", options: [ { color: "Rose", size: "L" }, { color: "Rose", size: "L" }, { color: "Jaune Abricot", size: "M" }, { color: "Jaune Abricot", size: "M" },  { color: "Bleu roi", size: "L" }, { color: "Bleu roi", size: "L" }, { color: "Blanc", size: "S" }, { color: "Blanc", size: "S" }, { color: "Creme", size: "S" }, { color: "Creme", size: "S" }, { color: "Jaune", size: "M" }, { color: "Jaune", size: "M" }]},
 
  
 
 
-{image: "img/zette.jpg", name: "Modèle0001", priceUnit: "350", priceThree: "800", code: "GN23005", coupon: "coupon-gratuit 500Gdes", options: [  { color: "Rose", size: "S" }, { color: "Rose", size: "M" },  { color: "Vert", size: "M" }, { color: "Jaune ", size: "L" },  { color: "Jaune ", size: "L" },   { color: "Bleu Roi", size: "XXL" },   { color: "Blanc", size: "XL" },  { color: "Rouge", size: "XL" } , { color: "Rouge", size: "L" },  { color: "Blanc", size: "S" }, { color: "Blanc", size: "M" },      ]},
+{images: ["img/zette.jpg",], name: "Modèle0001", priceUnit: "350", priceThree: "800", code: "GN23005", coupon: "coupon-gratuit 500Gdes", options: [  { color: "Rose", size: "S" }, { color: "Rose", size: "M" },  { color: "Vert", size: "M" }, { color: "Jaune ", size: "L" },  { color: "Jaune ", size: "L" },   { color: "Bleu Roi", size: "XXL" },   { color: "Blanc", size: "XL" },  { color: "Rouge", size: "XL" } , { color: "Rouge", size: "L" },  { color: "Blanc", size: "S" }, { color: "Blanc", size: "M" },      ]},
 
 
 
-{image: "img/mov2.jpg", name: "Modèle0003", priceUnit: "350", priceThree: "850", code: "GP53005", coupon: "coupon-gratuit 500Gdes", options: [  { color: "Jaune ", size: "XXL" }, { color: "Jaune ", size: "XL" },{ color: "Jaune ", size: "M" }, { color: "Mauve ", size: "XXL" }, { color: "Jaune Abricot", size: "L" }, { color: "Jaune Abricot", size: "XXXL" }, { color: "Vert", size: "XXXL" }, { color: "Blanc", size: "L" }, { color: "Blanc", size: "S" }, { color: "Blanc", size: "M" },{ color: "Blanc", size: "XXL" },     ]},
-
-
-
-
-
-{image: "img/jupe toile.jpg", name: "Modèle0002", priceUnit: "300", priceThree: "700", code: "GN53005", coupon: "coupon-gratuit 500Gdes", options: [  { color: "Jaune Moutarde", size: "XXL" }, { color: "Creme", size: "M" }, { color: "Bleu ciel", size: "XL" }, { color: "Rose", size: "XXXL" },  { color: "Gris", size: "XL" }, { color: "Jaune Moutarde", size: "XL" },  { color: "Jaune Moutarde", size: "L" },   { color: "Bleu Roi", size: "L" },   { color: "Bleu Roi", size: "XL" },  { color: "Rouge", size: "XL" } , { color: "Noir", size: "L" },  { color: "Noir", size: "XL" }, { color: "Noir", size: "XL" },     ]},
+{images: ["img/mov2.jpg",], name: "Modèle0003", priceUnit: "350", priceThree: "850", code: "GP53005", coupon: "coupon-gratuit 500Gdes", options: [  { color: "Jaune ", size: "XXL" }, { color: "Jaune ", size: "XL" },{ color: "Jaune ", size: "M" }, { color: "Mauve ", size: "XXL" }, { color: "Jaune Abricot", size: "L" }, { color: "Jaune Abricot", size: "XXXL" }, { color: "Vert", size: "XXXL" }, { color: "Blanc", size: "L" }, { color: "Blanc", size: "S" }, { color: "Blanc", size: "M" },{ color: "Blanc", size: "XXL" },     ]},
 
 
 
 
-                {image: "img/Robe long.jpg", name: "Modèle1", priceUnit: "250", priceThree: "500", code: "AA718", coupon: "coupon-gratuit 250Gdes", options: [{ color: "Rouge", size: "M" }, { color: "Rouge", size: "S" }, { color: "Bleu", size: "M" }, { color: "Bleu", size: "S" }, { color: "Noir", size: "XL" }, { color: "Noir", size: "L" }, { color: "Blanc", size: "XL" }, { color: "Jaune", size: "S" }, { color: "Jaune", size: "XL" }, { color: "Jaune", size: "XL" }]},
-                {image: "img/belle modele.jpg", name: "Robe2", priceUnit: "250", priceThree: "500", code: "713", coupon: "coupon-gratuit 350Gdes", options: [ { color: "Bleu roi", size: "L" }, { color: "Bleu roi", size: "S" }, { color: "Marron", size: "XL" }, { color: "Rose", size: "XL" }, { color: "Blanc", size: "XL" }, ]},
-                {image: "img/robe3.jpg", name: "Robe3", priceUnit: "350", priceThree: "800", code: "AA1158", coupon: "coupon-gratuit 350Gdes", options: [{ color: "Vert", size: "L" }, { color: "Bleu", size: "S" }, { color: "Bleu", size: "M" }, { color: "Orange", size: "S" }, { color: "Orange", size: "M" }]},
-                {image: "img/parfum.jpg", name: "Parfum", priceUnit: "200$", priceThree: "500$", code: "AAX12", coupon: "coupon-gratuit 200Gdes", options: [{color: "Pour", size: "Femme"}, {color: "Pour", size: "Unisex"}, {color: "Pour", size: "Homme"}]},
-                {image: "img/djess.jpg", name: "Robe4", priceUnit: "250", priceThree: "550", code: "GN22233", coupon: "coupon-gratuit 300Gdes", options: [   { color: "Jaune", size: "M" },{ color: "Jaune", size: "XL" },{ color: "Jaune", size: "S" }, { color: "Jaune Abricot", size: "S" },  { color: "Jaune Abricot", size: "M" },{ color: "Jaune Abricot", size: "XL" },   { color: "Rouge Grenat", size: "L" }, { color: "Rouge Grenat", size: "XL" },   { color: "Noir", size: "L" },  { color: "Noir", size: "XL" },                            { color: "Jaune abricot", size: "XL" }, ]},
-                {image: "img/robe5.jpg", name: "Robe5", priceUnit: "250", priceThree: "500", code: "AA1077", coupon: "coupon-gratuit 250Gdes", options: [  { color: "Rupture", size: "de Stock" },]},
+
+{images:[ "img/jupe toile.jpg",], name: "Modèle0002", priceUnit: "300", priceThree: "700", code: "GN53005", coupon: "coupon-gratuit 500Gdes", options: [  { color: "Jaune Moutarde", size: "XXL" }, { color: "Creme", size: "M" }, { color: "Bleu ciel", size: "XL" }, { color: "Rose", size: "XXXL" },  { color: "Gris", size: "XL" }, { color: "Jaune Moutarde", size: "XL" },  { color: "Jaune Moutarde", size: "L" },   { color: "Bleu Roi", size: "L" },   { color: "Bleu Roi", size: "XL" },  { color: "Rouge", size: "XL" } , { color: "Noir", size: "L" },  { color: "Noir", size: "XL" }, { color: "Noir", size: "XL" },     ]},
+
+
+
+
+                {images:[ "img/Robe long.jpg",], name: "Modèle1", priceUnit: "250", priceThree: "500", code: "AA718", coupon: "coupon-gratuit 250Gdes", options: [{ color: "Rouge", size: "M" }, { color: "Rouge", size: "S" }, { color: "Bleu", size: "M" }, { color: "Bleu", size: "S" }, { color: "Noir", size: "XL" }, { color: "Noir", size: "L" }, { color: "Blanc", size: "XL" }, { color: "Jaune", size: "S" }, { color: "Jaune", size: "XL" }, { color: "Jaune", size: "XL" }]},
+                {images:[ "img/belle modele.jpg",], name: "Robe2", priceUnit: "250", priceThree: "500", code: "713", coupon: "coupon-gratuit 350Gdes", options: [ { color: "Bleu roi", size: "L" }, { color: "Bleu roi", size: "S" }, { color: "Marron", size: "XL" }, { color: "Rose", size: "XL" }, { color: "Blanc", size: "XL" }, ]},
+                {images:[ "img/robe3.jpg",], name: "Robe3", priceUnit: "350", priceThree: "800", code: "AA1158", coupon: "coupon-gratuit 350Gdes", options: [{ color: "Vert", size: "L" }, { color: "Bleu", size: "S" }, { color: "Bleu", size: "M" }, { color: "Orange", size: "S" }, { color: "Orange", size: "M" }]},
+                {images:[ "img/parfum.jpg",], name: "Parfum", priceUnit: "200$", priceThree: "500$", code: "AAX12", coupon: "coupon-gratuit 200Gdes", options: [{color: "Pour", size: "Femme"}, {color: "Pour", size: "Unisex"}, {color: "Pour", size: "Homme"}]},
+                {images:[ "img/djess.jpg",], name: "Robe4", priceUnit: "250", priceThree: "550", code: "GN22233", coupon: "coupon-gratuit 300Gdes", options: [   { color: "Jaune", size: "M" },{ color: "Jaune", size: "XL" },{ color: "Jaune", size: "S" }, { color: "Jaune Abricot", size: "S" },  { color: "Jaune Abricot", size: "M" },{ color: "Jaune Abricot", size: "XL" },   { color: "Rouge Grenat", size: "L" }, { color: "Rouge Grenat", size: "XL" },   { color: "Noir", size: "L" },  { color: "Noir", size: "XL" },                            { color: "Jaune abricot", size: "XL" }, ]},
+               {images:["img/robe5.jpg",], name: "Robe5", priceUnit: "250", priceThree: "500", code: "AA1077", coupon: "coupon-gratuit 250Gdes", options: [  { color: "Rupture", size: "de Stock" },]},
             
 
 
 
 
 
-                {image: "img/Truff.jpg", name: "Robe01", priceUnit: "250", priceThree: "600", code: "AA1300", coupon: "coupon-gratuit 250Gdes", options: [ { color: "Rouge", size: "S" }, { color: "Bleu Marin", size: "M" }, { color: "Bleu Marin", size: "S" }, { color: "Rose", size: "XL" },  { color: "Bleu Roi", size: "XL" }, { color: "Bleu Roi", size: "L" }, { color: "Jaune", size: "XL" }, { color: "Jaune", size: "L" }, { color: "Vert", size: "S" },{ color: "Vert", size: "M" },  ]}, 
+               {images:[ "img/Truff.jpg",], name: "Robe01", priceUnit: "250", priceThree: "600", code: "AA1300", coupon: "coupon-gratuit 250Gdes", options: [ { color: "Rouge", size: "S" }, { color: "Bleu Marin", size: "M" }, { color: "Bleu Marin", size: "S" }, { color: "Rose", size: "XL" },  { color: "Bleu Roi", size: "XL" }, { color: "Bleu Roi", size: "L" }, { color: "Jaune", size: "XL" }, { color: "Jaune", size: "L" }, { color: "Vert", size: "S" },{ color: "Vert", size: "M" },  ]}, 
                 
                 
                 
                             
 
-                {image: "img/corsage.jpg", name: "Modèle02", priceUnit: "20", priceThree: "450", code: "AA851", coupon: "coupon-gratuit 250Gdes", options: [{ color: "Jaune abricot", size: "XL" }, { color: "Jaune abricot", size: "L" }, { color: "Blan", size: "M" },  { color: "Rose", size: "XL" }, { color: "Rose", size: "L" },  { color: "Jaune", size: "M" }, { color: "Vert", size: "S" },{ color: "Vert", size: "L" }, { color: "Vert", size: "XL" },    ]}, 
+               { images:[ "img/corsage.jpg",], name: "Modèle02", priceUnit: "20", priceThree: "450", code: "AA851", coupon: "coupon-gratuit 250Gdes", options: [{ color: "Jaune abricot", size: "XL" }, { color: "Jaune abricot", size: "L" }, { color: "Blan", size: "M" },  { color: "Rose", size: "XL" }, { color: "Rose", size: "L" },  { color: "Jaune", size: "M" }, { color: "Vert", size: "S" },{ color: "Vert", size: "L" }, { color: "Vert", size: "XL" },    ]}, 
 
 
 
 
 
-{ image: "img/long long.jpg", name: "Robe6 ", priceUnit: "250", priceThree: "500", code: "AA716",coupon: "coupon-gratuit 250Gdes", options: [  { color: "Rose", size: "XL" },  { color: "Noir", size: "L" },  { color: "Blanc", size: "M" },  { color: "Jaune", size: "XL" },  { color: "Jaune", size: "L" },  { color: "Blanc", size: "M" },  { color: "Rouge", size: "XL" },  { color: "Rouge", size: "L" }] },
-{ image: "img/robe7.jpg", name: "Robe7", priceUnit: "250", priceThree: "500", code: "A718",coupon: "coupon-gratuit 250Gdes", options: [ { color: "Rouge", size: "M" }, { color: "Rouge", size: "S" }, { color: "Bleu", size: "M" }, { color: "Bleu", size: "S" }, { color: "Noir", size: "XL" }, { color: "Noir", size: "L" }, { color: "Blanc", size: "XL" }, { color: "Jaune", size: "S" }, { color: "Jaune", size: "XL" } ] },
-{ image: "img/mama.jpg", name: "Robe8 ", priceUnit: "250", priceThree: "600", code: "AA900",coupon: "coupon-gratuit 250Gdes", options: [ { color: "Rupture ", size: "de Stock" }, ] },
-{ image: "img/complet jupe.jpg", name: "Complet jupe ", priceUnit: "250", priceThree: "600", code: "AA1305",coupon: "coupon-gratuit 250Gdes", options: [   { color: "Rouge", size: "XL" },   { color: "Rouge", size: "M" },   { color: "Vert", size: "XL" },   { color: "Bleu", size: "S" },   { color: "Moutarde", size: "S" },   { color: "Rose", size: "L" } ] },
-{ image: "img/veste.jpg", name: "Veste ", priceUnit: "250", priceThree: "500", code: "AA888",coupon: "coupon-gratuit 250Gdes", options: [  { color: "Orange", size: "L" },  { color: "Bleu", size: "L" }, { color: "Vert", size: "XL" },  { color: "Rose", size: "M" },  { color: "Orange", size: "L" }, { color: "Orange", size: "XL" },   { color: "Orange", size: "L" }, ] },
-{ image: "img/long ceinture.jpg", name: "Robe9", priceUnit: "250", priceThree: "600", code: "AA1290",coupon: "coupon-gratuit 250Gdes", options: [   { color: "Rose", size: "S" },      { color: "Rouge grenat", size: "M" },   { color: "Rouge", size: "S" },   { color: "Bleu roi", size: "M" },   { color: "Noir", size: "L" } ] },
-{ image: "img/blan blan.jpg", name: "Robe10 ", priceUnit: "350", priceThree: "800", code: "AA3679",coupon: "coupon-gratuit 250Gdes", options: [  { color: "Blanc", size: "2XL" },  { color: "Blanc", size: "S" },  { color: "Blanc", size: "3XL" },  { color: "Rose", size: "3XL" },  { color: "Vert", size: "M" },  { color: "Bleu roi", size: "XL" }] },
-{ image: "img/robe long2.jpg", name: "Robe11", priceUnit: "350", priceThree: "850", code: "AA777",coupon: "coupon-gratuit 250Gdes", options: [  { color: "Mauve", size: "L" },  { color: "Mauve", size: "XL" },  { color: "Vert", size: "S" },  { color: "Blanc", size: "2XL" },  { color: "Blanc", size: "3XL" },  { color: "Bleu", size: "2XL" },  { color: "Bleu", size: "3XL" }] },
-{ image: "img/soulier.jpg", name: "Soulier", priceUnit: "500", priceThree: "1500", code: "0099",coupon: "coupon-gratuit 250Gdes", options: [  { color: "Noir", size: "39" },  { color: "Noir", size: "40" },  { color: "Noir", size: "42" },] },
-{ image: "img/robe12.jpg", name: "Robe12", priceUnit: "350", priceThree: "850", code: "AA9999",coupon: "coupon-gratuit 250Gdes", options: [    { color: "Bleu", size: "S" },  { color: "Jaune moutarde", size: "XL" },] },
-{ image: "img/hilas.jpg", name: "Robe13'", priceUnit: "300", priceThree: "750", code: "AA1159",coupon: "coupon-gratuit 250Gdes", options: [  { color: "Noir", size: "M" },  { color: "Noir", size: "M" },  { color: "Jaune moutarde", size: "L" }] },
-{ image: "img/pop.jpg", name: "Robe14", priceUnit: "300", priceThree: "750", code: "AA2463",coupon: "coupon-gratuit 250Gdes", options: [  { color: "Bleu roi", size: "L" },  { color: "Blanc", size: "L" },  { color: "Rose", size: "L" },  { color: "Rose", size: "S" },  { color: "Or", size: "M" }] },
-{ image: "img/cloche.jpg", name: "Robe15", priceUnit: "250", priceThree: "500", code: "AA1188",coupon: "coupon-gratuit 250Gdes", options: [  { color: "Rose", size: "XL" },  { color: "Vert", size: "M" },  { color: "Jaune abricot", size: "L" }] },
-{ image: "img/arold.jpg", name: "Robe16", priceUnit: "300", priceThree: "750", code: "AA102",coupon: "coupon-gratuit 250Gdes", options: [  { color: "Blan", size: "L" },  { color: "Blan", size: "M" },  { color: "Blan", size: "XL" },  { color: "Noir", size: "S" }] },
-{ image: "img/emilie.jpg", name: "Robe17", priceUnit: "250", priceThree: "500", code: "AA1124",coupon: "coupon-gratuit 250Gdes", options: [  { color: "Blan", size: "S" },  { color: "Noir", size: "L" }, ] },
-{ image: "img/tg.jpg", name: "Robe18", priceUnit: "250", priceThree: "600", code: "AA20",coupon: "coupon-gratuit 250Gdes", options: [  { color: "Blan", size: "S" },  { color: "Rose", size: "XL" }] },
-{ image: "img/ti boul.jpg", name: "Robe19", priceUnit: "350", priceThree: "850", code: "AA3247",coupon: "coupon-gratuit 250Gdes", options: [  { color: "Noir", size: "M" },  { color: "Blan", size: "M" },  { color: "Jaune moutarde", size: "M" },  { color: "Bleu roi", size: "M" }] },
-{ image: "img/ge.jpg", name: "Robe20", priceUnit: "350", priceThree: "850", code: "AAxxxx",coupon: "coupon-gratuit 250Gdes", options: [  { color: "Bleu roi", size: "S" },  { color: "Blan", size: "M" },  { color: "Blan", size: "S" },  { color: "Rouge sang", size: "S" }] },
-{ image: "img/mr.jpg", name: "Robe21", priceUnit: "250", priceThree: "600", code: "AA1125",coupon: "coupon-gratuit 250Gdes", options: [    { color: "Bleu roi", size: "S" },  { color: "Bleu roi", size: "S" },    { color: "Blan", size: "L" },   { color: "Jaune abricot", size: "S" }] },
-{ image: "img/ma.jpg", name: "Robe22", priceUnit: "250", priceThree: "500", code: "AA574",coupon: "coupon-gratuit 250Gdes", options: [    { color: "Blan", size: "L" },  { color: "Blan", size: "XL" }, ] },
-{ image: "img/tk.jpg", name: "Robe23", priceUnit: "250", priceThree: "500", code: "AA854",coupon: "coupon-gratuit 250Gdes", options: [  { color: "Rose", size: "L" },  { color: "Bleu roi", size: "M" },  { color: "Jaune", size: "M" },  { color: "Blan", size: "L" },  { color: "Blan", size: "XL" },  { color: "Bleu ciel", size: "M" }, ] },
-{ image: "img/jeans.jpg", name: "Robe24", priceUnit: "250", priceThree: "500", code: "AA20",coupon: "coupon-gratuit 250Gdes", options: [  { color: "Bleu", size: "M" },  { color: "Bleu", size: "M" },  { color: "Bleu", size: "L" },  { color: "Bleu", size: "L" },  { color: "Bleu", size: "L" },  { color: "Bleu", size: "XL" },  { color: "Bleu", size: "XL" },  { color: "Bleu", size: "XL" },  { color: "Bleu", size: "XXL" },  { color: "Bleu", size: "XXL" },  { color: "Bleu", size: "XXL" },  { color: "Bleu", size: "XXL" }] },
+{ images:[ "img/long long.jpg",], name: "Robe6 ", priceUnit: "250", priceThree: "500", code: "AA716",coupon: "coupon-gratuit 250Gdes", options: [  { color: "Rose", size: "XL" },  { color: "Noir", size: "L" },  { color: "Blanc", size: "M" },  { color: "Jaune", size: "XL" },  { color: "Jaune", size: "L" },  { color: "Blanc", size: "M" },  { color: "Rouge", size: "XL" },  { color: "Rouge", size: "L" }] },
+{ images:[ "img/robe7.jpg",], name: "Robe7", priceUnit: "250", priceThree: "500", code: "A718",coupon: "coupon-gratuit 250Gdes", options: [ { color: "Rouge", size: "M" }, { color: "Rouge", size: "S" }, { color: "Bleu", size: "M" }, { color: "Bleu", size: "S" }, { color: "Noir", size: "XL" }, { color: "Noir", size: "L" }, { color: "Blanc", size: "XL" }, { color: "Jaune", size: "S" }, { color: "Jaune", size: "XL" } ] },
+{images:[ "img/mama.jpg",], name: "Robe8 ", priceUnit: "250", priceThree: "600", code: "AA900",coupon: "coupon-gratuit 250Gdes", options: [ { color: "Rupture ", size: "de Stock" }, ] },
+{ images:[ "img/complet jupe.jpg",], name: "Complet jupe ", priceUnit: "250", priceThree: "600", code: "AA1305",coupon: "coupon-gratuit 250Gdes", options: [   { color: "Rouge", size: "XL" },   { color: "Rouge", size: "M" },   { color: "Vert", size: "XL" },   { color: "Bleu", size: "S" },   { color: "Moutarde", size: "S" },   { color: "Rose", size: "L" } ] },
+{images:["img/veste.jpg",], name: "Veste ", priceUnit: "250", priceThree: "500", code: "AA888",coupon: "coupon-gratuit 250Gdes", options: [  { color: "Orange", size: "L" },  { color: "Bleu", size: "L" }, { color: "Vert", size: "XL" },  { color: "Rose", size: "M" },  { color: "Orange", size: "L" }, { color: "Orange", size: "XL" },   { color: "Orange", size: "L" }, ] },
+{ images:[ "img/long ceinture.jpg",], name: "Robe9", priceUnit: "250", priceThree: "600", code: "AA1290",coupon: "coupon-gratuit 250Gdes", options: [   { color: "Rose", size: "S" },      { color: "Rouge grenat", size: "M" },   { color: "Rouge", size: "S" },   { color: "Bleu roi", size: "M" },   { color: "Noir", size: "L" } ] },
+{ images:[ "img/blan blan.jpg",], name: "Robe10 ", priceUnit: "350", priceThree: "800", code: "AA3679",coupon: "coupon-gratuit 250Gdes", options: [  { color: "Blanc", size: "2XL" },  { color: "Blanc", size: "S" },  { color: "Blanc", size: "3XL" },  { color: "Rose", size: "3XL" },  { color: "Vert", size: "M" },  { color: "Bleu roi", size: "XL" }] },
+{ images:[ "img/robe long2.jpg",], name: "Robe11", priceUnit: "350", priceThree: "850", code: "AA777",coupon: "coupon-gratuit 250Gdes", options: [  { color: "Mauve", size: "L" },  { color: "Mauve", size: "XL" },  { color: "Vert", size: "S" },  { color: "Blanc", size: "2XL" },  { color: "Blanc", size: "3XL" },  { color: "Bleu", size: "2XL" },  { color: "Bleu", size: "3XL" }] },
+{images:[ "img/soulier.jpg",], name: "Soulier", priceUnit: "500", priceThree: "1500", code: "0099",coupon: "coupon-gratuit 250Gdes", options: [  { color: "Noir", size: "39" },  { color: "Noir", size: "40" },  { color: "Noir", size: "42" },] },
+{images:[ "img/robe12.jpg",], name: "Robe12", priceUnit: "350", priceThree: "850", code: "AA9999",coupon: "coupon-gratuit 250Gdes", options: [    { color: "Bleu", size: "S" },  { color: "Jaune moutarde", size: "XL" },] },
+{ images:[ "img/hilas.jpg",], name: "Robe13'", priceUnit: "300", priceThree: "750", code: "AA1159",coupon: "coupon-gratuit 250Gdes", options: [  { color: "Noir", size: "M" },  { color: "Noir", size: "M" },  { color: "Jaune moutarde", size: "L" }] },
+{ images:[ "img/pop.jpg",], name: "Robe14", priceUnit: "300", priceThree: "750", code: "AA2463",coupon: "coupon-gratuit 250Gdes", options: [  { color: "Bleu roi", size: "L" },  { color: "Blanc", size: "L" },  { color: "Rose", size: "L" },  { color: "Rose", size: "S" },  { color: "Or", size: "M" }] },
+{ images:[ "img/cloche.jpg",], name: "Robe15", priceUnit: "250", priceThree: "500", code: "AA1188",coupon: "coupon-gratuit 250Gdes", options: [  { color: "Rose", size: "XL" },  { color: "Vert", size: "M" },  { color: "Jaune abricot", size: "L" }] },
+{ images:[ "img/arold.jpg",], name: "Robe16", priceUnit: "300", priceThree: "750", code: "AA102",coupon: "coupon-gratuit 250Gdes", options: [  { color: "Blan", size: "L" },  { color: "Blan", size: "M" },  { color: "Blan", size: "XL" },  { color: "Noir", size: "S" }] },
+{ images:[ "img/emilie.jpg",], name: "Robe17", priceUnit: "250", priceThree: "500", code: "AA1124",coupon: "coupon-gratuit 250Gdes", options: [  { color: "Blan", size: "S" },  { color: "Noir", size: "L" }, ] },
+{ images:[ "img/tg.jpg",], name: "Robe18", priceUnit: "250", priceThree: "600", code: "AA20",coupon: "coupon-gratuit 250Gdes", options: [  { color: "Blan", size: "S" },  { color: "Rose", size: "XL" }] },
+{ images:[ "img/ti boul.jpg",], name: "Robe19", priceUnit: "350", priceThree: "850", code: "AA3247",coupon: "coupon-gratuit 250Gdes", options: [  { color: "Noir", size: "M" },  { color: "Blan", size: "M" },  { color: "Jaune moutarde", size: "M" },  { color: "Bleu roi", size: "M" }] },
+{ images:[ "img/ge.jpg",], name: "Robe20", priceUnit: "350", priceThree: "850", code: "AAxxxx",coupon: "coupon-gratuit 250Gdes", options: [  { color: "Bleu roi", size: "S" },  { color: "Blan", size: "M" },  { color: "Blan", size: "S" },  { color: "Rouge sang", size: "S" }] },
+{ images:[ "img/mr.jpg",], name: "Robe21", priceUnit: "250", priceThree: "600", code: "AA1125",coupon: "coupon-gratuit 250Gdes", options: [    { color: "Bleu roi", size: "S" },  { color: "Bleu roi", size: "S" },    { color: "Blan", size: "L" },   { color: "Jaune abricot", size: "S" }] },
+{ images:[ "img/ma.jpg",], name: "Robe22", priceUnit: "250", priceThree: "500", code: "AA574",coupon: "coupon-gratuit 250Gdes", options: [    { color: "Blan", size: "L" },  { color: "Blan", size: "XL" }, ] },
+{ images:[ "img/tk.jpg",], name: "Robe23", priceUnit: "250", priceThree: "500", code: "AA854",coupon: "coupon-gratuit 250Gdes", options: [  { color: "Rose", size: "L" },  { color: "Bleu roi", size: "M" },  { color: "Jaune", size: "M" },  { color: "Blan", size: "L" },  { color: "Blan", size: "XL" },  { color: "Bleu ciel", size: "M" }, ] },
+{ images:[ "img/jeans.jpg",], name: "Robe24", priceUnit: "250", priceThree: "500", code: "AA20",coupon: "coupon-gratuit 250Gdes", options: [  { color: "Bleu", size: "M" },  { color: "Bleu", size: "M" },  { color: "Bleu", size: "L" },  { color: "Bleu", size: "L" },  { color: "Bleu", size: "L" },  { color: "Bleu", size: "XL" },  { color: "Bleu", size: "XL" },  { color: "Bleu", size: "XL" },  { color: "Bleu", size: "XXL" },  { color: "Bleu", size: "XXL" },  { color: "Bleu", size: "XXL" },  { color: "Bleu", size: "XXL" }] },
 
 
-{image: "img/evaser.jpg", name: "Robe25", priceUnit: "350$", priceThree: "800$", code: "P301",coupon: "coupon-gratuit 250Gdes", options: [{color: "Noir", size: "M"}, {color: "Bleu", size: "M"},   { color: "Jaune", size: "M" }, {color: "Blan", size: "M"}, {color: "Blan", size: "S"}, {color: "Rose", size: "S"}  ]},
-            {image: "img/gerdex.jpg", name: "Robe26", priceUnit: "350$", priceThree: "800$",coupon: "coupon-gratuit 250Gdes", code: "P302", options: [{color: "Rupture", size: "de Stock"} ]},
-         {image: "img/grimel 24.jpg", name: "Robe27", priceUnit: "300$", priceThree: "700$", code: "AA512", coupon: "coupon-gratuit 350Gdes", options: [{color: "Vert", size: "XXL"}, {color: "Vert", size: "XXXL"}, {color: "Blanc", size: "L"}, {color: "Blanc", size: "XL"}, {color: "Blanc", size: "XXL"}, {color: "Blanc", size: "XXXL"}, {color: "Jaune", size: "L"},  {color: "Jaune", size: "XL"}, {color: "Rouge", size: "M"}, {color: "Rouge", size: "S"}, {color: "Bleu marin", size: "S"}, {color: "Bleu Marin", size: "M"}                                     ]},
-            {image: "img/jupe jeans.jpg", name: "Jupe Jeans", priceUnit: "253000$", priceThree: "700$", code: "P202",coupon: "coupon-gratuit 250Gdes", options: [{color: "Bleu", size: "13.14"},{color: "Bleu", size: "11.12"},{color: "Bleu", size: "11.12"}, ]},
-         {image: "img/jupe.jpg", name: "Jupe Tissus", priceUnit: "300$", priceThree: "700$", code: "AA512",coupon: "coupon-gratuit 250Gdes", options: [{color: "Noir", size: "L"}, {color: "Noir", size: "L"}, {color: "Noir", size: "XL"}]},
-            {image: "img/mayo gason 2.jpg", name: "Maillot Gason, Forme (P) ", priceUnit: "300$", priceThree: "700$", code: "P202",coupon: "coupon-gratuit 250Gdes", options: [{color: "Bleu Ciel", size: "XXL"},                               {color: "Bleu Ciel", size: "M"}, {color: "Bleu Ciel", size: "M"},{color: "Jaune Abricot ", size: "L"}, {color: "Jaune Abricot ", size: "XXL"},{color: "Jaune Abricot ", size: "M"}, {color: "Gris", size: "L"},{color: "Gris", size: "XXL"}, {color: "Gris", size: "M"},{color: "Gris", size: "M"},{color: "Gris", size: "XXL"},{color: "Bleu Ciel", size: "L"},{color: "Blan", size: "XL"}, {color: "Rose", size: "XXL"}, {color: "Rose", size: "M"},{color: "Jaune", size: "XXL"}, {color: "Noir", size: "XXL"}]},
+{images:[ "img/evaser.jpg",], name: "Robe25", priceUnit: "350$", priceThree: "800$", code: "P301",coupon: "coupon-gratuit 250Gdes", options: [{color: "Noir", size: "M"}, {color: "Bleu", size: "M"},   { color: "Jaune", size: "M" }, {color: "Blan", size: "M"}, {color: "Blan", size: "S"}, {color: "Rose", size: "S"}  ]},
+            {images:[ "img/gerdex.jpg",], name: "Robe26", priceUnit: "350$", priceThree: "800$",coupon: "coupon-gratuit 250Gdes", code: "P302", options: [{color: "Rupture", size: "de Stock"} ]},
+         {images:[ "img/grimel 24.jpg",], name: "Robe27", priceUnit: "300$", priceThree: "700$", code: "AA512", coupon: "coupon-gratuit 350Gdes", options: [{color: "Vert", size: "XXL"}, {color: "Vert", size: "XXXL"}, {color: "Blanc", size: "L"}, {color: "Blanc", size: "XL"}, {color: "Blanc", size: "XXL"}, {color: "Blanc", size: "XXXL"}, {color: "Jaune", size: "L"},  {color: "Jaune", size: "XL"}, {color: "Rouge", size: "M"}, {color: "Rouge", size: "S"}, {color: "Bleu marin", size: "S"}, {color: "Bleu Marin", size: "M"}                                     ]},
+            {images:["img/jupe jeans.jpg",], name: "Jupe Jeans", priceUnit: "253000$", priceThree: "700$", code: "P202",coupon: "coupon-gratuit 250Gdes", options: [{color: "Bleu", size: "13.14"},{color: "Bleu", size: "11.12"},{color: "Bleu", size: "11.12"}, ]},
+         {images:[ "img/jupe.jpg",], name: "Jupe Tissus", priceUnit: "300$", priceThree: "700$", code: "AA512",coupon: "coupon-gratuit 250Gdes", options: [{color: "Noir", size: "L"}, {color: "Noir", size: "L"}, {color: "Noir", size: "XL"}]},
+            {images:[ "img/mayo gason 2.jpg"], name: "Maillot Gason, Forme (P) ", priceUnit: "300$", priceThree: "700$", code: "P202",coupon: "coupon-gratuit 250Gdes", options: [{color: "Bleu Ciel", size: "XXL"},                               {color: "Bleu Ciel", size: "M"}, {color: "Bleu Ciel", size: "M"},{color: "Jaune Abricot ", size: "L"}, {color: "Jaune Abricot ", size: "XXL"},{color: "Jaune Abricot ", size: "M"}, {color: "Gris", size: "L"},{color: "Gris", size: "XXL"}, {color: "Gris", size: "M"},{color: "Gris", size: "M"},{color: "Gris", size: "XXL"},{color: "Bleu Ciel", size: "L"},{color: "Blan", size: "XL"}, {color: "Rose", size: "XXL"}, {color: "Rose", size: "M"},{color: "Jaune", size: "XXL"}, {color: "Noir", size: "XXL"}]},
         
-         {image: "img/nadine.jpg", name: "Robe28", priceUnit: "350$", priceThree: "850$", code: "AA512",coupon: "coupon-gratuit 250Gdes", options: [{color: "Blan", size: "M"},{color: "Blan", size: "M"}, {color: "Jaune", size: "S"}]},
-            {image: "img/new Louna.jpg", name: "Modele22", priceUnit: "300$", priceThree: "700$", code: "P202",coupon: "coupon-gratuit 250Gdes", options: [{color: "Bleu", size: "XXL"},{color: "Bleu", size: "L"}, {color: "Rouge", size: "M"},{color: "Rouge", size: "XXXL"}, {color: "Blan", size: "M"}, {color: "Blan", size: "XLL"}, {color: "Noir", size: "M"},{color: "Noir", size: "XSL"}, {color: "Rouge", size: "XL"}]},
+         {images:[ "img/nadine.jpg",], name: "Robe28", priceUnit: "350$", priceThree: "850$", code: "AA512",coupon: "coupon-gratuit 250Gdes", options: [{color: "Blan", size: "M"},{color: "Blan", size: "M"}, {color: "Jaune", size: "S"}]},
+            {images:[ "img/new Louna.jpg",], name: "Modele22", priceUnit: "300$", priceThree: "700$", code: "P202",coupon: "coupon-gratuit 250Gdes", options: [{color: "Bleu", size: "XXL"},{color: "Bleu", size: "L"}, {color: "Rouge", size: "M"},{color: "Rouge", size: "XXXL"}, {color: "Blan", size: "M"}, {color: "Blan", size: "XLL"}, {color: "Noir", size: "M"},{color: "Noir", size: "XSL"}, {color: "Rouge", size: "XL"}]},
         
-         {image: "img/new ti men.jpg", name: "Robe29", priceUnit: "350$", priceThree: "850$", code: "AA512",coupon: "coupon-gratuit 250Gdes", options: [{color: "Blan", size: "XL"}, {color: "Jaune", size: "XXL"} , {color: "Jaune Moutarde", size: "XXXL"},      {color: "Jaune Moutarde", size: "XXL"}, {color: "Rose Raquette", size: "XL"},  {color: "Blan", size: "S"},{color: "Blan", size: "XXL"},{color: "Blan", size: "XXXL"},  {color: "Bleu Roi", size: "L"}, {color: "Rose Pal", size: "XXL"}, {color: "Blan", size: "M"},{color: "Rose Raquette", size: "L"}, {color: "Vert", size: "S"},{color: "Vert", size: "M"},      ]},
-            {image: "img/robe anna.jpg", name: "Robe30", priceUnit: "300$", priceThree: "700$", code: "P202",coupon: "coupon-gratuit 250Gdes", options: [ {color: "Bleu Turquoise", size: "S"},            ]},
+         {images:[ "img/new ti men.jpg",], name: "Robe29", priceUnit: "350$", priceThree: "850$", code: "AA512",coupon: "coupon-gratuit 250Gdes", options: [{color: "Blan", size: "XL"}, {color: "Jaune", size: "XXL"} , {color: "Jaune Moutarde", size: "XXXL"},      {color: "Jaune Moutarde", size: "XXL"}, {color: "Rose Raquette", size: "XL"},  {color: "Blan", size: "S"},{color: "Blan", size: "XXL"},{color: "Blan", size: "XXXL"},  {color: "Bleu Roi", size: "L"}, {color: "Rose Pal", size: "XXL"}, {color: "Blan", size: "M"},{color: "Rose Raquette", size: "L"}, {color: "Vert", size: "S"},{color: "Vert", size: "M"},      ]},
+            {images:[ "img/robe anna.jpg",], name: "Robe30", priceUnit: "300$", priceThree: "700$", code: "P202",coupon: "coupon-gratuit 250Gdes", options: [ {color: "Bleu Turquoise", size: "S"},            ]},
         
-         {image: "img/robe legliz.jpg", name: "Robe31", priceUnit: "350$", priceThree: "850$", code: "AA512",coupon: "coupon-gratuit 250Gdes", options: [{color: "Rupture", size: "de Stock"}]},
-            {image: "img/Taillieurs.jpg", name: "Robe32", priceUnit: "350$", priceThree: "850$", code: "P202",coupon: "coupon-gratuit 250Gdes", options: [{color: "Jaune", size: "M"}]},
+         {images:[ "img/robe legliz.jpg",], name: "Robe31", priceUnit: "350$", priceThree: "850$", code: "AA512",coupon: "coupon-gratuit 250Gdes", options: [{color: "Rupture", size: "de Stock"}]},
+            {images:[ "img/Taillieurs.jpg",], name: "Robe32", priceUnit: "350$", priceThree: "850$", code: "P202",coupon: "coupon-gratuit 250Gdes", options: [{color: "Jaune", size: "M"}]},
 
 
- {image: "img/2 koule.jpg", name: "Robe33", priceUnit: "300$", priceThree: "650$", code: "AA512",coupon: "coupon-gratuit 250Gdes", options: [{color: "Rouge et noir", size: "S"},{color: "Rouge et noir", size: "XL"},    {color: "Rose et Blan", size: "Xl"},  {color: "Noir et Blan", size: "XL"}, {color: "Noir et Blan", size: "XL"},    ]},
-            {image: "img/bouquet fleurs.jpg", name: "Robe34", priceUnit: "250$", priceThree: "600$", code: "AA1123",coupon: "coupon-gratuit 250Gdes", options: [ {color: "Rouge", size: "S"},  {color: "Rouge", size: "L"}, {color: "Rouge", size: "XL"}, {color: "Rouge", size: "L"}, {color: "Rouge", size: "XL"},  {color: "Bleu Roi", size: "XL"},   {color: "Bleu Marin", size: "S"}, {color: "Rose", size: "M"},                 ]},
-            {image: "img/bout konple.jpg", name: "Complet simple", priceUnit: "250$", priceThree: "600$", code: "AA512",coupon: "coupon-gratuit 250Gdes", options: [{color: "Rupture", size: "de Stock"} ]},
-            {image: "img/bout manche.jpg", name: "Robe35", priceUnit: "250$", priceThree: "600$", code: "P202",coupon: "coupon-gratuit 250Gdes", options: [ {color: "Rupture", size: "de Stock"},]},
-            {image: "img/catalina.jpg", name: "Robe36", priceUnit: "250$", priceThree: "600$", code: "AA512",coupon: "coupon-gratuit 250Gdes", options: [{color: "Blan", size: "L"}, {color: "Rouge", size: "L"}, {color: "Rouge", size: "M"}, {color: "Bleu", size: "XL"}, {color: "Rouge", size: "L"}]},
+ {images:[ "img/2 koule.jpg",], name: "Robe33", priceUnit: "300$", priceThree: "650$", code: "AA512",coupon: "coupon-gratuit 250Gdes", options: [{color: "Rouge et noir", size: "S"},{color: "Rouge et noir", size: "XL"},    {color: "Rose et Blan", size: "Xl"},  {color: "Noir et Blan", size: "XL"}, {color: "Noir et Blan", size: "XL"},    ]},
+            {images:[ "img/bouquet fleurs.jpg",], name: "Robe34", priceUnit: "250$", priceThree: "600$", code: "AA1123",coupon: "coupon-gratuit 250Gdes", options: [ {color: "Rouge", size: "S"},  {color: "Rouge", size: "L"}, {color: "Rouge", size: "XL"}, {color: "Rouge", size: "L"}, {color: "Rouge", size: "XL"},  {color: "Bleu Roi", size: "XL"},   {color: "Bleu Marin", size: "S"}, {color: "Rose", size: "M"},                 ]},
+            {images:[ "img/bout konple.jpg",], name: "Complet simple", priceUnit: "250$", priceThree: "600$", code: "AA512",coupon: "coupon-gratuit 250Gdes", options: [{color: "Rupture", size: "de Stock"} ]},
+            {images:[ "img/bout manche.jpg",], name: "Robe35", priceUnit: "250$", priceThree: "600$", code: "P202",coupon: "coupon-gratuit 250Gdes", options: [ {color: "Rupture", size: "de Stock"},]},
+            {images:[ "img/catalina.jpg",], name: "Robe36", priceUnit: "250$", priceThree: "600$", code: "AA512",coupon: "coupon-gratuit 250Gdes", options: [{color: "Blan", size: "L"}, {color: "Rouge", size: "L"}, {color: "Rouge", size: "M"}, {color: "Bleu", size: "XL"}, {color: "Rouge", size: "L"}]},
             
-           {image: "img/djessica1.jpg", name: "Robe37", priceUnit: "250$", priceThree: "600$", code: "AA512",coupon: "coupon-gratuit 250Gdes", options: [ {color: "Rose Raket", size: "M"},  {color: "Blanc", size: "S"},                                ]},
-            {image: "img/new bleu.jpg", name: "Robe38", priceUnit: "250$", priceThree: "600$", code: "P202",coupon: "coupon-gratuit 400Gdes", options: [    {color: " Marron", size: "S"},  {color: " Marron", size: "S"}, {color: "Bleu Roi", size: "S"}, {color: " Marron", size: "S"},{color: " Marron", size: "M"}, {color: "Bleu Roi", size: "S"},{color: "Bleu Roi", size: "M"},{color: "Bleu Roi", size: "XL"},  {color: "Blan", size: "M"},{color: "Blan", size: "L"}, {color: "Jaune", size: "S"}, {color: "Jaune", size: "L"}, {color: " Rouge", size: "Xl"},{color: " Rouge", size: "L"}, {color: " Vert", size: "S"},{color: " Vert", size: "M"}, {color: " Vert", size: "M"},{color: " Rose", size: "L"}, {color: " Noir", size: "L"},                                  ]},
-           {image: "img/robe a veste.jpg", name: "Robe39, Forme (P)", priceUnit: "250$", priceThree: "600$", code: "AA512",coupon: "coupon-gratuit 250Gdes", options: [{color: "Jaune ", size: "XL"},{color: "Jaune Moutarde", size: "L"}, {color: "Brique", size: "XL"},{color: "Brique", size: "L"},  ]},
-            {image: "img/Robe rose.jpg", name: "Robe40", priceUnit: "250$", priceThree: "600$", code: "P202",coupon: "coupon-gratuit 250Gdes", options: [{color: "Bleu Roi", size: "XL"},{color: "Bleu Roi", size: "XL"},{color: "Blan", size: "XL"},{color: "Jaune Maïs", size: "XL"}, {color: "Jaune Maïs", size: "M"} ]},
+           {images:[ "img/djessica1.jpg",], name: "Robe37", priceUnit: "250$", priceThree: "600$", code: "AA512",coupon: "coupon-gratuit 250Gdes", options: [ {color: "Rose Raket", size: "M"},  {color: "Blanc", size: "S"},                                ]},
+            {images:[ "img/new bleu.jpg",], name: "Robe38", priceUnit: "250$", priceThree: "600$", code: "P202",coupon: "coupon-gratuit 400Gdes", options: [    {color: " Marron", size: "S"},  {color: " Marron", size: "S"}, {color: "Bleu Roi", size: "S"}, {color: " Marron", size: "S"},{color: " Marron", size: "M"}, {color: "Bleu Roi", size: "S"},{color: "Bleu Roi", size: "M"},{color: "Bleu Roi", size: "XL"},  {color: "Blan", size: "M"},{color: "Blan", size: "L"}, {color: "Jaune", size: "S"}, {color: "Jaune", size: "L"}, {color: " Rouge", size: "Xl"},{color: " Rouge", size: "L"}, {color: " Vert", size: "S"},{color: " Vert", size: "M"}, {color: " Vert", size: "M"},{color: " Rose", size: "L"}, {color: " Noir", size: "L"},                                  ]},
+           {images:[ "img/robe a veste.jpg",], name: "Robe39, Forme (P)", priceUnit: "250$", priceThree: "600$", code: "AA512",coupon: "coupon-gratuit 250Gdes", options: [{color: "Jaune ", size: "XL"},{color: "Jaune Moutarde", size: "L"}, {color: "Brique", size: "XL"},{color: "Brique", size: "L"},  ]},
+            {images:[ "img/Robe rose.jpg",], name: "Robe40", priceUnit: "250$", priceThree: "600$", code: "P202",coupon: "coupon-gratuit 250Gdes", options: [{color: "Bleu Roi", size: "XL"},{color: "Bleu Roi", size: "XL"},{color: "Blan", size: "XL"},{color: "Jaune Maïs", size: "XL"}, {color: "Jaune Maïs", size: "M"} ]},
           
-            {image: "img/tuile yon manche.jpg", name: "Robe41", priceUnit: "250$", priceThree: "600$", code: "P202",coupon: "coupon-gratuit 350Gdes", options: [{color: "Rupture", size: "de Stock"}, ]},
+            {images:[ "img/tuile yon manche.jpg",], name: "Robe41", priceUnit: "250$", priceThree: "600$", code: "P202",coupon: "coupon-gratuit 350Gdes", options: [{color: "Rupture", size: "de Stock"}, ]},
 
 
-            {image: "img/sans manche.jpg", name: "Robe42.", priceUnit: "250$", priceThree: "500$", code: "AA682",coupon: "coupon-gratuit 500Gdes", options: [{color: "Rose", size: "M"}, {color: "Rose", size: "L"}, {color: "Rouge", size: "M"}, {color: "Blan", size: "XL"}, {color: "Bleu Roi", size: "XL"}, {color: "Bleu Roi", size: "XL"}, ]},
-{image: "img/robe 500.jpg", name: "Robe43.", priceUnit: "250$", priceThree: "500$", code: "AA1170",coupon: "coupon-gratuit 250Gdes", options: [ {color: "Rouge Grenat", size: "S"}, {color: "Bleu Roi", size: "XL"}, {color: "Vert Pal", size: "XL"}, {color: "Vert Pal", size: "XL"}, {color: "Vert Pal", size: "XL"}, {color: "Vert Froncé", size: "L"}, {color: "Vert Froncé", size: "S"}, {color: "Vert Pal", size: "S"},]},
+            {images:[ "img/sans manche.jpg",], name: "Robe42.", priceUnit: "250$", priceThree: "500$", code: "AA682",coupon: "coupon-gratuit 500Gdes", options: [{color: "Rose", size: "M"}, {color: "Rose", size: "L"}, {color: "Rouge", size: "M"}, {color: "Blan", size: "XL"}, {color: "Bleu Roi", size: "XL"}, {color: "Bleu Roi", size: "XL"}, ]},
+{images:[ "img/robe 500.jpg",], name: "Robe43.", priceUnit: "250$", priceThree: "500$", code: "AA1170",coupon: "coupon-gratuit 250Gdes", options: [ {color: "Rouge Grenat", size: "S"}, {color: "Bleu Roi", size: "XL"}, {color: "Vert Pal", size: "XL"}, {color: "Vert Pal", size: "XL"}, {color: "Vert Pal", size: "XL"}, {color: "Vert Froncé", size: "L"}, {color: "Vert Froncé", size: "S"}, {color: "Vert Pal", size: "S"},]},
 
-{image: "img/complet Gustavo.jpg", name: "Robe44.", priceUnit: "250$", priceThree: "500$", code: "15-3G45",coupon: "coupon-gratuit 250Gdes", options: [{color: "Rouge et Noir", size: "M"}, {color: "Jaune et Noir", size: "M"},{color: "Jaune et Noir", size: "XL"},{color: "Jaune et Noir", size: "L"}, {color: "Marron et Noir", size: "XL"}, ]},
+{images:[ "img/complet Gustavo.jpg",], name: "Robe44.", priceUnit: "250$", priceThree: "500$", code: "15-3G45",coupon: "coupon-gratuit 250Gdes", options: [{color: "Rouge et Noir", size: "M"}, {color: "Jaune et Noir", size: "M"},{color: "Jaune et Noir", size: "XL"},{color: "Jaune et Noir", size: "L"}, {color: "Marron et Noir", size: "XL"}, ]},
 
-{image: "img/colan.jpg", name: "Colan de sport et de petite sortie.", priceUnit: "100$", priceThree: "250$", code: "0000",coupon: "coupon-gratuit 250Gdes", options: [{color: "Noir", size: "One size"}, {color: "Rouge Grenat", size: "One size"}, {color: "Vert", size: "One size"}, {color: "Marron", size: "One size"},]},
-{image: "img/mayo gason.jpg", name: "Parfait pour les sortie publiques.", priceUnit: "100$", priceThree: "300$", code: "0001",coupon: "coupon-gratuit 250Gdes", options: [ {color: "Jaune Abricot", size: "XL"},  {color: "Gris", size: "M"},  {color: "Noir", size: "L"}, {color: "Bleu", size: "M"},  {color: "Vert", size: "M"}, ]},
-{image: "img/madan baby.jpg", name: "Robe45.", priceUnit: "250$", priceThree: "500$", code: "AA921",coupon: "coupon-gratuit 250Gdes", options: [{color: "Rupture", size: "de Stock"},]},
-{image: "img/pantalon leopard.jpg", name: "Jeans Recreative, forme normal.", priceUnit: "250$", priceThree: "500$", code: "AA905",coupon: "coupon-gratuit 250Gdes", options: [{color: "Bleu pale", size: "5.6, 7.8, 9.10, 11.12, 13.14, 15.16"}, {color: "Bleu foncé", size: "5.6, 7.8, 9.10, 11.12, 13.14, 15.16"} ,]},
-{image: "img/robe gustavo.jpg", name: "Robe46.", priceUnit: "200$", priceThree: "400$", code: "15-2G71",coupon: "coupon-gratuit 250Gdes", options: [{color: "Rupture", size: "de Stock"},]},
+{images:[ "img/colan.jpg",], name: "Colan de sport et de petite sortie.", priceUnit: "100$", priceThree: "250$", code: "0000",coupon: "coupon-gratuit 250Gdes", options: [{color: "Noir", size: "One size"}, {color: "Rouge Grenat", size: "One size"}, {color: "Vert", size: "One size"}, {color: "Marron", size: "One size"},]},
+{images:[ "img/mayo gason.jpg",], name: "Parfait pour les sortie publiques.", priceUnit: "100$", priceThree: "300$", code: "0001",coupon: "coupon-gratuit 250Gdes", options: [ {color: "Jaune Abricot", size: "XL"},  {color: "Gris", size: "M"},  {color: "Noir", size: "L"}, {color: "Bleu", size: "M"},  {color: "Vert", size: "M"}, ]},
+{images:[ "img/madan baby.jpg",], name: "Robe45.", priceUnit: "250$", priceThree: "500$", code: "AA921",coupon: "coupon-gratuit 250Gdes", options: [{color: "Rupture", size: "de Stock"},]},
+{images:[ "img/pantalon leopard.jpg",], name: "Jeans Recreative, forme normal.", priceUnit: "250$", priceThree: "500$", code: "AA905",coupon: "coupon-gratuit 250Gdes", options: [{color: "Bleu pale", size: "5.6, 7.8, 9.10, 11.12, 13.14, 15.16"}, {color: "Bleu foncé", size: "5.6, 7.8, 9.10, 11.12, 13.14, 15.16"} ,]},
+{images:[ "img/robe gustavo.jpg",], name: "Robe46.", priceUnit: "200$", priceThree: "400$", code: "15-2G71",coupon: "coupon-gratuit 250Gdes", options: [{color: "Rupture", size: "de Stock"},]},
 
-{image: "img/sandales 350.jpg", name: "Sandales demi-talon, forme normal.", priceUnit: "150$", priceThree: "350$", code: "0003",coupon: "coupon-gratuit 250Gdes", options: [{color: "Noir", size: "S"}, {color: "Creme", size: "38"}, {color: "Marron", size: "37"}, {color: "Blan", size: "36"}, ]},
-{image: "img/ti mayo.jpg", name: "Maillot femme, one size (P).", priceUnit: "150$", priceThree: "400$", code: "0004",coupon: "coupon-gratuit 250Gdes", options: [{color: "Bleu", size: "O"},{color: "Bleu", size: "O"},{color: "Bleu", size: "O"}, {color: "Rouge", size: "O"},{color: "Rouge", size: "O"}, {color: "Rouge", size: "O"}, {color: "Blan", size: "O"},{color: "Blan", size: "O"}, {color: "Jaune", size: "O"}, {color: "Jaune", size: "O"}, {color: "Rose", size: "O"}, {color: "Rose", size: "O"},{color: "Vert Pal", size: "O"},]},
+{images:[ "img/sandales 350.jpg",], name: "Sandales demi-talon, forme normal.", priceUnit: "150$", priceThree: "350$", code: "0003",coupon: "coupon-gratuit 250Gdes", options: [{color: "Noir", size: "S"}, {color: "Creme", size: "38"}, {color: "Marron", size: "37"}, {color: "Blan", size: "36"}, ]},
+{images:[ "img/ti mayo.jpg",], name: "Maillot femme, one size (P).", priceUnit: "150$", priceThree: "400$", code: "0004",coupon: "coupon-gratuit 250Gdes", options: [{color: "Bleu", size: "O"},{color: "Bleu", size: "O"},{color: "Bleu", size: "O"}, {color: "Rouge", size: "O"},{color: "Rouge", size: "O"}, {color: "Rouge", size: "O"}, {color: "Blan", size: "O"},{color: "Blan", size: "O"}, {color: "Jaune", size: "O"}, {color: "Jaune", size: "O"}, {color: "Rose", size: "O"}, {color: "Rose", size: "O"},{color: "Vert Pal", size: "O"},]},
 
 
 
                 // Continuez à ajouter tous les produits...
             ];
-
-            allProducts.forEach((product) => {
-                const optionsList = product.options.map(option => `${option.color} ${option.size}`).join(', ');
-                document.write(`
-                    <div class="product" onclick="openModal('${product.image}', '${product.name}', '${product.priceUnit}', '${product.priceThree}', '${product.code}', '${optionsList}', '${product.coupon}'); event.stopPropagation();">
-                        <img src="${product.image}" alt="${product.name}" />
-                        <h3>${product.name}</h3>
-                        <div class="product-info">
-                            <p>Prix Unitaire: ${product.priceUnit}</p>
-                            <p>Prix pour 3: ${product.priceThree}</p>
-                            <p>Code: ${product.code}</p>
-                            <p>Options: ${optionsList}</p>
-                            <p>Coupon: ${product.coupon}</p>
-                        </div>
-                    </div>
-                `);
-            });
+allProducts.forEach((product) => {
+    const optionsList = product.options.map(option => `${option.color} ${option.size}`).join(', ');
+    document.write(`
+        <div class="product" onclick="openModal('${product.images[0]}', '${product.name}', '${product.price}',  '${optionsList}', '${product.coupon}'); event.stopPropagation();">
+            <div class="product-images">
+                <div class="slider">
+                    ${product.images.map(image => `<div class="slide"><img src="${image}" alt="${product.name}" /></div>`).join('')}
+                </div>
+            </div>
+            <h4>${product.name}</h4>
+            <div class="product-info">
+                <h5>Prix : ${product.price}</h5>
+              
+               
+                <p>Options: ${optionsList}</p>
+                <p>Coupon: ${product.coupon}</p>
+            </div>
+        </div>
+    `);
+});
         </script>
     </div>
 </div>
@@ -1072,13 +1113,47 @@ function openReservationModal() {
     togglePanier(); // Ferme le panier
 }
 
+document.querySelectorAll('.product').forEach(product => {
+    let currentIndex = 0; // Déplacer ici pour chaque produit
+
+    function showSlide(index) {
+        const slides = product.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        if (index >= totalSlides) {
+            currentIndex = 0; // Revenir au début
+        } else if (index < 0) {
+            currentIndex = totalSlides - 1; // Aller à la fin
+        } else {
+            currentIndex = index;
+        }
+        const slider = product.querySelector('.slider');
+        slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+    }
+
+    // Ajoutez des boutons pour naviguer entre les images
+    const nextButton = document.createElement('button');
+    nextButton.innerText = 'Suivant';
+    nextButton.onclick = () => showSlide(currentIndex + 1);
+    
+    const prevButton = document.createElement('button');
+    prevButton.innerText = 'Précédent';
+    prevButton.onclick = () => showSlide(currentIndex - 1);
+    
+    product.querySelector('.product-images').appendChild(prevButton);
+    product.querySelector('.product-images').appendChild(nextButton);
+});
+
+
+
+
+
 // Les autres fonctions de votre script existant
 function toggleDropdown(dropdownId) {
     var dropdown = document.getElementById(dropdownId);
     dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
 }
 
-function openModal(image, name, priceUnit, priceThree, code, options) {
+function openModal(image, name, price, options) {
     document.getElementById('modalImage').src = image;
     document.getElementById('modalName').innerText = name;
 
@@ -1095,7 +1170,7 @@ function openModal(image, name, priceUnit, priceThree, code, options) {
 
     document.getElementById('myModal').style.display = "block";
     // Stocker les informations du produit dans l'objet global
-    window.selectedProduct = { image, name, priceUnit, priceThree, code };
+    window.selectedProduct = { image, name, price, code };
 }
 
 
