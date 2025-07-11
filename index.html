@@ -640,7 +640,11 @@ font-size: 13px;
     <h3> Ayiti Offre M&D Entreprises</h3>
     <div class="search-container">
         <input type="text" id="searchInput" placeholder="Rechercher un produit..." onkeyup="searchProducts()">
+
     </div>
+     <div id="searchResults"></div> <!-- Conteneur pour afficher les résultats de recherche -->
+   
+    
     <ul>
         <li>    <a href="#" onclick="askForPassword()">Coupons Gratuit</a>  </li>
          <li>    <a href="Livraisons.html"> Conditions Livraisons</a>  </li>
@@ -706,7 +710,7 @@ font-size: 13px;
 
 
 {
-    images: ["img/esther.jpg", "img/esther.jpg",],
+    images: ["img/esther.jpg", "img/esther2.jpg",],
  name: "Robe011", price: "250$ht/500$ht", code: "AA7718", coupon: "coupon-gratuit 250Gdes", options: [ { color: "Rose", size: "L" },  { color: "Jaune Abricot", size: "M" },   { color: "Bleu roi", size: "L" }, { color: "Blanc", size: "S" },  { color: "Creme", size: "S" },   { color: "Jaune", size: "M" }]},
 
  
@@ -722,14 +726,14 @@ font-size: 13px;
 
 
 
-{images:[ "img/jupe toile.jpg",  "img/noir.jpg",], name: "Modèle0002",  price: "300$ht/700$ht", code: "GN53005", coupon: "coupon-gratuit 500Gdes", options: [  { color: "Jaune Moutarde", size: "XXL" }, { color: "Creme", size: "M" }, { color: "Bleu ciel", size: "XL" }, { color: "Rose", size: "XXXL" },  { color: "Gris", size: "XL" }, { color: "Jaune Moutarde", size: "XL" },  { color: "Jaune Moutarde", size: "L" },   { color: "Bleu Roi", size: "L" },   { color: "Bleu Roi", size: "XL" },  { color: "Rouge", size: "XL" } , { color: "Noir", size: "L" },  { color: "Noir", size: "XL" }, { color: "Noir", size: "XL" },     ]},
+{images:[  "img/noir.jpg",    "img/jupe toile.jpg",], name: "Modèle0002",  price: "300$ht/700$ht", code: "GN53005", coupon: "coupon-gratuit 500Gdes", options: [  { color: "Jaune Moutarde", size: "XXL" }, { color: "Creme", size: "M" }, { color: "Bleu ciel", size: "XL" }, { color: "Rose", size: "XXXL" },  { color: "Gris", size: "XL" }, { color: "Jaune Moutarde", size: "XL" },  { color: "Jaune Moutarde", size: "L" },   { color: "Bleu Roi", size: "L" },   { color: "Bleu Roi", size: "XL" },  { color: "Rouge", size: "XL" } , { color: "Noir", size: "L" },  { color: "Noir", size: "XL" }, { color: "Noir", size: "XL" },     ]},
 
 
 
 
                 {images:[ "img/Robe long.jpg", "img/long long.jpg",], name: "Modèle1",  price: "250$ht/500$ht", code: "AA718", coupon: "coupon-gratuit 250Gdes", options: [{ color: "Rouge", size: "M" }, { color: "Rouge", size: "S" }, { color: "Bleu", size: "M" }, { color: "Bleu", size: "S" }, { color: "Noir", size: "XL" }, { color: "Noir", size: "L" }, { color: "Blanc", size: "XL" }, { color: "Jaune", size: "S" }, { color: "Jaune", size: "XL" }, { color: "Jaune", size: "XL" }]},
                 {images:[ "img/belle modele.jpg", "img/718.jpg", "img/belle modele.jpg", ], name: "Robe2", price: "250$ht/500$ht", code: "713", coupon: "coupon-gratuit 350Gdes", options: [ { color: "Bleu roi", size: "L" }, { color: "Bleu roi", size: "S" }, { color: "Marron", size: "XL" }, { color: "Rose", size: "XL" }, { color: "Blanc", size: "XL" }, ]},
-                {images:[ "img/robe3.jpg",], name: "Robe3", price: "350$ht/800$ht", code: "AA1158", coupon: "coupon-gratuit 350Gdes", options: [{ color: "Vert", size: "L" }, { color: "Bleu", size: "S" }, { color: "Bleu", size: "M" }, { color: "Orange", size: "S" }, { color: "Orange", size: "M" }]},
+                {images:[ "img/robe3.jpg",    "img/manche long.jpg",], name: "Robe3", price: "350$ht/800$ht", code: "AA1158", coupon: "coupon-gratuit 350Gdes", options: [{ color: "Vert", size: "L" }, { color: "Bleu", size: "S" }, { color: "Bleu", size: "M" }, { color: "Orange", size: "S" }, { color: "Orange", size: "M" }]},
                 {images:[ "img/parfum.jpg",], name: "Parfum", price: "200$ht/500$ht", code: "AAX12", coupon: "coupon-gratuit 200Gdes", options: [{color: "Pour", size: "Femme"}, {color: "Pour", size: "Unisex"}, {color: "Pour", size: "Homme"}]},
                 {images:[ "img/djess.jpg",], name: "Robe4", price: "250$ht/550$ht", code: "GN22233", coupon: "coupon-gratuit 300Gdes", options: [   { color: "Jaune", size: "M" },{ color: "Jaune", size: "XL" },{ color: "Jaune", size: "S" }, { color: "Jaune Abricot", size: "S" },  { color: "Jaune Abricot", size: "M" },{ color: "Jaune Abricot", size: "XL" }, { color: "Rouge Grenat", size: "XL" },   { color: "Noir", size: "L" },  { color: "Noir", size: "XL" },                            { color: "Jaune abricot", size: "XL" }, ]},
                {images:["img/robe5.jpg", "img/me5.jpg", ], name: "Robe5",  price: "250$ht/500$ht", code: "AA1077", coupon: "coupon-gratuit 250Gdes", options: [  { color: "Bleu Turquoise", size: "M" }, { color: "Vert", size: "M" },  { color: "Vert", size: "S" }, { color: "Jaune", size: "S" },  { color: "Rouge", size: "S" }, { color: "Noir", size: "L" },{ color: "Blanc", size: "S" }, { color: "Rose", size: "M" },{ color: "Rose", size: "XL" },                     ]},
@@ -739,7 +743,7 @@ font-size: 13px;
 
 
 
-               {images:[ "img/Truff.jpg",], name: "Robe01", price: "250$ht/600$ht", code: "AA1300", coupon: "coupon-gratuit 250Gdes", options: [ { color: "Rouge", size: "S" }, { color: "Bleu Marin", size: "M" }, { color: "Bleu Marin", size: "S" }, { color: "Rose", size: "XL" },  { color: "Bleu Roi", size: "XL" }, { color: "Bleu Roi", size: "L" }, { color: "Jaune", size: "XL" }, { color: "Jaune", size: "L" }, { color: "Vert", size: "S" },{ color: "Vert", size: "M" },  ]}, 
+               {images:[ "img/Truff.jpg",], name: "Robe01", price: "250$ht/600$ht", code: "AA1300", coupon: "coupon-gratuit 250Gdes", options: [ { color: "Rouge", size: "S" }, { color: "Bleu Marin", size: "M" }, { color: "Bleu Marin", size: "S" }, { color: "Rose", size: "XL" },  { color: "Bleu Roi", size: "XL" }, { color: "Bleu Roi", size: "L" }, { color: "Jaune", size: "XL" }, { color: "Jaune", size: "L" },   ]}, 
                 
                 
                 
@@ -770,7 +774,7 @@ font-size: 13px;
 { images:[ "img/ti boul.jpg",], name: "Robe19", price: "350$ht/800$ht", code: "AA3247",coupon: "coupon-gratuit 250Gdes", options: [  { color: "Noir", size: "M" },  { color: "Blan", size: "M" },  { color: "Jaune moutarde", size: "M" },  { color: "Bleu roi", size: "M" }] },
 { images:[ "img/evaser3.jpg", "img/evaser2.jpg",     ], name: "Robe20", price: "350$ht/850$ht", code: "AAxxxx",coupon: "coupon-gratuit 250Gdes", options: [  { color: "Bleu roi", size: "S" },  { color: "Blan", size: "M" },  { color: "Blan", size: "S" },  { color: "Rouge sang", size: "S" }] },
 { images:[ "img/mr.jpg",], name: "Robe21", price: "250$ht/600$ht", code: "AA1125",coupon: "coupon-gratuit 250Gdes", options: [    { color: "Bleu roi", size: "S" },  { color: "Bleu roi", size: "S" },    { color: "Blan", size: "L" },   { color: "Jaune abricot", size: "S" }] },
-{ images:[ "img/ma.jpg",], name: "Robe22", price: "250$ht/500$ht", code: "AA574",coupon: "coupon-gratuit 250Gdes", options: [    { color: "Blan", size: "L" },  { color: "Blan", size: "XL" }, ] },
+{ images:[ "img/biden uni.jpg",  "img/ma.jpg",     ], name: "Robe22", price: "250$ht/500$ht", code: "AA574",coupon: "coupon-gratuit 250Gdes", options: [    { color: "Blan", size: "L" },  { color: "Blan", size: "XL" }, ] },
 { images:[ "img/tk.jpg", "img/tuile.jpg",], name: "Robe23", price: "250$ht/500$ht", code: "AA854",coupon: "coupon-gratuit 250Gdes", options: [  { color: "Rose", size: "L" },  { color: "Bleu roi", size: "M" },  { color: "Jaune", size: "M" },  { color: "Blan", size: "L" },  { color: "Blan", size: "XL" },  { color: "Bleu ciel", size: "M" }, ] },
 { images:[ "img/jeans.jpg",], name: "Robe24",  price: "250$ht/500$ht", code: "AA20",coupon: "coupon-gratuit 250Gdes", options: [  { color: "Bleu", size: "M" },  { color: "Bleu", size: "M" },  { color: "Bleu", size: "L" },  { color: "Bleu", size: "L" },  { color: "Bleu", size: "L" },  { color: "Bleu", size: "XL" },  { color: "Bleu", size: "XL" },  { color: "Bleu", size: "XL" },  { color: "Bleu", size: "XXL" },  { color: "Bleu", size: "XXL" },  { color: "Bleu", size: "XXL" },  { color: "Bleu", size: "XXL" }] },
 
@@ -1513,24 +1517,28 @@ function continuer() {
     }
 }
 
-function searchProducts() {
-    const input = document.getElementById('searchInput');
-    const filter = input.value.toLowerCase();
-    const products = allProducts; // Assurez-vous que allProducts est accessible ici
-    const results = products.filter(product => 
-        product.name.toLowerCase().includes(filter) || 
-        product.code.toLowerCase().includes(filter)
-    );
-
-    // Affichez les résultats de la recherche (vous devez créer une fonction pour cela)
-    displaySearchResults(results);
-}
-
 function displaySearchResults(results) {
-    // Implémentez cette fonction pour afficher les résultats de la recherche
-    // Par exemple, vous pouvez créer une liste d'éléments HTML et les insérer dans le DOM
-    console.log(results); // Pour l'instant, affichez les résultats dans la console
+    const resultsContainer = document.getElementById('searchResults'); // Assurez-vous d'avoir un conteneur pour afficher les résultats
+    resultsContainer.innerHTML = ''; // Réinitialiser le contenu
+
+    if (results.length === 0) {
+        resultsContainer.innerHTML = '<p>Aucun produit trouvé.</p>';
+        return;
+    }
+
+    results.forEach(product => {
+        resultsContainer.innerHTML += `
+            <div class="product">
+                <h4>${product.name}</h4>
+                <p>Code: ${product.code}</p>
+                <p>Prix: ${product.price}</p>
+            </div>
+        `;
+    });
 }
+
+// Assurez-vous d'avoir un conteneur dans votre HTML pour afficher les résultats
+// <div id="searchResults"></div>
 </script>
 </body>
 </html>
