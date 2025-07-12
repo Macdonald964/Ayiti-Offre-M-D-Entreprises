@@ -533,6 +533,24 @@ footer a:hover {
     border: 1px solid #fff; /* Couleur de la barre */
     margin: 10px 0; /* Espacement autour de la barre */
 }
+.search-container {
+    display: flex;
+    align-items: center;
+    margin-left: 20px; /* Ajustez l'espacement selon vos besoins */
+}
+
+#searchInput {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 200px; /* Ajustez la largeur selon vos besoins */
+    margin-right: 5px; /* Espacement entre l'input et le bouton */
+}
+
+#searchInput:focus {
+    outline: none;
+    border-color: #5cb85c; /* Couleur de la bordure au focus */
+}
 
 /* Styles pour les écrans de taille moyenne (tablettes) */
 @media (max-width: 768px) {
@@ -660,6 +678,7 @@ font-size: 13px;
         </button>
         <div id="panierContent" class="panier-content" style="display: none;"></div>
     </div>
+    
 </header>
 
 <div id="menu" class="menu" style="display: none;">
@@ -684,6 +703,10 @@ font-size: 13px;
         </div>
     </div>
     <hr class="separator"> <!-- Ajout de la barre horizontale -->
+    <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Rechercher un produit..." onkeyup="searchProducts()">
+    <button onclick="searchProducts()">🔍</button>
+</div>
     <ul>
         <li><a href="#" onclick="askForPassword()">Coupons Gratuit</a></li>
         <li><a href="Livraisons.html">Conditions Livraisons</a></li>
@@ -1556,7 +1579,20 @@ function continuer() {
         alert("Aucune information de livraison trouvée.");
     }
 }
+function searchProducts() {
+    const input = document.getElementById('searchInput');
+    const filter = input.value.toLowerCase();
+    const products = document.querySelectorAll('.product'); // Sélectionne tous les produits
 
+    products.forEach(product => {
+        const productName = product.querySelector('h4').innerText.toLowerCase(); // Récupère le nom du produit
+        if (productName.includes(filter)) {
+            product.style.display = ''; // Affiche le produit si le nom correspond
+        } else {
+            product.style.display = 'none'; // Cache le produit s'il ne correspond pas
+        }
+    });
+}
 
   
 </script>

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nos Partenaires</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -12,7 +13,7 @@
             background-color: #f4f4f4;
         }
         header {
-            background: #333;
+            background: red;
             color: #fff;
             padding: 10px 20px;
             text-align: center;
@@ -35,14 +36,59 @@
             border: 1px solid #ddd;
             border-radius: 5px;
         }
-        footer {
-            background: #333;
-            color: #fff;
+        footer.footer {
+            background-color: blue;
+            color: #ffffff;
+            padding: 15px 10px;
             text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        .footer-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+        .footer-slogan {
+            font-size: 14px;
+            color: #b2dfdb;
+            margin-bottom: 10px;
+        }
+        .social-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: nowrap;
+            overflow-x: auto;
             padding: 10px 0;
-            position: relative;
-            bottom: 0;
-            width: 100%;
+        }
+        .social-item {
+            text-decoration: none;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.3s ease, color 0.3s ease;
+            font-size: 13px;
+            min-width: 60px;
+        }
+        .social-item i {
+            font-size: 24px;
+            margin-bottom: 5px;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        .social-item:hover {
+            color: #83D4A9;
+            transform: translateY(-3px);
+        }
+        .social-item:hover i {
+            color: #83D4A9;
+            transform: scale(1.1);
+        }
+        .copyright {
+            font-size: 12px;
+            color: #b2dfdb;
+            margin-top: 10px;
         }
         @media (max-width: 600px) {
             .container {
@@ -63,21 +109,54 @@
 <div class="container">
     <div class="partner">
         <h2>Altra Productions</h2>
-        <p>Coordonnées : altraproduction@gmail.com</p>
+        <p>Mail : altraproduction@gmail.com</p>
+        <p>Numéro : +509 47639824</p>
     </div>
     <div class="partner">
-        <h2> Gerald Productions</h2>
-        <p>Coordonnées : geraldprodz@gmail.com</p>
+        <h2>Gerald Productions</h2>
+        <p>Mail : geraldprodz@gmail.com</p>
+        <p>Numéro : +509 38787740</p>
     </div>
     <div class="partner">
-        <h2> Rantab</h2>
-        <p>Coordonnées : rantab@gmail.com</p>
+        <h2>Rantab</h2>
+        <p>Mail : rantabht@gmail.com</p>
+        <p>Numéro : +509 37291397</p>
+    </div>
+     <div class="partner">
+        <h2>Gugue Parfumerie</h2>
+        <p>Mail : gugueparfumerie@gmail.com</p>
+        <p>Numéro : +509 46400198</p>
     </div>
     <!-- Ajoutez d'autres partenaires ici -->
 </div>
+<footer class="footer" role="contentinfo">
+    <h2 class="footer-title">Rejoins-nous sur nos plateformes</h2>
+    <p class="footer-slogan">On est là pour vous, 24h/24</p>
+    <div class="social-grid">
+        <a href="https://wa.me/50948348881" target="_blank" class="social-item" rel="noopener" aria-label="WhatsApp">
+            <i class="fab fa-whatsapp" aria-hidden="true"></i><span>WhatsApp</span>
+        </a>
+        <a href="https://www.facebook.com/AyitiOffre" target="_blank" class="social-item" rel="noopener" aria-label="Facebook">
+            <i class="fab fa-facebook" aria-hidden="true"></i><span>Facebook</span>
+        </a>
+        <a href="https://www.instagram.com/AyitiOffre" target="_blank" class="social-item" rel="noopener" aria-label="Instagram">
+            <i class="fab fa-instagram" aria-hidden="true"></i><span>Instagram</span>
+        </a>
+        <a href="https://www.tiktok.com/@AyitiOffre" target="_blank" class="social-item" rel="noopener" aria-label="TikTok">
+            <i class="fab fa-tiktok" aria-hidden="true"></i><span>TikTok</span>
+        </a>
+        <a href="https://tonmarketplace.com" target="_blank" class="social-item" rel="noopener" aria-label="Marketplace">
+            <i class="fas fa-store" aria-hidden="true"></i><span>Marketplace</span>
+        </a>
+    </div>
 
-<footer>
-    <p>&copy; 2025 Ayiti Offre M&D Entreprises. Tous droits réservés.</p>
+    <nav>
+        <ul>
+            <li><a href="informations.html">CGU</a></li>
+            <li><a href="Politique.html">Politique de Confidentialité</a></li>
+        </ul>
+    </nav> 
+    <p class="copyright">© 2025 Boutique Ayiti Offre - Tous droits réservés</p>
 </footer>
 
 </body>

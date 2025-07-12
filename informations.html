@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conditions Generales d'utilisation et de vente</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -13,20 +14,21 @@
             background-color: #f4f4f4;
         }
         header {
-            background: #333;
+            background: red;
             color: #fff;
             padding: 10px 0;
             text-align: center;
-            position: fixed; /* Ajouté pour rendre le header fixe */
-            top: 0; /* Positionné en haut de la page */
-            width: 100%; /* Prend toute la largeur */
-            z-index: 1000; /* Assure que le header reste au-dessus des autres éléments */
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
         }
         .container {
-            width: 80%;
+            width: 90%; /* Ajusté pour plus de flexibilité */
+            max-width: 1200px; /* Limite la largeur sur les grands écrans */
             margin: auto;
             overflow: hidden;
-            padding-top: 60px; /* Ajouté pour éviter que le contenu soit caché derrière le header fixe */
+            padding-top: 60px;
         }
         .info {
             background: #fff;
@@ -35,14 +37,42 @@
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        footer {
+        footer.footer {
+            background-color: blue;
+            color: #ffffff;
+            padding: 15px 10px;
             text-align: center;
+        }
+        .social-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap; /* Permet le retour à la ligne sur petits écrans */
             padding: 10px 0;
-            background: #333;
-            color: #fff;
-            position: relative;
-            bottom: 0;
-            width: 100%;
+        }
+        .social-item {
+            text-decoration: none;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.3s ease, color 0.3s ease;
+            font-size: 13px;
+            min-width: 60px;
+        }
+        .copyright {
+            font-size: 12px;
+            color: #b2dfdb;
+            margin-top: 10px;
+        }
+        @media (max-width: 768px) {
+            .info {
+                margin: 10px 0; /* Réduit l'espacement sur petits écrans */
+            }
+            header h1 {
+                font-size: 1.5em; /* Ajuste la taille du texte du header */
+            }
         }
     </style>
 </head>
@@ -58,44 +88,51 @@
         <p>Les produits présentés sont disponibles dans la limite des stocks.</p>
         <p>Toute commande de livraison ou de réservation nécessite une confirmation via WhatsApp.</p>
         <p>Les réservations sont valables pour une durée de 48h. Passé ce délai, elles seront automatiquement annulées.</p>
-        <p>Les produits présentés sont disponibles dans la limite des stocks.</p>
     </div>
-
     <div class="info">
         <h2>Paiement</h2>
         <p>Un acompte de 50 % est exigé pour toute réservation.</p>
         <p>Aucun remboursement ou modification n'est possible après validation. Toutefois, vous pouvez ajouter de nouveaux articles.</p>
     </div>
-
     <div class="info">
         <h2>Livraisons</h2>
-        <p>Nous avons un service de livraison qui commence tous les jours à 8h30 et qui prend fin à 17h. Des cas d'exception peuvent toujours être envisagés.</p>
-        <p>Livraison disponible selon nos adresses fournies.</p>
-        <p>Les clients qui souhaitent acheter par trois doivent obligatoirement choisir des couleurs et des tailles différentes.</p>
-        <p>Pour une livraison gratuite, certaines conditions spéciales (ex : coupon valide) doivent être respectées.</p>
+        <p>Nous avons un service de livraison qui commence tous les jours à 8h30 et qui prend fin à 17h.</p>
     </div>
-
     <div class="info">
         <h2>Responsabilité</h2>
-        <p>Boutique Ayiti Offre Online n'est pas responsable des retards dus à des causes externes (ex : météo, blocages).</p>
-        <p>Les couleurs et tailles peuvent être légèrement variées selon les écrans ou les fournisseurs.</p>
+        <p>Boutique Ayiti Offre Online n'est pas responsable des retards dus à des causes externes.</p>
     </div>
-
     <div class="info">
         <h2>Commandes Spéciales</h2>
-        <p>Les commandes spéciales concernent les clients qui désirent avoir une seule couleur dans un modèle sélectionné, soit pour un cortège de mariage ou autres. Ces réservations ne sont pas prises en compte sur notre site, mais via notre service à la clientèle, plus précisément sur WhatsApp. Le client devra alors nous envoyer le modèle et préciser la quantité.</p>
-        <p>Ces types de réservations doivent se faire avec un délai de huit jours d'avance et le montant sera calculé à partir du prix unitaire. Exemple : 10 robes bleues, unité 250 $, ce sera 10 * 250.</p>
-        <p>Pour un délai plus court, le montant sera plus élevé.</p>
-        <p>Pour un délai plus long, le montant sera moins élevé, tout dépend du modèle en question.</p>
+        <p>Les commandes spéciales concernent les clients qui désirent avoir une seule couleur dans un modèle sélectionné.</p>
     </div>
 </div>
-<footer>
-    <p>&copy; 2025 Boutique Ayiti Offre. Tous droits réservés.</p>
+
+<footer class="footer" role="contentinfo">
+    <h2 class="footer-title">Rejoins-nous sur nos plateformes</h2>
+    <p class="footer-slogan">On est là pour vous, 24h/24</p>
+    <div class="social-grid">
+        <a href="https://wa.me/50948348881" target="_blank" class="social-item" rel="noopener" aria-label="WhatsApp">
+            <i class="fab fa-whatsapp" aria-hidden="true"></i><span>WhatsApp</span>
+        </a>
+        <a href="https://www.facebook.com/AyitiOffre" target="_blank" class="social-item" rel="noopener" aria-label="Facebook">
+            <i class="fab fa-facebook" aria-hidden="true"></i><span>Facebook</span>
+        </a>
+        <a href="https://www.instagram.com/AyitiOffre" target="_blank" class="social-item" rel="noopener" aria-label="Instagram">
+            <i class="fab fa-instagram" aria-hidden="true"></i><span>Instagram</span>
+        </a>
+        <a href="https://www.tiktok.com/@AyitiOffre" target="_blank" class="social-item" rel="noopener" aria-label="TikTok">
+            <i class="fab fa-tiktok" aria-hidden="true"></i><span>TikTok</span>
+        </a>
+        <a href="https://tonmarketplace.com" target="_blank" class="social-item" rel="noopener" aria-label="Marketplace">
+            <i class="fas fa-store" aria-hidden="true"></i><span>Marketplace</span>
+        </a>
+    </div>
+    <p class="copyright">© 2025 Boutique Ayiti Offre - Tous droits réservés</p>
 </footer>
 
 <script>
-// Vous pouvez ajouter des fonctionnalités JavaScript ici
-console.log("Bienvenue dans la boutique !");
+    console.log("Bienvenue dans la boutique !");
 </script>
 
 </body>
