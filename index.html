@@ -171,30 +171,33 @@ box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 z-index: 1;
 }
 .product {
-background: #fff;
-border: 1px solid #ddd;
-margin: 10px;
-padding: 10px;
-text-align: center;
-border-radius: 5px;
-box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-display: inline-block;
-width: calc(20% - 20px);
-cursor: pointer;
+    background: #fff;
+    border: 1px solid #ddd;
+    margin: 10px;
+    padding: 5px; /* Réduire le padding */
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    width: calc(15% - 20px);
+    cursor: pointer;
 }
 .product img {
 max-width: 100%;
 height: auto;
     width: 100%; /* Assurez-vous que l'image prend toute la largeur du conteneur */
-    height: 250px; /* Définissez une hauteur fixe selon vos besoins */
+    height: 100px; /* Définissez une hauteur fixe selon vos besoins */
    object-fit: contain; /* Cela permet de garder le ratio sans déformation */
 
 }
 .product h3 {
-margin: 10px 0;
+    margin: 5px 0; /* Réduire la marge */
+    font-size: 1.2em; /* Ajuster la taille de la police */
 }
 .product p {
-color: #555;
+    color: #555;
+    margin: 2px 0; /* Réduire la marge */
+    font-size: 0.9em; /* Ajuster la taille de la police */
 }
 .btn {
 background: #5cb85c;
@@ -208,7 +211,7 @@ cursor: pointer;
 background: #4cae4c;
 }
 .product-info {
-margin-top: 10px;
+    margin-top: 5px; /* Réduire l'espacement */
 }
 .modal {
 display: none;
@@ -842,7 +845,7 @@ font-size: 13px;
 { images:[ "img/jeans.jpg",], name: "Robe24",  price: "250$ht/500$ht", code: "AA20",coupon: "coupon-gratuit 250Gdes", options: [  { color: "Bleu", size: "M" },  { color: "Bleu", size: "M" },  { color: "Bleu", size: "L" },  { color: "Bleu", size: "L" },  { color: "Bleu", size: "L" },  { color: "Bleu", size: "XL" },  { color: "Bleu", size: "XL" },  { color: "Bleu", size: "XL" },  { color: "Bleu", size: "XXL" },  { color: "Bleu", size: "XXL" },  { color: "Bleu", size: "XXL" },  { color: "Bleu", size: "XXL" }] },
 
 
-{images:[ "img/evaser.jpg",  "img/bleu roi.jpg",          ], name: "Robe25", price: "350$ht/800$ht", code: "P301",coupon: "coupon-gratuit 250Gdes", options: [{color: "Noir", size: "M"},   {color: "Blan", size: "M"}, {color: "Rose", size: "S"}  ]},
+{images:[ "img/evaser.jpg",  "img/bleu roi.jpg",          ], name: "Robe25", price: "350$ht/800$ht", code: "P301",coupon: "coupon-gratuit 250Gdes", options: [{color: "Rupture de", size: "Stock"},  ]},
             {images:[ "img/gerdex.jpg",], name: "Robe26", price: "350$ht/800$ht",   coupon: "coupon-gratuit 250Gdes", code: "P302", options: [{color: "Rupture", size: "de Stock"} ]},
          {images:[ "img/grimel 24.jpg", "img/24gri.jpg",      ], name: "Robe27", price: "300$ht/700$ht", code: "AA512", coupon: "coupon-gratuit 350Gdes", options: [{color: "Vert", size: "XXL"}, {color: "Vert", size: "XXXL"}, {color: "Blanc", size: "L"}, {color: "Blanc", size: "XL"}, {color: "Blanc", size: "XXL"}, {color: "Blanc", size: "XXXL"}, {color: "Jaune", size: "L"},  {color: "Jaune", size: "XL"}, {color: "Rouge", size: "M"}, {color: "Rouge", size: "S"}, {color: "Bleu marin", size: "S"}, {color: "Bleu Marin", size: "M"}                                     ]},
             {images:["img/jupe jeans.jpg",], name: "Jupe Jeans", price: "300$ht/700$ht", code: "P202",coupon: "coupon-gratuit 250Gdes", options: [{color: "Rupture de", size: "Stock"}, ]},
