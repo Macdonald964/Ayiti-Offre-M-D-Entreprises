@@ -1,137 +1,197 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Jeu de Puzzle Solo</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: linear-gradient(to right, #74ebd5, #acb6e5); /* Dégradé de couleurs */
-  }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jeu de Puzzle Solo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: linear-gradient(to right, #74ebd5, #acb6e5); /* Dégradé de couleurs */
+        }
 
-  h1 {
-    margin: 20px 0;
-    color: #fff; /* Couleur du texte */
-  }
+        h1 {
+            margin: 20px 0;
+            color: #fff; /* Couleur du texte */
+        }
 
-  .game-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 100%;
-    max-width: 1200px;
-  }
+        .game-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 100%;
+            max-width: 1200px;
+        }
 
-  .player {
-    background-color: rgba(255, 255, 255, 0.8); /* Fond semi-transparent */
-    border: 2px solid #ccc;
-    border-radius: 8px;
-    margin: 10px;
-    padding: 10px;
-    flex: 1 1 300px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+        .player {
+            background-color: rgba(255, 255, 255, 0.8); /* Fond semi-transparent */
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            margin: 10px;
+            padding: 10px;
+            flex: 1 1 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-  .player h2 {
-    margin-top: 0;
-    color: #333; /* Couleur du texte */
-  }
+        .player h2 {
+            margin-top: 0;
+            color: #333; /* Couleur du texte */
+        }
 
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(4, 60px); /* 4 colonnes pour 12 cases */
-    grid-gap: 10px;
-    margin: 10px 0;
-  }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 60px); /* 4 colonnes pour 12 cases */
+            grid-gap: 10px;
+            margin: 10px 0;
+        }
 
-  .cell {
-    width: 60px;
-    height: 60px;
-    background-color: #e0e0e0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
-    cursor: pointer;
-    border-radius: 4px;
-    user-select: none;
-    transition: background-color 0.2s;
-  }
+        .cell {
+            width: 60px;
+            height: 60px;
+            background-color: #e0e0e0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            cursor: pointer;
+            border-radius: 4px;
+            user-select: none;
+            transition: background-color 0.2s;
+        }
 
-  .cell:hover {
-    background-color: #d0d0d0;
-  }
+        .cell:hover {
+            background-color: #d0d0d0;
+        }
 
-  .stats {
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    margin-top: 10px;
-  }
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            margin-top: 10px;
+        }
 
-  .timer {
-    font-size: 1.2em;
-    font-weight: bold;
-  }
+        .timer {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
 
-  .progress {
-    margin-top: 10px;
-    width: 100%;
-    height: 10px;
-    background-color: #ccc;
-    border-radius: 5px;
-    overflow: hidden;
-  }
+        .progress {
+            margin-top: 10px;
+            width: 100%;
+            height: 10px;
+            background-color: #ccc;
+            border-radius: 5px;
+            overflow: hidden;
+        }
 
-  .progress-bar {
-    height: 100%;
-    background-color: #4caf50;
-    width: 0%;
-    transition: width 0.5s;
-  }
+        .progress-bar {
+            height: 100%;
+            background-color: #4caf50;
+            width: 0%;
+            transition: width 0.5s;
+        }
 
-  /* Responsive styles */
-  @media(max-width: 768px) {
-    .game-container {
-      flex-direction: column;
-      align-items: center;
-    }
-    .player {
-      width: 90%;
-    }
-  }
-</style>
+        /* Responsive styles */
+        @media(max-width: 768px) {
+            .game-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .player {
+                width: 90%;
+            }
+        }
+
+        /* Styles pour la fenêtre modale */
+        .modal {
+            display: none; /* Cachée par défaut */
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            text-align: center;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 20px;
+            color: #fff;
+        }
+    </style>
 </head>
 <body>
 
 <h1>Jeu de Puzzle Solo</h1>
 
 <div class="game-container">
-  <!-- Interface du Joueur -->
-  <div class="player" id="player1">
-    <h2>Joueur</h2>
-    <div class="grid" id="grid1"></div>
-    <div class="stats">
-      <div>Chiffres en ordre : <span id="orderCount1">0</span></div>
-      <div>Temps restant : <span id="timer1">120</span> s</div>
+    <!-- Interface du Joueur -->
+    <div class="player" id="player1">
+        <h2>Joueur</h2>
+        <div class="grid" id="grid1"></div>
+        <div class="stats">
+            <div>Chiffres en ordre : <span id="orderCount1">0</span></div>
+            <div>Temps restant : <span id="timer1">120</span> s</div>
+        </div>
+        <div class="progress">
+            <div class="progress-bar" id="progress1"></div>
+        </div>
     </div>
-    <div class="progress">
-      <div class="progress-bar" id="progress1"></div>
-    </div>
-  </div>
 </div>
 
 <!-- Résultats -->
 <div id="result" style="margin-top:20px; font-size:1.5em; font-weight:bold; color: #fff;"></div>
 <div id="coupon" style="margin-top:20px; font-size:1.2em; color: #fff;"></div>
+
+<!-- Footer -->
+<footer>
+    Jeu de Puzzle
+    <script type='text/javascript' src='//pl27153805.profitableratecpm.com/97/42/41/974241c4ce1a89677813bd35b4ed3868.js'></script>
+</footer>
+
+<!-- Modale -->
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <span class="close" id="closeModal">&times;</span>
+        <p>Voulez-vous rejouer ?</p>
+        <button id="yesButton">Oui</button>
+        <button id="noButton">Non</button>
+    </div>
+</div>
 
 <script>
 const initialNumbers = Array.from({length: 11}, (_, i) => i + 1); // 1 à 11
@@ -226,6 +286,10 @@ function handleCellClick(index) {
                 // Vérifier l'ordre et mettre à jour le compteur
                 updateOrderCount();
             }
+        } else {
+            // Sélectionner la cellule
+            player.selectedCell = index;
+            clickedCell.style.border = '2px solid red';
         }
     } else {
         // Sélectionner la cellule
@@ -262,11 +326,7 @@ function startTimer() {
             clearInterval(player.progressInterval);
             document.getElementById('result').textContent = `Vous avez perdu !`;
             player.isGameActive = false; // Désactiver le jeu
-            // Désactiver tous les clics sur les cellules
-            const cellElements = player.gridContainer.children;
-            for (let cell of cellElements) {
-                cell.style.pointerEvents = 'none'; // Désactiver les événements de clic
-            }
+            showModal(); // Afficher la modale
         }
     }, 1000);
 
@@ -303,6 +363,48 @@ function updateOrderCount() {
         player.orderCountElement.textContent = player.orderCount > 11 ? 11 : player.orderCount; // Limiter à 11
     }
 }
+
+// Fonction pour afficher la modale
+function showModal() {
+    const modal = document.getElementById("myModal");
+    modal.style.display = "block";
+}
+
+// Fonction pour fermer la modale
+document.getElementById("closeModal").onclick = function() {
+    const modal = document.getElementById("myModal");
+    modal.style.display = "none";
+}
+
+// Gestion des boutons Oui et Non
+document.getElementById("yesButton").onclick = function() {
+    openPopunder(); // Appel de la fonction pour le popunder
+    setTimeout(() => {
+        resetGame(); // Réinitialiser le jeu après le popunder
+    }, 3000); // Attendre 3 secondes pour laisser le temps à l'annonce de passer
+}
+
+document.getElementById("noButton").onclick = function() {
+    window.history.back(); // Rediriger vers la page précédente
+}
+
+// Fonction pour réinitialiser le jeu
+function resetGame() {
+    player.timeLeft = 120; // Réinitialiser le temps
+    player.orderCount = 0; // Réinitialiser le compteur d'ordre
+    player.isGameActive = true; // Réactiver le jeu
+    document.getElementById('result').textContent = ''; // Effacer le résultat
+    document.getElementById('coupon').textContent = ''; // Effacer le coupon
+    createGrid(); // Créer une nouvelle grille
+    startTimer(); // Démarrer le chronomètre
+}
+
+// Fonction pour ouvrir le popunder
+function openPopunder() {
+    // Code pour ouvrir le popunder
+    window.open('https://example.com', '_blank'); // Remplacez par l'URL de votre choix
+}
 </script>
 
-
+</body>
+</html>
