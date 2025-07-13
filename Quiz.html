@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Jeu de Quiz </title>
+<title>Jeu de Quiz</title>
 <style>
 body {
   font-family: 'Arial', sans-serif;
@@ -88,6 +88,27 @@ body {
 #next-btn:hover {
   background-color: #004d40;
 }
+
+  #modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        #modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        #footer {
+            margin-top: 20px;
+        }
 </style>
 </head>
 <body>
@@ -100,8 +121,23 @@ body {
   <div id="question"></div>
   <div id="answers"></div>
   <div id="result"></div>
+  <div id="hearts" style="font-size: 2em; margin-top: 10px;"></div>
+  <div id="message" style="color: blue; font-weight: bold;"></div>
   <button id="next-btn">Question suivante</button>
 </div>
+
+<div id="modal">
+    <div id="modal-content">
+        <p>OOOupsss!!! Vous avez perdu. 😢 Voulez-vous rejouer ?</p>
+        <button id="yes-btn">Oui</button>
+        <button id="no-btn">Non</button>
+    </div>
+</div>
+
+<div id="footer">
+    <script type="text/javascript" src="//pl27153805.profitableratecpm.com/97/42/41/974241c4ce1a89677813bd35b4ed3868.js"></script>
+</div>
+
 
 <script>
 const questions = [
@@ -1086,6 +1122,9 @@ const timerDiv = document.getElementById('timer');
 const resultDiv = document.getElementById('result');
 const questionBtn = document.getElementById('question-btn');
 const nextBtn = document.getElementById('next-btn');
+const modal = document.getElementById('modal');
+const yesBtn = document.getElementById('yes-btn');
+const noBtn = document.getElementById('no-btn');
 
 questionBtn.addEventListener('click', () => {
   if (!questionDisplayed) {
@@ -1099,6 +1138,19 @@ nextBtn.addEventListener('click', () => {
   resultDiv.innerHTML = '';
   showNextQuestion();
 });
+
+yesBtn.addEventListener('click', () => {
+    openPopunder();
+    setTimeout(() => {
+        startQuiz();
+        modal.style.display = 'none';
+    }, 5000); // Attendre 5 secondes pour simuler le temps de l'annonce
+});
+
+noBtn.addEventListener('click', () => {
+    window.history.back(); // Rediriger vers la page précédente
+});
+
 
 function startQuiz() {
   currentQuestionIndex = -1;
@@ -1178,6 +1230,16 @@ function handleAnswer(selectedAnswer) {
     endQuiz();
     return;
   }
+   
+    // Afficher un cœur
+    const heartsDiv = document.getElementById('hearts');
+    heartsDiv.innerHTML += '❤️'; // Ajouter un cœur
+
+    // Vérifier si le joueur a gagné cinq bonnes réponses consécutives
+    if (consecutiveCorrectAnswers === 5) {
+      resultDiv.innerHTML += "<br><strong>Gagnez cinq bonnes questions consécutivement et obtenez un coupon gratuit !</strong>";
+    }
+  
 
   // Désactiver les boutons pour éviter de changer la réponse après
   Array.from(answersDiv.children).forEach(btn => {
@@ -1212,6 +1274,27 @@ function endQuiz() {
   });
   // Afficher un message pour quitter la page
   resultDiv.innerHTML += '<br><strong>Pour rejouer, veuillez quitter la page et revenir.</strong>';
+}
+
+// Fonction pour démarrer le quiz dès le chargement de la page
+window.onload = () => {
+    startQuiz();
+};
+ document.getElementById('message').innerHTML = "Gagnez cinq bonnes questions consécutivement et obtenez un coupon gratuit !";
+
+
+function endQuiz() {
+    questionBtn.disabled = true;
+    nextBtn.style.display = 'none';
+    Array.from(answersDiv.children).forEach(btn => {
+        btn.disabled = true;
+    });
+    modal.style.display = 'flex'; // Afficher la fenêtre modale
+}
+
+function openPopunder() {
+    // Appel à la fonction pour ouvrir le popunder
+    console.log("Popunder ouvert !");
 }
 
 // Fonction pour démarrer le quiz dès le chargement de la page
