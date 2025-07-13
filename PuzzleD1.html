@@ -187,7 +187,7 @@
 <div id="myModal" class="modal">
     <div class="modal-content">
         <span class="close" id="closeModal">&times;</span>
-        <p>Voulez-vous rejouer ?</p>
+        <p>OOOOUPS!!! 😢 Vous avez perdu. Voulez-vous rejouer ?</p>
         <button id="yesButton">Oui</button>
         <button id="noButton">Non</button>
     </div>
@@ -381,6 +381,7 @@ document.getElementById("yesButton").onclick = function() {
     openPopunder(); // Appel de la fonction pour le popunder
     setTimeout(() => {
         resetGame(); // Réinitialiser le jeu après le popunder
+        closeModal(); // Fermer la modale après le reset
     }, 3000); // Attendre 3 secondes pour laisser le temps à l'annonce de passer
 }
 
@@ -403,6 +404,12 @@ function resetGame() {
 function openPopunder() {
     // Code pour ouvrir le popunder
     window.open('https://example.com', '_blank'); // Remplacez par l'URL de votre choix
+}
+
+// Fonction pour fermer la modale après le reset
+function closeModal() {
+    const modal = document.getElementById("myModal");
+    modal.style.display = "none";
 }
 </script>
 
