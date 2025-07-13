@@ -154,6 +154,18 @@
             text-decoration: underline; /* Souligner au survol */
         }
 
+        #banner {
+    width: 100%; /* Prend toute la largeur de l'écran */
+    height: 100px; /* Ajustez la hauteur selon vos besoins */
+    background-color: #ffcc00; /* Couleur de fond de la bannière */
+    display: flex; /* Utiliser flexbox pour centrer le contenu */
+    justify-content: center; /* Centrer horizontalement */
+    align-items: center; /* Centrer verticalement */
+    font-size: 24px; /* Taille de la police */
+    color: #333; /* Couleur du texte */
+    margin-bottom: 20px; /* Espacement en bas de la bannière */
+}
+
         @media (max-width: 600px) {
             .container {
                 padding: 10px;
@@ -166,9 +178,8 @@
 <header>
     <h1>Conditions de Livraison</h1>
 </header>
+<div id="banner">
 
-<!-- Deuxième header pour le code Adsterra -->
-<header>
     <script type="text/javascript">
         atOptions = {
             'key' : '8c16441bfb16406d775b64e08d76930d',
@@ -179,7 +190,7 @@
         };
     </script>
     <script type="text/javascript" src="//www.highperformanceformat.com/8c16441bfb16406d775b64e08d76930d/invoke.js"></script>
-</header>
+</div>
 
 <div class="container">
     <h2>1. Délais de commandes</h2>
