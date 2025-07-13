@@ -109,37 +109,52 @@ body {
     font-size: 16px; /* Taille de police plus petite pour les petits écrans */
 }
 
+/* Styles pour le conteneur de la roulette */
+#roulette-container {
+    width: 90vw; /* Utilisation de la largeur de la vue */
+    height: 90vw; /* Utilisation de la largeur de la vue pour garder le ratio */
+    max-width: 500px; /* Augmenter la largeur maximale */
+    max-height: 500px; /* Augmenter la hauteur maximale */
+}
+
+/* Styles pour les boutons de sélection de chiffres */
+.number-button {
+    margin: 5px;
+    padding: 15px; /* Augmenter le padding pour les boutons */
+    font-size: 20px; /* Augmenter la taille de police pour les petits écrans */
+}
+
 /* Media Queries pour les tablettes et téléphones */
 @media (max-width: 768px) {
     h1 {
-        font-size: 28px; /* Réduction de la taille de la police pour les petits écrans */
+        font-size: 32px; /* Réduction de la taille de la police pour les petits écrans */
     }
 
     #result {
-        font-size: 20px; /* Réduction de la taille de la police pour le résultat */
+        font-size: 24px; /* Réduction de la taille de la police pour le résultat */
     }
 
     #chosenNumbers {
-        font-size: 18px; /* Réduction de la taille de la police pour les chiffres choisis */
+        font-size: 20px; /* Réduction de la taille de la police pour les chiffres choisis */
     }
 
     #message {
-        font-size: 18px; /* Réduction de la taille de la police pour le message */
+        font-size: 20px; /* Réduction de la taille de la police pour le message */
     }
 
     #hearts {
-        font-size: 20px; /* Réduction de la taille de la police pour les cœurs */
+        font-size: 24px; /* Réduction de la taille de la police pour les cœurs */
     }
 }
 
 @media (max-width: 480px) {
     h1 {
-        font-size: 24px; /* Réduction supplémentaire pour les très petits écrans */
+        font-size: 28px; /* Réduction supplémentaire pour les très petits écrans */
     }
 
     .number-button {
-        font-size: 14px; /* Taille de police encore plus petite pour les très petits écrans */
-        padding: 8px; /* Réduction du padding */
+        font-size: 18px; /* Taille de police encore plus grande pour les très petits écrans */
+        padding: 12px; /* Réduction du padding */
     }
 }
     </style>
