@@ -88,6 +88,60 @@
             font-size: 18px;
             cursor: pointer;
         }
+
+        /* Styles généraux */
+body {
+    padding: 10px; /* Ajout d'un peu de padding pour les petits écrans */
+}
+
+/* Styles pour le conteneur de la roulette */
+#roulette-container {
+    width: 90vw; /* Utilisation de la largeur de la vue */
+    height: 90vw; /* Utilisation de la largeur de la vue pour garder le ratio */
+    max-width: 400px; /* Limite la largeur maximale */
+    max-height: 400px; /* Limite la hauteur maximale */
+}
+
+/* Styles pour les boutons de sélection de chiffres */
+.number-button {
+    margin: 5px;
+    padding: 10px;
+    font-size: 16px; /* Taille de police plus petite pour les petits écrans */
+}
+
+/* Media Queries pour les tablettes et téléphones */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 28px; /* Réduction de la taille de la police pour les petits écrans */
+    }
+
+    #result {
+        font-size: 20px; /* Réduction de la taille de la police pour le résultat */
+    }
+
+    #chosenNumbers {
+        font-size: 18px; /* Réduction de la taille de la police pour les chiffres choisis */
+    }
+
+    #message {
+        font-size: 18px; /* Réduction de la taille de la police pour le message */
+    }
+
+    #hearts {
+        font-size: 20px; /* Réduction de la taille de la police pour les cœurs */
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 24px; /* Réduction supplémentaire pour les très petits écrans */
+    }
+
+    .number-button {
+        font-size: 14px; /* Taille de police encore plus petite pour les très petits écrans */
+        padding: 8px; /* Réduction du padding */
+    }
+}
     </style>
 </head>
 <body>
@@ -116,7 +170,7 @@
 <div id="modal">
     <div id="modal-content">
         <p>OOOupsss!!! Vous avez perdu. 😢 Voulez-vous rejouer?</p>
-        <button class="button" id="yesButton">Oui</button>
+        <button class="button" id="yesButton">Rejouer</button>
         <button class="button" id="noButton">Non</button>
     </div>
 </div>
