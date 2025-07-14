@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crédit Client</title>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -18,126 +18,90 @@
             padding: 10px 0;
             text-align: center;
         }
-       footer.footer {
-background-color: blue;
-color: #ffffff;
-padding: 15px 10px;
-text-align: center;
-font-family: Arial, sans-serif;
-}
-.footer-title {
-font-size: 20px;
-margin-bottom: 10px;
-color: #ffffff;
-}
-.footer-slogan {
-font-size: 14px;
-color: #b2dfdb;
-margin-bottom: 10px;
-}
-/* Aligner les 5 icônes sur une seule ligne */
-.social-grid {
-display: flex;
-justify-content: center;
-align-items: center;
-gap: 15px;
-flex-wrap: nowrap; /* Empêche le retour à la ligne */
-overflow-x: auto; /* Permet le scroll horizontal si trop petit */
-padding: 10px 0;
-}
-.social-item {
-text-decoration: none;
-color: #ffffff;
-display: flex;
-flex-direction: column;
-align-items: center;
-transition: transform 0.3s ease, color 0.3s ease;
-font-size: 13px;
-min-width: 60px; /* fixe une largeur minimum pour éviter le retour ligne */
-}
-.social-item i {
-font-size: 24px;
-margin-bottom: 5px;
-transition: transform 0.3s ease, color 0.3s ease;
-}
-.social-item:hover {
-color: #83D4A9;
-transform: translateY(-3px);
-}
-.social-item:hover i {
-color: #83D4A9;
-transform: scale(1.1);
-}
-.copyright {
-font-size: 12px;
-color: #b2dfdb;
-margin-top: 10px;
-}
-
-.social-icons {
-    display: flex; /* Utiliser flexbox pour les icônes sociales */
-    justify-content: center; /* Centrer les icônes */
-    margin-top: 15px; /* Espacement au-dessus des icônes */
-}
-
-.social-icons a {
-    margin: 0 10px; /* Espacement entre les icônes */
-    transition: transform 0.3s; /* Animation de transformation */
-}
-
-.social-icons a:hover {
-    transform: scale(1.1); /* Agrandir l'icône au survol */
-}
-
-.social-icons svg {
-    width: 30px; /* Largeur des icônes */
-    height: 30px; /* Hauteur des icônes */
-    fill: white; /* Couleur des icônes */
-    transition: fill 0.3s; /* Animation de couleur */
-}
-
-.social-icons a:hover svg {
-    fill: #ffcc00; /* Changer la couleur au survol */
-}
-
-
-
-footer {
-    background-color: #004d40; /* Couleur de fond du footer */
-    color: white; /* Couleur du texte */
-    text-align: center; /* Centrer le texte */
-    padding: 20px 0; /* Espacement vertical */
-    position: relative; /* Position relative pour le footer */
-}
-
-footer p {
-    margin: 0; /* Supprimer la marge par défaut */
-}
-
-footer nav {
-    display: flex; /* Utiliser flexbox pour le nav */
-    justify-content: center; /* Centrer les éléments */
-    margin-top: 10px; /* Espacement au-dessus du nav */
-}
-
-footer ul {
-    list-style-type: none; /* Supprimer les puces de la liste */
-    padding: 0; /* Supprimer le padding par défaut */
-    display: flex; /* Utiliser flexbox pour la liste */
-}
-
-footer li {
-    margin: 0 15px; /* Espacement entre les liens */
-}
-
-footer a {
-    color: white; /* Couleur des liens */
-    text-decoration: none; /* Supprimer le soulignement */
-}
-
-footer a:hover {
-    text-decoration: underline; /* Souligner au survol */
-}
+        footer.footer {
+            background-color: blue;
+            color: #ffffff;
+            padding: 15px 10px;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        .footer-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+        .footer-slogan {
+            font-size: 14px;
+            color: #b2dfdb;
+            margin-bottom: 10px;
+        }
+        .social-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            padding: 10px 0;
+        }
+        .social-item {
+            text-decoration: none;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.3s ease, color 0.3s ease;
+            font-size: 13px;
+            min-width: 60px;
+        }
+        .social-item i {
+            font-size: 24px;
+            margin-bottom: 5px;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        .social-item:hover {
+            color: #83D4A9;
+            transform: translateY(-3px);
+        }
+        .social-item:hover i {
+            color: #83D4A9;
+            transform: scale(1.1);
+        }
+        .copyright {
+            font-size: 12px;
+            color: #b2dfdb;
+            margin-top: 10px;
+        }
+        footer {
+            background-color: #004d40;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            position: relative;
+        }
+        footer p {
+            margin: 0;
+        }
+        footer nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        footer ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+        }
+        footer li {
+            margin: 0 15px;
+        }
+        footer a {
+            color: white;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
         .container {
             max-width: 800px;
             margin: 20px auto;
@@ -183,7 +147,7 @@ footer a:hover {
     <h1>Achat a Credit</h1>
 </header>
 
-<div class="container" id="secureContent" style="display: none;">
+<div class="container" id="secureContent">
     <h2>Formulaire de Crédit Client</h2>
     <form id="creditForm">
         <label for="nom">Nom :</label>
@@ -210,33 +174,35 @@ footer a:hover {
         <label for="appel">Numéro d'Appel :</label>
         <input type="text" id="appel" name="appel" required>
 
+        <label for="autorisation">Autorisation (code) :</label>
+        <input type="text" id="autorisation" name="autorisation" required>
+
         <button type="submit">Envoyer</button>
     </form>
 </div>
-
+<script type='text/javascript' src='//pl27157606.profitableratecpm.com/ab/68/56/ab6856ac8a1307b4be5041fa1a2b98bb.js'></script>
 <footer class="footer" role="contentinfo">
-<h2 class="footer-title">Rejoins-nous sur nos plateformes</h2>
-<p class="footer-slogan">On est là pour vous, 24h/24</p>
-<div class="social-grid">
-<a href="https://wa.me/50948348881" target="_blank" class="social-item" rel="noopener" aria-label="WhatsApp">
-<i class="fab fa-whatsapp" aria-hidden="true"></i><span>WhatsApp</span>
-</a>
-<a href="https://www.facebook.com/AyitiOffre" target="_blank" class="social-item" rel="noopener" aria-label="Facebook">
-<i class="fab fa-facebook" aria-hidden="true"></i><span>Facebook</span>
-</a>
-<a href="https://www.instagram.com/AyitiOffre" target="_blank" class="social-item" rel="noopener" aria-label="Instagram">
-<i class="fab fa-instagram" aria-hidden="true"></i><span>Instagram</span>
-</a>
-<a href="https://www.tiktok.com/@AyitiOffre" target="_blank" class="social-item" rel="noopener" aria-label="TikTok">
-<i class="fab fa-tiktok" aria-hidden="true"></i><span>TikTok</span>
-</a>
-<a href="https://tonmarketplace.com" target="_blank" class="social-item" rel="noopener" aria-label="Marketplace">
-<i class="fas fa-store" aria-hidden="true"></i><span>Marketplace</span>
-</a>
-</div>
+    <h2 class="footer-title">Rejoins-nous sur nos plateformes</h2>
+    <p class="footer-slogan">On est là pour vous, 24h/24</p>
+    <div class="social-grid">
+        <a href="https://wa.me/50948348881" target="_blank" class="social-item" rel="noopener" aria-label="WhatsApp">
+            <i class="fab fa-whatsapp" aria-hidden="true"></i><span>WhatsApp</span>
+        </a>
+        <a href="https://www.facebook.com/AyitiOffre" target="_blank" class="social-item" rel="noopener" aria-label="Facebook">
+            <i class="fab fa-facebook" aria-hidden="true"></i><span>Facebook</span>
+        </a>
+        <a href="https://www.instagram.com/AyitiOffre" target="_blank" class="social-item" rel="noopener" aria-label="Instagram">
+            <i class="fab fa-instagram" aria-hidden="true"></i><span>Instagram</span>
+        </a>
+        <a href="https://www.tiktok.com/@AyitiOffre" target="_blank" class="social-item" rel="noopener" aria-label="TikTok">
+            <i class="fab fa-tiktok" aria-hidden="true"></i><span>TikTok</span>
+        </a>
+        <a href="https://tonmarketplace.com" target="_blank" class="social-item" rel="noopener" aria-label="Marketplace">
+            <i class="fas fa-store" aria-hidden="true"></i><span>Marketplace</span>
+        </a>
+    </div>
 
-
-  <nav>
+    <nav>
         <ul>
             <li><a href="informations.html">CGU</a></li>
             <li><a href="Politique.html">Politique de Confidentialité</a></li>
@@ -246,19 +212,35 @@ footer a:hover {
 </footer>
 
 <script>
-    // Demande de mot de passe
-    var password = prompt("Veuillez entrer le mot de passe pour accéder à cette page :");
-    if (password === "Den48") { // Remplacez "votreMotDePasse" par le mot de passe souhaité
-        document.getElementById('secureContent').style.display = 'block';
-    } else {
-        alert("Mot de passe incorrect. Accès refusé.");
-        window.location.href = "https://www.example.com"; // Redirigez vers une autre page si le mot de passe est incorrect
-    }
-
     document.getElementById('creditForm').addEventListener('submit', function(event) {
         event.preventDefault();
-        alert('Formulaire soumis avec succès !');
-        // Ici, vous pouvez ajouter le code pour traiter le formulaire
+        var autorisationCode = document.getElementById('autorisation').value;
+
+        if (autorisationCode === "Melemba") {
+            var nom = document.getElementById('nom').value;
+            var prenom = document.getElementById('prenom').value;
+            var numero = document.getElementById('numero').value;
+            var modele = document.getElementById('modele').value;
+            var codeModele = document.getElementById('codeModele').value;
+            var quantite = document.getElementById('quantite').value;
+            var whatsapp = document.getElementById('whatsapp').value;
+            var appel = document.getElementById('appel').value;
+
+            var message = "J'ai été autorisé à acheter à crédit !\n\n" +
+                          "Nom: " + nom + "\n" +
+                          "Prénom: " + prenom + "\n" +
+                          "Numéro: " + numero + "\n" +
+                          "Modèle: " + modele + "\n" +
+                          "Code du Modèle: " + codeModele + "\n" +
+                          "Quantité: " + quantite + "\n" +
+                          "Numéro WhatsApp: " + whatsapp + "\n" +
+                          "Numéro d'Appel: " + appel;
+
+            var whatsappLink = "https://wa.me/50948348881?text=" + encodeURIComponent(message);
+            window.location.href = whatsappLink;
+        } else {
+            alert("Code d'autorisation incorrect.");
+        }
     });
 </script>
 
