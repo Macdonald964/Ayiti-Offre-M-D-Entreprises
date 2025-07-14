@@ -107,6 +107,57 @@ body {
   text-decoration: none;
   cursor: pointer;
 }
+
+/* Styles généraux */
+body {
+    font-family: 'Arial', sans-serif;
+    padding: 20px;
+    background-color: #e0f7fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Styles pour les écrans de téléphone */
+@media (max-width: 600px) {
+    #quiz-container {
+        padding: 15px;
+    }
+    #question {
+        font-size: 1.2em;
+    }
+    .answer {
+        width: 90%;
+        font-size: 1em;
+    }
+    #timer, #result {
+        font-size: 1.1em;
+    }
+    #next-btn {
+        font-size: 1em;
+    }
+}
+
+/* Styles pour les écrans de tablette */
+@media (min-width: 601px) and (max-width: 900px) {
+    #quiz-container {
+        padding: 20px;
+    }
+    #question {
+        font-size: 1.3em;
+    }
+    .answer {
+        width: 85%;
+        font-size: 1.1em;
+    }
+    #timer, #result {
+        font-size: 1.2em;
+    }
+    #next-btn {
+        font-size: 1.1em;
+    }
+}
 </style>
 </head>
 <body>
@@ -121,6 +172,7 @@ body {
   <div id="answers"></div>
   <div id="result"></div>
   <button id="next-btn">Question suivante</button>
+  <h4> Gagnez cinq fois consecutivement et Gagnez un Coupon-Gratuit!</h4>
 </div>
 
 <!-- Fenêtre modale -->
@@ -1273,10 +1325,13 @@ window.onload = () => {
     startQuiz();
 };
 
+// Fonction pour ouvrir le popunder
 function openPopunder() {
-  // Logique pour ouvrir l'annonce popunder
-  console.log("Popunder ouvert");
+// Code pour ouvrir le popunder
+window.open('https://example.com', '_blank'); // Remplacez par l'URL de votre choix
 }
+
+
 </script>
 
 </body>
