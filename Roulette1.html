@@ -68,19 +68,22 @@
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            width: 80vw; /* Ajustez la largeur à 80% de la largeur de la vue */
+    height: 80vh; /* Ajustez la hauteur à 80% de la hauteur de la vue */
             background-color: rgba(0, 0, 0, 0.7);
             justify-content: center;
             align-items: center;
         }
 
         #modal-content {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            text-align: center;
-        }
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    max-width: 90%; /* Limite la largeur maximale du contenu */
+    max-height: 90%; /* Limite la hauteur maximale du contenu */
+    overflow-y: auto; /* Ajoute un défilement si le contenu dépasse la hauteur */
+}
 
         .button {
             margin: 5px;
