@@ -68,22 +68,19 @@
             position: fixed;
             top: 0;
             left: 0;
-            width: 80vw; /* Ajustez la largeur à 80% de la largeur de la vue */
-    height: 80vh; /* Ajustez la hauteur à 80% de la hauteur de la vue */
+            width: 100%;
+            height: 100%;
             background-color: rgba(0, 0, 0, 0.7);
             justify-content: center;
             align-items: center;
         }
 
         #modal-content {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    text-align: center;
-    max-width: 90%; /* Limite la largeur maximale du contenu */
-    max-height: 90%; /* Limite la hauteur maximale du contenu */
-    overflow-y: auto; /* Ajoute un défilement si le contenu dépasse la hauteur */
-}
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
 
         .button {
             margin: 5px;
@@ -93,82 +90,67 @@
         }
 
         /* Styles généraux */
-body {
-    padding: 10px; /* Ajout d'un peu de padding pour les petits écrans */
-}
+        body {
+            padding: 10px; /* Ajout d'un peu de padding pour les petits écrans */
+        }
 
-/* Styles pour le conteneur de la roulette */
-#roulette-container {
-    width: 150vw; /* Utilisation de la largeur de la vue */
-    height: 150vw; /* Utilisation de la largeur de la vue pour garder le ratio */
-    max-width: 500px; /* Limite la largeur maximale */
-    max-height: 500px; /* Limite la hauteur maximale */
-}
+        /* Styles pour le conteneur de la roulette */
+        #roulette-container {
+            width: 150vw; /* Utilisation de la largeur de la vue */
+            height: 150vw; /* Utilisation de la largeur de la vue pour garder le ratio */
+            max-width: 500px; /* Limite la largeur maximale */
+            max-height: 500px; /* Limite la hauteur maximale */
+        }
 
-/* Styles pour les boutons de sélection de chiffres */
-.number-button {
-    margin: 5px;
-    padding: 10px;
-    font-size: 16px; /* Taille de police plus petite pour les petits écrans */
-}
+        /* Styles pour les boutons de sélection de chiffres */
+        .number-button {
+            margin: 5px;
+            padding: 10px;
+            font-size: 16px; /* Taille de police plus petite pour les petits écrans */
+        }
 
-/* Styles pour le conteneur de la roulette */
-#roulette-container {
-    width: 150vw; /* Utilisation de la largeur de la vue */
-    height: 150vw; /* Utilisation de la largeur de la vue pour garder le ratio */
-    max-width: 500px; /* Augmenter la largeur maximale */
-    max-height: 500px; /* Augmenter la hauteur maximale */
-}
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 60px; /* Augmentation de la taille de la police pour les petits écrans */
+            }
 
-/* Styles pour les boutons de sélection de chiffres */
-.number-button {
-    margin: 15px;
-    padding: 25px; /* Augmenter le padding pour les boutons */
-    font-size: 50px; /* Augmenter la taille de police pour les petits écrans */
-}
+            #result {
+                font-size: 60px; /* Augmentation de la taille de la police pour le résultat */
+            }
 
-@media (max-width: 768px) {
-    h1 {
-        font-size: 60px; /* Augmentation de la taille de la police pour les petits écrans */
-    }
+            #chosenNumbers {
+                font-size: 60px; /* Augmentation de la taille de la police pour les chiffres choisis */
+            }
 
-    #result {
-        font-size: 60px; /* Augmentation de la taille de la police pour le résultat */
-    }
+            #message {
+                font-size: 60px; /* Augmentation de la taille de la police pour le message */
+            }
 
-    #chosenNumbers {
-        font-size: 60px; /* Augmentation de la taille de la police pour les chiffres choisis */
-    }
+            #hearts {
+                font-size: 30px; /* Augmentation de la taille de la police pour les cœurs */
+            }
 
-    #message {
-        font-size: 60px; /* Augmentation de la taille de la police pour le message */
-    }
+            #roulette-container {
+                width: 200vw; /* Augmentation de la largeur de la roulette */
+                height: 200vw; /* Augmentation de la hauteur de la roulette */
+            }
 
-    #hearts {
-        font-size: 30px; /* Augmentation de la taille de la police pour les cœurs */
-    }
+            .number-button {
+                font-size: 100px; /* Augmentation de la taille de police pour les boutons */
+                padding: 50px; /* Augmentation du padding pour les boutons */
+            }
+        }
 
-    #roulette-container {
-        width: 200vw; /* Augmentation de la largeur de la roulette */
-        height: 200vw; /* Augmentation de la hauteur de la roulette */
-    }
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 100px; /* Augmentation supplémentaire pour les très petits écrans */
+            }
 
-    .number-button {
-        font-size: 100px; /* Augmentation de la taille de police pour les boutons */
-        padding: 50px; /* Augmentation du padding pour les boutons */
-    }
-}
-
-@media (max-width: 480px) {
-    h1 {
-        font-size: 100px; /* Augmentation supplémentaire pour les très petits écrans */
-    }
-
-    .number-button {
-        font-size: 1000px; /* Taille de police encore plus grande pour les très petits écrans */
-        padding: 30px; /* Augmentation du padding */
-    }
-}
+            .number-button {
+                font-size: 1000px; /* Taille de police encore plus grande pour les très petits écrans */
+                padding: 30px; /* Augmentation du padding */
+            }
+        }
     </style>
 </head>
 <body>
@@ -205,7 +187,7 @@ body {
 <script>
 const canvas = document.getElementById('roulette');
 const ctx = canvas.getContext('2d');
-const segments = Array.from({ length: 21 }, (_, i) => ({ color: `hsl(${i * 17.5}, 100%, 50%)`, label: i.toString() }));
+const segments = Array.from({ length: 15 }, (_, i) => ({ color: `hsl(${i * 24}, 100%, 50%)`, label: i.toString() }));
 const numSegments = segments.length;
 let isSpinning = false;
 let userChoice = null;
@@ -221,7 +203,7 @@ const modal = document.getElementById('modal');
 const yesButton = document.getElementById('yesButton');
 const noButton = document.getElementById('noButton');
 
-const winningNumbers = Array.from({ length: 5 }, () => Math.floor(Math.random() * 21));
+const winningNumbers = Array.from({ length: 5 }, () => Math.floor(Math.random() * 15));
 
 function drawRoulette() {
     const centerX = canvas.width / 2;
@@ -348,7 +330,7 @@ noButton.addEventListener('click', () => {
 });
 
 const numbersDiv = document.getElementById('numbers');
-for (let i = 0; i <= 20; i++) {
+for (let i = 0; i <= 14; i++) {
     const button = document.createElement('button');
     button.textContent = i;
     button.className = 'number-button';
