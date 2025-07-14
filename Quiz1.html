@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Jeu de Quiz</title>
+<title>Jeu de Quiz </title>
 <style>
 body {
   font-family: 'Arial', sans-serif;
@@ -57,6 +57,19 @@ body {
   font-size: 1.3em;
   margin-bottom: 15px;
 }
+#question-btn {
+  padding: 12px 24px;
+  font-size: 1.2em;
+  background-color: #0097a7;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+#question-btn:hover {
+  background-color: #006064;
+}
 #result {
   font-size: 1.4em;
   margin-top: 20px;
@@ -75,38 +88,27 @@ body {
 #next-btn:hover {
   background-color: #004d40;
 }
-.modal {
-  display: none; /* caché par défaut */
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgb(0,0,0);
-  background-color: rgba(0,0,0,0.4);
-  padding-top: 60px;
-}
-.modal-content {
-  background-color: #fefefe;
-  margin: 5% auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
-}
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
+
+  #modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        #modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        #footer {
+            margin-top: 20px;
+        }
 </style>
 </head>
 <body>
@@ -119,22 +121,23 @@ body {
   <div id="question"></div>
   <div id="answers"></div>
   <div id="result"></div>
+  <div id="hearts" style="font-size: 2em; margin-top: 10px;"></div>
+  <div id="message" style="color: blue; font-weight: bold;"></div>
   <button id="next-btn">Question suivante</button>
 </div>
 
-<!-- Fenêtre modale -->
-<div id="myModal" class="modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <p>OOOupsss!!! Vous avez perdu. 😢 Voulez-vous rejouer ?</p>
-    <button id="yes-btn">Oui</button>
-    <button id="no-btn">Non</button>
-  </div>
+<div id="modal">
+    <div id="modal-content">
+        <p>OOOupsss!!! Vous avez perdu. 😢 Voulez-vous rejouer ?</p>
+        <button id="yes-btn">Oui</button>
+        <button id="no-btn">Non</button>
+    </div>
 </div>
 
-<footer>
-  <script type="text/javascript" src="//pl27153805.profitableratecpm.com/97/42/41/974241c4ce1a89677813bd35b4ed3868.js"></script>
-</footer>
+<div id="footer">
+    <script type="text/javascript" src="//pl27153805.profitableratecpm.com/97/42/41/974241c4ce1a89677813bd35b4ed3868.js"></script>
+</div>
+
 
 <script>
 const questions = [
@@ -1119,10 +1122,6 @@ const timerDiv = document.getElementById('timer');
 const resultDiv = document.getElementById('result');
 const questionBtn = document.getElementById('question-btn');
 const nextBtn = document.getElementById('next-btn');
-const modal = document.getElementById("myModal");
-const closeModal = document.getElementsByClassName("close")[0];
-const yesBtn = document.getElementById("yes-btn");
-const noBtn = document.getElementById("no-btn");
 
 questionBtn.addEventListener('click', () => {
   if (!questionDisplayed) {
@@ -1136,20 +1135,6 @@ nextBtn.addEventListener('click', () => {
   resultDiv.innerHTML = '';
   showNextQuestion();
 });
-
-yesBtn.addEventListener('click', () => {
-  openPopunder();
-  modal.style.display = "none";
-  startQuiz(); // Démarrer une nouvelle partie
-});
-
-noBtn.addEventListener('click', () => {
-  window.history.back(); // Rediriger vers la page précédente
-});
-
-closeModal.onclick = function() {
-  modal.style.display = "none";
-}
 
 function startQuiz() {
   currentQuestionIndex = -1;
@@ -1229,6 +1214,16 @@ function handleAnswer(selectedAnswer) {
     endQuiz();
     return;
   }
+   
+    // Afficher un cœur
+    const heartsDiv = document.getElementById('hearts');
+    heartsDiv.innerHTML += '❤️'; // Ajouter un cœur
+
+    // Vérifier si le joueur a gagné cinq bonnes réponses consécutives
+    if (consecutiveCorrectAnswers === 5) {
+      resultDiv.innerHTML += "<br><strong>Gagnez cinq bonnes questions consécutivement et obtenez un coupon gratuit !</strong>";
+    }
+  
 
   // Désactiver les boutons pour éviter de changer la réponse après
   Array.from(answersDiv.children).forEach(btn => {
@@ -1261,20 +1256,16 @@ function endQuiz() {
   Array.from(answersDiv.children).forEach(btn => {
     btn.disabled = true;
   });
-  
-  // Afficher la fenêtre modale
-  modal.style.display = "block";
+  // Afficher un message pour quitter la page
+  resultDiv.innerHTML += '<br><strong>Pour rejouer, veuillez quitter la page et revenir.</strong>';
 }
 
 // Fonction pour démarrer le quiz dès le chargement de la page
 window.onload = () => {
     startQuiz();
 };
+ document.getElementById('message').innerHTML = "Gagnez cinq bonnes questions consécutivement et obtenez un coupon gratuit !";
 
-function openPopunder() {
-  // Logique pour ouvrir l'annonce popunder
-  console.log("Popunder ouvert");
-}
 </script>
 
 </body>
