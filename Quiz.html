@@ -1192,9 +1192,9 @@ nextBtn.addEventListener('click', () => {
 });
 
 yesBtn.addEventListener('click', () => {
-  openPopunder();
-  modal.style.display = "none";
-  startQuiz(); // Démarrer une nouvelle partie
+    modal.style.display = "none";
+    questionBtn.disabled = false; // Réactiver le bouton "Question"
+    // Ne pas démarrer le quiz automatiquement ici
 });
 
 noBtn.addEventListener('click', () => {
@@ -1309,15 +1309,15 @@ function handleTimeout() {
 }
 
 function endQuiz() {
-  questionBtn.disabled = true; // désactiver le bouton question
-  nextBtn.style.display = 'none'; // cacher le bouton suivant
-  // Désactiver tous les boutons de réponse
-  Array.from(answersDiv.children).forEach(btn => {
-    btn.disabled = true;
-  });
-  
-  // Afficher la fenêtre modale
-  modal.style.display = "block";
+    questionBtn.disabled = true; // Désactiver le bouton "Question"
+    nextBtn.style.display = 'none'; // Cacher le bouton suivant
+    // Désactiver tous les boutons de réponse
+    Array.from(answersDiv.children).forEach(btn => {
+        btn.disabled = true;
+    });
+
+    // Afficher la fenêtre modale
+    modal.style.display = "block";
 }
 
 // Fonction pour démarrer le quiz dès le chargement de la page
