@@ -62,6 +62,12 @@
             font-size: 24px;
         }
 
+        #couponMessage {
+            margin-top: 20px;
+            font-size: 20px;
+            color: #2ecc71; /* Couleur pour le message de coupon */
+        }
+
         /* Styles pour la fenêtre modale */
         #modal {
             display: none;
@@ -111,19 +117,19 @@
 
         @media (max-width: 768px) {
             h1 {
-                font-size: 60px; /* Augmentation de la taille de la police pour les petits écrans */
+                font-size: 20px; /* Augmentation de la taille de la police pour les petits écrans */
             }
 
             #result {
-                font-size: 60px; /* Augmentation de la taille de la police pour le résultat */
+                font-size: 20px; /* Augmentation de la taille de la police pour le résultat */
             }
 
             #chosenNumbers {
-                font-size: 60px; /* Augmentation de la taille de la police pour les chiffres choisis */
+                font-size: 20px; /* Augmentation de la taille de la police pour les chiffres choisis */
             }
 
             #message {
-                font-size: 60px; /* Augmentation de la taille de la police pour le message */
+                font-size: 20px; /* Augmentation de la taille de la police pour le message */
             }
 
             #hearts {
@@ -131,13 +137,13 @@
             }
 
             #roulette-container {
-                width: 200vw; /* Augmentation de la largeur de la roulette */
-                height: 200vw; /* Augmentation de la hauteur de la roulette */
+                width: 90vw; /* Augmentation de la largeur de la roulette */
+                height: 90vw; /* Augmentation de la hauteur de la roulette */
             }
 
             .number-button {
-                font-size: 100px; /* Augmentation de la taille de police pour les boutons */
-                padding: 50px; /* Augmentation du padding pour les boutons */
+                font-size: 90px; /* Augmentation de la taille de police pour les boutons */
+                padding: 15px; /* Augmentation du padding pour les boutons */
             }
         }
 
@@ -172,6 +178,7 @@
 
 <div id="message"></div>
 <div id="hearts"></div>
+<div id="couponMessage"></div> <!-- Ajout d'un div pour le message de coupon -->
 
 <audio id="gameMusic" src="11 sex.mp3" preload="auto"></audio> <!-- Assurez-vous que le chemin est correct -->
 
@@ -194,14 +201,18 @@ let userChoice = null;
 let currentWinningIndex = 0;
 let consecutiveWins = 0;
 
+
 const resultDiv = document.getElementById('result');
 const chosenList = document.getElementById('chosenList');
 const messageDiv = document.getElementById('message');
 const heartsDiv = document.getElementById('hearts');
+const couponMessageDiv = document.getElementById('couponMessage'); // Référence au message de coupon
 const gameMusic = document.getElementById('gameMusic');
 const modal = document.getElementById('modal');
 const yesButton = document.getElementById('yesButton');
 const noButton = document.getElementById('noButton');
+
+const coupons = ['R4A81ME8B48M34E', 'R5A81WE8B48M34E', 'R4A81ME9B48M84E', 'R4B81ME8D48M54E', 'R4A87ME8B48T34E'];
 
 const winningNumbers = Array.from({ length: 5 }, () => Math.floor(Math.random() * 15));
 
@@ -281,6 +292,7 @@ function spinBall() {
                 resultDiv.textContent += ` (Vous avez choisi ce chiffre !)`;
                 consecutiveWins++;
                 updateMessage();
+                checkForCoupon(); // Vérifier si le joueur a gagné un coupon
             } else {
                 resultDiv.textContent += ` (Vous n'avez pas choisi ce chiffre.)`;
                 consecutiveWins = 0; // Réinitialiser les victoires consécutives
@@ -302,6 +314,13 @@ function updateMessage() {
     } else {
         messageDiv.textContent = "";
         heartsDiv.textContent = "";
+    }
+}
+
+function checkForCoupon() {
+    if (consecutiveWins === 3) {
+        const couponCode = coupons[Math.floor(Math.random() * coupons.length)];
+        couponMessageDiv.textContent = `Félicitations, vous avez gagné un coupon gratuit, voici le code : ${couponCode}`;
     }
 }
 
