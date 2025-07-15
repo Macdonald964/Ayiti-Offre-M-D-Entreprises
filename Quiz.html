@@ -192,10 +192,32 @@ body {
 
 <script>
 const questions = [
+
+
+  {
+    question: "Quelle est la fête chinoise qui célèbre la pleine lune et la réunion familiale ?",
+    answers: ["Fête des Lanternes", "Fête de la Mi-Automne", "Fête du Double Neuf", "Fête de Qingming"],
+    correct: "Fête de la Mi-Automne"
+  },
+   {
+    question: "Quel est le nom de la célèbre montagne sacrée en Chine, considérée comme le centre du taoïsme ?",
+    answers: ["Mont Huangshan", "Mont Everest", "Mont Emei" ,  "Mont Tai",],
+    correct: "Mont Tai"
+  },
   {
     question: "Selon la philosophie de Kant, quelle est la condition préalable à la connaissance empirique ?",
     answers: ["La synthèse a priori", "L'intuition sensible", "La raison pure", "L'expérience directe"],
     correct: "La synthèse a priori"
+  },
+    {
+    question: "Comment la littérature égyptienne contemporaine aborde-t-elle la question du changement social et politique, notamment à travers le prisme de la jeunesse et de l'urbanisation ?",
+    answers: ["En évitant tout sujet politique", "En utilisant la satire et la critique sociale dans des récits et des poèmes", "En se concentrant uniquement sur la tradition folklorique", "En valorisant la nostalgie du passé"],
+    correct: "En utilisant la satire et la critique sociale dans des récits et des poèmes"
+  },
+    {
+    question: "Quelle est la particularité de la littérature palestinienne en exil, notamment dans la façon dont elle exprime la perte, la résistance et l'espoir ?",
+    answers: ["Elle privilégie la poésie lyrique", "Elle utilise principalement le théâtre", "Elle mêle récit autobiographique, poésie et témoignages pour exprimer la complexité de l'exil", "Elle évite tout aspect politique"],
+    correct: "Elle mêle récit autobiographique, poésie et témoignages pour exprimer la complexité de l'exil"
   },
   {
 question: "Quel est le nom du célèbre festival de musique qui se tient chaque année à Bamako, au Mali ?",
@@ -213,6 +235,16 @@ question: "Quel est le nom de la danse traditionnelle des Kikuyu, souvent exécu
 answers: ["Ngoma", "Gikuyu", "Kikuyu Dance", "Mugithi"],
 correct: "Mugithi"
 },
+ {
+    question: "Quelle est la pratique chinoise ancienne qui consiste à équilibrer l'énergie dans le corps ?",
+    answers: ["Acupuncture", "Qigong", "Tai Chi", "Moxibustion"],
+    correct: "Tai Chi"
+  },
+   {
+    question: "Quelle est la danse traditionnelle chinoise souvent accompagnée de tambours et de costumes colorés ?",
+    answers: [ "Danse du dragon", "Danse du feu", "Danse des fleurs", "Danse du lion",],
+    correct: "Danse du lion"
+  },
 {
 question: "Quel est le nom de la danse traditionnelle des Yoruba, souvent exécutée lors des cérémonies ?",
 answers: ["Sango", "Bata", "Gere", "Adamu Orisha Play"],
@@ -246,6 +278,11 @@ correct: "Bata"
   answers: ["Fusion de deux étoiles à neutrons", "Explosion d'une étoile massive en fin de vie", "Explosion thermonucléaire d'une naine blanche accumulant du matière", "Collision de galaxies entières"],
   correct: "Explosion thermonucléaire d'une naine blanche accumulant du matière"
 },
+ {
+    question: "Quel animal est considéré comme le symbole de la sagesse dans la culture chinoise ?",
+    answers: ["Le dragon", "Le phénix", "La tortue", "Le tigre"],
+    correct: "La tortue"
+  },
 {
   question: "Comment la loi de Hubble permet-elle de mesurer l'expansion de l'univers, et quelles sont ses implications pour la compréhension de la cosmologie ?",
   answers: ["Elle relie la vitesse de récession des galaxies à leur distance, impliquant un univers en expansion", "Elle décrit la rotation des galaxies", "Elle explique la formation des étoiles", "Elle mesure la densité de matière noire dans l'univers"],
@@ -286,7 +323,16 @@ correct: "Bata"
   answers: ["La matière noire est invisible mais exerce une attraction gravitationnelle, tandis que l'énergie noire accélère l'expansion de l'univers", "La matière noire est visible, l'énergie noire est invisible", "Les deux sont des formes de matière ordinaire", "L'énergie noire est une forme de matière chaude"],
   correct: "La matière noire est invisible mais exerce une attraction gravitationnelle, tandis que l'énergie noire accélère l'expansion de l'univers"
 },
-
+ {
+    question: "Quelle est la boisson traditionnelle chinoise à base de thé fermenté ?",
+    answers: ["Thé vert", "Thé noir",  "Oolong", "Pu-erh",],
+    correct: "Pu-erh"
+  },
+   {
+    question: "Quelle est la fête chinoise qui célèbre le Nouvel An lunaire ?",
+    answers: ["Fête de la Lune", "Fête des Lanternes",  "Fête des Bateaux-Dragons", "Fête du Printemps",],
+    correct: "Fête du Printemps"
+  },
 
 
 
@@ -339,6 +385,26 @@ question: "Quel est le nom de l'art martial traditionnel d'Afrique du Sud, souve
 answers: ["Umzansi", "Nguni", "Donga", "Stick fighting"],
 correct: "Stick fighting"
 },
+ {
+    question: "Quel est le plat chinois à base de riz, de légumes et de viande, souvent sauté dans un wok ?",
+    answers: ["Dim sum", "Friture de poisson", "Chow mein", "Boeuf à la sauce noire"],
+    correct: "Chow mein"
+  },
+   {
+    question: "Quelle dynastie est célèbre pour avoir construit la Grande Muraille de Chine ?",
+    answers: ["Dynastie Ming", "Dynastie Qin", "Dynastie Han", "Dynastie Tang"],
+    correct: "Dynastie Qin"
+  },
+   {
+    question: "Quelle influence la philosophie soufie a-t-elle sur la poésie arabe moderne, notamment dans la recherche de l'unité spirituelle et de la quête de soi ?",
+    answers: ["Elle est totalement absente", "Elle inspire une poésie introspective et mystique", "Elle est critiquée comme étant dépassée", "Elle se limite à la poésie religieuse traditionnelle"],
+    correct: "Elle inspire une poésie introspective et mystique"
+  },
+    {
+    question: "Dans quelle œuvre de la littérature irakienne, l'auteur dépeint-il la complexité des identités ethniques et religieuses à travers une narration qui mêle histoire, mythe et réalité ?",
+    answers: [ "Les Voix du Tigre", "Les Ombres de Bagdad", "Le Silence des Ancêtres", "Les Rêves d'Irak",],
+    correct: "Les Rêves d'Irak"
+  },
 
   
   {
@@ -1080,11 +1146,50 @@ correct: "Wole Soyinka"
         answers: ["Oxygène", "Hydrogène", "Carbone", "Hélium"],
         correct: "Hydrogène"
     },
+      {
+    question: "Dans la poésie de Mahmoud Darwich, comment l'auteur utilise-t-il la métaphore de la terre pour exprimer la résistance palestinienne et le désir de liberté face à l'oppression ?",
+    answers: ["Il compare la terre à une mère protectrice", "Il la décrit comme un lieu de souffrance et de nostalgie", "Il la personnifie comme une amante inaccessible", "Il la dépeint comme un symbole d'espoir et de renaissance"],
+    correct: "Il la décrit comme un lieu de souffrance et de nostalgie"
+  },
+  {
+    question: "Quelle œuvre de Naguib Mahfouz, prix Nobel de littérature, dépeint la vie quotidienne dans un quartier populaire du Caire et explore les thèmes de la tradition, du changement et de la condition humaine ?",
+    answers: ["Le Jardin des Plaisirs", "Le Vieux Caire", "Les Fils de la Nuit", "Le Dernier Souffle"],
+    correct: "Le Vieux Caire"
+  },
+  {
+    question: "Dans la littérature syrienne contemporaine, comment la figure du héros est-elle souvent représentée pour refléter les défis sociaux et politiques du pays ?",
+    answers: ["Comme un héros mythologique", "Comme un simple spectateur", "Comme un homme en quête de justice et de vérité", "Comme un personnage historique"],
+    correct: "Comme un homme en quête de justice et de vérité"
+  },
     {
+
+      
         question: "Quel est le nom du processus par lequel les plantes convertissent la lumière en énergie ?",
         answers: ["Respiration", "Photosynthèse", "Chimiosynthèse", "Fermentation"],
         correct: "Photosynthèse"
     },
+
+
+ {
+    question: "Quel est le nom du célèbre festival chinois où l'on mange des boulettes de riz gluant ?",
+    answers: ["Fête de Qingming", "Fête des Bateaux-Dragons", "Fête de la Mi-Automne", "Fête des Lanternes"],
+    correct: "Fête des Bateaux-Dragons"
+  },
+   {
+    question: "Quelle est la tradition chinoise qui consiste à écrire des caractères sur du papier rouge pour porter chance ?",
+    answers: ["Calligraphie", "Décoration de porte", "Écriture de couplets", "Papier découpé"],
+    correct: "Écriture de couplets"
+  },
+   {
+    question: "Quel est le nom de la célèbre ville ancienne classée au patrimoine mondial de l'UNESCO, connue pour ses remparts ?",
+    answers: ["Xian", "Lijiang", "Pingyao", "Suzhou"],
+    correct: "Pingyao"
+  },
+
+
+
+
+
     {
         question: "Qui a formulé la loi de la gravitation universelle ?",
         answers: ["Galilée", "Newton", "Einstein", "Kepler"],
@@ -1147,6 +1252,12 @@ correct: "Wole Soyinka"
     "answers": ["L'effet tunnel", "L'intrication quantique", "La dualité onde-particule", "La diffusion"],
     "correct": "L'intrication quantique"
   },
+
+    {
+    question: "Dans quelle œuvre de la littérature libanaise, l'auteur aborde-t-il la complexité des identités religieuses et culturelles à travers une narration riche en symboles et en références historiques ?",
+    answers: [ "Le Livre des Ombres", "Les Voix du Liban", "Les Mains de l'Orient", "Les Cœurs Égarés",],
+    correct: "Les Cœurs Égarés"
+  },
   {
     "question": "Quel est le nom du principe qui stipule que l'énergie d'un système quantique est quantifiée et ne peut prendre que des valeurs discrètes ?",
     "answers": ["Le principe de Pauli", "Le quantification de l'énergie", "Le principe de superposition", "Le principe d'exclusion"],
@@ -1158,6 +1269,11 @@ correct: "Wole Soyinka"
   answers: [ "1","∞", "0", "-∞"],
   correct: "∞"
 },
+  {
+    question: "Quel est le rôle de la tradition orale dans la transmission de la poésie arabe ancienne, et comment cette tradition influence-t-elle la poésie moderne dans les pays arabes ?",
+    answers: ["Elle est peu utilisée dans la poésie moderne", "Elle sert de base à la structure et aux thèmes des poèmes modernes", "Elle est uniquement conservée dans les musées", "Elle n'a aucune influence sur la poésie contemporaine"],
+    correct: "Elle sert de base à la structure et aux thèmes des poèmes modernes"
+  },
 {
   question: "Quel est le nom de la première personne à avoir gravi l'Everest ?",
   answers: ["Tenzing Norgay", "Sir Edmund Hillary", "Reinhold Messner", "George Mallory"],
@@ -1313,6 +1429,24 @@ correct: "Wole Soyinka"
     ],
     correct: "Riches en magnésium et en fer"
   },
+
+ {
+    question: "Dans la poésie de Adonis, comment l'auteur utilise-t-il la mythologie et l'histoire pour questionner la modernité et la renaissance culturelle dans le monde arabe ?",
+    answers: ["Il rejette toute référence mythologique", "Il intègre des références mythologiques pour symboliser la transformation", "Il se concentre uniquement sur la poésie religieuse", "Il critique la mythologie comme étant dépassée"],
+    correct: "Il intègre des références mythologiques pour symboliser la transformation"
+  },
+    {
+    question: "Quel écrivain marocain a utilisé le récit autobiographique pour explorer les thèmes de l'identité, de la mémoire et du conflit entre tradition et modernité dans son œuvre majeure ?",
+    answers: ["Tahar Ben Jelloun", "Driss Chraïbi", "Mohamed Choukri", "Leila Abouzeid"],
+    correct: "Mohamed Choukri"
+  },
+    {
+    question: "Comment la figure du poète dans la littérature arabe classique est-elle souvent liée à la notion de sagesse et de conseil, et comment cette image évolue-t-elle dans la poésie moderne ?",
+    answers: ["Elle reste inchangée", "Elle devient plus personnelle et introspective", "Elle disparaît complètement", "Elle devient une figure de contestation politique"],
+    correct: "Elle devient plus personnelle et introspective"
+  },
+
+
   {
     question: "Quel phénomène géologique est responsable de la formation des montagnes de l'Himalaya ?",
     answers: [
@@ -1463,6 +1597,11 @@ question: "Quel inventeur a créé le premier système de navigation par satelli
 answers: ["Roger L. Easton", "Hugh Dryden", "John McCarthy", "William H. Pickering"],
 correct: "Roger L. Easton"
 },
+ {
+    question: "Quel roman contemporain de la littérature arabe, écrit par un auteur égyptien, explore en profondeur les thèmes de l'exil, de l'identité et de la révolution à travers le regard d'un jeune homme qui revient dans son pays après plusieurs années d'absence ?",
+    answers: ["Les Années d'Exil", "Le Dernier Voyage", "Les Mains Libres", "Le Silence des Murs"],
+    correct: "Les Mains Libres"
+  },
 {
 question: "Qui a inventé le premier laser ?",
 answers: ["Theodore Maiman", "Albert Einstein", "Charles Townes", "Arthur Leonard Schawlow"],
