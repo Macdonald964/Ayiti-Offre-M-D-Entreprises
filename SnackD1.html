@@ -76,6 +76,67 @@
             font-size: 20px;
             color: #00796b;
         }
+        /* Styles pour la fenêtre modale */
+        .modal {
+            display: none; /* Masquer par défaut */
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4); /* Fond semi-transparent */
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            text-align: center;
+        }
+        /* Styles pour les écrans plus petits */
+@media (max-width: 600px) {
+    .game-area {
+        width: 90vw; /* Utiliser 90% de la largeur de la fenêtre */
+        height: 90vw; /* Garder un ratio carré */
+    }
+
+    .arrow {
+        font-size: 30px; /* Réduire la taille des flèches */
+        padding: 10px; /* Réduire le padding */
+    }
+
+    .timer, .rules, .coupon {
+        font-size: 16px; /* Réduire la taille de la police */
+    }
+
+    h1 {
+        font-size: 24px; /* Réduire la taille du titre */
+    }
+}
+
+/* Styles pour les tablettes */
+@media (min-width: 601px) and (max-width: 900px) {
+    .game-area {
+        width: 80vw; /* Utiliser 80% de la largeur de la fenêtre */
+        height: 80vw; /* Garder un ratio carré */
+    }
+
+    .arrow {
+        font-size: 35px; /* Ajuster la taille des flèches */
+        padding: 12px; /* Ajuster le padding */
+    }
+
+    .timer, .rules, .coupon {
+        font-size: 18px; /* Ajuster la taille de la police */
+    }
+
+    h1 {
+        font-size: 28px; /* Ajuster la taille du titre */
+    }
+}
     </style>
 </head>
 <body>
@@ -104,6 +165,17 @@
     </div>
 </div>
 
+<!-- Fenêtre modale -->
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <p>Vous avez perdu, voulez-vous réessayer ?</p>
+        <button onclick="retryGame()">Oui</button>
+        <button onclick="goBack()">Non</button>
+    </div>
+</div>
+
+<script type="text/javascript" src="//pl27153805.profitableratecpm.com/97/42/41/974241c4ce1a89677813bd35b4ed3868.js"></script>
+
 <script>
 const gameConfig = {
     canvasId: 'canvas',
@@ -122,7 +194,7 @@ const gameConfig = {
 };
 
 const coupons = [
-   'W4A81ME8B48M34E', 'W5A81WE8B48M34E', 'W4A81ME9B48M84E', 'W4B81ME8D48M54E', 'W4A87ME8B48T34E', 'D4A87ME9B48M34E', 'P4A83ME8B48M34E', 'W4A81VE8B48M44E', 'P0A80ME8B48M34E', 'V4A81PE8B48M34E'
+   'S4A81ME8B48M34,E', 'S5A81WED8B48M34E', 'S4A81ME9B4R8M84E', 'S4B81ME8D485M5'
 ];
 
 function initGame(config) {
@@ -157,10 +229,10 @@ function gameLoop(config, ctx) {
 
     if (head.x < 0 || head.x >= ctx.canvas.width || head.y < 0 || head.y >= ctx.canvas.height ||
         config.snake.some(segment => segment.x === head.x && segment.y === head.y)) {
-        alert('Jeu terminé !');
         config.gameOver = true;
         clearInterval(config.intervalId);
         clearInterval(config.timerIntervalId);
+        showModal(); // Afficher la fenêtre modale
         return;
     }
 
@@ -190,10 +262,10 @@ function updateTimer(config) {
     document.getElementById(config.timerId).textContent = config.timeRemaining;
 
     if (config.timeRemaining <= 0) {
-        alert('Temps écoulé ! Jeu terminé !');
         config.gameOver = true;
         clearInterval(config.intervalId);
         clearInterval(config.timerIntervalId);
+        showModal(); // Afficher la fenêtre modale
     }
 }
 
@@ -240,52 +312,36 @@ function checkWin() {
     }
 }
 
+// Fonction pour afficher la fenêtre modale
+function showModal() {
+    document.getElementById("myModal").style.display = "block";
+}
+
+// Fonction pour redémarrer le jeu
+function retryGame() {
+    openPopunder(); // Ouvrir le popunder
+    gameConfig.points = 0;
+    gameConfig.timeRemaining = 300;
+    gameConfig.gameOver = false;
+    document.getElementById(gameConfig.scoreId).textContent = gameConfig.points;
+    document.getElementById(gameConfig.timerId).textContent = gameConfig.timeRemaining;
+    document.getElementById("myModal").style.display = "none"; // Fermer la modale
+    initGame(gameConfig); // Réinitialiser le jeu
+}
+
+// Fonction pour ouvrir le popunder
+function openPopunder() {
+    window.open('https://example.com', '_blank'); // Remplacez par l'URL de votre choix
+}
+
+// Fonction pour revenir à la page précédente
+function goBack() {
+    window.history.back(); // Rediriger vers la page précédente
+}
+
 // Initialiser le jeu
 initGame(gameConfig);
 </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-footer {
-    background-color: #004d40; /* Couleur de fond du footer */
-    color: white; /* Couleur du texte */
-    text-align: center; /* Centrer le texte */
-    padding: 20px 0; /* Espacement vertical */
-    position: relative; /* Position relative pour le footer */
-}
-
-footer p {
-    margin: 0; /* Supprimer la marge par défaut */
-}
-
-footer nav {
-    display: flex; /* Utiliser flexbox pour le nav */
-    justify-content: center; /* Centrer les éléments */
-    margin-top: 10px; /* Espacement au-dessus du nav */
-}
-
-footer ul {
-    list-style-type: none; /* Supprimer les puces de la liste */
-    padding: 0; /* Supprimer le padding par défaut */
-    display: flex; /* Utiliser flexbox pour la liste */
-}
-
-footer li {
-    margin: 0 15px; /* Espacement entre les liens */
-}
-
-footer a {
-    color: white; /* Couleur des liens */
-    text-decoration: none; /* Supprimer le soulignement */
-}
-
-footer a:hover {
-    text-decoration: underline; /* Souligner au survol */
-}
