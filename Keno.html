@@ -9,6 +9,8 @@
             font-family: Arial, sans-serif;
             text-align: center;
             background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
         }
         #numbers {
             display: flex;
@@ -63,17 +65,72 @@
             cursor: pointer;
             display: none; /* Masquer le bouton au départ */
         }
+        /* Styles pour la fenêtre modale */
+        #modal {
+            display: none; /* Masquer la modale par défaut */
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        #modalContent {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        /* Styles pour rendre le code responsive */
+        @media (max-width: 600px) {
+            .number {
+                width: 40px;
+                height: 40px;
+            }
+            .drawn-number {
+                width: 40px;
+                height: 40px;
+            }
+            #restart {
+                padding: 8px 16px;
+            }
+        }
+        @media (min-width: 601px) and (max-width: 900px) {
+            .number {
+                width: 45px;
+                height: 45px;
+            }
+            .drawn-number {
+                width: 45px;
+                height: 45px;
+            }
+        }
     </style>
 </head>
 <body>
 
 <h1>Jeu KENO</h1>
-<p>Sélectionnez 10 numéros entre 1 et 70</p>
+<p>Sélectionnez 10 numéros entre 1 et 70, puis tirez les numeros</p>
+<p> Avoir cinq boules dans le tirage pour gagner un coupon et dix pour gagner trois Coupons-Gratuit</p>
 <div id="numbers"></div>
 <button id="draw">Tirer les numéros</button>
 <button id="restart">RECOMMENCER</button>
 <div id="result"></div>
 <div id="drawnNumbers"></div>
+
+<!-- Fenêtre modale -->
+<div id="modal">
+    <div id="modalContent">
+        <p>Vous n'avez pas cinq boules parmi les boules tirées pour gagner au moins un coupon, voulez-vous réessayer ?</p>
+        <button id="yesButton">Oui</button>
+        <button id="noButton">Non</button>
+    </div>
+</div>
+
+<script type="text/javascript" src="//pl27153805.profitableratecpm.com/97/42/41/974241c4ce1a89677813bd35b4ed3868.js"></script>
 
 <script>
 const numbersContainer = document.getElementById('numbers');
@@ -82,6 +139,9 @@ const restartButton = document.getElementById('restart');
 const resultContainer = document.getElementById('result');
 const drawnNumbersContainer = document.getElementById('drawnNumbers');
 const selectedNumbers = new Set();
+const modal = document.getElementById('modal');
+const yesButton = document.getElementById('yesButton');
+const noButton = document.getElementById('noButton');
 
 // Créer les numéros de 1 à 70
 for (let i = 1; i <= 70; i++) {
@@ -168,8 +228,14 @@ function tirerBoules() {
             <p>Vos numéros sélectionnés : ${[...selectedNumbers].sort((a, b) => a - b).join(', ')}</p>
             <p>Correspondances : ${matches.length} (${matches.join(', ')})</p>
         `;
-        drawButton.style.display = 'none'; // Masquer le bouton Tirer
-        restartButton.style.display = 'inline'; // Afficher le bouton Recommencer
+        
+        // Ouvrir la modale si moins de 5 correspondances
+        if (matches.length < 5) {
+            modal.style.display = 'flex'; // Afficher la modale
+        } else {
+            drawButton.style.display = 'none'; // Masquer le bouton Tirer
+            restartButton.style.display = 'inline'; // Afficher le bouton Recommencer
+        }
     }, tirageArray.length * 1000); // Afficher les résultats après le tirage
 }
 
@@ -186,9 +252,26 @@ function recommencer() {
     });
 }
 
+// Fonction pour ouvrir le popunder
+function openPopunder() {
+  // Code pour ouvrir le popunder
+  window.open('https://example.com', '_blank'); // Remplacez par l'URL de votre choix
+}
+
 // Événements pour les boutons
 drawButton.addEventListener('click', tirerBoules);
 restartButton.addEventListener('click', recommencer);
+
+// Événements pour la modale
+yesButton.addEventListener('click', () => {
+    openPopunder(); // Ouvrir le popunder
+    setTimeout(recommencer, 5000); // Recommencer après 5 secondes
+    modal.style.display = 'none'; // Fermer la modale
+});
+
+noButton.addEventListener('click', () => {
+    window.history.back(); // Rediriger vers la page précédente
+});
 </script>
 
 </body>
