@@ -172,7 +172,7 @@ body {
   <div id="answers"></div>
   <div id="result"></div>
   <button id="next-btn">Question suivante</button>
-  <h4> Gagnez cinq fois consecutivement et Gagnez un Coupon-Gratuit!</h4>
+  <h4> Gagnez dix fois consecutivement et Gagnez un Coupon-Gratuit!</h4>
 </div>
 
 <!-- Fenêtre modale -->
@@ -197,11 +197,81 @@ const questions = [
     answers: ["La synthèse a priori", "L'intuition sensible", "La raison pure", "L'expérience directe"],
     correct: "La synthèse a priori"
   },
+
+
   {
     question: "Dans la philosophie existentialiste, quel concept est central chez Sartre ?",
     answers: ["L'absurde", "L'angoisse", "La liberté", "L'aliénation"],
     correct: "La liberté"
   },
+
+
+{
+  question: "Dans le cadre de la formation des étoiles, quel processus décrit la contraction gravitationnelle d'une nébuleuse qui mène à la naissance d'une étoile ?",
+  answers: ["Fusion nucléaire", "Accrétion de matière", "Collapse gravitationnel", "Fusion de molécules"],
+  correct: "Collapse gravitationnel"
+},
+{
+  question: "Quelle est la principale différence entre une naine blanche et une étoile de type géante rouge en termes de composition et de stade de vie ?",
+  answers: ["Les naines blanches sont plus chaudes mais moins volumineuses", "Les géantes rouges ont épuisé leur carburant nucléaire", "Les naines blanches sont des étoiles en fin de vie qui ont expulsé leurs couches externes", "Les géantes rouges sont des étoiles en début de formation"],
+  correct: "Les naines blanches sont des étoiles en fin de vie qui ont expulsé leurs couches externes"
+},
+{
+  question: "En astrophysique, comment explique-t-on la formation des trous noirs à partir de l'effondrement d'une étoile massive ?",
+  answers: ["Par la fusion de l'hydrogène en hélium", "Par la contraction gravitationnelle extrême lorsque la pression de radiation ne peut plus soutenir la masse", "Par la collision de deux étoiles à neutrons", "Par l'expansion rapide de l'univers"],
+  correct: "Par la contraction gravitationnelle extrême lorsque la pression de radiation ne peut plus soutenir la masse"
+},
+{
+  question: "Quel phénomène astronomique est responsable de la formation de supernovae de type Ia, et pourquoi sont-elles importantes en cosmologie ?",
+  answers: ["Fusion de deux étoiles à neutrons", "Explosion d'une étoile massive en fin de vie", "Explosion thermonucléaire d'une naine blanche accumulant du matière", "Collision de galaxies entières"],
+  correct: "Explosion thermonucléaire d'une naine blanche accumulant du matière"
+},
+{
+  question: "Comment la loi de Hubble permet-elle de mesurer l'expansion de l'univers, et quelles sont ses implications pour la compréhension de la cosmologie ?",
+  answers: ["Elle relie la vitesse de récession des galaxies à leur distance, impliquant un univers en expansion", "Elle décrit la rotation des galaxies", "Elle explique la formation des étoiles", "Elle mesure la densité de matière noire dans l'univers"],
+  correct: "Elle relie la vitesse de récession des galaxies à leur distance, impliquant un univers en expansion"
+},
+{
+  question: "Quelle est la différence fondamentale entre une galaxie elliptique et une galaxie spirale en termes de structure et de contenu stellaire ?",
+  answers: ["Les galaxies elliptiques ont une structure sphérique ou ovale avec peu de gaz et de jeunes étoiles", "Les galaxies spirales sont dépourvues de bras spiraux", "Les galaxies elliptiques contiennent principalement des étoiles jeunes et du gaz", "Les galaxies spirales n'ont pas de centre visible"],
+  correct: "Les galaxies elliptiques ont une structure sphérique ou ovale avec peu de gaz et de jeunes étoiles"
+},
+{
+  question: "En quoi consiste le phénomène de lentille gravitationnelle, et comment permet-il aux astronomes d'étudier l'univers lointain ?",
+  answers: ["La déviation de la lumière par la masse d'un objet massif, permettant d'observer des objets derrière lui", "La déformation de la lumière par la rotation des galaxies", "L'effet de la radiation cosmique sur la lumière", "La réflexion de la lumière par des surfaces planétaires"],
+  correct: "La déviation de la lumière par la masse d'un objet massif, permettant d'observer des objets derrière lui"
+},
+{
+  question: "Quelle est la signification de la constante cosmologique dans le modèle cosmologique ΛCDM, et comment influence-t-elle l'évolution de l'univers ?",
+  answers: [ "Elle décrit la densité de matière noire", "Elle est liée à la température du fond diffus cosmologique", "Elle représente l'énergie du vide, responsable de l'accélération de l'expansion de l'univers", "Elle explique la formation des galaxies"],
+  correct: "Elle représente l'énergie du vide, responsable de l'accélération de l'expansion de l'univers"
+},
+{
+  question: "Comment la spectroscopie permet-elle de déterminer la composition chimique des étoiles et des galaxies, et quelles sont les limites de cette méthode ?",
+  answers: [ "En mesurant leur luminosité uniquement", "En observant leur mouvement uniquement","En analysant les lignes d'absorption dans leur spectre, mais elle ne peut pas détecter les éléments en faible concentration", "En utilisant la radioastronomie uniquement"],
+  correct: "En analysant les lignes d'absorption dans leur spectre, mais elle ne peut pas détecter les éléments en faible concentration"
+},
+{
+  question: "Quelles sont les principales caractéristiques des quasars, et pourquoi sont-ils considérés comme certains des objets les plus lumineux de l'univers lointain ?",
+  answers: [ "Ce sont des étoiles très massives en fin de vie", "Ce sont des galaxies en collision", "Ce sont des amas de galaxies très denses", "Ce sont des noyaux galactiques actifs alimentés par des trous noirs supermassifs, émettant une quantité énorme de radiation",],
+  correct: "Ce sont des noyaux galactiques actifs alimentés par des trous noirs supermassifs, émettant une quantité énorme de radiation"
+},
+{
+  question: "En astrophysique, comment explique-t-on la formation des planètes dans un disque protoplanétaire, et quels sont les principaux défis de cette théorie ?",
+  answers: ["Par l'accrétion de poussières et de petits corps solides, mais la croissance jusqu'à des planètes géantes pose encore des questions", "Par la fusion nucléaire", "Par la capture gravitationnelle d'astres passants", "Par l'expansion de gaz chaud"],
+  correct: "Par l'accrétion de poussières et de petits corps solides, mais la croissance jusqu'à des planètes géantes pose encore des questions"
+},
+{
+  question: "Quelle est la différence entre la matière noire et l'énergie noire dans le contexte de l'univers, et comment leur présence est-elle détectée ?",
+  answers: ["La matière noire est invisible mais exerce une attraction gravitationnelle, tandis que l'énergie noire accélère l'expansion de l'univers", "La matière noire est visible, l'énergie noire est invisible", "Les deux sont des formes de matière ordinaire", "L'énergie noire est une forme de matière chaude"],
+  correct: "La matière noire est invisible mais exerce une attraction gravitationnelle, tandis que l'énergie noire accélère l'expansion de l'univers"
+},
+
+
+
+
+
+
   {
     question: "Quelle œuvre de Nietzsche introduit la notion de 'volonté de puissance' ?",
     answers: ["Ainsi parlait Zarathoustra", "Par-delà le bien et le mal", "La naissance de la tragédie", "L'Antéchrist"],
@@ -479,6 +549,42 @@ correct: "Neurotransmetteur"
         answers: ["Les accords de Paris", "Les accords de Genève", "Les accords de Camp David", "Les accords de Téhéran"],
         correct: "Les accords de Paris"
     },
+{
+  question: "Quel est le nom du dieu nordique associé à la sagesse, à la poésie et à la mort, souvent représenté avec un œil manquant ?",
+  answers: ["Thor", "Loki", "Odin", "Baldr"],
+  correct: "Odin"
+},
+{
+  question: "Dans la mythologie nordique, quel est le nom du serpent géant qui entoure le monde et qui est destiné à combattre Thor lors du Ragnarök ?",
+  answers: ["Fenrir", "Jörmungandr", "Nidhogg", "Surtur"],
+  correct: "Jörmungandr"
+},
+{
+  question: "Quel est le nom du royaume des morts, gouverné par la déesse Hel, où vont ceux qui ne meurent pas au combat ?",
+  answers: ["Valhalla", "Niflheim", "Helheim", "Asgard"],
+  correct: "Helheim"
+},
+
+{
+  question: "Quel est le nom du dieu du tonnerre, connu pour son marteau puissant, dans la mythologie nordique ?",
+  answers: ["Odin", "Thor", "Baldur", "Tyr"],
+  correct: "Thor"
+},
+{
+  question: "Quel est le nom du héros qui a été tué par une flèche empoisonnée, provoquant la tristesse de sa mère Frigg ?",
+  answers: ["Thor", "Baldur", "Sigurd", "Hercule"],
+  correct: "Baldur"
+},
+
+
+
+
+
+
+
+
+
+
     {
         question: "Qui a été le leader du mouvement pour les droits civiques qui a prononcé le discours 'I Have a Dream' ?",
         answers: ["Malcolm X", "Martin Luther King Jr.", "Rosa Parks", "Frederick Douglass"],
@@ -1294,8 +1400,8 @@ function handleAnswer(selectedAnswer) {
     consecutiveWins++; // Incrémenter le compteur de victoires consécutives
     resultDiv.innerHTML = "Bonne réponse !";
 
-    // Vérifier si le joueur a gagné cinq fois consécutivement
-    if (consecutiveWins === 5) {
+    // Vérifier si le joueur a gagné dix fois consécutivement
+    if (consecutiveWins === 10) {
       const couponCode = coupons[Math.floor(Math.random() * coupons.length)];
       resultDiv.innerHTML += `<br>Félicitations, vous avez gagné un coupon gratuit, voici le code : ${couponCode}`;
       consecutiveWins = 0; // Réinitialiser le compteur après avoir donné le coupon
@@ -1354,7 +1460,6 @@ function openPopunder() {
   // Code pour ouvrir le popunder
   window.open('https://example.com', '_blank'); // Remplacez par l'URL de votre choix
 }
-
 </script>
 
 </body>
