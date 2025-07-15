@@ -182,7 +182,7 @@ const gameConfig = {
     scoreId: 'score',
     timerId: 'timer',
     couponId: 'coupon',
-    speed: 5,
+    speed: 5, // Vitesse initiale
     points: 0,
     snake: [],
     direction: 'RIGHT',
@@ -322,6 +322,7 @@ function retryGame() {
     openPopunder(); // Ouvrir le popunder
     gameConfig.points = 0;
     gameConfig.timeRemaining = 300;
+    gameConfig.speed = 5; // Réinitialiser la vitesse
     gameConfig.gameOver = false;
     document.getElementById(gameConfig.scoreId).textContent = gameConfig.points;
     document.getElementById(gameConfig.timerId).textContent = gameConfig.timeRemaining;
