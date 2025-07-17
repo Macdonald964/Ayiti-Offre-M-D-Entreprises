@@ -675,12 +675,12 @@ font-size: 13px;
     <div class="header-icon">
         <img src="img/ao.jpg" alt="Logo" style="width: 70px; height: auto;"> <!-- Icône en miniature -->
     </div>
-    <div class="panier-box">
-        <button onclick="togglePanier()">
-            🛒 Panier (<span id="panierCount"></span>)
-        </button>
-        <div id="panierContent" class="panier-content" style="display: none;"></div>
-    </div>
+  <div class="panier-box">
+    <button onclick="allerAuFooter()">
+        🛒 Panier (<span id="panierCount"></span>)
+    </button>
+    <div id="panierContent" class="panier-content" style="display: none;"></div>
+</div>
     
 </header>
 
@@ -1079,7 +1079,7 @@ allProducts.forEach((product) => {
 </div>
 
 
-<footer class="footer" role="contentinfo">
+<footer class="footer" role="contentinfo" id="footer">
 <h2 class="footer-title">Rejoins-nous sur nos plateformes</h2>
 <p class="footer-slogan">On est là pour vous, 24h/24</p>
 <div class="social-grid">
@@ -1119,12 +1119,14 @@ allProducts.forEach((product) => {
 let panierProduits = [];
 
 
-// Fonction pour afficher ou masquer le panier
-function togglePanier() {
-    const panierContent = document.getElementById('panierContent');
-    panierContent.style.display = panierContent.style.display === 'block' ? 'none' : 'block';
-    afficherPanierHeader(); // Met à jour l'affichage du panier dans le header
+// Remplacez la fonction togglePanier par celle-ci
+function allerAuFooter() {
+    const footer = document.getElementById('footer');
+    footer.scrollIntoView({ behavior: 'smooth' }); // Fait défiler en douceur vers le footer
 }
+
+// Modifiez l'événement onclick du bouton panier dans le header
+document.querySelector('.panier-box button').onclick = allerAuFooter;
 
 // Fonction pour ajouter un produit au panier
 function ajouterAuPanier(produit) {
@@ -1148,7 +1150,7 @@ function afficherPanierHeader() {
 
     // Regrouper les produits par nom
     const groupedProducts = panierProduits.reduce((acc, product) => {
-        const key = `${product.name} (${product.code})`;
+        const key = `${product.name} `;
         if (!acc[key]) {
             acc[key] = { ...product, options: [] };
         }
@@ -1251,7 +1253,7 @@ function openModal(image, name, price, options) {
 
     document.getElementById('myModal').style.display = "block";
     // Stocker les informations du produit dans l'objet global
-    window.selectedProduct = { image, name, price, code };
+    window.selectedProduct = { image, name, price, };
 }
 
 
@@ -1298,7 +1300,7 @@ function toggleMenu() {
     toggleDropdown(sectionId);
 
     // Stocker les informations du produit dans l'objet global
-    window.selectedProduct = { image, name, priceUnit, priceThree, code };
+    window.selectedProduct = { image, name, price,  };
 
 
 function closeModal() {
@@ -1376,7 +1378,7 @@ function confirmerReservation() {
 
     // Afficher les détails de la réservation dans une nouvelle modale
     const details = panierProduits.map(product => `
-        <p>Produit: ${product.name}, Code: ${product.code}, Couleur: ${product.color}, Taille: ${product.size}, Quantité: ${product.quantity}</p>
+        <p>Produit: ${product.name},  Couleur: ${product.color}, Taille: ${product.size}, Quantité: ${product.quantity}</p>
     `).join('');
 
     document.getElementById('reservationDetails').innerHTML = `
@@ -1424,7 +1426,7 @@ function accepterConditions() {
 
     // Détails de la commande
     const details = panierProduits.map(product => `
-        Produit: ${product.name}, Code: ${product.code}, Couleur: ${product.color}, Taille: ${product.size}, Quantité: ${product.quantity}
+        Produit: ${product.name},  Couleur: ${product.color}, Taille: ${product.size}, Quantité: ${product.quantity}
     `).join('');
 
     const message = `*Détails de la réservation:*\nNom: ${nom}\nPrénom: ${prenom}\nNuméro: ${numero}\n\n*Détails de la commande:*\n${details}`;
@@ -1469,7 +1471,7 @@ function afficherPanier() {
 
     // Regrouper les produits par nom
     const groupedProducts = panierProduits.reduce((acc, product) => {
-        const key = `${product.name} (${product.code})`;
+        const key = `${product.name} `;
         if (!acc[key]) {
             acc[key] = { ...product, options: [] };
         }
@@ -1484,9 +1486,9 @@ function afficherPanier() {
             <div>
                 <img src="${product.image}" alt="${product.name}" style="max-width: 50px; height: auto;">
                 <p>Nom: ${product.name}</p>
-                <p>Prix Unitaire: ${product.priceUnit}</p>
-                <p>Prix pour 3: ${product.priceThree}</p>
-                <p>Code: ${product.code}</p>
+                <p>Prix : ${product.price}</p>
+                
+                
                 <p>Options: ${optionsList}</p>
                 <span class="cross" onclick="deselectionnerProduit('${key}')">&times;</span>
             </div>
@@ -1501,7 +1503,7 @@ function afficherPanier() {
 }
 
 function deselectionnerProduit(key) {
-    panierProduits = panierProduits.filter(product => `${product.name} (${product.code})` !== key); // Retirer le produit du panier
+    panierProduits = panierProduits.filter(product => `${product.name} ` !== key); // Retirer le produit du panier
     afficherPanier(); // Mettre à jour l'affichage du panier
 }
 
@@ -1521,7 +1523,7 @@ function validerLivraison() {
 
     // Récupérer les détails des produits
     const details = panierProduits.map(product => `
-        <p>Produit: ${product.name}, Code: ${product.code}, Couleur: ${product.color}, Taille: ${product.size}, Quantité: ${product.quantity}</p>
+        <p>Produit: ${product.name},  Couleur: ${product.color}, Taille: ${product.size}, Quantité: ${product.quantity}</p>
     `).join('');
 
     // Récupérer le coupon
@@ -1595,7 +1597,7 @@ function continuer() {
 
         // Détails de la commande
         const detailsCommande = panierProduits.map(product =>
-            `Produit: ${product.name}, Code: ${product.code}, Couleur: ${product.color}, Taille: ${product.size}, Quantité: ${product.quantity}`
+            `Produit: ${product.name},  Couleur: ${product.color}, Taille: ${product.size}, Quantité: ${product.quantity}`
         ).join('\n'); // Formater les détails de la commande
 
         // Récupérer le coupon
