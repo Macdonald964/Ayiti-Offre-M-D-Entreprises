@@ -555,102 +555,75 @@ footer a:hover {
     border-color: #5cb85c; /* Couleur de la bordure au focus */
 }
 
-/* Styles pour les écrans de taille moyenne (tablettes) */
+/* Styles pour les écrans de taille moyenne (tablettes) et petits écrans (téléphones) */
 @media (max-width: 768px) {
-    .container {
-        width: 100%;
-    }
+  .container {
+    width: 100%;
+  }
+  .product {
+    width: calc(50% - 20px); /* Deux produits par ligne sur tablette */
+  }
+  @media (max-width: 480px) {
     .product {
-        width: calc(50% - 20px); /* Deux produits par ligne */
-    }
-}
-
-/* Styles pour les petits écrans (téléphones) */
-@media (max-width: 480px) {
-    .product {
-        width: calc(100% - 20px); /* Un produit par ligne */
+      width: calc(100% - 20px); /* Un produit par ligne sur téléphone */
     }
     .header-links {
-        flex-direction: column; /* Liens en colonne */
-        align-items: flex-start; /* Alignement à gauche */
+      flex-direction: column; /* Liens en colonne sur téléphone */
+      align-items: center; /* Centrer les liens */
     }
     .header-links a {
-        margin-left: 0; /* Pas de marge à gauche */
-        margin-bottom: 10px; /* Marge en bas pour espacer les liens */
+      margin-left: 0; /* Pas de marge à gauche */
+      margin-bottom: 10px; /* Espacement entre les liens */
+      padding: 5px 0; /* Padding pour les liens */
     }
-}
-
-
-
-/* Mobile optimisation */
-@media (max-width: 400px) {
-.social-item {
-font-size: 12px;
-min-width: 50px;
-}
-.social-item i {
-font-size: 20px;
-}
-.footer-title {
-font-size: 18px;
-}
-.footer-slogan {
-font-size: 13px;
-}
-}
-
-
-
-@media (max-width: 480px) {
     header {
-        flex-direction: row; /* Aligne les éléments en ligne sur les petits écrans */
-        align-items: center; /* Centre les éléments */
+      flex-direction: row; /* Alignement en ligne sur téléphone */
+      align-items: center; /* Centrer les éléments */
     }
     .header-icon {
-        margin-bottom: 5px; /* Espacement en bas de l'icône */
+      margin-bottom: 5px; /* Espacement en bas de l'icône */
     }
     h1 {
-        font-size: 1.5em; /* Réduit la taille du texte sur les petits écrans */
-        margin-left: 10px; /* Ajoute un espacement à gauche pour le titre */
+      font-size: 1.5em; /* Taille réduite du titre */
+      margin-left: 10px; /* Espacement à gauche */
     }
     .container {
-        width: 95%; /* Augmente la largeur pour les petits écrans */
-        padding: 0 10px; /* Ajoute un padding pour éviter que le contenu touche les bords */
+      width: 95%; /* Largeur adaptée sur téléphone */
+      padding: 0 10px; /* Padding pour éviter le contact avec les bords */
     }
     .product {
-        width: calc(100% - 20px); /* Un produit par ligne */
-        margin: 10px 0; /* Ajuste la marge pour un espacement vertical */
+      width: calc(100% - 20px); /* Un produit par ligne */
+      margin: 10px 0; /* Espacement vertical */
     }
     .header-links {
-        display: flex;
-        justify-content: flex-start; /* Aligne les liens à gauche */
-        align-items: center;
-        flex-wrap: wrap; /* Permet aux liens de se déplacer sur plusieurs lignes */
-    }
-    .header-links a {
-        margin-left: 0; /* Pas de marge à gauche */
-        margin-bottom: 10px; /* Marge en bas pour espacer les liens */
-        padding: 5px 0; /* Ajoute un padding pour rendre les liens plus cliquables */
+      display: flex;
+      justify-content: flex-start; /* Alignement à gauche */
+      align-items: center;
+      flex-wrap: wrap; /* Passage à plusieurs lignes si nécessaire */
     }
     .btn-menu {
-        padding: 10px; /* Ajuste le padding pour les boutons */
-        margin-right: 0; /* Supprime la marge à droite */
-        margin-bottom: 10px; /* Ajoute une marge en bas pour espacer les boutons */
+      padding: 10px; /* Padding pour boutons */
+      margin-right: 0; /* Suppression de la marge à droite */
+      margin-bottom: 10px; /* Espacement en bas */
     }
     #panier {
-        padding: 15px; /* Augmente le padding pour le panier */
-        margin-left: 10px; /* Ajuste légèrement le panier à gauche */
+      padding: 15px; /* Padding pour le panier */
+      margin-left: 10px; /* Ajustement à gauche */
     }
-}
-
-@media (max-width: 768px) {
-    .header-links {
-        flex-direction: column; /* Aligne les liens verticalement sur les petits écrans */
-        align-items: center; /* Centre les liens */
+    .social-item {
+      font-size: 12px;
+      min-width: 50px;
     }
-    h1 {
-        font-size: 1.5em; /* Réduit la taille du texte sur les petits écrans */
+    .social-item i {
+      font-size: 20px;
     }
+    .footer-title {
+      font-size: 18px;
+    }
+    .footer-slogan {
+      font-size: 13px;
+    }
+  }
 }
 
 </style>
