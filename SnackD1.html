@@ -97,62 +97,61 @@
             text-align: center;
         }
         /* Styles pour les écrans plus petits */
-@media (max-width: 600px) {
-    .game-area {
-        width: 90vw; /* Utiliser 90% de la largeur de la fenêtre */
-        height: 90vw; /* Garder un ratio carré */
-    }
+        @media (max-width: 600px) {
+            .game-area {
+                width: 90vw; /* Utiliser 90% de la largeur de la fenêtre */
+                height: 90vw; /* Garder un ratio carré */
+            }
 
-    .arrow {
-        font-size: 30px; /* Réduire la taille des flèches */
-        padding: 10px; /* Réduire le padding */
-    }
+            .arrow {
+                font-size: 30px; /* Réduire la taille des flèches */
+                padding: 10px; /* Réduire le padding */
+            }
 
-    .timer, .rules, .coupon {
-        font-size: 16px; /* Réduire la taille de la police */
-    }
+            .timer, .rules, .coupon {
+                font-size: 16px; /* Réduire la taille de la police */
+            }
 
-    h1 {
-        font-size: 24px; /* Réduire la taille du titre */
-    }
-}
+            h1 {
+                font-size: 24px; /* Réduire la taille du titre */
+            }
+        }
 
-/* Styles pour les tablettes */
-@media (min-width: 601px) and (max-width: 900px) {
-    .game-area {
-        width: 80vw; /* Utiliser 80% de la largeur de la fenêtre */
-        height: 80vw; /* Garder un ratio carré */
-    }
+        /* Styles pour les tablettes */
+        @media (min-width: 601px) and (max-width: 900px) {
+            .game-area {
+                width: 80vw; /* Utiliser 80% de la largeur de la fenêtre */
+                height: 80vw; /* Garder un ratio carré */
+            }
 
-    .arrow {
-        font-size: 35px; /* Ajuster la taille des flèches */
-        padding: 12px; /* Ajuster le padding */
-    }
+            .arrow {
+                font-size: 35px; /* Ajuster la taille des flèches */
+                padding: 12px; /* Ajuster le padding */
+            }
 
-    .timer, .rules, .coupon {
-        font-size: 18px; /* Ajuster la taille de la police */
-    }
+            .timer, .rules, .coupon {
+                font-size: 18px; /* Ajuster la taille de la police */
+            }
 
-    h1 {
-        font-size: 28px; /* Ajuster la taille du titre */
-    }
-}
+            h1 {
+                font-size: 28px; /* Ajuster la taille du titre */
+            }
+        }
     </style>
 </head>
 <body>
 
-<h1>Jeu de Snake</h1>
+<h3>Jeu de Snake</h3>
 <div class="container">
     <div class="player">
-        <h3>Joueur</h3>
         <canvas id="canvas" width="300" height="300"></canvas>
         <div class="score">Points: <span id="score">0</span></div>
-        <div class="timer">Temps restant: <span id="timer">300</span> s</div>
+        <div class="timer">Temps restant: <span id="timer">120</span> s</div>
         <div class="coupon" id="coupon"></div>
     </div>
 </div>
 
-<div class="rules">Règlement : Avaler 100 points</div>
+<div class="rules">Règlement : Avaler 50 points</div>
 
 <div class="controls">
     <div class="arrow-row">
@@ -189,7 +188,7 @@ const gameConfig = {
     food: {},
     intervalId: null,
     timerIntervalId: null,
-    timeRemaining: 300, // 5 minutes in seconds
+    timeRemaining: 120, // 2 minutes in seconds
     gameOver: false
 };
 
@@ -255,6 +254,8 @@ function gameLoop(config, ctx) {
     config.snake.forEach(segment => ctx.fillRect(segment.x, segment.y, 10, 10));
     ctx.fillStyle = 'red';
     ctx.fillRect(config.food.x, config.food.y, 10, 10);
+
+    checkWin(); // Vérifier si le joueur a gagné
 }
 
 function updateTimer(config) {
@@ -304,7 +305,7 @@ function displayCoupon() {
 
 // Appel de la fonction pour afficher le coupon si l'utilisateur gagne
 function checkWin() {
-    if (gameConfig.points >= 100) {
+    if (gameConfig.points >= 50) { // Changer ici pour 50 points
         displayCoupon();
         gameConfig.gameOver = true; // Marquer le jeu comme terminé
         clearInterval(gameConfig.intervalId);
@@ -321,7 +322,7 @@ function showModal() {
 function retryGame() {
     openPopunder(); // Ouvrir le popunder
     gameConfig.points = 0;
-    gameConfig.timeRemaining = 300;
+    gameConfig.timeRemaining = 120; // Réinitialiser le temps
     gameConfig.speed = 5; // Réinitialiser la vitesse
     gameConfig.gameOver = false;
     document.getElementById(gameConfig.scoreId).textContent = gameConfig.points;
