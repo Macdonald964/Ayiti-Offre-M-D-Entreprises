@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extraire Coupons</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background: red;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+        footer {
+            background: blue;
+            color: #fff;
+            text-align: center;
+            padding: 2px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #333;
+        }
+        .coupon-field {
+            margin-bottom: 15px;
+        }
+        .coupon-field label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .coupon-field input {
+            width: 50%; /* Réduit la largeur des champs de saisie */
+            padding: 5px; /* Réduit le padding pour un champ plus petit */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .extract-button {
+            margin-top: 10px;
+            padding: 10px 15px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .extract-button:hover {
+            background-color: #218838;
+        }
+        .message {
+            color: red;
+            margin-top: 10px;
+        }
+        @media (min-width: 768px) {
+            .coupon-field {
+                display: flex;
+                justify-content: space-between;
+            }
+            .coupon-field input {
+                flex: 1;
+                margin-right: 10px;
+            }
+            .coupon-field input:last-child {
+                margin-right: 0;
+            }
+        }
+    </style>
+    <script>
+        function validateCoupon(code) {
+            const validCode = "Mi8*po3#485a";
+            return code === validCode;
+        }
+
+        function extractCoupon(event) {
+            event.preventDefault();
+            const couponInput = event.target.previousElementSibling;
+            const couponCode = couponInput.value;
+            const messageElement = document.getElementById('message');
+
+            if (validateCoupon(couponCode)) {
+                messageElement.textContent = "Coupon valide !";
+                messageElement.style.color = "green";
+            } else {
+                messageElement.textContent = "Coupon invalide !";
+                messageElement.style.color = "red";
+            }
+        }
+    </script>
+</head>
+<body>
+
+<header>
+    <h1>Extraire Coupons</h1>
+</header>
+
+<div class="container">
+    <h2>Coupons Snack</h2>
+    <div class="coupon-field">
+        <label for="code-coupon-snack">Code Coupon:</label>
+        <input type="text" id="code-coupon-snack" placeholder="Entrez le code coupon">
+    </div>
+    <div class="coupon-field">
+        <label for="numero-moncach-snack">Numéro Moncach:</label>
+        <input type="text" id="numero-moncach-snack" placeholder="Entrez le numéro Moncach">
+        <button class="extract-button" onclick="extractCoupon(event)">Extraire Coupon</button>
+    </div>
+    
+    <div id="message" class="message"></div>
+
+    <h2>Coupons Puzzle</h2>
+    <div class="coupon-field">
+        <label for="code-coupon-2">Code Coupon:</label>
+        <input type="text" id="code-coupon-2" placeholder="Entrez le code coupon">
+    </div>
+    <div class="coupon-field">
+        <label for="numero-moncach-2">Numéro Moncach:</label>
+        <input type="text" id="numero-moncach-2" placeholder="Entrez le numéro Moncach">
+        <button class="extract-button" onclick="extractCoupon(event)">Extraire Coupon</button>
+    </div>
+
+    <h2>Coupons Keno</h2>
+    <div class="coupon-field">
+        <label for="code-coupon-3">Code Coupon:</label>
+        <input type="text" id="code-coupon-3" placeholder="Entrez le code coupon">
+    </div>
+    <div class="coupon-field">
+        <label for="numero-moncach-3">Numéro Moncach:</label>
+        <input type="text" id="numero-moncach-3" placeholder="Entrez le numéro Moncach">
+        <button class="extract-button" onclick="extractCoupon(event)">Extraire Coupon</button>
+    </div>
+
+    <h2>Coupons Roulette</h2>
+    <div class="coupon-field">
+        <label for="code-coupon-4">Code Coupon:</label>
+        <input type="text" id="code-coupon-4" placeholder="Entrez le code coupon">
+    </div>
+    <div class="coupon-field">
+        <label for="numero-moncach-4">Numéro Moncach:</label>
+        <input type="text" id="numero-moncach-4" placeholder="Entrez le numéro Moncach">
+        <button class="extract-button" onclick="extractCoupon(event)">Extraire Coupon</button>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2025 Ayiti Offre</p>
+    <script type='text/javascript' src='//pl27157606.profitableratecpm.com/ab/68/56/ab6856ac8a1307b4be5041fa1a2b98bb.js'></script>
+</footer>
+
+</body>
+</html>
