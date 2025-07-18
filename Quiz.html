@@ -167,7 +167,7 @@ body {
   <div id="header">
     <button id="question-btn">Question</button>
   </div>
-  <div id="timer">Temps restant : 15 secondes</div>
+  <div id="timer">Temps restant : 10 secondes</div>
   <div id="question"></div>
   <div id="answers"></div>
   <div id="result"></div>
@@ -1768,7 +1768,7 @@ correct: "Wole Soyinka"
   },
    {
     "question": "Quelle est la principale difficulté rencontrée lors de la traduction de textes littéraires entre le chinois et l'anglais ?",
-    "answers": [ "Syntaxe complexe", "Vocabulaire spécialisé", "Manque de contexte","Différences culturelles",d],
+    "answers": [ "Syntaxe complexe", "Vocabulaire spécialisé", "Manque de contexte","Différences culturelles",],
     "correct": "Différences culturelles"
   },
   {
@@ -1998,11 +1998,7 @@ question: "Quel inventeur a conçu le premier robot industriel ?",
 answers: ["George Devol", "Isaac Asimov", "Karel Čapek", "Joseph Engelberger"],
 correct: "George Devol"
 },
-{
-question: "Qui a inventé le premier smartphone ?",
-answers: [ "Apple","IBM", "Nokia", "BlackBerry"],
-correct: "IBM"
-},
+
 {
 question: "Quel inventeur a créé le premier système de navigation par satellite ?",
 answers: ["Roger L. Easton", "Hugh Dryden", "John McCarthy", "William H. Pickering"],
@@ -2109,7 +2105,7 @@ correct: "IBM"
 
 let currentQuestionIndex = -1; // commence à -1, pas encore lancé
 let timerInterval;
-let timeLeft = 15;
+let timeLeft = 10;
 let score = 0;
 let questionDisplayed = false; // pour contrôler l'affichage de la question
 let consecutiveWins = 0; // Compteur pour les victoires consécutives
@@ -2191,7 +2187,7 @@ function showNextQuestion() {
 
 function startQuestion() {
   clearInterval(timerInterval);
-  timeLeft = 15;
+  timeLeft = 10;
   timerDiv.textContent = `Temps restant : ${timeLeft} secondes`;
   
   const currentQuestion = questions[currentQuestionIndex];
