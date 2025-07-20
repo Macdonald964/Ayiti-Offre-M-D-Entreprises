@@ -165,7 +165,7 @@ color: #fff;
 <div class="grid" id="grid1"></div>
 <div class="stats">
 <div>Chiffres en ordre : <span id="orderCount1">0</span></div>
-<div>Temps restant : <span id="timer1">120</span> s</div>
+<div>Temps restant : <span id="timer1">60</span> s</div>
 </div>
 <div class="progress">
 <div class="progress-bar" id="progress1"></div>
@@ -219,7 +219,7 @@ const player = {
 grid: [],
 selectedCell: null,
 orderCount: 0,
-timeLeft: 120, // Changement ici pour 120 secondes
+timeLeft: 60, // Changement ici pour 120 secondes
 timerInterval: null,
 progressInterval: null,
 timerElement: document.getElementById('timer1'),
@@ -332,7 +332,7 @@ showModal(); // Afficher la modale
 
 // Progression visuelle
 player.progressInterval = setInterval(() => {
-const progressPercent = ((120 - player.timeLeft) / 120) * 100; // Changement ici pour 120 secondes
+const progressPercent = ((60 - player.timeLeft) / 60) * 100; // Changement ici pour 120 secondes
 player.progressBar.style.width = progressPercent + '%';
 }, 1000);
 }
@@ -391,7 +391,7 @@ window.history.back(); // Rediriger vers la page précédente
 
 // Fonction pour réinitialiser le jeu
 function resetGame() {
-player.timeLeft = 120; // Réinitialiser le temps
+player.timeLeft = 60; // Réinitialiser le temps
 player.orderCount = 0; // Réinitialiser le compteur d'ordre
 player.isGameActive = true; // Réactiver le jeu
 document.getElementById('result').textContent = ''; // Effacer le résultat
