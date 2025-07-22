@@ -9,7 +9,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-color: #e0e0e0; /* Fond gris */
             margin: 0;
             padding: 20px;
         }
@@ -115,6 +115,11 @@
                 flex: 1 1 100%;
             }
         }
+        @media (min-width: 601px) and (max-width: 900px) {
+            .section {
+                flex: 1 1 48%; /* Ajustement pour les tablettes */
+            }
+        }
     </style>
 </head>
 <body>
@@ -153,17 +158,8 @@
         <a href="https://www.tiktok.com/@AyitiOffre" target="_blank" class="social-item" rel="noopener" aria-label="TikTok">
             <i class="fab fa-tiktok" aria-hidden="true"></i><span>TikTok</span>
         </a>
-        <a href="https://tonmarketplace.com" target="_blank" class="social-item" rel="noopener" aria-label="Marketplace">
-            <i class="fas fa-store" aria-hidden="true"></i><span>Marketplace</span>
-        </a>
     </div>
 
-    <nav>
-        <ul>
-            <li><a href="informations.html">CGU</a></li>
-            <li><a href="Politique.html">Politique de Confidentialité</a></li>
-        </ul>
-    </nav>
     <p class="copyright">© 2025 Boutique Ayiti Offre - Tous droits réservés</p>
 </footer>
 
