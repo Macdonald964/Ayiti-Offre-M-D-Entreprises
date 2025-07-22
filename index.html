@@ -625,7 +625,31 @@ footer a:hover {
     }
   }
 }
+.second-header {
+    background: blue; /* Couleur de fond pour le deuxième en-tête */
+    color: #fff; /* Couleur du texte */
+    padding: 10px 0; /* Espacement vertical */
+    text-align: center; /* Centrer le texte */
+    position: fixed; /* Rendre le deuxième en-tête fixe */
+    top: 70px; /* Positionner juste en dessous de l'en-tête principal */
+    width: 100%; /* Prendre toute la largeur */
+    z-index: 999; /* Assurer qu'il est au-dessus des autres éléments */
+}
 
+.marquee {
+    overflow: hidden; /* Masquer le débordement */
+    white-space: nowrap; /* Empêcher le retour à la ligne */
+}
+
+.marquee p {
+    display: inline-block; /* Afficher le texte en ligne */
+    animation: marquee 20s linear infinite; /* Animation du défilement */
+}
+
+@keyframes marquee {
+    0% { transform: translateX(100%); } /* Commence à droite */
+    100% { transform: translateX(-100%); } /* Termine à gauche */
+}
 </style>
 
 </head>
@@ -654,18 +678,14 @@ footer a:hover {
     </button>
     <div id="panierContent" class="panier-content" style="display: none;"></div>
 </div>
+
     
 </header>
-<script type="text/javascript">
-	atOptions = {
-		'key' : '19478baffd054b4abccadb0567eaa523',
-		'format' : 'iframe',
-		'height' : 50,
-		'width' : 320,
-		'params' : {}
-	};
-</script>
-<script type="text/javascript" src="//www.highperformanceformat.com/19478baffd054b4abccadb0567eaa523/invoke.js"></script>
+<div class="second-header">
+    <div class="marquee">
+        <p>Adresse : Delmas 60, en face Pompe nationale la</p>
+    </div>
+</div>
 
 
 
